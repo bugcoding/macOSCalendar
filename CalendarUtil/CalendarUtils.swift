@@ -11,6 +11,12 @@
 
 public class CalendarUtils
 {
+    // Chinese era,ce,Heavenly Stems and Earthy Branches
+    var heavenlyStems = ["甲", "乙", "丙", "丁", "戊", "己", "庚", "辛", "壬", "癸"]
+    var earthyBranches = ["子", "丑", "寅", "卯", "辰", "巳", "午", "未", "申", "酉", "戌", "亥"]
+    // Chinese Zodic
+    var chineseZodiacName = ["鼠", "牛", "虎", "兔", "龙", "蛇", "马", "羊", "猴", "鸡", "狗", "猪"]
+    
     // get weekday by specail date, use Zeller Formular
     func getWeekDayBy(year:Int, month:Int, day:Int) -> Int
     {
@@ -32,4 +38,49 @@ public class CalendarUtils
         
         return week
     }
+    
+    // Get lunar calender year name GanZhi
+    func getLunarYearNameBy(year:Int) -> (heaven:String, earthy:String, zodiac:String)
+    {
+        let baseMinus:Int = year - 2000
+        
+        var heavenly = (7 + baseMinus) % 10
+        var earth = (5 + baseMinus) % 12
+        
+        // negative number handle
+        if heavenly <= 0
+        {
+            heavenly += 10
+        }
+        if earth <= 0
+        {
+            earth += 12
+        }
+        
+        return (heavenlyStems[heavenly - 1], earthyBranches[earth - 1], chineseZodiacName[earth - 1])
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 }
