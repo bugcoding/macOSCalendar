@@ -1,2 +1,2 @@
 # SwiftCalendar
-Calendar for MacOS written by swift
+Calendar(include lunar calendar) for MacOS written by swift
