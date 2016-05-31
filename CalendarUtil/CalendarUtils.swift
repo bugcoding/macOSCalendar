@@ -1,7 +1,7 @@
 /*====================
  
-    FileName    : CalendarUtils singleton
-    Desc        : Utils Function For Calendar
+    FileName    : CalendarUtils
+    Desc        : Utils Function For Calendar (singleton class)
     Author      : bugcode
     Email       : bugcoding@gmail.com
     CreateDate  : 2016-5-8
