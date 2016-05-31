@@ -1,6 +1,6 @@
 /*====================
  
-    FileName    : CalendarUtils
+    FileName    : CalendarUtils singleton
     Desc        : Utils Function For Calendar
     Author      : bugcode
     Email       : bugcoding@gmail.com
@@ -11,6 +11,20 @@
 
 public class CalendarUtils
 {
+    // singleton implemention
+    class var sharedInstance : CalendarUtils
+    {
+        struct Static
+        {
+            static let ins:CalendarUtils = CalendarUtils()
+        }
+        return Static.ins
+    }
+    private init()
+    {
+        
+    }
+    
     // days every month
     // leap year
     var daysOfMonthLeapYear = [0, 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
