@@ -83,9 +83,7 @@ public class CalendarUtils
     // current year is leap year or not
     func getIsLeapBy(year:Int) -> Bool
     {
-        var isLeap = false
-        isLeap = (year % 4 == 0 && year % 100 != 0) || year % 400 == 0
-        return isLeap
+        return (year % 4 == 0 && year % 100 != 0) || year % 400 == 0
     }
     
     // how many days in special month
