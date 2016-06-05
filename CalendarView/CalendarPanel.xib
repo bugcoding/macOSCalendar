@@ -4,7 +4,13 @@
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="10117"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner" customClass="CalendarPanel" customModule="SwiftCalendar"/>
+        <customObject id="-2" userLabel="File's Owner" customClass="CalendarPanel" customModule="SwiftCalendar">
+            <connections>
+                <outlet property="leftArrowBtn" destination="31X-TO-S5s" id="lJG-sA-BFs"/>
+                <outlet property="rightArrowBtn" destination="Opp-HM-Gen" id="aGg-JD-c94"/>
+                <outlet property="selectedDataText" destination="PLw-90-j5B" id="Mrf-OU-GDy"/>
+            </connections>
+        </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customView id="c22-O7-iKe">
