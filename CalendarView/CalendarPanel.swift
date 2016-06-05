@@ -11,6 +11,12 @@ import Cocoa
 
 class CalendarPanel:NSViewController{
     
+    // MARK: Oulets
+    @IBOutlet var selectedDataText: NSTextField!
+    @IBOutlet var rightArrowBtn: NSButton!
+    @IBOutlet var leftArrowBtn: NSButton!
+    
+    // MARK: self define var
     var bgColor = NSColor.whiteColor()
     var generalDateColor = NSColor.grayColor()
     var holidayDateColor = NSColor.redColor()
@@ -18,6 +24,7 @@ class CalendarPanel:NSViewController{
     var todayDateColor = NSColor.yellowColor()
     
     
+    // MARK: functions define
     init(){
         super.init(nibName: "CalendarPanel", bundle: nil)!
     }
