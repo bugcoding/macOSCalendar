@@ -43,14 +43,14 @@ public class CalendarUtils
         // Zeller Formular
         // w = (y + floor(y / 4) + floor(c / 4) - 2c + (13(m + 1) / 5) + d - 1) % 7
         
-        // last 2 of year number. 2003 -> 03 | 1997 -> 97
+        // last two digits of year number. 2003 -> 03 | 1997 -> 97
         let y:Int = year % 100
         // The preceding 2 digits of year number. 2003 -> 20 | 1997 -> 19
         let c:Int = year / 100
         
         var week:Int = (y + y / 4 + c / 4 - 2 * c + (13 * (m + 1) / 5) + d - 1) % 7;
         
-        // negative number handle
+        // handle negative number result
         if week < 0
         {
             week += 7
@@ -67,7 +67,7 @@ public class CalendarUtils
         var heavenly = (7 + baseMinus) % 10
         var earth = (5 + baseMinus) % 12
         
-        // negative number handle
+        // negative number handling
         if heavenly <= 0
         {
             heavenly += 10
