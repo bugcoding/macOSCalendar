@@ -11,11 +11,13 @@ import Cocoa
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
 
-    @IBOutlet weak var window: NSWindow!
-
+    weak var calViewController:CalendarViewController?
 
     func applicationDidFinishLaunching(aNotification: NSNotification) {
         // Insert code here to initialize your application
+        let calController = CalendarViewController()
+        calController.showWindow(self)
+        self.calViewController = calController
     }
 
     func applicationWillTerminate(aNotification: NSNotification) {

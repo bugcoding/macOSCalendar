@@ -10,8 +10,7 @@ import Cocoa
 
 class CalendarViewController: NSWindowController {
     
-    
-    // MARK Outlets define
+    // MARK: - Outlets define
     @IBOutlet weak var selectDataText:NSTextField!
     @IBOutlet weak var leftArrowBtn:NSButton!
     @IBOutlet weak var rightArrowBtn:NSButton!
@@ -22,7 +21,7 @@ class CalendarViewController: NSWindowController {
         return "CalendarViewController"
     }
     
-    // MARK button handler
+    // MARK: Button handler
     @IBAction func leftArrowBtnHandler(sender:AnyObject){
         selectDataText.stringValue = "LeftButton Clicked"
     }
