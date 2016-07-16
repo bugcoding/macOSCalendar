@@ -17,8 +17,19 @@ class CalendarViewController: NSWindowController {
     @IBOutlet weak var rightArrowBtn:NSButton!
     
     
+    // windowNibName override
+    override var windowNibName: String?{
+        return "CalendarViewController"
+    }
     
+    // MARK button handler
+    @IBAction func leftArrowBtnHandler(sender:AnyObject){
+        selectDataText.stringValue = "LeftButton Clicked"
+    }
     
+    @IBAction func rightArrowBtnHandler(sender:AnyObject){
+        selectDataText.stringValue = "RightButton Clicked"
+    }
     
     
     override func windowDidLoad() {
