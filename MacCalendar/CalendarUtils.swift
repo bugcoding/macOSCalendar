@@ -1,27 +1,26 @@
 /*====================
  
-    FileName    : CalendarUtils
-    Desc        : Utils Function For Calendar (singleton class)
-    Author      : bugcode
-    Email       : bugcoding@gmail.com
-    CreateDate  : 2016-5-8
+ FileName    : CalendarUtils
+ Desc        : Utils Function For Calendar (singleton class)
+ Author      : bugcode
+ Email       : bugcoding@gmail.com
+ CreateDate  : 2016-5-8
  
  ====================*/
 
+import Foundation
 
-public class CalendarUtils
-{
+public class CalendarUtils{
+    
     // singleton implemention
-    class var sharedInstance : CalendarUtils
-    {
-        struct Static
-        {
+    class var sharedInstance : CalendarUtils{
+        
+        struct Static{
             static let ins:CalendarUtils = CalendarUtils()
         }
         return Static.ins
     }
-    private init()
-    {
+    private init(){
         
     }
     
@@ -38,8 +37,7 @@ public class CalendarUtils
     var chineseZodiacName = ["鼠", "牛", "虎", "兔", "龙", "蛇", "马", "羊", "猴", "鸡", "狗", "猪"]
     
     // get weekday by specail date, use Zeller Formular
-    func getWeekDayBy(year:Int, month m:Int, day d:Int) -> Int
-    {
+    func getWeekDayBy(year:Int, month m:Int, day d:Int) -> Int {
         // Zeller Formular
         // w = (y + floor(y / 4) + floor(c / 4) - 2c + (13(m + 1) / 5) + d - 1) % 7
         
@@ -51,8 +49,7 @@ public class CalendarUtils
         var week:Int = (y + y / 4 + c / 4 - 2 * c + (13 * (m + 1) / 5) + d - 1) % 7;
         
         // handle negative number result
-        if week < 0
-        {
+        if week < 0 {
             week += 7
         }
         
@@ -60,20 +57,17 @@ public class CalendarUtils
     }
     
     // Get lunar calender year name GanZhi
-    func getLunarYearNameBy(year:Int) -> (heaven:String, earthy:String, zodiac:String)
-    {
+    func getLunarYearNameBy(year:Int) -> (heaven:String, earthy:String, zodiac:String){
         let baseMinus:Int = year - 2000
         
         var heavenly = (7 + baseMinus) % 10
         var earth = (5 + baseMinus) % 12
         
         // negative number handling
-        if heavenly <= 0
-        {
+        if heavenly <= 0 {
             heavenly += 10
         }
-        if earth <= 0
-        {
+        if earth <= 0 {
             earth += 12
         }
         
@@ -81,26 +75,30 @@ public class CalendarUtils
     }
     
     // current year is leap year or not
-    func getIsLeapBy(year:Int) -> Bool
-    {
+    func getIsLeapBy(year:Int) -> Bool {
         return (year % 4 == 0 && year % 100 != 0) || year % 400 == 0
     }
     
     // how many days in special month
-    func getDaysBy(year:Int, month m:Int) -> Int
-    {
+    func getDaysBy(year:Int, month m:Int) -> Int {
         var days = 0
-        if getIsLeapBy(year)
-        {
+        if getIsLeapBy(year) {
             days = daysOfMonthLeapYear[m]
         }
-        else
-        {
+        else{
             days = daysOfMonthNotLeapYear[m]
         }
         return days
     }
     
+    // get date of today
+    func getDateStringOfToday() -> String {
+        let nowDate = NSDate()
+        let formatter = NSDateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        let dateString = formatter.stringFromDate(nowDate)
+        return dateString
+    }
     
     
     

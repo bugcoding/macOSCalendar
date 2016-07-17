@@ -23,6 +23,7 @@ class CalendarViewController: NSWindowController {
     // MARK: Button handler
     @IBAction func leftArrowBtnHandler(sender:AnyObject){
         selectDataText.stringValue = "LeftButton Clicked"
+        print(CalendarUtils.sharedInstance.getDateStringOfToday())
     }
     
     @IBAction func rightArrowBtnHandler(sender:AnyObject){
@@ -32,8 +33,8 @@ class CalendarViewController: NSWindowController {
     
     override func windowDidLoad() {
         super.windowDidLoad()
-
-        // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
+        // set current date to textfield after window launched
+        selectDataText.stringValue = CalendarUtils.sharedInstance.getDateStringOfToday()
     }
     
 }
