@@ -30,11 +30,18 @@ class CalendarViewController: NSWindowController {
         selectDataText.stringValue = "RightButton Clicked"
     }
     
+    // default display setting
+    func showDefaultDate() {
+        let utils = CalendarUtils.sharedInstance
+        // set current date to textfield after window launched
+        selectDataText.stringValue = utils.getDateStringOfToday()
+    }
     
     override func windowDidLoad() {
         super.windowDidLoad()
-        // set current date to textfield after window launched
-        selectDataText.stringValue = CalendarUtils.sharedInstance.getDateStringOfToday()
+        
+        // default setting for display
+        self.showDefaultDate()
     }
     
 }
