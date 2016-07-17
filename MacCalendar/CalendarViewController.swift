@@ -36,11 +36,42 @@ class CalendarViewController: NSWindowController {
         selectDataText.stringValue = utils.getDateStringOfToday()
     }
     
+    // get button by identifier
+    func getButtonByIdentifier(id:String) -> NSView? {
+        for subView in (self.window?.contentView?.subviews[0].subviews)! {
+            if subView.identifier == id {
+                return subView
+            }
+        }
+        return nil
+    }
+    
+    // button press handler
+    func dateButtonHandler(sender:NSButton){
+        print("Press Button is \(sender.identifier)")
+    }
+    
     override func windowDidLoad() {
         super.windowDidLoad()
         
         // default setting for display
         self.showDefaultDate()
+        
+        // load all buttons
+        for i in 0 ... 5 {
+            for j in 0 ... 6 {
+                let id = "cell\(i * 7 + j + 1)"
+                print("id == \(id)")
+                if let btn = self.getButtonByIdentifier(id) {
+                    let cellBtn = btn as! NSButton
+                    cellBtn.target = self
+                    cellBtn.action = #selector(CalendarViewController.dateButtonHandler(_:))
+                }
+                
+            }
+        }
+        
+        
     }
     
 }
