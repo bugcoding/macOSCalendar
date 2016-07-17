@@ -15,12 +15,6 @@ class CalendarViewController: NSWindowController {
     @IBOutlet weak var leftArrowBtn:NSButton!
     @IBOutlet weak var rightArrowBtn:NSButton!
     
-//    @IBOutlet weak var TestBtn: NSButton!
-//    
-//    @IBAction func TestBtnHandler(sender: AnyObject) {
-//        selectDataText.stringValue = "Tests"
-//    }
-    
     // windowNibName override
     override var windowNibName: String?{
         return "CalendarViewController"
