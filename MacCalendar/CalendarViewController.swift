@@ -22,25 +22,35 @@ class CalendarViewController: NSWindowController {
     
     // MARK: Button handler
     @IBAction func leftArrowBtnHandler(sender:AnyObject){
-        selectDataText.stringValue = "LeftButton Clicked"
+        selectDataText.stringValue = self.getMonthDateStringBy(-1)
     }
     
     @IBAction func rightArrowBtnHandler(sender:AnyObject){        
+
+        selectDataText.stringValue = self.getMonthDateStringBy(1)
+    }
+    
+    // get next month dateString
+    func getMonthDateStringBy(step:Int)->String {
         let date = CalendarUtils.sharedInstance.getYMDTuppleBy(selectDataText.stringValue)
         
         var year = date.year
         var curMonth = date.month
-        curMonth = curMonth + 1
-        if curMonth > 12 {
+        curMonth = curMonth + step
+        if curMonth > 12 && step > 0 {
             curMonth = 1
             year = year + 1
         }
+        else if curMonth < 1 && step < 0{
+            curMonth = 12
+            year = year - 1
+        }
         
-        
-        // construct next month date format string 
-        let nextMonthDateString = String(year) + "-" + String(curMonth) + "-" + String(date.day)
-        selectDataText.stringValue = nextMonthDateString
+        // construct next month date format string
+        let monthDateString = String(year) + "-" + String(curMonth) + "-" + String(date.day)
+        return monthDateString
     }
+    
     
     // default display setting
     func showDefaultDate() {
