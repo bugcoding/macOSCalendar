@@ -118,8 +118,26 @@ public class CalendarUtils{
         return (Int(y)!, Int(m)!, Int(d)!)
     }
     
-    
-    
+    // get next month dateString
+    func getMonthDateStringBy(dateString:String, step:Int)->String {
+        let date = getYMDTuppleBy(dateString)
+        
+        var year = date.year
+        var curMonth = date.month
+        curMonth = curMonth + step
+        if curMonth > 12 && step > 0 {
+            curMonth = 1
+            year = year + 1
+        }
+        else if curMonth < 1 && step < 0{
+            curMonth = 12
+            year = year - 1
+        }
+        
+        // construct next month date format string
+        let monthDateString = String(year) + "-" + String(curMonth) + "-" + String(date.day)
+        return monthDateString
+    }
     
     
     
