@@ -100,7 +100,23 @@ public class CalendarUtils{
         return dateString
     }
     
-    
+    // get year, month, day from date string, keep dateString valid by caller
+    func getYMDTuppleBy(dateString:String) -> (year:Int, month:Int, day:Int) {
+        let formatter = NSDateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        let date = formatter.dateFromString(dateString)
+        
+        formatter.dateFormat = "yyyy"
+        let y = formatter.stringFromDate(date!)
+        
+        formatter.dateFormat = "MM"
+        let m = formatter.stringFromDate(date!)
+        
+        formatter.dateFormat = "dd"
+        let d = formatter.stringFromDate(date!)
+        
+        return (Int(y)!, Int(m)!, Int(d)!)
+    }
     
     
     
