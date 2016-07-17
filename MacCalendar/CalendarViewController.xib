@@ -70,7 +70,7 @@
                                 </buttonCell>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Rhz-8d-Jeh">
-                                <rect key="frame" x="530" y="319" width="81" height="55"/>
+                                <rect key="frame" x="528" y="318" width="85" height="57"/>
                                 <buttonCell key="cell" type="bevel" title="7" bezelStyle="regularSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="WMw-hZ-4ZI">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -412,7 +412,7 @@
             <connections>
                 <outlet property="delegate" destination="-2" id="0bl-1N-AYu"/>
             </connections>
-            <point key="canvasLocation" x="407" y="422.5"/>
+            <point key="canvasLocation" x="603" y="413.5"/>
         </window>
     </objects>
 </document>

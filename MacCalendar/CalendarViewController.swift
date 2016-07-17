@@ -25,7 +25,7 @@ class CalendarViewController: NSWindowController {
         selectDataText.stringValue = CalendarUtils.sharedInstance.getMonthDateStringBy(selectDataText.stringValue, step: -1)
     }
     
-    @IBAction func rightArrowBtnHandler(sender:AnyObject){        
+    @IBAction func rightArrowBtnHandler(sender:AnyObject){
         selectDataText.stringValue = CalendarUtils.sharedInstance.getMonthDateStringBy(selectDataText.stringValue, step: 1)
     }
     
