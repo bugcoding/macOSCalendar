@@ -45,7 +45,6 @@ class CalendarViewController: NSWindowController {
         }
         return nil
     }
-    
     // button press handler
     func dateButtonHandler(sender:NSButton){
         print("Press Button is \(sender.identifier)")
