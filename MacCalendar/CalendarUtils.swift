@@ -80,7 +80,8 @@ public class CalendarUtils{
     }
     
     // how many days in special month
-    func getDaysBy(year:Int, month m:Int) -> Int {
+    func getDaysBy(dateString: String) -> Int {
+        let (year, m, _) = getYMDTuppleBy(dateString)
         var days = 0
         if getIsLeapBy(year) {
             days = daysOfMonthLeapYear[m]
@@ -140,9 +141,13 @@ public class CalendarUtils{
     }
     
     
-    
-    
-    
+    // get week day which month of first day
+    func getWeekBy(dateString:String) -> Int {
+        let (year, month, _) = getYMDTuppleBy(dateString)
+        let weekDay = getWeekDayBy(year, month: month, day: 1)
+        
+        return weekDay
+    }
     
     
     

@@ -34,7 +34,19 @@ class CalendarViewController: NSWindowController {
         let utils = CalendarUtils.sharedInstance
         // set current date to textfield after window launched
         selectDataText.stringValue = utils.getDateStringOfToday()
+        showDaysInFormsBy(utils.getDateStringOfToday())
     }
+    
+    // show date
+    func showDaysInFormsBy(dateString: String){
+        // get week day of month fisrt day
+        let utils = CalendarUtils.sharedInstance
+        let weekDay = utils.getWeekBy(dateString)
+        let monthDays = utils.getDaysBy(dateString)
+        print("dateString = \(dateString) weekDay = \(weekDay) monthDays = \(monthDays)")
+    }
+    
+    
     
     // get button by identifier
     func getButtonByIdentifier(id:String) -> NSView? {
@@ -53,9 +65,6 @@ class CalendarViewController: NSWindowController {
     override func windowDidLoad() {
         super.windowDidLoad()
         
-        // default setting for display
-        self.showDefaultDate()
-        
         // load all buttons
         for i in 0 ... 5 {
             for j in 0 ... 6 {
@@ -69,6 +78,9 @@ class CalendarViewController: NSWindowController {
                 
             }
         }
+        
+        // default setting for display
+        self.showDefaultDate()
         
         
     }
