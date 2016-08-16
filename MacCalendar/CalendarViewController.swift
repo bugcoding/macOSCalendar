@@ -43,18 +43,22 @@ class CalendarViewController: NSWindowController {
     func showDaysInFormsBy(dateString: String){
         // get week day of month fisrt day
         let utils = CalendarUtils.sharedInstance
-        let weekDay = utils.getWeekBy(dateString)
+        
         let monthDays = utils.getDaysBy(dateString)
-        print("dateString = \(dateString) weekDay = \(weekDay) monthDays = \(monthDays)")
+        
+        let weekDayOf1stDay = utils.getWeekBy(dateString, andFirstDay: 1)
+        let weekDayOfLastDay = utils.getWeekBy(dateString, andFirstDay: monthDays)
+        
+        print("dateString = \(dateString) weekOf1stDay = \(weekDayOf1stDay) weekOfLastDay = \(weekDayOfLastDay) monthDays = \(monthDays) ")
         
         for (index, btn) in cellBtns.enumerate()  {
             print("showDaysInFormsBy index = \(index)")
-            if index < weekDay || index > monthDays {
+            if index < weekDayOf1stDay || index > monthDays {
                 btn.enabled = false
                 btn.title = ""
                 continue
             }
-            btn.title = "\(index - weekDay + 1)"
+            btn.title = "\(index - weekDayOf1stDay + 1)"
             if index % 7 == 1 || index % 7 == 0 {
                 // mark SAT and SUN
                 // TODO:

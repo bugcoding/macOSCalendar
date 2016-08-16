@@ -142,9 +142,9 @@ public class CalendarUtils{
     
     
     // get week day which month of first day
-    func getWeekBy(dateString:String) -> Int {
+    func getWeekBy(dateString:String, andFirstDay:Int) -> Int {
         let (year, month, _) = getYMDTuppleBy(dateString)
-        let weekDay = getWeekDayBy(year, month: month, day: 1)
+        let weekDay = getWeekDayBy(year, month: month, day: andFirstDay)
         
         return weekDay
     }
