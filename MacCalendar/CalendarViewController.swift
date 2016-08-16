@@ -55,7 +55,10 @@ class CalendarViewController: NSWindowController {
                 continue
             }
             btn.title = "\(index - weekDay + 1)"
-            
+            if index % 7 == 1 || index % 7 == 0 {
+                // mark SAT and SUN
+                // TODO:
+            }
         }
     }
     
