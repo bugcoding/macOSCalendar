@@ -15,6 +15,8 @@ class CalendarViewController: NSWindowController {
     @IBOutlet weak var leftArrowBtn:NSButton!
     @IBOutlet weak var rightArrowBtn:NSButton!
     
+    var cellBtns = [NSButton!]()
+    
     // windowNibName override
     override var windowNibName: String?{
         return "CalendarViewController"
@@ -44,6 +46,17 @@ class CalendarViewController: NSWindowController {
         let weekDay = utils.getWeekBy(dateString)
         let monthDays = utils.getDaysBy(dateString)
         print("dateString = \(dateString) weekDay = \(weekDay) monthDays = \(monthDays)")
+        
+        for (index, btn) in cellBtns.enumerate()  {
+            print("showDaysInFormsBy index = \(index)")
+            if index < weekDay || index > monthDays {
+                btn.enabled = false
+                btn.title = ""
+                continue
+            }
+            btn.title = "\(index - weekDay + 1)"
+            
+        }
     }
     
     
@@ -68,20 +81,25 @@ class CalendarViewController: NSWindowController {
         // load all buttons
         for i in 0 ... 5 {
             for j in 0 ... 6 {
-                let id = "cell\(i * 7 + j + 1)"
+                let intValue = (i * 7 + j + 1)
+                let id = "cell\(intValue)"
                 print("id == \(id)")
                 if let btn = self.getButtonByIdentifier(id) {
                     let cellBtn = btn as! NSButton
                     cellBtn.target = self
                     cellBtn.action = #selector(CalendarViewController.dateButtonHandler(_:))
+                    cellBtn.intValue = Int32(intValue)
+                    cellBtns.append(cellBtn)
                 }
-                
             }
+        }
+        
+        for (index, btn) in cellBtns.enumerate() {
+            print("cellbtns index = \(index) btn.action = \(btn.action)")
         }
         
         // default setting for display
         self.showDefaultDate()
-        
         
     }
     
