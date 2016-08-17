@@ -15,7 +15,7 @@ class CalendarViewController: NSWindowController {
     @IBOutlet weak var leftArrowBtn:NSButton!
     @IBOutlet weak var rightArrowBtn:NSButton!
     
-    var cellBtns = [NSButton!]()
+    var cellBtns = [CalendarCellView!]()
     
     // windowNibName override
     override var windowNibName: String?{
@@ -52,9 +52,9 @@ class CalendarViewController: NSWindowController {
         let weekDayOfLastDay = utils.getWeekBy(dateString, andFirstDay: monthDays)
         
         print("dateString = \(dateString) weekOf1stDay = \(weekDayOf1stDay) weekOfLastDay = \(weekDayOfLastDay) monthDays = \(monthDays) ")
-        print("2017-1-1 \(utils.getWeekDayBy(2017, month: 1, day: 1))")
         
-        for (index, btn) in cellBtns.enumerate()  {
+        for (index, btn) in cellBtns.enumerate() {
+            
             print("showDaysInFormsBy index = \(index)")
             btn.enabled = true
             if index < weekDayOf1stDay || index >= monthDays + weekDayOf1stDay {
@@ -63,7 +63,14 @@ class CalendarViewController: NSWindowController {
                 continue
             }
             
+            // get current cell's row number
+            let curCellRow = Int((btn.intValue - 1) / 7) + 1
+            print("currentRowNumber = \(curCellRow) btn.intValue = \(btn.intValue)")
+            
+            
             btn.title = "\(index - weekDayOf1stDay + 1)"
+            
+            // handle weekend title font color
             if index % 7 == 1 || index % 7 == 0 {
                 // mark SAT and SUN
                 // TODO:
@@ -95,19 +102,18 @@ class CalendarViewController: NSWindowController {
             for j in 0 ... 6 {
                 let intValue = (i * 7 + j + 1)
                 let id = "cell\(intValue)"
-                print("id == \(id)")
                 if let btn = self.getButtonByIdentifier(id) {
-                    let cellBtn = btn as! NSButton
+                    let cellBtn = btn as! CalendarCellView
                     cellBtn.target = self
                     cellBtn.action = #selector(CalendarViewController.dateButtonHandler(_:))
-                    cellBtn.intValue = Int32(intValue)
+                    cellBtn.cellID = intValue
                     cellBtns.append(cellBtn)
                 }
             }
         }
         
         for (index, btn) in cellBtns.enumerate() {
-            print("cellbtns index = \(index) btn.action = \(btn.action)")
+            print("cellbtns index = \(index) btn.action = \(btn.action) btn.intValue = \(btn.cellID)")
         }
         
         // default setting for display
