@@ -25,10 +25,12 @@ class CalendarViewController: NSWindowController {
     // MARK: Button handler
     @IBAction func leftArrowBtnHandler(sender:AnyObject){
         selectDataText.stringValue = CalendarUtils.sharedInstance.getMonthDateStringBy(selectDataText.stringValue, step: -1)
+        showDaysInFormsBy(selectDataText.stringValue)
     }
     
     @IBAction func rightArrowBtnHandler(sender:AnyObject){
         selectDataText.stringValue = CalendarUtils.sharedInstance.getMonthDateStringBy(selectDataText.stringValue, step: 1)
+        showDaysInFormsBy(selectDataText.stringValue)
     }
     
     // default display setting
@@ -53,11 +55,13 @@ class CalendarViewController: NSWindowController {
         
         for (index, btn) in cellBtns.enumerate()  {
             print("showDaysInFormsBy index = \(index)")
-            if index < weekDayOf1stDay || index > monthDays {
+            btn.enabled = true
+            if index < weekDayOf1stDay || index >= monthDays + weekDayOf1stDay {
                 btn.enabled = false
                 btn.title = ""
                 continue
             }
+            
             btn.title = "\(index - weekDayOf1stDay + 1)"
             if index % 7 == 1 || index % 7 == 0 {
                 // mark SAT and SUN
