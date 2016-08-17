@@ -39,19 +39,21 @@ public class CalendarUtils{
     // get weekday by specail date, use Zeller Formular
     func getWeekDayBy(year:Int, month m:Int, day d:Int) -> Int {
         // Zeller Formular
-        // w = (y + floor(y / 4) + floor(c / 4) - 2c + (13(m + 1) / 5) + d - 1) % 7
+        var year = year
+        var m = m
+        if m < 3 {
+            year -= 1
+            m += 12
+        }
         
         // last two digits of year number. 2003 -> 03 | 1997 -> 97
         let y:Int = year % 100
         // The preceding 2 digits of year number. 2003 -> 20 | 1997 -> 19
-        let c:Int = year / 100
+        let c:Int = Int(year / 100)
         
-        var week:Int = (y + y / 4 + c / 4 - 2 * c + (13 * (m + 1) / 5) + d - 1) % 7;
-        
-        // handle negative number result
-        if week < 0 {
-            week += 7
-        }
+        var week:Int = Int(c / 4) - 2 * c + y + Int(y / 4) + (26 * (m + 1) / 10) + d - 1
+
+        week = (week % 7 + 7) % 7
         
         return week
     }

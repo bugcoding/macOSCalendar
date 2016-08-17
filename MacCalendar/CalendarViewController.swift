@@ -52,6 +52,7 @@ class CalendarViewController: NSWindowController {
         let weekDayOfLastDay = utils.getWeekBy(dateString, andFirstDay: monthDays)
         
         print("dateString = \(dateString) weekOf1stDay = \(weekDayOf1stDay) weekOfLastDay = \(weekDayOfLastDay) monthDays = \(monthDays) ")
+        print("2017-1-1 \(utils.getWeekDayBy(2017, month: 1, day: 1))")
         
         for (index, btn) in cellBtns.enumerate()  {
             print("showDaysInFormsBy index = \(index)")
