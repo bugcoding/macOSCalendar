@@ -16,6 +16,7 @@ class CalendarViewController: NSWindowController {
     @IBOutlet weak var rightArrowBtn:NSButton!
     
     var cellBtns = [CalendarCellView!]()
+    var lastRowNum:Int = 0
     
     // windowNibName override
     override var windowNibName: String?{
@@ -57,16 +58,24 @@ class CalendarViewController: NSWindowController {
             
             print("showDaysInFormsBy index = \(index)")
             btn.enabled = true
-            if index < weekDayOf1stDay || index >= monthDays + weekDayOf1stDay {
-                btn.enabled = false
-                btn.title = ""
+            btn.transparent = false
             
+            if index < weekDayOf1stDay || index >= monthDays + weekDayOf1stDay {
+                let curRowNum = Int((btn.cellID - 1) / 7) + 1
+                if curRowNum > lastRowNum {
+                    btn.transparent = true
+                }else{
+                    btn.enabled = false
+                    btn.title = ""
+                }
+
             } else {
-                // get current cell's row number
-                let curCellRow = Int((btn.cellID - 1) / 7) + 1
-                print("currentRowNumber = \(curCellRow) btn.intValue = \(btn.intValue)")
-                
-                
+                if index == monthDays + weekDayOf1stDay - 1 {
+                    // get last cell's row number
+                    lastRowNum = Int((btn.cellID - 1) / 7) + 1
+                    print("currentRowNumber = \(lastRowNum)")
+
+                }
                 btn.title = "\(index - weekDayOf1stDay + 1)"
                 
                 // handle weekend title font color
