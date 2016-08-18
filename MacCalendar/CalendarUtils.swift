@@ -24,17 +24,6 @@ public class CalendarUtils{
         
     }
     
-    // 闫年
-    var daysOfMonthLeapYear = [0, 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
-    // 平年
-    var daysOfMonthNotLeapYear = [0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
-    
-    // 农历天干地支
-    var heavenlyStems = ["甲", "乙", "丙", "丁", "戊", "己", "庚", "辛", "壬", "癸"]
-    var earthyBranches = ["子", "丑", "寅", "卯", "辰", "巳", "午", "未", "申", "酉", "戌", "亥"]
-    // 中国生肖
-    var chineseZodiacName = ["鼠", "牛", "虎", "兔", "龙", "蛇", "马", "羊", "猴", "鸡", "狗", "猪"]
-    
     // 蔡勒公式算公历某天的星期
     func getWeekDayBy(year:Int, month m:Int, day d:Int) -> Int {
         var year = year
@@ -70,7 +59,7 @@ public class CalendarUtils{
             earth += 12
         }
         
-        return (heavenlyStems[heavenly - 1], earthyBranches[earth - 1], chineseZodiacName[earth - 1])
+        return (CalendarConstant.HEAVENLY_STEMS_NAME[heavenly - 1], CalendarConstant.EARTHY_BRANCHES_NAME[earth - 1], CalendarConstant.CHINESE_ZODIC_NAME[earth - 1])
     }
     
     // 平，闫年判定
@@ -83,10 +72,10 @@ public class CalendarUtils{
         let (year, m, _) = getYMDTuppleBy(dateString)
         var days = 0
         if getIsLeapBy(year) {
-            days = daysOfMonthLeapYear[m]
+            days = CalendarConstant.DAYS_OF_MONTH_LEAP_YEAR[m]
         }
         else{
-            days = daysOfMonthNotLeapYear[m]
+            days = CalendarConstant.DAYS_OF_MONTH_NORMAL_YEAR[m]
         }
         return days
     }
