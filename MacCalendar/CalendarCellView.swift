@@ -9,6 +9,7 @@
 import Cocoa
 
 class CalendarCellView : NSButton{
+    // 标识具体的cell
     var cellID:Int = 0
     
     override func drawRect(dirtyRect: NSRect) {
