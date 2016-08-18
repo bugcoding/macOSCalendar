@@ -36,7 +36,7 @@ class CalendarViewController: NSWindowController {
     // 打开界面是默认显示今天
     func showDefaultDate() {
         let utils = CalendarUtils.sharedInstance
-        // set current date to textfield after window launched
+        // 文本框里显示当前日期
         selectDataText.stringValue = utils.getDateStringOfToday()
         showDaysInFormsBy(utils.getDateStringOfToday())
     }
@@ -45,14 +45,16 @@ class CalendarViewController: NSWindowController {
     func showDaysInFormsBy(dateString: String){
         // 获取每月第一天是周几
         let utils = CalendarUtils.sharedInstance
-        
+        // 根据日期字符串获取当前月共有多少天
         let monthDays = utils.getDaysBy(dateString)
         
+        // 本月第一天与最后一天是周几
         let weekDayOf1stDay = utils.getWeekBy(dateString, andFirstDay: 1)
         let weekDayOfLastDay = utils.getWeekBy(dateString, andFirstDay: monthDays)
         
         print("dateString = \(dateString) weekOf1stDay = \(weekDayOf1stDay) weekOfLastDay = \(weekDayOfLastDay) monthDays = \(monthDays) ")
         
+        // 把空余不的cell行不显示，非本月天置灰
         for (index, btn) in cellBtns.enumerate() {
             
             print("showDaysInFormsBy index = \(index)")
@@ -70,16 +72,15 @@ class CalendarViewController: NSWindowController {
 
             } else {
                 if index == monthDays + weekDayOf1stDay - 1 {
-                    // get last cell's row number
+                    // 当前cell在第几行
                     lastRowNum = Int((btn.cellID - 1) / 7) + 1
                     print("currentRowNumber = \(lastRowNum)")
 
                 }
                 btn.title = "\(index - weekDayOf1stDay + 1)"
                 
-                // handle weekend title font color
+                // 处理周六日的日期颜色
                 if index % 7 == 1 || index % 7 == 0 {
-                    // mark SAT and SUN
                     // TODO:
                 }
             }
@@ -89,7 +90,7 @@ class CalendarViewController: NSWindowController {
     
     
     
-    // get button by identifier
+    // 根据xib中的identifier获取对应的cell
     func getButtonByIdentifier(id:String) -> NSView? {
         for subView in (self.window?.contentView?.subviews[0].subviews)! {
             if subView.identifier == id {
@@ -98,7 +99,8 @@ class CalendarViewController: NSWindowController {
         }
         return nil
     }
-    // button press handler
+    
+    
     func dateButtonHandler(sender:NSButton){
         print("Press Button is \(sender.identifier)")
     }
@@ -106,7 +108,7 @@ class CalendarViewController: NSWindowController {
     override func windowDidLoad() {
         super.windowDidLoad()
         
-        // load all buttons
+        // 将所有cell加入数组管理，并加入回调逻辑
         for i in 0 ... 5 {
             for j in 0 ... 6 {
                 let intValue = (i * 7 + j + 1)
@@ -125,7 +127,7 @@ class CalendarViewController: NSWindowController {
             print("cellbtns index = \(index) btn.action = \(btn.action) btn.intValue = \(btn.cellID)")
         }
         
-        // default setting for display
+        // 加载完窗口显示默认
         self.showDefaultDate()
         
     }
