@@ -14,11 +14,10 @@ class CalendarViewController: NSWindowController {
     @IBOutlet weak var selectDataText:NSTextField!
     @IBOutlet weak var leftArrowBtn:NSButton!
     @IBOutlet weak var rightArrowBtn:NSButton!
-    
+
     var cellBtns = [CalendarCellView!]()
     var lastRowNum:Int = 0
     
-    // windowNibName override
     override var windowNibName: String?{
         return "CalendarViewController"
     }
@@ -34,7 +33,7 @@ class CalendarViewController: NSWindowController {
         showDaysInFormsBy(selectDataText.stringValue)
     }
     
-    // default display setting
+    // 打开界面是默认显示今天
     func showDefaultDate() {
         let utils = CalendarUtils.sharedInstance
         // set current date to textfield after window launched
@@ -42,9 +41,9 @@ class CalendarViewController: NSWindowController {
         showDaysInFormsBy(utils.getDateStringOfToday())
     }
     
-    // show date
+    // 显示日历面板
     func showDaysInFormsBy(dateString: String){
-        // get week day of month fisrt day
+        // 获取每月第一天是周几
         let utils = CalendarUtils.sharedInstance
         
         let monthDays = utils.getDaysBy(dateString)
