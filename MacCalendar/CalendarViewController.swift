@@ -62,7 +62,7 @@ class CalendarViewController: NSWindowController {
             
             if index < weekDayOf1stDay || index >= monthDays + weekDayOf1stDay {
                 let curRowNum = Int((btn.cellID - 1) / 7) + 1
-                if curRowNum > lastRowNum {
+                if index >= monthDays + weekDayOf1stDay && curRowNum > lastRowNum {
                     btn.transparent = true
                 }else{
                     btn.enabled = false
