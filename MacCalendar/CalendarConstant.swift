@@ -16,6 +16,11 @@ import Foundation
 
 class CalendarConstant{
     
+
+    
+    
+    
+    
     // 闫年
     static let DAYS_OF_MONTH_LEAP_YEAR = [0, 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
     // 平年
@@ -94,5 +99,22 @@ class CalendarConstant{
     static let SPRING_BEGINS       = 21   // 立春
     static let THE_RAINS           = 22   // 雨水
     static let INSECTS_AWAKEN      = 23   // 惊蛰
+    
+    
+    // 农历日显示名称
+    static let nameOfChnDay:[String] = [
+        "初一","初二","初三","初四","初五","初六","初七","初八","初九","初十",
+        "十一","十二","十三","十四","十五","十六","十七","十八","十九","二十",
+        "廿一","廿二","廿三","廿四","廿五","廿六","廿七","廿八","廿九","三十"
+    ]
+    // 农历月份名称
+    static let nameOfChnMonth:[String] = ["正","二","三","四","五","六","七","八","九","十","十一","腊"]
+    
+    // 节气名称
+    static let nameOfJieQi:[String] = [
+        "春分", "清明", "谷雨", "立夏", "小满", "芒种", "夏至", "小暑",
+        "大暑", "立秋", "处暑", "白露", "秋分", "寒露", "霜降", "立冬",
+        "小雪", "大雪", "冬至", "小寒", "大寒", "立春", "雨水", "惊蛰"
+    ]    
     
 }
