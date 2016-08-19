@@ -3,7 +3,7 @@
 //  MacCalendar
 //
 //  Created by bugcode on 16/8/19.
-//  Copyright © 2016年 bugcode. All rights reserved.
+//  // 文件内容移植自<算法的乐趣>书中附带示例代码，如有不妥请告知
 //
 
 import Foundation
