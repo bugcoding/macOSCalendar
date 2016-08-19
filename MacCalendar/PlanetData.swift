@@ -273,5 +273,173 @@ class PlanetDataVSOP87_COEFFICIENT{
         VSOP87_COEFFICIENT( 4 , 2.56 , 6283.08 )
     ]
     
+    // elp2000
+    struct MOON_ECLIPTIC_LONGITUDE_COEFF{
+        var D:Double
+        var M:Double
+        var Mp:Double
+        var F:Double
+        var eiA:Double
+        var erA:Double
+        init(_ d:Double, _ m:Double, _ mp:Double, _ f:Double, _ eia:Double, _ era:Double){
+            D = d
+            M = m
+            Mp = mp
+            F = f
+            eiA = eia
+            erA = era
+        }
+    }
+    
+    static let  Moon_longitude:[MOON_ECLIPTIC_LONGITUDE_COEFF] = [
+        MOON_ECLIPTIC_LONGITUDE_COEFF( 0,  0,  1,  0, 6288744, -20905355 ),
+        MOON_ECLIPTIC_LONGITUDE_COEFF( 2,  0, -1,  0, 1274027,  -3699111 ),
+        MOON_ECLIPTIC_LONGITUDE_COEFF( 2,  0,  0,  0,  658314,  -2955968 ),
+        MOON_ECLIPTIC_LONGITUDE_COEFF( 0,  0,  2,  0,  213618,   -569925 ),
+        MOON_ECLIPTIC_LONGITUDE_COEFF( 0,  1,  0,  0, -185116,     48888 ),
+        MOON_ECLIPTIC_LONGITUDE_COEFF( 0,  0,  0,  2, -114332,     -3149 ),
+        MOON_ECLIPTIC_LONGITUDE_COEFF( 2,  0, -2,  0,   58793,    246158 ),
+        MOON_ECLIPTIC_LONGITUDE_COEFF( 2, -1, -1,  0,   57066,   -152138 ),
+        MOON_ECLIPTIC_LONGITUDE_COEFF( 2,  0,  1,  0,   53322,   -170733 ),
+        MOON_ECLIPTIC_LONGITUDE_COEFF( 2, -1,  0,  0,   45758,   -204586 ),
+        MOON_ECLIPTIC_LONGITUDE_COEFF( 0,  1, -1,  0,  -40923,   -129620 ),
+        MOON_ECLIPTIC_LONGITUDE_COEFF( 1,  0,  0,  0,  -34720,    108743 ),
+        MOON_ECLIPTIC_LONGITUDE_COEFF( 0,  1,  1,  0,  -30383,    104755 ),
+        MOON_ECLIPTIC_LONGITUDE_COEFF( 2,  0,  0, -2,   15327,     10321 ),
+        MOON_ECLIPTIC_LONGITUDE_COEFF( 0,  0,  1,  2,  -12528,         0 ),
+        MOON_ECLIPTIC_LONGITUDE_COEFF( 0,  0,  1, -2,   10980,     79661 ),
+        MOON_ECLIPTIC_LONGITUDE_COEFF( 4,  0, -1,  0,   10675,    -34782 ),
+        MOON_ECLIPTIC_LONGITUDE_COEFF( 0,  0,  3,  0,   10034,    -23210 ),
+        MOON_ECLIPTIC_LONGITUDE_COEFF( 4,  0, -2,  0,    8548,    -21636 ),
+        MOON_ECLIPTIC_LONGITUDE_COEFF( 2,  1, -1,  0,   -7888,     24208 ),
+        MOON_ECLIPTIC_LONGITUDE_COEFF( 2,  1,  0,  0,   -6766,     30824 ),
+        MOON_ECLIPTIC_LONGITUDE_COEFF( 1,  0, -1,  0,   -5163,     -8379 ),
+        MOON_ECLIPTIC_LONGITUDE_COEFF( 1,  1,  0,  0,    4987,    -16675 ),
+        MOON_ECLIPTIC_LONGITUDE_COEFF( 2, -1,  1,  0,    4036,    -12831 ),
+        MOON_ECLIPTIC_LONGITUDE_COEFF( 2,  0,  2,  0,    3994,    -10445 ),
+        MOON_ECLIPTIC_LONGITUDE_COEFF( 4,  0,  0,  0,    3861,    -11650 ),
+        MOON_ECLIPTIC_LONGITUDE_COEFF( 2,  0, -3,  0,    3665,     14403 ),
+        MOON_ECLIPTIC_LONGITUDE_COEFF( 0,  1, -2,  0,   -2689,     -7003 ),
+        MOON_ECLIPTIC_LONGITUDE_COEFF( 2,  0, -1,  2,   -2602,         0 ),
+        MOON_ECLIPTIC_LONGITUDE_COEFF( 2, -1, -2,  0,    2390,     10056 ),
+        MOON_ECLIPTIC_LONGITUDE_COEFF( 1,  0,  1,  0,   -2348,      6322 ),
+        MOON_ECLIPTIC_LONGITUDE_COEFF( 2, -2,  0,  0,    2236,     -9884 ),
+        MOON_ECLIPTIC_LONGITUDE_COEFF( 0,  1,  2,  0,   -2120,      5751 ),
+        MOON_ECLIPTIC_LONGITUDE_COEFF( 0,  2,  0,  0,   -2069,         0 ),
+        MOON_ECLIPTIC_LONGITUDE_COEFF( 2, -2, -1,  0,    2048,     -4950 ),
+        MOON_ECLIPTIC_LONGITUDE_COEFF( 2,  0,  1, -2,   -1773,      4130 ),
+        MOON_ECLIPTIC_LONGITUDE_COEFF( 2,  0,  0,  2,   -1595,         0 ),
+        MOON_ECLIPTIC_LONGITUDE_COEFF( 4, -1, -1,  0,    1215,     -3958 ),
+        MOON_ECLIPTIC_LONGITUDE_COEFF( 0,  0,  2,  2,   -1110,         0 ),
+        MOON_ECLIPTIC_LONGITUDE_COEFF( 3,  0, -1,  0,    -892,      3258 ),
+        MOON_ECLIPTIC_LONGITUDE_COEFF( 2,  1,  1,  0,    -810,      2616 ),
+        MOON_ECLIPTIC_LONGITUDE_COEFF( 4, -1, -2,  0,     759,     -1897 ),
+        MOON_ECLIPTIC_LONGITUDE_COEFF( 0,  2, -1,  0,    -713,     -2117 ),
+        MOON_ECLIPTIC_LONGITUDE_COEFF( 2,  2, -1,  0,    -700,      2354 ),
+        MOON_ECLIPTIC_LONGITUDE_COEFF( 2,  1, -2,  0,     691,         0 ),
+        MOON_ECLIPTIC_LONGITUDE_COEFF( 2, -1,  0, -2,     596,         0 ),
+        MOON_ECLIPTIC_LONGITUDE_COEFF( 4,  0,  1,  0,     549,     -1423 ),
+        MOON_ECLIPTIC_LONGITUDE_COEFF( 0,  0,  4,  0,     537,     -1117 ),
+        MOON_ECLIPTIC_LONGITUDE_COEFF( 4, -1,  0,  0,     520,     -1571 ),
+        MOON_ECLIPTIC_LONGITUDE_COEFF( 1,  0, -2,  0,    -487,     -1739 ),
+        MOON_ECLIPTIC_LONGITUDE_COEFF( 2,  1,  0, -2,    -399,         0 ),
+        MOON_ECLIPTIC_LONGITUDE_COEFF( 0,  0,  2, -2,    -381,     -4421 ),
+        MOON_ECLIPTIC_LONGITUDE_COEFF( 1,  1,  1,  0,     351,         0 ),
+        MOON_ECLIPTIC_LONGITUDE_COEFF( 3,  0, -2,  0,    -340,         0 ),
+        MOON_ECLIPTIC_LONGITUDE_COEFF( 4,  0, -3,  0,     330,         0 ),
+        MOON_ECLIPTIC_LONGITUDE_COEFF( 2, -1,  2,  0,     327,         0 ),
+        MOON_ECLIPTIC_LONGITUDE_COEFF( 0,  2,  1,  0,    -323,      1165 ),
+        MOON_ECLIPTIC_LONGITUDE_COEFF( 1,  1, -1,  0,     299,         0 ),
+        MOON_ECLIPTIC_LONGITUDE_COEFF( 2,  0,  3,  0,     294,         0 ),
+        MOON_ECLIPTIC_LONGITUDE_COEFF( 2,  0, -1, -2,       0,      8752 )
+    ]
+
+
+    struct MOON_ECLIPTIC_LATITUDE_COEFF{
+        var D:Double
+        var M:Double
+        var Mp:Double
+        var F:Double
+        var eiA:Double
+        init(_ d:Double, _ m:Double, _ mp:Double, _ f:Double, _ eia:Double){
+            D = d
+            M = m
+            Mp = mp
+            F = f
+            eiA = eia
+        }
+        
+    }
+
+    
+    static let moon_Latitude:[MOON_ECLIPTIC_LATITUDE_COEFF] = [
+        MOON_ECLIPTIC_LATITUDE_COEFF( 0,  0,  0,  1, 5128122 ),
+        MOON_ECLIPTIC_LATITUDE_COEFF( 0,  0,  1,  1,  280602 ),
+        MOON_ECLIPTIC_LATITUDE_COEFF( 0,  0,  1, -1,  277693 ),
+        MOON_ECLIPTIC_LATITUDE_COEFF( 2,  0,  0, -1,  173237 ),
+        MOON_ECLIPTIC_LATITUDE_COEFF( 2,  0, -1,  1,   55413 ),
+        MOON_ECLIPTIC_LATITUDE_COEFF( 2,  0, -1, -1,   46271 ),
+        MOON_ECLIPTIC_LATITUDE_COEFF( 2,  0,  0,  1,   32573 ),
+        MOON_ECLIPTIC_LATITUDE_COEFF( 0,  0,  2,  1,   17198 ),
+        MOON_ECLIPTIC_LATITUDE_COEFF( 2,  0,  1, -1,    9266 ),
+        MOON_ECLIPTIC_LATITUDE_COEFF( 0,  0,  2, -1,    8822 ),
+        MOON_ECLIPTIC_LATITUDE_COEFF( 2, -1,  0, -1,    8216 ),
+        MOON_ECLIPTIC_LATITUDE_COEFF( 2,  0, -2, -1,    4324 ),
+        MOON_ECLIPTIC_LATITUDE_COEFF( 2,  0,  1,  1,    4200 ),
+        MOON_ECLIPTIC_LATITUDE_COEFF( 2,  1,  0, -1,   -3359 ),
+        MOON_ECLIPTIC_LATITUDE_COEFF( 2, -1, -1,  1,    2463 ),
+        MOON_ECLIPTIC_LATITUDE_COEFF( 2, -1,  0,  1,    2211 ),
+        MOON_ECLIPTIC_LATITUDE_COEFF( 2, -1, -1, -1,    2065 ),
+        MOON_ECLIPTIC_LATITUDE_COEFF( 0,  1, -1, -1,   -1870 ),
+        MOON_ECLIPTIC_LATITUDE_COEFF( 4,  0, -1, -1,    1828 ),
+        MOON_ECLIPTIC_LATITUDE_COEFF( 0,  1,  0,  1,   -1794 ),
+        MOON_ECLIPTIC_LATITUDE_COEFF( 0,  0,  0,  3,   -1749 ),
+        MOON_ECLIPTIC_LATITUDE_COEFF( 0,  1, -1,  1,   -1565 ),
+        MOON_ECLIPTIC_LATITUDE_COEFF( 1,  0,  0,  1,   -1491 ),
+        MOON_ECLIPTIC_LATITUDE_COEFF( 0,  1,  1,  1,   -1475 ),
+        MOON_ECLIPTIC_LATITUDE_COEFF( 0,  1,  1, -1,   -1410 ),
+        MOON_ECLIPTIC_LATITUDE_COEFF( 0,  1,  0, -1,   -1344 ),
+        MOON_ECLIPTIC_LATITUDE_COEFF( 1,  0,  0, -1,   -1335 ),
+        MOON_ECLIPTIC_LATITUDE_COEFF( 0,  0,  3,  1,    1107 ),
+        MOON_ECLIPTIC_LATITUDE_COEFF( 4,  0,  0, -1,    1021 ),
+        MOON_ECLIPTIC_LATITUDE_COEFF( 4,  0, -1,  1,     833 ),
+        MOON_ECLIPTIC_LATITUDE_COEFF( 0,  0,  1, -3,     777 ),
+        MOON_ECLIPTIC_LATITUDE_COEFF( 4,  0, -2,  1,     671 ),
+        MOON_ECLIPTIC_LATITUDE_COEFF( 2,  0,  0, -3,     607 ),
+        MOON_ECLIPTIC_LATITUDE_COEFF( 2,  0,  2, -1,     596 ),
+        MOON_ECLIPTIC_LATITUDE_COEFF( 2, -1,  1, -1,     491 ),
+        MOON_ECLIPTIC_LATITUDE_COEFF( 2,  0, -2,  1,    -451 ),
+        MOON_ECLIPTIC_LATITUDE_COEFF( 0,  0,  3, -1,     439 ),
+        MOON_ECLIPTIC_LATITUDE_COEFF( 2,  0,  2,  1,     422 ),
+        MOON_ECLIPTIC_LATITUDE_COEFF( 2,  0, -3, -1,     421 ),
+        MOON_ECLIPTIC_LATITUDE_COEFF( 2,  1, -1,  1,    -366 ),
+        MOON_ECLIPTIC_LATITUDE_COEFF( 2,  1,  0,  1,    -351 ),
+        MOON_ECLIPTIC_LATITUDE_COEFF( 4,  0,  0,  1,     331 ),
+        MOON_ECLIPTIC_LATITUDE_COEFF( 2, -1,  1,  1,     315 ),
+        MOON_ECLIPTIC_LATITUDE_COEFF( 2, -2,  0, -1,     302 ),
+        MOON_ECLIPTIC_LATITUDE_COEFF( 0,  0,  1,  3,    -283 ),
+        MOON_ECLIPTIC_LATITUDE_COEFF( 2,  1,  1, -1,    -229 ),
+        MOON_ECLIPTIC_LATITUDE_COEFF( 1,  1,  0, -1,     223 ),
+        MOON_ECLIPTIC_LATITUDE_COEFF( 1,  1,  0,  1,     223 ),
+        MOON_ECLIPTIC_LATITUDE_COEFF( 0,  1, -2, -1,    -220 ),
+        MOON_ECLIPTIC_LATITUDE_COEFF( 2,  1, -1, -1,    -220 ),
+        MOON_ECLIPTIC_LATITUDE_COEFF( 1,  0,  1,  1,    -185 ),
+        MOON_ECLIPTIC_LATITUDE_COEFF( 2, -1, -2, -1,     181 ),
+        MOON_ECLIPTIC_LATITUDE_COEFF( 0,  1,  2,  1,    -177 ),
+        MOON_ECLIPTIC_LATITUDE_COEFF( 4,  0, -2, -1,     176 ),
+        MOON_ECLIPTIC_LATITUDE_COEFF( 4, -1, -1, -1,     166 ),
+        MOON_ECLIPTIC_LATITUDE_COEFF( 1,  0,  1, -1,    -164 ),
+        MOON_ECLIPTIC_LATITUDE_COEFF( 4,  0,  1, -1,     132 ),
+        MOON_ECLIPTIC_LATITUDE_COEFF( 1,  0, -1, -1,    -119 ),
+        MOON_ECLIPTIC_LATITUDE_COEFF( 4, -1,  0, -1,     115 ),
+        MOON_ECLIPTIC_LATITUDE_COEFF( 2, -2,  0,  1,     107 )
+    ]
+
+    
+    
+    
+    
+    
+    
     
 }
