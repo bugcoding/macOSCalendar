@@ -3,7 +3,7 @@
 //  MacCalendar
 //
 //  Created by bugcode on 16/8/19.
-//  // 文件内容移植自<算法的乐趣>书中附带示例代码，如有不妥请告知
+//  // 本文件内容移植自<算法的乐趣>书中附带示例代码，源文件代码为c++，如有不妥请告知
 //
 
 import Foundation
@@ -434,12 +434,5 @@ class PlanetDataVSOP87_COEFFICIENT{
         MOON_ECLIPTIC_LATITUDE_COEFF( 4, -1,  0, -1,     115 ),
         MOON_ECLIPTIC_LATITUDE_COEFF( 2, -2,  0,  1,     107 )
     ]
-
-    
-    
-    
-    
-    
-    
     
 }
