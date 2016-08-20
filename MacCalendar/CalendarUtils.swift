@@ -255,5 +255,28 @@ public class CalendarUtils{
         return res
     }
     
+    // 360度转换
+    func mod360Degree(degrees:Double) -> Double {
+        
+        var dbValue:Double = degrees
     
+        while dbValue < 0.0{
+            dbValue += 360.0
+        }
+        
+        while dbValue > 360.0{
+            dbValue -= 360.0
+        }
+    
+        return dbValue;
+    }
+    
+    // 角度转弧度
+    func degree2Radian(degree:Double) -> Double {
+        return degree * CalendarConstant.PI / 180.0
+    }
+    // 弧度转角度
+    func radian2Degree(radian:Double) -> Double {
+        return radian * 180.0 / CalendarConstant.PI
+    }
 }
