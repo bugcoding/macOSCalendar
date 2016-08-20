@@ -136,5 +136,60 @@ public class CalendarUtils{
         return weekDay
     }
     
+    // 获取一个月有几天
+    func getDaysOfMonthBy(year:Int, month:Int) -> Int {
+        if month < 1 || month > 12 {
+            return 0
+        }
+        
+        if getIsLeapBy(year) {
+            return CalendarConstant.DAYS_OF_MONTH_LEAP_YEAR[month]
+        }
+        
+        return CalendarConstant.DAYS_OF_MONTH_NORMAL_YEAR[month]
+    }
+    
+    // 计算一年中过去的天数，含指定的这天
+    func calcYearPassDays(year:Int, month:Int, day:Int) -> Int {
+        var passedDays = 0
+        for i in 0 ..< month - 1 {
+            if getIsLeapBy(year) {
+                passedDays += CalendarConstant.DAYS_OF_MONTH_LEAP_YEAR[i]
+            }else{
+                passedDays += CalendarConstant.DAYS_OF_MONTH_NORMAL_YEAR[i]
+            }
+        }
+        
+        passedDays += day
+        
+        return passedDays
+    }
+    
+    // 计算一年剩下的天数，不含指定的这天
+    func calcYearRestDays(year:Int, month:Int, day:Int) -> Int{
+        var leftDays = 0
+        if getIsLeapBy(year) {
+            leftDays = CalendarConstant.DAYS_OF_MONTH_LEAP_YEAR[month] - day
+        }else{
+            leftDays = CalendarConstant.DAYS_OF_MONTH_NORMAL_YEAR[month] - day
+        }
+        
+        for i in month ..< CalendarConstant.MONTHES_FOR_YEAR {
+            if getIsLeapBy(year) {
+                leftDays += CalendarConstant.DAYS_OF_MONTH_LEAP_YEAR[i]
+            }else{
+                leftDays += CalendarConstant.DAYS_OF_MONTH_NORMAL_YEAR[i]
+            }
+        }
+        
+        return leftDays
+    }
+    
+    
+    
+    
+    
+    
+    
     
 }

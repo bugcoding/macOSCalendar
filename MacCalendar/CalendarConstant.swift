@@ -16,11 +16,6 @@ import Foundation
 
 class CalendarConstant{
     
-
-    
-    
-    
-    
     // 闫年
     static let DAYS_OF_MONTH_LEAP_YEAR = [0, 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
     // 平年
