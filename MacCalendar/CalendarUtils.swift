@@ -185,11 +185,75 @@ public class CalendarUtils{
         return leftDays
     }
     
+    // 计算二个年份之间的天数 前面包含元旦，后面不包含
+    func calcYearsDays(yearStart:Int, yearEnd:Int) -> Int {
+        var days = 0
+        for i in yearStart ..< yearEnd {
+            if getIsLeapBy(i) {
+                days += CalendarConstant.DAYS_OF_LEAP_YEAR
+            }else{
+                days += CalendarConstant.DAYS_OF_NORMAL_YEAR
+            }
+        }
+        
+        return days
+    }
+    
+    // 计算二个指定日期之间的天数
+    func calcDaysBetweenDate(yearStart:Int, monthStart:Int, dayStart:Int, yearEnd:Int, monthEnd:Int, dayEnd:Int) -> Int {
+        var days = calcYearRestDays(yearStart, month: monthStart, day: dayStart)
+        
+        if yearStart != yearEnd {
+            if yearEnd - yearStart >= 2 {
+                days += calcYearsDays(yearStart + 1, yearEnd: yearEnd)
+            }
+            days += calcYearPassDays(yearEnd, month: monthEnd, day: dayEnd)
+        }else{
+            days -= calcYearRestDays(yearEnd, month: monthEnd, day: dayEnd)
+        }
+        
+        return days
+    }
+    
+    // 判定日期是否使用了格里历
+    func isGregorianDays(year:Int, month:Int, day:Int) -> Bool {
+        if year < CalendarConstant.GREGORIAN_CALENDAR_OPEN_YEAR {
+            return false
+        }
+        if year == CalendarConstant.GREGORIAN_CALENDAR_OPEN_YEAR {
+            if (month < CalendarConstant.GREGORIAN_CALENDAR_OPEN_MONTH)
+                || (month == CalendarConstant.GREGORIAN_CALENDAR_OPEN_MONTH && day < CalendarConstant.GREGORIAN_CALENDAR_OPEN_DAY){
+                return false
+            }
+        }
+        
+        return true
+    }
     
     
-    
-    
-    
+    // 计算儒略日
+    func calcJulianDay(year:Int, month:Int, day:Int, hour:Int, min:Int, second:Double) -> Double {
+        var year = year
+        var month = month
+        
+        if month < 12 {
+            month += 12
+            year -= 1
+        }
+        var B = -2
+        
+        if isGregorianDays(year, month: month, day: day) {
+            B = year / 400 - year / 100
+        }
+        let a = 365.25 * Double(year)
+        let b = 30.6001 * Double(month - 1)
+        
+        let sec:Double =  Double(hour) / 24.0 + Double(min) / 1440.0 + Double(second) / 86400.0
+        let param:Double = Double(Int(a)) + Double(Int(b)) + Double(B) + Double(day)
+        let res = param + sec + 1720996.5
+        
+        return res
+    }
     
     
 }

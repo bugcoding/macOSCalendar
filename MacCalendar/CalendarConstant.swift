@@ -16,6 +16,13 @@ import Foundation
 
 class CalendarConstant{
     
+    // 格里历启用年份
+    static let GREGORIAN_CALENDAR_OPEN_YEAR = 1582
+    // 格里历启用月份
+    static let GREGORIAN_CALENDAR_OPEN_MONTH = 10
+    // 格里历启用日期
+    static let GREGORIAN_CALENDAR_OPEN_DAY = 15
+    
     // 闫年
     static let DAYS_OF_MONTH_LEAP_YEAR = [0, 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
     // 平年
