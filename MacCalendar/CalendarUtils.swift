@@ -24,6 +24,18 @@ public class CalendarUtils{
         
     }
     
+    // 每天的时间结构
+    struct WZDayTime{
+        // 年月日时分秒
+        var year:Int
+        var month:Int
+        var day:Int
+        var hour:Int
+        var minute:Int
+        var second:Double
+    }
+    
+    
     // 蔡勒公式算公历某天的星期
     func getWeekDayBy(year:Int, month m:Int, day d:Int) -> Int {
         var year = year
@@ -254,6 +266,48 @@ public class CalendarUtils{
         
         return res
     }
+    
+    // 儒略日获得日期
+    func getDayTimeFromJulianDay(jd:Double, inout dt:WZDayTime){
+        var cna:Int, cnd:Int
+        var cnf:Double
+        
+        let jdf:Double = jd + 0.5
+        cna = Int(jdf)
+        cnf = jdf - Double(cna)
+        if cna > 2299161 {
+            cnd = Int((Double(cna) - 1867216.25) / 36524.25)
+            cna = cna + 1 + cnd - Int(cnd / 4)
+        }
+        cna = cna + 1524
+        var year = Int((Double(cna) - 122.1) / 365.25)
+        cnd = cna - Int(Double(year) * 365.25)
+        var month = Int(Double(cnd) / 30.6001)
+        let day = cnd - Int(Double(month) * 30.6001)
+        year -= 4716
+        month = month - 1
+        if month > 12 {
+            month -= 1
+        }
+        if month <= 2 {
+            year += 1
+        }
+        if year < 1 {
+            year -= 1
+        }
+        cnf = cnf * 24.0
+        dt.hour = Int(cnf)
+        cnf = cnf - Double(dt.hour)
+        cnf *= 60.0
+        dt.minute = Int(cnf)
+        cnf = cnf - Double(dt.minute)
+        dt.second = cnf * 60.0
+        dt.year = year
+        dt.month = month
+        dt.day = day
+    }
+    
+    
     
     // 360度转换
     func mod360Degree(degrees:Double) -> Double {
