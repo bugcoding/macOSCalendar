@@ -9,6 +9,7 @@
  ====================*/
 
 import Foundation
+import Darwin
 
 open class CalendarUtils{
     
@@ -398,10 +399,43 @@ open class CalendarUtils{
         return resulte * 0.0001 / 3600.0;
     }
     
+    // 利用已知节气推算其它节气的函数，st的值以小寒节气为0，大寒为1，其它节气类推
+    func calculateSolarTermsByExp(year:Int, st:Int) -> Double {
+        if st < 0 || st > 24 {
+            return 0.0;
+        }
     
+        let stJd = 365.24219878 * Double(year - 1900) + CalendarConstant.stAccInfo[st] / 86400.0;
     
+        return CalendarConstant.base1900SlightColdJD + stJd;
+    }
     
+    /*
+     计算节气和朔日的经验公式
+     
+     当天到1900年1月0日（星期日）的差称为积日，那么第y年（1900算0年）第x个节气的积日是：
+     F = 365.242 * y + 6.2 + 15.22 *x - 1.9 * sin(0.262 * x)
+     
+     从1900年开始的第m个朔日的公式是：
+     M = 1.6 + 29.5306 * m + 0.4 * sin(1 - 0.45058 * m)
+     */
+    func calculateSolarTermsByFm(year:Int, st:Int) -> Double {
+        let baseJD = calcJulianDay(1990, month: 1, day: 1, hour: 0, min: 0, second: 0.0) - 1
+        let y = year - 1900
+        
+        let tmp = 15.22 * Double(st) - 1.0 * sin(0.262 * Double(st))
+        let accDay = 365.2422 * Double(y) + 6.2 + tmp
+        
     
+        return baseJD + accDay
+    }
+    
+    func calculateNewMoonByFm(m:Double) -> Double {
+        
+        let baseJD = calcJulianDay(1990, month: 1, day: 1, hour: 0, min: 0, second: 0.0) - 1
+        let accDay = 1.6 + 29.5306 * m + 0.4 * sin(1 - 0.45058 * m)
+        return baseJD + accDay
+    }
     
     
     
