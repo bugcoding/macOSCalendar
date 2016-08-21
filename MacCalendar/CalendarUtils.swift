@@ -706,6 +706,21 @@ open class CalendarUtils{
         return latitude
     }
     
+    func getMoonEarthDistance(dbJD: Double) -> Double {
+        // 儒略世纪数
+        let dt = (dbJD - CalendarConstant.JD2000) / 36525.0
     
+        var Lp = 0.0, D = 0.0, M = 0.0, Mp = 0.0, F = 0.0, E = 0.0
+        getMoonEclipticParameter(dt: dt, Lp: &Lp, D: &D, M: &M, Mp: &Mp, F: &F, E: &E)
+    
+        // 计算月球地心距离周期项
+        let ER = calcMoonECDistancePeriodicTbl(D: D, M: M, Mp: Mp, F: F, E: E)
+    
+        // 计算月球地心黄纬
+        let distance = 385000.56 + ER / 1000.0
+    
+        return distance
+    }
+
     
 }
