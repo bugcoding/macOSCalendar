@@ -411,6 +411,7 @@ open class CalendarUtils{
     }
     
     /*
+     moved from <算法的乐趣 - 王晓华> 示例代码
      计算节气和朔日的经验公式
      
      当天到1900年1月0日（星期日）的差称为积日，那么第y年（1900算0年）第x个节气的积日是：
@@ -426,7 +427,6 @@ open class CalendarUtils{
         let tmp = 15.22 * Double(st) - 1.0 * sin(0.262 * Double(st))
         let accDay = 365.2422 * Double(y) + 6.2 + tmp
         
-    
         return baseJD + accDay
     }
     
@@ -437,8 +437,31 @@ open class CalendarUtils{
         return baseJD + accDay
     }
     
+    func calcPeriodicTerm(coff:[PlanetData.VSOP87_COEFFICIENT], count:Int, dt:Double) -> Double {
+        var val = 0.0
     
+        for i in 0 ... count {
+            val += (coff[i].A * cos((coff[i].B + coff[i].C * dt)))
+        }
+        return val
+    }
     
+    // 计算太阳的地心黄经(度)，dt是儒略千年数
+    
+    func calcSunEclipticLongitudeEC(dt:Double) -> Double {
+    
+        let L0 = calcPeriodicTerm(coff: PlanetData.Earth_L0, count: PlanetData.Earth_L0.count, dt: dt)
+        let L1 = calcPeriodicTerm(coff: PlanetData.Earth_L1, count: PlanetData.Earth_L1.count, dt: dt)
+        let L2 = calcPeriodicTerm(coff: PlanetData.Earth_L2, count: PlanetData.Earth_L2.count, dt: dt)
+        let L3 = calcPeriodicTerm(coff: PlanetData.Earth_L3, count: PlanetData.Earth_L3.count, dt: dt)
+        let L4 = calcPeriodicTerm(coff: PlanetData.Earth_L4, count: PlanetData.Earth_L4.count, dt: dt)
+        let L5 = calcPeriodicTerm(coff: PlanetData.Earth_L5, count: PlanetData.Earth_L5.count, dt: dt)
+    
+        let L = (((((L5 * dt + L4) * dt + L3) * dt + L2) * dt + L1) * dt + L0) / 100000000.0
+    
+        // 地心黄经 = 日心黄经 + 180度
+        return (mod360Degree(mod360Degree(L / CalendarConstant.RADIAN_PER_ANGLE) + 180.0))
+    }
     
     
     
