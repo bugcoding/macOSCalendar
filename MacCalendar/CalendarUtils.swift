@@ -323,7 +323,7 @@ open class CalendarUtils{
             dbValue -= 360.0
         }
     
-        return dbValue;
+        return dbValue
     }
     
     // 角度转弧度
@@ -336,46 +336,46 @@ open class CalendarUtils{
     }
    
     
-    func getEarthNutationParameter(dt:Double, D:inout Double, M:inout Double, Mp:inout Double, F:inout Double, Omega:inout Double)
-    {
-        let T = dt * 10; /*T是从J2000起算的儒略世纪数*/
-        let T2 = T * T;
-        let T3 = T2 * T;
+    func getEarthNutationParameter(dt:Double, D:inout Double, M:inout Double, Mp:inout Double, F:inout Double, Omega:inout Double) {
+        // T是从J2000起算的儒略世纪数
+        let T = dt * 10
+        let T2 = T * T
+        let T3 = T2 * T
     
-        /*平距角（如月对地心的角距离）*/
-        D = 297.85036 + 445267.111480 * T - 0.0019142 * T2 + T3 / 189474.0;
+        // 平距角（如月对地心的角距离）
+        D = 297.85036 + 445267.111480 * T - 0.0019142 * T2 + T3 / 189474.0
         
-        /*太阳（地球）平近点角*/
-        M = 357.52772 + 35999.050340 * T - 0.0001603 * T2 - T3 / 300000.0;
+        // 太阳（地球）平近点角
+        M = 357.52772 + 35999.050340 * T - 0.0001603 * T2 - T3 / 300000.0
         
-        /*月亮平近点角*/
-        Mp = 134.96298 + 477198.867398 * T + 0.0086972 * T2 + T3 / 56250.0;
+        // 月亮平近点角
+        Mp = 134.96298 + 477198.867398 * T + 0.0086972 * T2 + T3 / 56250.0
         
-        /*月亮纬度参数*/
-        F = 93.27191 + 483202.017538 * T - 0.0036825 * T2 + T3 / 327270.0;
+        // 月亮纬度参数
+        F = 93.27191 + 483202.017538 * T - 0.0036825 * T2 + T3 / 327270.0
         
-        /*黄道与月亮平轨道升交点黄经*/
-        Omega = 125.04452 - 1934.136261 * T + 0.0020708 * T2 + T3 / 450000.0;
+        // 黄道与月亮平轨道升交点黄经
+        Omega = 125.04452 - 1934.136261 * T + 0.0020708 * T2 + T3 / 450000.0
     }
 
-    /*计算某时刻的黄经章动干扰量，dt是儒略千年数，返回值单位是度*/
+    // 计算某时刻的黄经章动干扰量，dt是儒略千年数，返回值单位是度
     func calcEarthLongitudeNutation(dt:Double) -> Double {
         let T = dt * 10
         var D:Double = 0.0, M:Double = 0.0, Mp:Double = 0.0, F:Double = 0.0, Omega:Double = 0.0
         
         getEarthNutationParameter(dt: dt, D: &D, M: &M, Mp: &Mp, F: &F, Omega: &Omega)
         
-        var resulte = 0.0 ;
+        var resulte = 0.0 
         for (i, _) in CalendarConstant.nutation.enumerated() {
             
-            var sita = CalendarConstant.nutation[i].D * D + CalendarConstant.nutation[i].M * M + CalendarConstant.nutation[i].Mp * Mp + CalendarConstant.nutation[i].F * F + CalendarConstant.nutation[i].omega * Omega;
-            sita = degree2Radian(sita);
+            var sita = CalendarConstant.nutation[i].D * D + CalendarConstant.nutation[i].M * M + CalendarConstant.nutation[i].Mp * Mp + CalendarConstant.nutation[i].F * F + CalendarConstant.nutation[i].omega * Omega
+            sita = degree2Radian(sita)
             
-            resulte += (CalendarConstant.nutation[i].sine1 + CalendarConstant.nutation[i].sine2 * T ) * sin(sita);
+            resulte += (CalendarConstant.nutation[i].sine1 + CalendarConstant.nutation[i].sine2 * T ) * sin(sita)
         }
         
         /*先乘以章动表的系数 0.0001，然后换算成度的单位*/
-        return resulte * 0.0001 / 3600.0;
+        return resulte * 0.0001 / 3600.0
     }
     
     
@@ -387,27 +387,27 @@ open class CalendarUtils{
     
         getEarthNutationParameter(dt:dt, D: &D, M: &M, Mp: &Mp, F: &F, Omega: &Omega)
     
-        var resulte = 0.0 ;
+        var resulte = 0.0 
         for(i, _) in CalendarConstant.nutation.enumerated() {
-            var sita = CalendarConstant.nutation[i].D * D + CalendarConstant.nutation[i].M * M + CalendarConstant.nutation[i].Mp * Mp + CalendarConstant.nutation[i].F * F + CalendarConstant.nutation[i].omega * Omega;
-            sita = degree2Radian(sita);
+            var sita = CalendarConstant.nutation[i].D * D + CalendarConstant.nutation[i].M * M + CalendarConstant.nutation[i].Mp * Mp + CalendarConstant.nutation[i].F * F + CalendarConstant.nutation[i].omega * Omega
+            sita = degree2Radian(sita)
             
-            resulte += (CalendarConstant.nutation[i].cosine1 + CalendarConstant.nutation[i].cosine2 * T ) * cos(sita);
+            resulte += (CalendarConstant.nutation[i].cosine1 + CalendarConstant.nutation[i].cosine2 * T ) * cos(sita)
         }
     
         // 先乘以章动表的系数 0.001，然后换算成度的单位
-        return resulte * 0.0001 / 3600.0;
+        return resulte * 0.0001 / 3600.0
     }
     
     // 利用已知节气推算其它节气的函数，st的值以小寒节气为0，大寒为1，其它节气类推
     func calculateSolarTermsByExp(year:Int, st:Int) -> Double {
         if st < 0 || st > 24 {
-            return 0.0;
+            return 0.0
         }
     
-        let stJd = 365.24219878 * Double(year - 1900) + CalendarConstant.stAccInfo[st] / 86400.0;
+        let stJd = 365.24219878 * Double(year - 1900) + CalendarConstant.stAccInfo[st] / 86400.0
     
-        return CalendarConstant.base1900SlightColdJD + stJd;
+        return CalendarConstant.base1900SlightColdJD + stJd
     }
     
     /*
@@ -543,7 +543,7 @@ open class CalendarUtils{
     // 得到某个儒略日的太阳地心黄纬(视黄纬)，单位度
     func getSunEclipticLatitudeEC(jde:Double) -> Double {
         // 儒略千年数
-        let dt = (jde - CalendarConstant.JD2000) / 365250.0;
+        let dt = (jde - CalendarConstant.JD2000) / 365250.0
     
         // 计算太阳的地心黄经
         let longitude = calcSunEclipticLongitudeEC(dt: dt)
@@ -552,9 +552,9 @@ open class CalendarUtils{
     
         // 修正精度
         let delta = adjustSunEclipticLatitudeEC(dt: dt, longitude: longitude)
-        latitude += delta * 3600.0;
+        latitude += delta * 3600.0
     
-        return latitude;
+        return latitude
     }
     
     func getMoonEclipticParameter(dt:Double,  Lp:inout Double, D: inout Double, M: inout Double, Mp:inout Double, F: inout Double, E: inout Double) {
@@ -640,7 +640,7 @@ open class CalendarUtils{
         result += (1962.0 * sin(degree2Radian(Lp - F)))
         result += (318.0 * sin(degree2Radian(A2)))
     
-        return result;
+        return result
     }
     
     // 计算金星摄动,木星摄动以及地球扁率摄动对月球地心黄纬的影响,dt 是儒略世纪数，Lp、Mp和F单位是度
@@ -660,14 +660,14 @@ open class CalendarUtils{
         result += (127.0 * sin(degree2Radian(Lp - Mp)))
         result += (115.0 * sin(degree2Radian(Lp + Mp)))
     
-        return result;
+        return result
     }
     
     func getMoonEclipticLongitudeEC(dbJD: Double) -> Double {
     
         var Lp = 0.0, D = 0.0, M = 0.0, Mp = 0.0, F = 0.0, E = 0.0
         // 儒略世纪数
-        var dt = (dbJD - CalendarConstant.JD2000) / 36525.0
+        let dt = (dbJD - CalendarConstant.JD2000) / 36525.0
     
         getMoonEclipticParameter(dt: dt, Lp: &Lp, D: &D, M: &M, Mp: &Mp, F: &F, E: &E)
     
