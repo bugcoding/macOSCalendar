@@ -663,4 +663,28 @@ open class CalendarUtils{
         return result;
     }
     
+    func getMoonEclipticLongitudeEC(dbJD: Double) -> Double {
+    
+        var Lp = 0.0, D = 0.0, M = 0.0, Mp = 0.0, F = 0.0, E = 0.0
+        // 儒略世纪数
+        var dt = (dbJD - CalendarConstant.JD2000) / 36525.0
+    
+        getMoonEclipticParameter(dt: dt, Lp: &Lp, D: &D, M: &M, Mp: &Mp, F: &F, E: &E)
+    
+        // 计算月球地心黄经周期项
+        var EI = calcMoonECLongitudePeriodic(D: D, M: M, Mp: Mp, F: F, E: E)
+    
+        // 修正金星,木星以及地球扁率摄动
+        EI += calcMoonLongitudePerturbation(dt: dt, Lp: Lp, F: F)
+    
+        // 计算月球地心黄经
+        var longitude = Lp + EI / 1000000.0
+    
+        // 计算天体章动干扰
+        longitude += calcEarthLongitudeNutation(dt: dt / 10.0)
+        // 映射到0-360范围内
+        longitude = mod360Degree(longitude)
+        return longitude
+    }
+    
 }
