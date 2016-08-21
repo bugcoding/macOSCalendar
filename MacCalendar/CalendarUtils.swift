@@ -10,7 +10,7 @@
 
 import Foundation
 
-public class CalendarUtils{
+open class CalendarUtils{
     
     // 单例
     class var sharedInstance : CalendarUtils{
@@ -20,7 +20,7 @@ public class CalendarUtils{
         }
         return Static.ins
     }
-    private init(){
+    fileprivate init(){
         
     }
     
@@ -37,7 +37,7 @@ public class CalendarUtils{
     
     
     // 蔡勒公式算公历某天的星期
-    func getWeekDayBy(year:Int, month m:Int, day d:Int) -> Int {
+    func getWeekDayBy(_ year:Int, month m:Int, day d:Int) -> Int {
         var year = year
         var m = m
         if m < 3 {
@@ -58,7 +58,7 @@ public class CalendarUtils{
     }
     
     // 通过2000年有基准获取某一农历年的干支
-    func getLunarYearNameBy(year:Int) -> (heaven:String, earthy:String, zodiac:String){
+    func getLunarYearNameBy(_ year:Int) -> (heaven:String, earthy:String, zodiac:String){
         let baseMinus:Int = year - 2000
         
         var heavenly = (7 + baseMinus) % 10
@@ -75,12 +75,12 @@ public class CalendarUtils{
     }
     
     // 平，闫年判定
-    func getIsLeapBy(year:Int) -> Bool {
+    func getIsLeapBy(_ year:Int) -> Bool {
         return (year % 4 == 0 && year % 100 != 0) || year % 400 == 0
     }
     
     // 指定月份的天数
-    func getDaysBy(dateString: String) -> Int {
+    func getDaysBy(_ dateString: String) -> Int {
         let (year, m, _) = getYMDTuppleBy(dateString)
         var days = 0
         if getIsLeapBy(year) {
@@ -94,33 +94,33 @@ public class CalendarUtils{
     
     // 今天的日期
     func getDateStringOfToday() -> String {
-        let nowDate = NSDate()
-        let formatter = NSDateFormatter()
+        let nowDate = Date()
+        let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
-        let dateString = formatter.stringFromDate(nowDate)
+        let dateString = formatter.string(from: nowDate)
         return dateString
     }
     
     // 根据日期字符串 yyyy-mm-dd形式获取(year,month,day)的元组
-    func getYMDTuppleBy(dateString:String) -> (year:Int, month:Int, day:Int) {
-        let formatter = NSDateFormatter()
+    func getYMDTuppleBy(_ dateString:String) -> (year:Int, month:Int, day:Int) {
+        let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
-        let date = formatter.dateFromString(dateString)
+        let date = formatter.date(from: dateString)
         
         formatter.dateFormat = "yyyy"
-        let y = formatter.stringFromDate(date!)
+        let y = formatter.string(from: date!)
         
         formatter.dateFormat = "MM"
-        let m = formatter.stringFromDate(date!)
+        let m = formatter.string(from: date!)
         
         formatter.dateFormat = "dd"
-        let d = formatter.stringFromDate(date!)
+        let d = formatter.string(from: date!)
         
         return (Int(y)!, Int(m)!, Int(d)!)
     }
     
     // 根据传入日期字符串获取下月
-    func getMonthDateStringBy(dateString:String, step:Int)->String {
+    func getMonthDateStringBy(_ dateString:String, step:Int)->String {
         let date = getYMDTuppleBy(dateString)
         
         var year = date.year
@@ -141,7 +141,7 @@ public class CalendarUtils{
     
     
     // 获取某月某天是周几
-    func getWeekBy(dateString:String, andFirstDay:Int) -> Int {
+    func getWeekBy(_ dateString:String, andFirstDay:Int) -> Int {
         let (year, month, _) = getYMDTuppleBy(dateString)
         let weekDay = getWeekDayBy(year, month: month, day: andFirstDay)
         
@@ -149,7 +149,7 @@ public class CalendarUtils{
     }
     
     // 获取一个月有几天
-    func getDaysOfMonthBy(year:Int, month:Int) -> Int {
+    func getDaysOfMonthBy(_ year:Int, month:Int) -> Int {
         if month < 1 || month > 12 {
             return 0
         }
@@ -162,7 +162,7 @@ public class CalendarUtils{
     }
     
     // 计算一年中过去的天数，含指定的这天
-    func calcYearPassDays(year:Int, month:Int, day:Int) -> Int {
+    func calcYearPassDays(_ year:Int, month:Int, day:Int) -> Int {
         var passedDays = 0
         for i in 0 ..< month - 1 {
             if getIsLeapBy(year) {
@@ -178,7 +178,7 @@ public class CalendarUtils{
     }
     
     // 计算一年剩下的天数，不含指定的这天
-    func calcYearRestDays(year:Int, month:Int, day:Int) -> Int{
+    func calcYearRestDays(_ year:Int, month:Int, day:Int) -> Int{
         var leftDays = 0
         if getIsLeapBy(year) {
             leftDays = CalendarConstant.DAYS_OF_MONTH_LEAP_YEAR[month] - day
@@ -198,7 +198,7 @@ public class CalendarUtils{
     }
     
     // 计算二个年份之间的天数 前面包含元旦，后面不包含
-    func calcYearsDays(yearStart:Int, yearEnd:Int) -> Int {
+    func calcYearsDays(_ yearStart:Int, yearEnd:Int) -> Int {
         var days = 0
         for i in yearStart ..< yearEnd {
             if getIsLeapBy(i) {
@@ -212,7 +212,7 @@ public class CalendarUtils{
     }
     
     // 计算二个指定日期之间的天数
-    func calcDaysBetweenDate(yearStart:Int, monthStart:Int, dayStart:Int, yearEnd:Int, monthEnd:Int, dayEnd:Int) -> Int {
+    func calcDaysBetweenDate(_ yearStart:Int, monthStart:Int, dayStart:Int, yearEnd:Int, monthEnd:Int, dayEnd:Int) -> Int {
         var days = calcYearRestDays(yearStart, month: monthStart, day: dayStart)
         
         if yearStart != yearEnd {
@@ -228,7 +228,7 @@ public class CalendarUtils{
     }
     
     // 判定日期是否使用了格里历
-    func isGregorianDays(year:Int, month:Int, day:Int) -> Bool {
+    func isGregorianDays(_ year:Int, month:Int, day:Int) -> Bool {
         if year < CalendarConstant.GREGORIAN_CALENDAR_OPEN_YEAR {
             return false
         }
@@ -244,7 +244,7 @@ public class CalendarUtils{
     
     
     // 计算儒略日
-    func calcJulianDay(year:Int, month:Int, day:Int, hour:Int, min:Int, second:Double) -> Double {
+    func calcJulianDay(_ year:Int, month:Int, day:Int, hour:Int, min:Int, second:Double) -> Double {
         var year = year
         var month = month
         
@@ -268,7 +268,7 @@ public class CalendarUtils{
     }
     
     // 儒略日获得日期
-    func getDayTimeFromJulianDay(jd:Double, inout dt:WZDayTime){
+    func getDayTimeFromJulianDay(_ jd:Double, dt:inout WZDayTime){
         var cna:Int, cnd:Int
         var cnf:Double
         
@@ -310,7 +310,7 @@ public class CalendarUtils{
     
     
     // 360度转换
-    func mod360Degree(degrees:Double) -> Double {
+    func mod360Degree(_ degrees:Double) -> Double {
         
         var dbValue:Double = degrees
     
@@ -326,11 +326,11 @@ public class CalendarUtils{
     }
     
     // 角度转弧度
-    func degree2Radian(degree:Double) -> Double {
+    func degree2Radian(_ degree:Double) -> Double {
         return degree * CalendarConstant.PI / 180.0
     }
     // 弧度转角度
-    func radian2Degree(radian:Double) -> Double {
+    func radian2Degree(_ radian:Double) -> Double {
         return radian * 180.0 / CalendarConstant.PI
     }
 }

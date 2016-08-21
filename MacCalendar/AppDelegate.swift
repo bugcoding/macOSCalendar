@@ -13,14 +13,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     var calViewController:CalendarViewController?
 
-    func applicationDidFinishLaunching(aNotification: NSNotification) {
+    func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
         let calController = CalendarViewController()
         calController.showWindow(self)
         self.calViewController = calController
     }
 
-    func applicationWillTerminate(aNotification: NSNotification) {
+    func applicationWillTerminate(_ aNotification: Notification) {
         // Insert code here to tear down your application
     }
 

@@ -15,7 +15,7 @@ class CalendarViewController: NSWindowController {
     @IBOutlet weak var leftArrowBtn:NSButton!
     @IBOutlet weak var rightArrowBtn:NSButton!
 
-    var cellBtns = [CalendarCellView!]()
+    var cellBtns = [CalendarCellView]()
     var lastRowNum:Int = 0
     
     override var windowNibName: String?{
@@ -23,12 +23,12 @@ class CalendarViewController: NSWindowController {
     }
     
     // MARK: Button handler
-    @IBAction func leftArrowBtnHandler(sender:AnyObject){
+    @IBAction func leftArrowBtnHandler(_ sender:AnyObject){
         selectDataText.stringValue = CalendarUtils.sharedInstance.getMonthDateStringBy(selectDataText.stringValue, step: -1)
         showDaysInFormsBy(selectDataText.stringValue)
     }
     
-    @IBAction func rightArrowBtnHandler(sender:AnyObject){
+    @IBAction func rightArrowBtnHandler(_ sender:AnyObject){
         selectDataText.stringValue = CalendarUtils.sharedInstance.getMonthDateStringBy(selectDataText.stringValue, step: 1)
         showDaysInFormsBy(selectDataText.stringValue)
     }
@@ -42,7 +42,7 @@ class CalendarViewController: NSWindowController {
     }
     
     // 显示日历面板
-    func showDaysInFormsBy(dateString: String){
+    func showDaysInFormsBy(_ dateString: String){
         // 获取每月第一天是周几
         let utils = CalendarUtils.sharedInstance
         // 根据日期字符串获取当前月共有多少天
@@ -55,18 +55,18 @@ class CalendarViewController: NSWindowController {
         print("dateString = \(dateString) weekOf1stDay = \(weekDayOf1stDay) weekOfLastDay = \(weekDayOfLastDay) monthDays = \(monthDays) ")
         
         // 把空余不的cell行不显示，非本月天置灰
-        for (index, btn) in cellBtns.enumerate() {
-            
+        for (index, btn) in cellBtns.enumerated() {
+                        
             print("showDaysInFormsBy index = \(index)")
-            btn.enabled = true
-            btn.transparent = false
+            btn.isEnabled = true
+            btn.isTransparent = false
             
             if index < weekDayOf1stDay || index >= monthDays + weekDayOf1stDay {
                 let curRowNum = Int((btn.cellID - 1) / 7) + 1
                 if index >= monthDays + weekDayOf1stDay && curRowNum > lastRowNum {
-                    btn.transparent = true
+                    btn.isTransparent = true
                 }else{
-                    btn.enabled = false
+                    btn.isEnabled = false
                     btn.title = ""
                 }
 
@@ -91,7 +91,7 @@ class CalendarViewController: NSWindowController {
     
     
     // 根据xib中的identifier获取对应的cell
-    func getButtonByIdentifier(id:String) -> NSView? {
+    func getButtonByIdentifier(_ id:String) -> NSView? {
         for subView in (self.window?.contentView?.subviews[0].subviews)! {
             if subView.identifier == id {
                 return subView
@@ -101,7 +101,7 @@ class CalendarViewController: NSWindowController {
     }
     
     
-    func dateButtonHandler(sender:NSButton){
+    func dateButtonHandler(_ sender:NSButton){
         print("Press Button is \(sender.identifier)")
     }
     
@@ -123,7 +123,7 @@ class CalendarViewController: NSWindowController {
             }
         }
         
-        for (index, btn) in cellBtns.enumerate() {
+        for (index, btn) in cellBtns.enumerated() {
             print("cellbtns index = \(index) btn.action = \(btn.action) btn.intValue = \(btn.cellID)")
         }
         
