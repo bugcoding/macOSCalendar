@@ -333,4 +333,63 @@ open class CalendarUtils{
     func radian2Degree(_ radian:Double) -> Double {
         return radian * 180.0 / CalendarConstant.PI
     }
+   
+    
+    func getEarthNutationParameter(dt:Double, D:inout Double, M:inout Double, Mp:inout Double, F:inout Double, Omega:inout Double)
+    {
+        let T = dt * 10; /*T是从J2000起算的儒略世纪数*/
+        let T2 = T * T;
+        let T3 = T2 * T;
+    
+        /*平距角（如月对地心的角距离）*/
+        D = 297.85036 + 445267.111480 * T - 0.0019142 * T2 + T3 / 189474.0;
+        
+        /*太阳（地球）平近点角*/
+        M = 357.52772 + 35999.050340 * T - 0.0001603 * T2 - T3 / 300000.0;
+        
+        /*月亮平近点角*/
+        Mp = 134.96298 + 477198.867398 * T + 0.0086972 * T2 + T3 / 56250.0;
+        
+        /*月亮纬度参数*/
+        F = 93.27191 + 483202.017538 * T - 0.0036825 * T2 + T3 / 327270.0;
+        
+        /*黄道与月亮平轨道升交点黄经*/
+        Omega = 125.04452 - 1934.136261 * T + 0.0020708 * T2 + T3 / 450000.0;
+    }
+
+    /*计算某时刻的黄经章动干扰量，dt是儒略千年数，返回值单位是度*/
+    func calcEarthLongitudeNutation(dt:Double) -> Double {
+        let T = dt * 10
+        var D:Double = 0.0, M:Double = 0.0, Mp:Double = 0.0, F:Double = 0.0, Omega:Double = 0.0
+        
+        getEarthNutationParameter(dt:dt, D:&D, M:&M, Mp:&Mp, F:&F, Omega:&Omega)
+        
+        var resulte = 0.0 ;
+        for (i, _) in CalendarConstant.nutation.enumerated() {
+            
+            var sita = CalendarConstant.nutation[i].D * D + CalendarConstant.nutation[i].M * M + CalendarConstant.nutation[i].Mp * Mp + CalendarConstant.nutation[i].F * F + CalendarConstant.nutation[i].omega * Omega;
+            sita = degree2Radian(sita);
+            
+            resulte += (CalendarConstant.nutation[i].sine1 + CalendarConstant.nutation[i].sine2 * T ) * sin(sita);
+        }
+        
+        /*先乘以章动表的系数 0.0001，然后换算成度的单位*/
+        return resulte * 0.0001 / 3600.0;
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 }
