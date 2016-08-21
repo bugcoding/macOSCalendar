@@ -600,4 +600,17 @@ open class CalendarUtils{
         return EI
     }
     
+    // 计算月球地心黄纬周期项的和
+    func calcMoonECLatitudePeriodicTbl(D: Double, M: Double, Mp: Double, F: Double, E: Double) -> Double {
+        var EB = 0.0
+    
+        for i in 0 ..< PlanetData.moon_Latitude.count {
+            var sita = PlanetData.moon_Latitude[i].D * D + PlanetData.moon_Latitude[i].M * M + PlanetData.moon_Latitude[i].Mp * Mp + PlanetData.moon_Latitude[i].F * F;
+            sita = degree2Radian(sita)
+            EB += (PlanetData.moon_Latitude[i].eiA * sin(sita) * pow(E, fabs(PlanetData.Moon_longitude[i].M)))
+        }
+    
+        return EB
+    }
+    
 }
