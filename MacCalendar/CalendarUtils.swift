@@ -687,4 +687,25 @@ open class CalendarUtils{
         return longitude
     }
     
+    func getMoonEclipticLatitudeEC(dbJD: Double) -> Double {
+        // 儒略世纪数
+        let dt = (dbJD - CalendarConstant.JD2000) / 36525.0
+    
+        var Lp = 0.0, D = 0.0, M = 0.0, Mp = 0.0, F = 0.0, E = 0.0
+        getMoonEclipticParameter(dt: dt, Lp: &Lp, D: &D, M: &M, Mp: &Mp, F: &F, E: &E)
+    
+        // 计算月球地心黄纬周期项
+        var EB = calcMoonECLatitudePeriodicTbl(D: D, M: M, Mp: Mp, F: F, E: E)
+    
+        // 修正金星,木星以及地球扁率摄动
+        EB += calcMoonLatitudePerturbation(dt: dt, Lp: Lp, F: F, Mp: Mp)
+    
+        // 计算月球地心黄纬*/
+        let latitude = EB / 1000000.0
+    
+        return latitude
+    }
+    
+    
+    
 }
