@@ -9,7 +9,7 @@
 import Foundation
 
 // 行星数据
-class PlanetDataVSOP87_COEFFICIENT{
+class PlanetData{
     // VSOP_87
     struct VSOP87_COEFFICIENT{
         var A:Double
