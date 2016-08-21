@@ -605,12 +605,62 @@ open class CalendarUtils{
         var EB = 0.0
     
         for i in 0 ..< PlanetData.moon_Latitude.count {
-            var sita = PlanetData.moon_Latitude[i].D * D + PlanetData.moon_Latitude[i].M * M + PlanetData.moon_Latitude[i].Mp * Mp + PlanetData.moon_Latitude[i].F * F;
+            var sita = PlanetData.moon_Latitude[i].D * D + PlanetData.moon_Latitude[i].M * M + PlanetData.moon_Latitude[i].Mp * Mp + PlanetData.moon_Latitude[i].F * F
             sita = degree2Radian(sita)
             EB += (PlanetData.moon_Latitude[i].eiA * sin(sita) * pow(E, fabs(PlanetData.Moon_longitude[i].M)))
         }
     
         return EB
+    }
+    
+    // 计算月球地心距离周期项的和
+    func calcMoonECDistancePeriodicTbl(D: Double, M: Double, Mp: Double, F: Double, E: Double) -> Double {
+        var ER = 0.0
+    
+        for i in 0 ..< PlanetData.Moon_longitude.count {
+            var sita = PlanetData.Moon_longitude[i].D * D + PlanetData.Moon_longitude[i].M * M + PlanetData.Moon_longitude[i].Mp * Mp + PlanetData.Moon_longitude[i].F * F
+            sita = degree2Radian(sita)
+            ER += (PlanetData.Moon_longitude[i].erA * cos(sita) * pow(E, fabs(PlanetData.Moon_longitude[i].M)))
+        }
+    
+        return ER
+    }
+    
+    // 计算金星摄动,木星摄动以及地球扁率摄动对月球地心黄经的影响,dt 是儒略世纪数，Lp和F单位是度
+    func calcMoonLongitudePerturbation(dt: Double, Lp: Double, F: Double) -> Double {
+        // T是从J2000起算的儒略世纪数
+        let T = dt
+        var A1 = 119.75 + 131.849 * T
+        var A2 = 53.09 + 479264.290 * T
+    
+        A1 = mod360Degree(A1)
+        A2 = mod360Degree(A2)
+    
+        var result = 3958.0 * sin(degree2Radian(A1))
+        result += (1962.0 * sin(degree2Radian(Lp - F)))
+        result += (318.0 * sin(degree2Radian(A2)))
+    
+        return result;
+    }
+    
+    // 计算金星摄动,木星摄动以及地球扁率摄动对月球地心黄纬的影响,dt 是儒略世纪数，Lp、Mp和F单位是度
+    func calcMoonLatitudePerturbation(dt: Double, Lp: Double, F: Double, Mp: Double) -> Double {
+        // T是从J2000起算的儒略世纪数
+        let T = dt
+        var A1 = 119.75 + 131.849 * T
+        var A3 = 313.45 + 481266.484 * T
+    
+        A1 = mod360Degree(A1)
+        A3 = mod360Degree(A3)
+    
+        let result = -2235.0 * sin(degree2Radian(Lp))
+        result += (382.0 * sin(degree2Radian(A3)))
+        result += (175.0 * sin(degree2Radian(A1 - F)))
+        result += (175.0 * sin(degree2Radian(A1 + F)))
+        result += (127.0 * sin(degree2Radian(Lp - Mp)))
+        result += (115.0 * sin(degree2Radian(Lp + Mp)))
+    
+        return result;
     }
     
 }
