@@ -15,6 +15,7 @@ class CalendarViewController: NSWindowController {
     @IBOutlet weak var leftArrowBtn:NSButton!
     @IBOutlet weak var rightArrowBtn:NSButton!
 
+    // 每个显示日期的单元格
     var cellBtns = [CalendarCellView]()
     var lastRowNum:Int = 0
     
@@ -56,7 +57,7 @@ class CalendarViewController: NSWindowController {
         
         // 把空余不的cell行不显示，非本月天置灰
         for (index, btn) in cellBtns.enumerated() {
-                        
+            
             print("showDaysInFormsBy index = \(index)")
             btn.isEnabled = true
             btn.isTransparent = false
