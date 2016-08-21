@@ -588,5 +588,16 @@ open class CalendarUtils{
         E = 1 - 0.002516 * T - 0.0000074 * T2
     }
 
+    // 计算月球地心黄经周期项的和
+    func calcMoonECLongitudePeriodic(D: Double, M: Double, Mp: Double, F: Double, E: Double) -> Double {
+        var EI = 0.0
+    
+        for i in 0 ..< PlanetData.Moon_longitude.count {
+            var sita = PlanetData.Moon_longitude[i].D * D + PlanetData.Moon_longitude[i].M * M + PlanetData.Moon_longitude[i].Mp * Mp + PlanetData.Moon_longitude[i].F * F
+            sita = degree2Radian(sita)
+            EI += (PlanetData.Moon_longitude[i].eiA * sin(sita) * pow(E, fabs(PlanetData.Moon_longitude[i].M)))
+        }
+        return EI
+    }
     
 }
