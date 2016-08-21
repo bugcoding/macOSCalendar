@@ -362,7 +362,7 @@ open class CalendarUtils{
         let T = dt * 10
         var D:Double = 0.0, M:Double = 0.0, Mp:Double = 0.0, F:Double = 0.0, Omega:Double = 0.0
         
-        getEarthNutationParameter(dt:dt, D:&D, M:&M, Mp:&Mp, F:&F, Omega:&Omega)
+        getEarthNutationParameter(dt: dt, D: &D, M: &M, Mp: &Mp, F: &F, Omega: &Omega)
         
         var resulte = 0.0 ;
         for (i, _) in CalendarConstant.nutation.enumerated() {
@@ -378,7 +378,25 @@ open class CalendarUtils{
     }
     
     
+    /*计算某时刻的黄赤交角章动干扰量，dt是儒略千年数，返回值单位是度*/
+    func calcEarthObliquityNutation(dt:Double) -> Double {
+        // T是从J2000起算的儒略世纪数
+        let T = dt * 10
+        var D = 0.0, M = 0.0, Mp = 0.0, F = 0.0, Omega = 0.0
     
+        getEarthNutationParameter(dt:dt, D: &D, M: &M, Mp: &Mp, F: &F, Omega: &Omega)
+    
+        var resulte = 0.0 ;
+        for(i, _) in CalendarConstant.nutation.enumerated() {
+            var sita = CalendarConstant.nutation[i].D * D + CalendarConstant.nutation[i].M * M + CalendarConstant.nutation[i].Mp * Mp + CalendarConstant.nutation[i].F * F + CalendarConstant.nutation[i].omega * Omega;
+            sita = degree2Radian(sita);
+            
+            resulte += (CalendarConstant.nutation[i].cosine1 + CalendarConstant.nutation[i].cosine2 * T ) * cos(sita);
+        }
+    
+        // 先乘以章动表的系数 0.001，然后换算成度的单位
+        return resulte * 0.0001 / 3600.0;
+    }
     
     
     
