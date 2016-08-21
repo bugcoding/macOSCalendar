@@ -796,4 +796,19 @@ open class CalendarUtils{
         
         return JD1
     }
+    
+    
+    func calculateStemsBranches(year: Int, stems: inout Int, branches: inout Int) {
+        let sc = year - 2000
+        stems = (7 + sc) % 10
+        branches = (5 + sc) % 12
+    
+        if stems < 0 {
+            stems += 10
+        }
+        if branches < 0 {
+            branches += 12
+        }
+    }
+    
 }
