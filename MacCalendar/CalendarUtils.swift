@@ -736,5 +736,27 @@ open class CalendarUtils{
         }
     }
     
+    // 计算指定年份的任意节气，angle是节气在黄道上的读数
+    // 返回指定节气的儒略日时间(力学时)
+    func calculateSolarTerms(year: Int, angle: Int) -> Double {
+        var JD0:Double, JD1:Double, stDegree:Double, stDegreep:Double
+    
+        JD1 = getInitialEstimateSolarTerms(year: year, angle: angle)
+        repeat
+        {
+            JD0 = JD1
+            stDegree = getSunEclipticLongitudeEC(jde: JD0)
+            /*
+             对黄经0度迭代逼近时，由于角度360度圆周性，估算黄经值可能在(345,360]和[0,15)两个区间，
+             如果值落入前一个区间，需要进行修正
+             */
+            stDegree = ((angle == 0) && (stDegree > 345.0)) ? stDegree - 360.0 : stDegree
+            stDegreep = (getSunEclipticLongitudeEC(jde: Double(JD0) + 0.000005) - getSunEclipticLongitudeEC(jde: Double(JD0) - 0.000005)) / 0.00001
+            JD1 = JD0 - (stDegree - Double(angle)) / stDegreep
+            
+        }while((fabs(JD1 - JD0) > 0.0000001))
+    
+        return JD1
+    }
     
 }
