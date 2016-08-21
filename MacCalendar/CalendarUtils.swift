@@ -515,9 +515,46 @@ open class CalendarUtils{
         return R
     }
     
+    // 得到某个儒略日的太阳地心黄经(视黄经)，单位度
+    func getSunEclipticLongitudeEC(jde:Double) -> Double {
+        // 儒略千年数
+        let dt = (jde - CalendarConstant.JD2000) / 365250.0
+    
+        // 计算太阳的地心黄经
+        var longitude = calcSunEclipticLongitudeEC(dt: dt)
+    
+        // 计算太阳的地心黄纬
+        let latitude = calcSunEclipticLatitudeEC(dt: dt) * 3600.0
+    
+        // 修正精度
+        longitude += adjustSunEclipticLongitudeEC(dt: dt, longitude: longitude, latitude: latitude)
+    
+        // 修正天体章动
+        longitude += calcEarthLongitudeNutation(dt: dt)
+    
+        // 修正光行差
+        /*太阳地心黄经光行差修正项是: -20".4898/R*/
+        longitude -= (20.4898 / calcSunEarthRadius(dt: dt)) / 3600.0
+    
+        return longitude
+    }
     
     
+    // 得到某个儒略日的太阳地心黄纬(视黄纬)，单位度
+    func getSunEclipticLatitudeEC(jde:Double) -> Double {
+        // 儒略千年数
+        let dt = (jde - CalendarConstant.JD2000) / 365250.0;
     
+        // 计算太阳的地心黄经
+        let longitude = calcSunEclipticLongitudeEC(dt: dt)
+        // 计算太阳的地心黄纬
+        var latitude = calcSunEclipticLatitudeEC(dt: dt) * 3600.0
     
+        // 修正精度
+        let delta = adjustSunEclipticLatitudeEC(dt: dt, longitude: longitude)
+        latitude += delta * 3600.0;
+    
+        return latitude;
+    }
     
 }
