@@ -463,8 +463,43 @@ open class CalendarUtils{
         return (mod360Degree(mod360Degree(L / CalendarConstant.RADIAN_PER_ANGLE) + 180.0))
     }
     
+    func calcSunEclipticLatitudeEC(dt:Double) -> Double {
+        
+        let B0 = calcPeriodicTerm(coff: PlanetData.Earth_B0, count: PlanetData.Earth_B0.count, dt: dt)
+        let B1 = calcPeriodicTerm(coff: PlanetData.Earth_B1, count: PlanetData.Earth_B1.count, dt: dt)
+        let B2 = calcPeriodicTerm(coff: PlanetData.Earth_B2, count: PlanetData.Earth_B2.count, dt: dt)
+        let B3 = calcPeriodicTerm(coff: PlanetData.Earth_B3, count: PlanetData.Earth_B3.count, dt: dt)
+        let B4 = calcPeriodicTerm(coff: PlanetData.Earth_B4, count: PlanetData.Earth_B4.count, dt: dt)
     
+        let B = (((((B4 * dt) + B3) * dt + B2) * dt + B1) * dt + B0) / 100000000.0
     
+        // 地心黄纬 = －日心黄纬
+        return -(B / CalendarConstant.RADIAN_PER_ANGLE)
+    }
     
+    /*修正太阳的地心黄经，longitude, latitude 是修正前的太阳地心黄经和地心黄纬(度)，dt是儒略千年数，返回值单位度*/
+    func adjustSunEclipticLongitudeEC(dt:Double, longitude:Double, latitude:Double) -> Double {
+        //T是儒略世纪数
+        let T = dt * 10
+        var dbLdash = longitude - 1.397 * T - 0.00031 * T * T
+    
+        // 转换为弧度
+        dbLdash *= Double(CalendarConstant.RADIAN_PER_ANGLE)
+    
+        return (-0.09033 + 0.03916 * (cos(dbLdash) + sin(dbLdash)) * tan(latitude * CalendarConstant.RADIAN_PER_ANGLE)) / 3600.0
+    }
+    
+    /*修正太阳的地心黄纬，longitude是修正前的太阳地心黄经(度)，dt是儒略千年数，返回值单位度*/
+    func adjustSunEclipticLatitudeEC(dt:Double, longitude:Double) -> Double {
+        //T是儒略世纪数
+        let T = dt * 10
+        
+        var dLdash = longitude - 1.397 * T - 0.00031 * T * T
+    
+        // 转换为弧度
+        dLdash  *= CalendarConstant.RADIAN_PER_ANGLE
+    
+        return (0.03916 * (cos(dLdash) - sin(dLdash))) / 3600.0
+    }
     
 }
