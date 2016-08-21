@@ -653,7 +653,7 @@ open class CalendarUtils{
         A1 = mod360Degree(A1)
         A3 = mod360Degree(A3)
     
-        let result = -2235.0 * sin(degree2Radian(Lp))
+        var result = -2235.0 * sin(degree2Radian(Lp))
         result += (382.0 * sin(degree2Radian(A3)))
         result += (175.0 * sin(degree2Radian(A1 - F)))
         result += (175.0 * sin(degree2Radian(A1 + F)))
