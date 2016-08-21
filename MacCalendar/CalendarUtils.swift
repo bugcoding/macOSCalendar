@@ -557,4 +557,36 @@ open class CalendarUtils{
         return latitude;
     }
     
+    func getMoonEclipticParameter(dt:Double,  Lp:inout Double, D: inout Double, M: inout Double, Mp:inout Double, F: inout Double, E: inout Double) {
+        
+        // T是从J2000起算的儒略世纪数
+        let T = dt
+        let T2 = T * T
+        let T3 = T2 * T
+        let T4 = T3 * T
+    
+        // 月球平黄经
+        Lp = 218.3164591 + 481267.88134236 * T - 0.0013268 * T2 + T3/538841.0 - T4 / 65194000.0
+        Lp = mod360Degree(Lp)
+    
+        // 月日距角
+        D = 297.8502042 + 445267.1115168 * T - 0.0016300 * T2 + T3 / 545868.0 - T4 / 113065000.0
+        D = mod360Degree(D)
+    
+        // 太阳平近点角
+        M = 357.5291092 + 35999.0502909 * T - 0.0001536 * T2 + T3 / 24490000.0
+        M = mod360Degree(M)
+    
+        // 月亮平近点角
+        Mp = 134.9634114 + 477198.8676313 * T + 0.0089970 * T2 + T3 / 69699.0 - T4 / 14712000.0
+        Mp = mod360Degree(Mp)
+    
+        // 月球经度参数(到升交点的平角距离)
+        F = 93.2720993 + 483202.0175273 * T - 0.0034029 * T2 - T3 / 3526000.0 + T4 / 863310000.0
+        F = mod360Degree(F)
+    
+        E = 1 - 0.002516 * T - 0.0000074 * T2
+    }
+
+    
 }
