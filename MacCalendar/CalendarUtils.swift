@@ -759,4 +759,41 @@ open class CalendarUtils{
         return JD1
     }
     
+    /*
+     得到给定的时间后面第一个日月合朔的时间，平均误差小于3秒
+     输入参数是指定时间的力学时儒略日数
+     返回值是日月合朔的力学时儒略日数
+     */
+    func calculateMoonShuoJD(tdJD: Double) -> Double {
+        var JD0:Double, JD1:Double, stDegree:Double, stDegreep:Double
+    
+        JD1 = tdJD
+        repeat
+        {
+            JD0 = JD1
+            var moonLongitude = getMoonEclipticLongitudeEC(dbJD: JD0)
+            var sunLongitude = getSunEclipticLongitudeEC(jde: JD0)
+            if (moonLongitude > 330.0) && (sunLongitude < 30.0) {
+                sunLongitude = 360.0 + sunLongitude
+            }
+            if (sunLongitude > 330.0) && (moonLongitude < 30.0) {
+                moonLongitude = 60.0 + moonLongitude
+            }
+    
+            stDegree = moonLongitude - sunLongitude
+            if(stDegree >= 360.0){
+                stDegree -= 360.0
+            }
+            
+            if(stDegree < -360.0) {
+                stDegree += 360.0
+            }
+            
+            stDegreep = (getMoonEclipticLongitudeEC(dbJD: JD0 + 0.000005) - getSunEclipticLongitudeEC(jde: JD0 + 0.000005) - getMoonEclipticLongitudeEC(dbJD: JD0 - 0.000005) + getSunEclipticLongitudeEC(jde: JD0 - 0.000005)) / 0.00001
+            JD1 = JD0 - stDegree / stDegreep
+            
+        }while((fabs(JD1 - JD0) > 0.00000001))
+        
+        return JD1
+    }
 }
