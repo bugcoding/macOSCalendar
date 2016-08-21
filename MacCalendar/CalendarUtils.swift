@@ -1,7 +1,7 @@
 /*====================
  
  FileName    : CalendarUtils
- Desc        : Utils Function For Calendar (singleton class)
+ Desc        : Utils Function For Calendar 天体运算部分移植自<算法的乐趣 -- 王晓华> 书中示例代码
  Author      : bugcode
  Email       : bugcoding@gmail.com
  CreateDate  : 2016-5-8
