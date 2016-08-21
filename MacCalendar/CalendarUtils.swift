@@ -723,4 +723,18 @@ open class CalendarUtils{
     }
 
     
+    
+    func getInitialEstimateSolarTerms(year: Int, angle: Int) -> Double {
+        var STMonth = Int(ceil(Double((Double(angle) + 90.0) / 30.0)))
+        STMonth = STMonth > 12 ? STMonth - 12 : STMonth
+    
+        // 每月第一个节气发生日期基本都4-9日之间，第二个节气的发生日期都在16－24日之间
+        if (angle % 15 == 0) && (angle % 30 != 0) {
+            return calcJulianDay(year, month: STMonth, day: 6, hour: 12, min: 0, second: 0.0)
+        }else{
+            return calcJulianDay(year, month: STMonth, day: 20, hour: 12, min: 0, second: 0.0)
+        }
+    }
+    
+    
 }
