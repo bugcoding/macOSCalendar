@@ -502,4 +502,22 @@ open class CalendarUtils{
         return (0.03916 * (cos(dLdash) - sin(dLdash))) / 3600.0
     }
     
+    func calcSunEarthRadius(dt:Double) -> Double {
+        
+        let R0 = calcPeriodicTerm(coff: PlanetData.Earth_R0, count: PlanetData.Earth_R0.count, dt: dt)
+        let R1 = calcPeriodicTerm(coff: PlanetData.Earth_R1, count: PlanetData.Earth_R1.count, dt: dt)
+        let R2 = calcPeriodicTerm(coff: PlanetData.Earth_R2, count: PlanetData.Earth_R2.count, dt: dt)
+        let R3 = calcPeriodicTerm(coff: PlanetData.Earth_R3, count: PlanetData.Earth_R3.count, dt: dt)
+        let R4 = calcPeriodicTerm(coff: PlanetData.Earth_R4, count: PlanetData.Earth_R4.count, dt: dt)
+    
+        let R = (((((R4 * dt) + R3) * dt + R2) * dt + R1) * dt + R0) / 100000000.0
+    
+        return R
+    }
+    
+    
+    
+    
+    
+    
 }
