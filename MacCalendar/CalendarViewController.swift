@@ -78,7 +78,9 @@ class CalendarViewController: NSWindowController {
                     print("currentRowNumber = \(lastRowNum)")
 
                 }
-                btn.title = "\(index - weekDayOf1stDay + 1)"
+                //btn.title = "\(index - weekDayOf1stDay + 1)"
+                btn.setString(day: 1, lunarString: "初一")
+
                 
                 // 处理周六日的日期颜色
                 if index % 7 == 1 || index % 7 == 0 {
@@ -118,6 +120,7 @@ class CalendarViewController: NSWindowController {
                     let cellBtn = btn as! CalendarCellView
                     cellBtn.target = self
                     cellBtn.action = #selector(CalendarViewController.dateButtonHandler(_:))
+                    cellBtn.setString(day: 1, lunarString: "初一")
                     cellBtn.cellID = intValue
                     cellBtns.append(cellBtn)
                 }
