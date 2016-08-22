@@ -79,12 +79,12 @@ class CalendarViewController: NSWindowController {
 
                 }
                 //btn.title = "\(index - weekDayOf1stDay + 1)"
-                btn.setString(day: 1, lunarString: "初一")
+                btn.setString(topText: "\(index - weekDayOf1stDay + 1)", topColor: .black, bottomText: "初一", bottomColor: NSColor(colorLiteralRed: 0, green: 0, blue: 0, alpha: 1))
 
                 
                 // 处理周六日的日期颜色
-                if index % 7 == 1 || index % 7 == 0 {
-                    // TODO:
+                if index % 7 == 6 || index % 7 == 0 {
+                    btn.setString(topText: "\(index - weekDayOf1stDay + 1)", topColor: .red, bottomText: "初一", bottomColor: .red)
                 }
             }
 
@@ -120,7 +120,6 @@ class CalendarViewController: NSWindowController {
                     let cellBtn = btn as! CalendarCellView
                     cellBtn.target = self
                     cellBtn.action = #selector(CalendarViewController.dateButtonHandler(_:))
-                    cellBtn.setString(day: 1, lunarString: "初一")
                     cellBtn.cellID = intValue
                     cellBtns.append(cellBtn)
                 }
