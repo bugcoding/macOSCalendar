@@ -11,7 +11,11 @@ import Cocoa
 class CalendarCellView : NSButton{
     // 标识具体的cell
     var cellID: Int = 0
-    var label: NSTextField?
+    var bgColor: NSColor?
+    
+    func setBackGroundColor(bgColor: NSColor) {
+        self.bgColor = bgColor
+    }
     
     // 显示具体的农历和公历，设置具体button的标题属性
     func setString(topText: String, topColor: NSColor, bottomText: String, bottomColor: NSColor) {

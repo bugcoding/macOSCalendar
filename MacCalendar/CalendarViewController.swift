@@ -48,6 +48,8 @@ class CalendarViewController: NSWindowController {
         let utils = CalendarUtils.sharedInstance
         // 根据日期字符串获取当前月共有多少天
         let monthDays = utils.getDaysBy(dateString)
+        // 今天的日
+        let currentDay = utils.getYMDTuppleBy(dateString).day
         
         // 本月第一天与最后一天是周几
         let weekDayOf1stDay = utils.getWeekBy(dateString, andFirstDay: 1)
@@ -78,13 +80,19 @@ class CalendarViewController: NSWindowController {
                     print("currentRowNumber = \(lastRowNum)")
 
                 }
+                
+                let day = index - weekDayOf1stDay + 1
                 //btn.title = "\(index - weekDayOf1stDay + 1)"
-                btn.setString(topText: "\(index - weekDayOf1stDay + 1)", topColor: .black, bottomText: "初一", bottomColor: NSColor(colorLiteralRed: 0, green: 0, blue: 0, alpha: 1))
+                btn.setString(topText: "\(day)", topColor: .black, bottomText: "初一", bottomColor: NSColor(colorLiteralRed: 0, green: 0, blue: 0, alpha: 1))
 
                 
                 // 处理周六日的日期颜色
                 if index % 7 == 6 || index % 7 == 0 {
-                    btn.setString(topText: "\(index - weekDayOf1stDay + 1)", topColor: .red, bottomText: "初一", bottomColor: .red)
+                    btn.setString(topText: "\(day)", topColor: .red, bottomText: "初一", bottomColor: .red)
+                }
+                
+                if day == currentDay {
+                    btn.setBackGroundColor(bgColor: .green)
                 }
             }
 
