@@ -67,6 +67,21 @@ class MonthInfo {
     
     private var mDayInfo = [DAY_INFO]()
 
+    func getDayInfo(day: Int) -> DAY_INFO {
+        if (day < 1) || day > mDayInfo.count {
+            return mDayInfo[0]
+        }
+        return mDayInfo[day - 1]
+    }
+    func addSingleDay(dayInfo: DAY_INFO) {
+        mDayInfo.append(dayInfo)
+    }
+    func checkValidDayCount() -> Bool {
+        return mInfo.days == mDayInfo.count
+    }
+    func clearInfo() {
+        mDayInfo.removeAll()
+    }
     
     
     var mInfo:MONTH_INFO {
