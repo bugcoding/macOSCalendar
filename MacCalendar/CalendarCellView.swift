@@ -15,6 +15,7 @@ class CalendarCellView : NSButton{
     
     func setBackGroundColor(bgColor: NSColor) {
         self.bgColor = bgColor
+        self.layer?.backgroundColor = bgColor.cgColor
     }
     
     // 显示具体的农历和公历，设置具体button的标题属性

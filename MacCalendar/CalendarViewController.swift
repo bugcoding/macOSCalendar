@@ -91,6 +91,7 @@ class CalendarViewController: NSWindowController {
                     btn.setString(topText: "\(day)", topColor: .red, bottomText: "初一", bottomColor: .red)
                 }
                 
+                // 设置当前日期的颜色 TODO: 
                 if day == currentDay {
                     btn.setBackGroundColor(bgColor: .green)
                 }
