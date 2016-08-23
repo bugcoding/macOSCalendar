@@ -103,6 +103,9 @@ class CalendarConstant{
     static let INSECTS_AWAKEN      = 23   // 惊蛰
     
     
+
+    
+    
     // 农历日显示名称
     static let nameOfChnDay:[String] = [
         "初一","初二","初三","初四","初五","初六","初七","初八","初九","初十",
