@@ -81,14 +81,13 @@ open class CalendarUtils{
     }
     
     // 指定月份的天数
-    func getDaysBy(_ dateString: String) -> Int {
-        let (year, m, _) = getYMDTuppleBy(dateString)
+    func getDaysBy(year:Int, month: Int) -> Int {
         var days = 0
         if getIsLeapBy(year) {
-            days = CalendarConstant.DAYS_OF_MONTH_LEAP_YEAR[m]
+            days = CalendarConstant.DAYS_OF_MONTH_LEAP_YEAR[month]
         }
         else{
-            days = CalendarConstant.DAYS_OF_MONTH_NORMAL_YEAR[m]
+            days = CalendarConstant.DAYS_OF_MONTH_NORMAL_YEAR[month]
         }
         return days
     }

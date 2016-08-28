@@ -64,7 +64,6 @@ class MonthInfo {
         mInfo = info
     }
     
-    
     private var mDayInfo = [DAY_INFO]()
 
     func getDayInfo(day: Int) -> DAY_INFO {

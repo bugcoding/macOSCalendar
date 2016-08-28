@@ -46,10 +46,21 @@ class CalendarViewController: NSWindowController {
     func showDaysInFormsBy(_ dateString: String){
         // 获取每月第一天是周几
         let utils = CalendarUtils.sharedInstance
-        // 根据日期字符串获取当前月共有多少天
-        let monthDays = utils.getDaysBy(dateString)
+
+        let dateTupple = utils.getYMDTuppleBy(dateString)
         // 今天的日
-        let currentDay = utils.getYMDTuppleBy(dateString).day
+        let currentDay = dateTupple.day
+        // 根据日期字符串获取当前月共有多少天
+        let monthDays = utils.getDaysBy(year: dateTupple.year, month: dateTupple.month)
+        
+        // 上个月有多少天
+        var lastMonthDays = 0
+        if dateTupple.month == 1 {
+            lastMonthDays = utils.getDaysBy(year: dateTupple.year - 1, month: 12)
+        } else {
+            lastMonthDays = utils.getDaysBy(year: dateTupple.year, month: dateTupple.month - 1)
+        }
+        
         
         // 本月第一天与最后一天是周几
         let weekDayOf1stDay = utils.getWeekBy(dateString, andFirstDay: 1)
@@ -66,11 +77,18 @@ class CalendarViewController: NSWindowController {
             
             if index < weekDayOf1stDay || index >= monthDays + weekDayOf1stDay {
                 let curRowNum = Int((btn.cellID - 1) / 7) + 1
+                // 最后一行空出来
                 if index >= monthDays + weekDayOf1stDay && curRowNum > lastRowNum {
                     btn.isTransparent = true
                 }else{
                     btn.isEnabled = false
-                    btn.title = ""
+                    //btn.title = ""
+                }
+                // 处理前后二个月的显示日期 (灰置部分)
+                if index < weekDayOf1stDay {
+                    btn.setString(topText: "\(lastMonthDays - weekDayOf1stDay + index + 1)", topColor: .black, bottomText: "初一", bottomColor: NSColor(colorLiteralRed: 0, green: 0, blue: 0, alpha: 1))
+                }else {
+                    btn.setString(topText: "\(index - monthDays)", topColor: .black, bottomText: "初一", bottomColor: NSColor(colorLiteralRed: 0, green: 0, blue: 0, alpha: 1))
                 }
 
             } else {
