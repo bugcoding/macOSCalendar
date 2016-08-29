@@ -82,7 +82,6 @@ class CalendarViewController: NSWindowController {
                     btn.isTransparent = true
                 }else{
                     btn.isEnabled = false
-                    //btn.title = ""
                 }
                 // 处理前后二个月的显示日期 (灰置部分)
                 if index < weekDayOf1stDay {
