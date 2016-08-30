@@ -48,15 +48,29 @@ class CalendarViewController: NSWindowController {
     }
     
     @IBAction func lastMonthHandler(_ sender: NSButton) {
+        let utils = CalendarUtils.sharedInstance
+        
+        let day = Int(dayText.stringValue)
+        let month = Int(monthText.stringValue)
+        let year = Int(yearText.stringValue)
+        
+        let finalDays = utils.fixMonthDays(year: year!, month: month!, day: day!)
     
-        let monthDateString = yearText.stringValue + "-" + monthText.stringValue + "-" + dayText.stringValue
-        let newMonthStr = CalendarUtils.sharedInstance.getMonthDateStringBy(monthDateString, step: -1)
+        let monthDateString = yearText.stringValue + "-" + monthText.stringValue + "-" + String(finalDays)
+        let newMonthStr = utils.getMonthDateStringBy(monthDateString, step: -1)
         showDaysInFormsBy(newMonthStr)
     }
     
     @IBAction func nextMonthHandler(_ sender: NSButton) {
-        let monthDateString = yearText.stringValue + "-" + monthText.stringValue + "-" + dayText.stringValue
-        let newMonthStr = CalendarUtils.sharedInstance.getMonthDateStringBy(monthDateString, step: 1)
+        let utils = CalendarUtils.sharedInstance
+        
+        let day = Int(dayText.stringValue)
+        let month = Int(monthText.stringValue)
+        let year = Int(yearText.stringValue)
+        
+        let finalDays = utils.fixMonthDays(year: year!, month: month!, day: day!)
+        let monthDateString = yearText.stringValue + "-" + monthText.stringValue + "-" + String(finalDays)
+        let newMonthStr = utils.getMonthDateStringBy(monthDateString, step: 1)
         showDaysInFormsBy(newMonthStr)
     }
 
@@ -70,11 +84,13 @@ class CalendarViewController: NSWindowController {
     func showDefaultDate() {
         let utils = CalendarUtils.sharedInstance
         // 文本框里显示当前日期
+        /*
         let todayDate = utils.getYMDTuppleBy(utils.getDateStringOfToday())
         yearText.stringValue = String(todayDate.year)
         monthText.stringValue = String(todayDate.month)
         dayText.stringValue = String(todayDate.day)
-        
+            */
+ 
         showDaysInFormsBy(utils.getDateStringOfToday())
     }
     
@@ -84,6 +100,14 @@ class CalendarViewController: NSWindowController {
         let utils = CalendarUtils.sharedInstance
 
         let dateTupple = utils.getYMDTuppleBy(dateString)
+        
+        yearText.stringValue = String(dateTupple.year)
+        monthText.stringValue = String(dateTupple.month)
+        dayText.stringValue = String(dateTupple.day)
+
+
+        
+        
         // 今天的日
         let currentDay = dateTupple.day
         // 根据日期字符串获取当前月共有多少天

@@ -139,6 +139,16 @@ open class CalendarUtils{
         return monthDateString
     }
     
+    // 月份增减的时候保证天数不超出当月的最大天数
+    func fixMonthDays(year: Int, month: Int, day: Int) -> Int {
+        var retDay = day
+        let days = getDaysOfMonthBy(year, month: month)
+        if day > days {
+            retDay = days
+        }
+        
+        return retDay
+    }
     
     // 获取某月某天是周几
     func getWeekBy(_ dateString:String, andFirstDay:Int) -> Int {
