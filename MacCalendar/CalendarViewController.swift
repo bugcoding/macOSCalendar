@@ -48,10 +48,16 @@ class CalendarViewController: NSWindowController {
     }
     
     @IBAction func lastMonthHandler(_ sender: NSButton) {
-        monthText.stringValue = CalendarUtils.sharedInstance.getMonthDateStringBy(monthText.stringValue, step: -1)
+    
+        let monthDateString = yearText.stringValue + "-" + monthText.stringValue + "-" + dayText.stringValue
+        let newMonthStr = CalendarUtils.sharedInstance.getMonthDateStringBy(monthDateString, step: -1)
+        showDaysInFormsBy(newMonthStr)
     }
     
     @IBAction func nextMonthHandler(_ sender: NSButton) {
+        let monthDateString = yearText.stringValue + "-" + monthText.stringValue + "-" + dayText.stringValue
+        let newMonthStr = CalendarUtils.sharedInstance.getMonthDateStringBy(monthDateString, step: 1)
+        showDaysInFormsBy(newMonthStr)
     }
 
     @IBAction func nextYearHandler(_ sender: NSButton) {
@@ -64,7 +70,11 @@ class CalendarViewController: NSWindowController {
     func showDefaultDate() {
         let utils = CalendarUtils.sharedInstance
         // 文本框里显示当前日期
-        //selectDataText.stringValue = utils.getDateStringOfToday()
+        let todayDate = utils.getYMDTuppleBy(utils.getDateStringOfToday())
+        yearText.stringValue = String(todayDate.year)
+        monthText.stringValue = String(todayDate.month)
+        dayText.stringValue = String(todayDate.day)
+        
         showDaysInFormsBy(utils.getDateStringOfToday())
     }
     
