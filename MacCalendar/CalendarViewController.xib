@@ -7,7 +7,18 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="CalendarViewController" customModule="MacCalendar" customModuleProvider="target">
             <connections>
+                <outlet property="dateDetailLabel" destination="5fB-3p-RFI" id="DW1-EF-tKu"/>
+                <outlet property="dayLabel" destination="dKo-Vl-cMd" id="FTl-Vc-eWi"/>
+                <outlet property="dayText" destination="JcY-ac-Fof" id="OGD-FK-O5q"/>
+                <outlet property="lastMonthBtn" destination="c8x-U4-7mN" id="Vgl-bn-Ngr"/>
+                <outlet property="lastYearArrowBtn" destination="hpY-bL-AnX" id="jhd-gl-KdM"/>
+                <outlet property="lastYearBtn" destination="hpY-bL-AnX" id="Tnm-64-U81"/>
+                <outlet property="monthText" destination="0Db-h5-CwX" id="cH4-e1-f6p"/>
+                <outlet property="nextMonthBtn" destination="u6Y-K3-prM" id="ExK-Mh-0vO"/>
+                <outlet property="nextYearArrowBtn" destination="yRC-3t-AAp" id="Fmm-jX-qFK"/>
+                <outlet property="nextYearBtn" destination="yRC-3t-AAp" id="l5L-76-Jg4"/>
                 <outlet property="window" destination="F0z-JX-Cv5" id="gIp-Ho-8D9"/>
+                <outlet property="yearText" destination="mx9-hU-Kv3" id="MDO-qU-JR6"/>
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
@@ -469,6 +480,9 @@
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" size="13" name="HiraMinProN-W3"/>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="nextYearHandler:" target="-2" id="mBJ-Cz-v3H"/>
+                                </connections>
                             </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dKo-Vl-cMd">
                                 <rect key="frame" x="689" y="354" width="129" height="78"/>
@@ -517,6 +531,9 @@
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" size="13" name="HiraMinProN-W3"/>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="lastMonthHandler:" target="-2" id="0iw-0S-7QU"/>
+                                </connections>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hpY-bL-AnX">
                                 <rect key="frame" x="43" y="459" width="41" height="30"/>
@@ -525,6 +542,9 @@
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" size="13" name="HiraMinProN-W3"/>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="lastYearHandler:" target="-2" id="LUt-ZW-Ua6"/>
+                                </connections>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="u6Y-K3-prM">
                                 <rect key="frame" x="311" y="459" width="41" height="30"/>
@@ -533,6 +553,9 @@
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" size="13" name="HiraMinProN-W3"/>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="nextMonthHandler:" target="-2" id="Cmg-Xk-Fdz"/>
+                                </connections>
                             </button>
                             <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JcY-ac-Fof">
                                 <rect key="frame" x="379" y="459" width="100" height="30"/>

@@ -11,10 +11,23 @@ import Cocoa
 class CalendarViewController: NSWindowController {
     
     // MARK: - Outlets define
-    @IBOutlet weak var selectDataText:NSTextField!
-    @IBOutlet weak var leftArrowBtn:NSButton!
-    @IBOutlet weak var rightArrowBtn:NSButton!
+    
+    // 年和月上的箭头
+    @IBOutlet weak var nextYearBtn: NSButton!
+    @IBOutlet weak var lastYearBtn: NSButton!
+    @IBOutlet weak var nextMonthBtn: NSButton!
+    @IBOutlet weak var lastMonthBtn: NSButton!
+    
+    // 顶部三个label
+    @IBOutlet weak var yearText: NSTextField!
+    @IBOutlet weak var monthText: NSTextField!
+    @IBOutlet weak var dayText: NSTextField!
+    
+    // 右侧显示区
+    @IBOutlet weak var dateDetailLabel: NSTextField!
+    @IBOutlet weak var dayLabel: NSTextField!
 
+    
     // 每个显示日期的单元格
     var cellBtns = [CalendarCellView]()
     var lastRowNum:Int = 0
@@ -25,20 +38,33 @@ class CalendarViewController: NSWindowController {
     
     // MARK: Button handler
     @IBAction func leftArrowBtnHandler(_ sender:AnyObject){
-        selectDataText.stringValue = CalendarUtils.sharedInstance.getMonthDateStringBy(selectDataText.stringValue, step: -1)
-        showDaysInFormsBy(selectDataText.stringValue)
+        //selectDataText.stringValue = CalendarUtils.sharedInstance.getMonthDateStringBy(selectDataText.stringValue, step: -1)
+        //showDaysInFormsBy(selectDataText.stringValue)
     }
     
     @IBAction func rightArrowBtnHandler(_ sender:AnyObject){
-        selectDataText.stringValue = CalendarUtils.sharedInstance.getMonthDateStringBy(selectDataText.stringValue, step: 1)
-        showDaysInFormsBy(selectDataText.stringValue)
+        //selectDataText.stringValue = CalendarUtils.sharedInstance.getMonthDateStringBy(selectDataText.stringValue, step: 1)
+        //showDaysInFormsBy(selectDataText.stringValue)
+    }
+    
+    @IBAction func lastMonthHandler(_ sender: NSButton) {
+        monthText.stringValue = CalendarUtils.sharedInstance.getMonthDateStringBy(monthText.stringValue, step: -1)
+    }
+    
+    @IBAction func nextMonthHandler(_ sender: NSButton) {
+    }
+
+    @IBAction func nextYearHandler(_ sender: NSButton) {
+    }
+    
+    @IBAction func lastYearHandler(_ sender: NSButton) {
     }
     
     // 打开界面是默认显示今天
     func showDefaultDate() {
         let utils = CalendarUtils.sharedInstance
         // 文本框里显示当前日期
-        selectDataText.stringValue = utils.getDateStringOfToday()
+        //selectDataText.stringValue = utils.getDateStringOfToday()
         showDaysInFormsBy(utils.getDateStringOfToday())
     }
     
