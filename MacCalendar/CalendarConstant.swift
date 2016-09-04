@@ -28,6 +28,9 @@ class CalendarConstant{
     // 平年
     static let DAYS_OF_MONTH_NORMAL_YEAR = [0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
     
+    // 星期汉字
+    static let WEEK_NAME_OF_CHINESE = ["日", "一", "二", "三", "四", "五", "六"]
+    
     // 农历天干地支
     static let HEAVENLY_STEMS_NAME = ["甲", "乙", "丙", "丁", "戊", "己", "庚", "辛", "壬", "癸"]
     static let EARTHY_BRANCHES_NAME = ["子", "丑", "寅", "卯", "辰", "巳", "午", "未", "申", "酉", "戌", "亥"]

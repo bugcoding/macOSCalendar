@@ -94,6 +94,7 @@ class CalendarViewController: NSWindowController {
         showDaysInFormsBy(utils.getDateStringOfToday())
     }
     
+    
     // 显示日历面板
     func showDaysInFormsBy(_ dateString: String){
         // 获取每月第一天是周几
@@ -104,9 +105,11 @@ class CalendarViewController: NSWindowController {
         yearText.stringValue = String(dateTupple.year)
         monthText.stringValue = String(dateTupple.month)
         dayText.stringValue = String(dateTupple.day)
-
-
         
+        dayLabel.stringValue = dayText.stringValue
+        
+        let curWeekDay = utils.getWeekBy(dateString, andFirstDay: dateTupple.day)
+        dateDetailLabel.stringValue = String(dateTupple.year) + "年" + String(dateTupple.month) + "月" + String(dateTupple.day) + "日 星期" + CalendarConstant.WEEK_NAME_OF_CHINESE[curWeekDay]
         
         // 今天的日
         let currentDay = dateTupple.day
