@@ -118,27 +118,8 @@ class ChnMonthInfo {
         mInfo.mname -= 1
     }
     
-    func getNewMoonDayJD() -> Double {
-        return mInfo.shuoJD
-    }
-    func getNextNewMoonDayJD() -> Double {
-        return mInfo.nextJD
-    }
-    
-    func getMonthIndex() -> Int {
-        return mInfo.mmonth
-    }
-    
     func isLeapMonth() -> Bool {
         return mInfo.leap == 1
-    }
-    
-    func getMonthDays() -> Int {
-        return mInfo.mdays
-    }
-    
-    func getMonthName() -> Int {
-        return mInfo.mname
     }
     
     
