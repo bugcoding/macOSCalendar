@@ -38,10 +38,25 @@ struct MONTH_INFO {
     //中气序号
     var zhongqi:CalendarConstant.SOLAR_TERMS
 }
+
+struct CHN_MONTH_INFO {
+    // 当前农历月
+    var mmonth:Int
+    // 农历月名
+    var mname:Int
+    // 本月有几天
+    var mdays:Int
+    //本月朔日的儒略日
+    var shuoJD:Double
+    // 下月朔月的儒略日
+    var nextJD:Double
+    // 1 闫月 0 正常月
+    var leap:Int
+}
+
 // 月日年 数据结构，内容移植自<算法的乐趣 -- 王晓华> 示例代码
 class DayInfo {
 
-    
     init(info:DAY_INFO){
         mInfo = info
     }
@@ -84,6 +99,18 @@ class MonthInfo {
     
     
     var mInfo:MONTH_INFO {
+        get{
+            return self.mInfo
+        }
+        set{
+            self.mInfo = newValue
+        }
+    }
+}
+
+class ChnMonthInfo {
+    
+    var mInfo:CHN_MONTH_INFO {
         get{
             return self.mInfo
         }
