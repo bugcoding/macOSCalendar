@@ -485,7 +485,7 @@
                                 </connections>
                             </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dKo-Vl-cMd">
-                                <rect key="frame" x="689" y="354" width="129" height="78"/>
+                                <rect key="frame" x="689" y="357" width="129" height="78"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="23" drawsBackground="YES" id="K2w-wF-sxd">
                                     <font key="font" metaFont="system" size="60"/>
