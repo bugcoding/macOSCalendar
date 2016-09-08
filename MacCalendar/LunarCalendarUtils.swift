@@ -29,7 +29,43 @@ class LunarCalendarUtils {
     
     private var mMonthInfo = [MonthInfo]()
     private var mChnMonthInfo = [ChnMonthInfo]()
-
+    
+    func clearCalendar() {
+        for (_, monthInfo) in mMonthInfo.enumerated() {
+            monthInfo.clearInfo()
+        }
+        mMonthInfo.removeAll()
+        mChnMonthInfo.removeAll()
+        
+        mSolarTermsJD = mSolarTermsJD.flatMap{$0 * 0.0}
+        mNewMoonJD = mNewMoonJD.flatMap{$0 * 0.0}
+    }
+    
+    func calcProcData() {
+        //计算从上一年冬至开始到今天冬至全部25个节气
+        getAllSolarTermsJD(year: mYear - 1, start: CalendarConstant.WINTER_SOLSTICE, solarTerms: &mSolarTermsJD)
+    }
+    
+    func getAllSolarTermsJD(year: Int, start: Int, solarTerms: inout [Double]) {
+        
+    }
+    
+    func setGeriYear(year: Int) -> Bool {
+        
+        clearCalendar()
+        mYear = year
+        
+        calcProcData()
+        
+        return mInit
+    }
+    
+    
+    
+    
+    
+    
+    
     
     
     
