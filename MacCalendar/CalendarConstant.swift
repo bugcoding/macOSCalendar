@@ -16,6 +16,12 @@ import Foundation
 
 class CalendarConstant{
     
+    //
+    static let NEW_MOON_CALC_COUNT = 15
+    // 春节开始
+    static let SPRING_BEGINS_INDEX = 3
+    // 节气数
+    static let SOLAR_TERMS_CALC_COUNT = 25
     // 格里历启用年份
     static let GREGORIAN_CALENDAR_OPEN_YEAR = 1582
     // 格里历启用月份

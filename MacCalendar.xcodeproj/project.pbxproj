@@ -17,6 +17,7 @@
 		7D62787C1D39D44C00B9CDD4 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D62787A1D39D44C00B9CDD4 /* MainMenu.xib */; };
 		7D6278851D39D57B00B9CDD4 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6278831D39D57B00B9CDD4 /* CalendarViewController.swift */; };
 		7D6278861D39D57B00B9CDD4 /* CalendarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D6278841D39D57B00B9CDD4 /* CalendarViewController.xib */; };
+		7D80307A1D819E0D00247C9C /* LunarCalendarUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8030791D819E0D00247C9C /* LunarCalendarUtils.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		7D62787D1D39D44C00B9CDD4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7D6278831D39D57B00B9CDD4 /* CalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		7D6278841D39D57B00B9CDD4 /* CalendarViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CalendarViewController.xib; sourceTree = "<group>"; };
+		7D8030791D819E0D00247C9C /* LunarCalendarUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LunarCalendarUtils.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,6 +54,7 @@
 				7D17C2F81D65F9DD0098674A /* CalendarConstant.swift */,
 				7D17C2FA1D6752B20098674A /* PlanetData.swift */,
 				7D2827031D6C915700CBDE8F /* CalendarDataStruct.swift */,
+				7D8030791D819E0D00247C9C /* LunarCalendarUtils.swift */,
 			);
 			name = CalendarUtil;
 			sourceTree = "<group>";
@@ -166,6 +169,7 @@
 				7D17C2F71D64AF880098674A /* CalendarCellView.swift in Sources */,
 				7D6278771D39D44C00B9CDD4 /* AppDelegate.swift in Sources */,
 				7D17C2FB1D6752B20098674A /* PlanetData.swift in Sources */,
+				7D80307A1D819E0D00247C9C /* LunarCalendarUtils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
