@@ -49,9 +49,14 @@ class LunarCalendarUtils {
     func getAllSolarTermsJD(year: Int, start: Int, solarTerms: inout [Double]) {
         var i = 0
         var st = start
+        var y = year
         while i < 25 {
-            let jd = CalendarUtils.sharedInstance.calculateSolarTerms(year: year, angle: st * 15)
-
+            let jd = CalendarUtils.sharedInstance.calculateSolarTerms(year: y, angle: st * 15)
+            solarTerms[i] = CalendarUtils.sharedInstance.jdTDtoLocalTime(tdJD: jd)
+            if st == CalendarConstant.WINTER_SOLSTICE {
+                y += 1
+            }
+            st = (st + 1) % CalendarConstant.SOLAR_TERMS_COUNT
         }
     }
     
