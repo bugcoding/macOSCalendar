@@ -10,33 +10,33 @@ import Foundation
 
 struct DAY_INFO {
     // 当月公历日
-    var dayNo:Int
+    var dayNo:Int = 0
     // 当日星期
-    var week:Int
+    var week:Int = 0
     // 当月农历日
-    var mdayNo:Int
+    var mdayNo:Int = 0
     // 当日所在的农历月
-    var mmonth:Int
+    var mmonth:Int = 0
     // 当日的节气，-1对应无节气
-    var st:CalendarConstant.SOLAR_TERMS
+    var st:CalendarConstant.SOLAR_TERMS = 0
 
 }
 
 struct MONTH_INFO {
     // 当前的公历月份
-    var month:Int
+    var month:Int = 0
     // 当前的月份的天数
-    var days:Int
+    var days:Int = 0
     // 本月1号是星期几
-    var weekOf1stDay:Int
+    var weekOf1stDay:Int = 0
     // 本月节气儒略，本地时间
-    var jieqiJD:Int
+    var jieqiJD:Int = 0
     // 本月节气序号
-    var jieqi:CalendarConstant.SOLAR_TERMS
+    var jieqi:CalendarConstant.SOLAR_TERMS = 0
     // 本月中气儒略，本地时间
-    var zhongqiJD:Double
+    var zhongqiJD:Double = 0.0
     //中气序号
-    var zhongqi:CalendarConstant.SOLAR_TERMS
+    var zhongqi:CalendarConstant.SOLAR_TERMS = 0
 }
 
 struct CHN_MONTH_INFO {
@@ -87,8 +87,8 @@ class MonthInfo {
         }
         return mDayInfo[day - 1]
     }
-    func addSingleDay(dayInfo: DAY_INFO) {
-        mDayInfo.append(dayInfo)
+    func addSingleDay(dayInfo: DayInfo) {
+        mDayInfo.append(dayInfo.mInfo)
     }
     func checkValidDayCount() -> Bool {
         return mInfo.days == mDayInfo.count

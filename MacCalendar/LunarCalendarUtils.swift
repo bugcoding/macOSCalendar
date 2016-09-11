@@ -124,7 +124,75 @@ class LunarCalendarUtils {
             }
         }
     }
+    func findChnMonthInfo(todayJD: Double) -> ChnMonthInfo {
+        assert(mChnMonthInfo.count > 0)
+        let thisDay = Int(todayJD + 0.5)
+        
+        var i = 0
+        while i < mChnMonthInfo.count {
+            let lastDay = Int(mChnMonthInfo[i].mInfo.shuoJD + 0.5)
+            let nextDay = Int(mChnMonthInfo[i].mInfo.nextJD + 0.5)
+            if thisDay >= lastDay && thisDay < nextDay {
+                return mChnMonthInfo[i]
+            }
+            i += 1
+        }
+        
+        return mChnMonthInfo[0]
+    }
     
+    func getSolarTermsName(solarTerms: [Double], count: Int, today: Double) -> CalendarConstant.SOLAR_TERMS {
+        var i = 0
+        while i < 25 {
+            if Int(solarTerms[i] + 0.5) == Int(today + 0.5) {
+                return (i + 18) % CalendarConstant.SOLAR_TERMS_COUNT
+            }
+            i += 1
+        }
+        return -1
+    }
+    
+    func buildMonthAllDaysInfo(mi: inout MonthInfo) -> Bool {
+        var info: DAY_INFO = DAY_INFO()
+        for i in 0 ..< mi.mInfo.days {
+            let today = CalendarUtils.sharedInstance.calcJulianDay(mYear, month: mi.mInfo.month, day: i + 1, hour: 0, min: 0, second: 1)
+            info.dayNo = i + 1
+            info.week = (mi.mInfo.weekOf1stDay + i) % CalendarConstant.DAYS_FOR_WEEK
+            let cm = findChnMonthInfo(todayJD: today)
+            info.mmonth = cm.mInfo.mmonth
+            info.mdayNo = Int(today + 0.5) - Int(cm.mInfo.shuoJD + 0.5)
+            info.st = getSolarTermsName(solarTerms: mSolarTermsJD, count: 25, today: today)
+            
+            var di = DayInfo(info: info)
+            mi.addSingleDay(dayInfo: di)
+        }
+        return mi.checkValidDayCount()
+    }
+    
+    func buildMonthInfo(month: Int) -> Bool {
+        var info: MONTH_INFO = MONTH_INFO()
+        info.month = month
+        info.weekOf1stDay = CalendarUtils.sharedInstance.getWeekDayBy(mYear, month: month, day: 1)
+        info.days = CalendarUtils.sharedInstance.getDaysOfMonthBy(mYear, month: info.month)
+        var mi = MonthInfo(info: info)
+        
+        if buildMonthAllDaysInfo(mi: &mi) {
+            mMonthInfo.append(mi)
+            return true
+        }
+        return false
+    }
+    
+    func buildAllMonthInfo() -> Bool {
+        assert(mChnMonthInfo.count > 0)
+        
+        for i in 0 ..< CalendarConstant.MONTHES_FOR_YEAR {
+            if !buildMonthInfo(month: i + 1) {
+                return false
+            }
+        }
+        return true
+    }
     
     func setGeriYear(year: Int) -> Bool {
         
@@ -137,6 +205,7 @@ class LunarCalendarUtils {
             return false
         }
         
+        mInit = buildAllMonthInfo()
         
         return mInit
     }
