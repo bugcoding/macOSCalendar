@@ -47,7 +47,12 @@ class LunarCalendarUtils {
     }
     
     func getAllSolarTermsJD(year: Int, start: Int, solarTerms: inout [Double]) {
-        
+        var i = 0
+        var st = start
+        while i < 25 {
+            let jd = CalendarUtils.sharedInstance.calculateSolarTerms(year: year, angle: st * 15)
+
+        }
     }
     
     func setGeriYear(year: Int) -> Bool {

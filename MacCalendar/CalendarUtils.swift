@@ -916,7 +916,49 @@ open class CalendarUtils{
     }
 
     
+    // 本地时间转utc
+    func jdLocalTimetoUTC(localJD: Double) -> Double {
+        let tz = NSTimeZone.default
+        let secs = tz.secondsFromGMT()
+        
+        return localJD + Double(secs) / 86400.0
+    }
     
+    // utc转本地时间
+    func jdUTCToLocalTime(utcJD: Double) -> Double {
+        let tz = NSTimeZone.default
+        let secs = -tz.secondsFromGMT()
+        return utcJD - Double(secs) / 86400.0
+    }
+    
+    func jdTDtoUTC(tdJD: Double) -> Double {
+        var _tdJD = tdJD
+        let jd2k = tdJD - CalendarConstant.JD2000
+        let tian = tdUtcDeltaT2(jd2k: jd2k)
+        _tdJD -= tian
+        
+        return _tdJD
+    }
+    
+    func jdTDtoLocalTime(tdJD: Double) -> Double {
+        let tmp = jdTDtoUTC(tdJD: tdJD)
+        return jdUTCToLocalTime(utcJD: tmp)
+    }
+    
+    func jdUTCtoTD(utcJD: Double) -> Double {
+        var _utcJD = utcJD
+        let jd2k = utcJD - CalendarConstant.JD2000
+        let tian = tdUtcDeltaT2(jd2k: jd2k)
+        
+        _utcJD += tian
+        
+        return _utcJD
+    }
+    
+    func jdLocalTimetoTD(localJD: Double) -> Double {
+        let tmp = jdLocalTimetoUTC(localJD: localJD)
+        return jdUTCtoTD(utcJD: tmp)
+    }
     
     
     
