@@ -41,17 +41,17 @@ struct MONTH_INFO {
 
 struct CHN_MONTH_INFO {
     // 当前农历月
-    var mmonth:Int
+    var mmonth:Int = 0
     // 农历月名
-    var mname:Int
+    var mname:Int = 0
     // 本月有几天
-    var mdays:Int
+    var mdays:Int = 0
     //本月朔日的儒略日
-    var shuoJD:Double
+    var shuoJD:Double = 0.0
     // 下月朔月的儒略日
-    var nextJD:Double
+    var nextJD:Double = 0.0
     // 1 闫月 0 正常月
-    var leap:Int
+    var leap:Int = 0
 }
 
 // 月日年 数据结构，内容移植自<算法的乐趣 -- 王晓华> 示例代码
@@ -109,6 +109,10 @@ class MonthInfo {
 }
 
 class ChnMonthInfo {
+    
+    init(m: CHN_MONTH_INFO) {
+        self.mInfo = m
+    }
     
     func setLeapMonth(leap: Bool) {
         mInfo.leap = leap ? 1 : 0
