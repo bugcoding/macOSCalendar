@@ -237,4 +237,17 @@ class CalendarConstant{
     
     //已知1900年小寒时刻为1月6日2:05:00，
     static let base1900SlightColdJD = 2415025.5868055555;
+    
+   
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 }

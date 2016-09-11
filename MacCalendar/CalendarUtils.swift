@@ -827,4 +827,97 @@ open class CalendarUtils{
     }
     
     
+    
+    
+    
+    private struct TD_UTC_DELTA
+    {
+        var year: Int
+        var d1:Double, d2: Double, d3: Double, d4: Double
+        
+        init(_ year: Int, _ d1: Double, _ d2: Double, _ d3: Double, _ d4: Double) {
+            self.year = year
+            self.d1 = d1
+            self.d2 = d2
+            self.d3 = d3
+            self.d4 = d4
+        }
+    }
+    
+    
+    // TD - UT1 计算表
+    private static let deltaTbl:[TD_UTC_DELTA] = [
+        TD_UTC_DELTA( -4000, 108371.7,-13036.80,392.000, 0.0000 ),
+        TD_UTC_DELTA( -500, 17201.0,  -627.82, 16.170,-0.3413  ),
+        TD_UTC_DELTA( -150, 12200.6,  -346.41,  5.403,-0.1593 ),
+        TD_UTC_DELTA( 150,  9113.8,  -328.13, -1.647, 0.0377  ),
+        TD_UTC_DELTA( 500,  5707.5,  -391.41,  0.915, 0.3145  ),
+        TD_UTC_DELTA( 900,  2203.4,  -283.45, 13.034,-0.1778   ),
+        TD_UTC_DELTA( 1300,   490.1,   -57.35,  2.085,-0.0072  ),
+        TD_UTC_DELTA( 1600,   120.0,    -9.81, -1.532, 0.1403  ),
+        TD_UTC_DELTA( 1700,    10.2,    -0.91,  0.510,-0.0370  ),
+        TD_UTC_DELTA( 1800,    13.4,    -0.72,  0.202,-0.0193  ),
+        TD_UTC_DELTA( 1830,     7.8,    -1.81,  0.416,-0.0247  ),
+        TD_UTC_DELTA( 1860,     8.3,    -0.13, -0.406, 0.0292  ),
+        TD_UTC_DELTA( 1880,    -5.4,     0.32, -0.183, 0.0173  ),
+        TD_UTC_DELTA( 1900,    -2.3,     2.06,  0.169,-0.0135  ),
+        TD_UTC_DELTA( 1920,    21.2,     1.69, -0.304, 0.0167  ),
+        TD_UTC_DELTA( 1940,    24.2,     1.22, -0.064, 0.0031  ),
+        TD_UTC_DELTA( 1960,    33.2,     0.51,  0.231,-0.0109  ),
+        TD_UTC_DELTA( 1980,    51.0,     1.29, -0.026, 0.0032  ),
+        TD_UTC_DELTA( 2000,    63.87,    0.1,   0.0,     0.0   ),
+        TD_UTC_DELTA( 2005,    0.0,      0.0,   0.0,   0.0     )
+    ]
+    
+    
+    func deltaExt(y: Double, jsd: Double) -> Double {
+        let dy = (y - 1820.0) / 100.0
+        return -20.0 + jsd * dy * dy
+    }
+
+    func tdUtcDeltaT(y: Double) -> Double {
+        if y >= 2005 {
+            let y1: Double = 2014
+            let sd = 0.4
+            let jsd: Double = 31
+            
+            if y <= y1 {
+                return 64.7 + (y - 2005) * sd
+            }
+            var v = deltaExt(y: y1, jsd: jsd)
+            let dv = deltaExt(y: y1, jsd: jsd) - (64.7 + (y1 - 2005) * sd)
+            
+            if y < y1 + 100 {
+                v -= dv * (y1 + 100 - y) / 100
+            }
+            
+            return v
+        } else {
+            
+            var i = 0
+            for flag in 0 ..< CalendarUtils.deltaTbl.count {
+                i = flag
+                if y < Double(CalendarUtils.deltaTbl[flag + 1].year) {
+                    break
+                }
+            }
+            
+            let t1 = Double(y - Double(CalendarUtils.deltaTbl[i].year)) / Double(CalendarUtils.deltaTbl[i + 1].year - CalendarUtils.deltaTbl[i + 1].year) * 10.0
+            let t2 = t1 * t1
+            let t3 = t2 * t1
+            
+            return CalendarUtils.deltaTbl[i].d1 + CalendarUtils.deltaTbl[i].d2 * t1 + CalendarUtils.deltaTbl[i].d3 * t2 + CalendarUtils.deltaTbl[i].d4 * t3
+        }
+    }
+    
+    func tdUtcDeltaT2(jd2k: Double) -> Double {
+        
+        return tdUtcDeltaT(y: jd2k / 365.2425 + 2000) / 86400.0
+    }
+
+    
+    
+    
+    
+    
 }
