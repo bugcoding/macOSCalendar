@@ -163,7 +163,7 @@ class LunarCalendarUtils {
             info.mdayNo = Int(today + 0.5) - Int(cm.mInfo.shuoJD + 0.5)
             info.st = getSolarTermsName(solarTerms: mSolarTermsJD, count: 25, today: today)
             
-            var di = DayInfo(info: info)
+            let di = DayInfo(info: info)
             mi.addSingleDay(dayInfo: di)
         }
         return mi.checkValidDayCount()
