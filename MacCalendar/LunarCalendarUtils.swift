@@ -211,9 +211,21 @@ class LunarCalendarUtils {
     }
     
     
+    func getSpringBeginDay(month: inout Int, day: inout Int) {
+        if !mInit {
+            return
+        }
+        
+        var dt: CalendarUtils.WZDayTime = CalendarUtils.WZDayTime()
+        CalendarUtils.sharedInstance.getDayTimeFromJulianDay(mSolarTermsJD[CalendarConstant.SPRING_BEGINS_INDEX], dt: &dt)
+        
+        month = dt.month
+        day = dt.day
+    }
     
-    
-    
+    func isCalendarReady() -> Bool {
+        return mInit
+    }
     
     
     

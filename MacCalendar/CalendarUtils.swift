@@ -28,12 +28,12 @@ open class CalendarUtils{
     // 每天的时间结构
     struct WZDayTime{
         // 年月日时分秒
-        var year:Int
-        var month:Int
-        var day:Int
-        var hour:Int
-        var minute:Int
-        var second:Double
+        var year:Int = 0
+        var month:Int = 0
+        var day:Int = 0
+        var hour:Int = 0
+        var minute:Int = 0
+        var second:Double = 0
     }
     
     
