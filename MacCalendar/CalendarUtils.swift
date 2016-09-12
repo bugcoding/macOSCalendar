@@ -264,7 +264,7 @@ open class CalendarUtils{
         var year = year
         var month = month
         
-        if month < 12 {
+        if month <= 2 {
             month += 12
             year -= 1
         }
@@ -274,7 +274,7 @@ open class CalendarUtils{
             B = year / 400 - year / 100
         }
         let a = 365.25 * Double(year)
-        let b = 30.6001 * Double(month - 1)
+        let b = 30.6001 * Double(month + 1)
         
         let sec:Double =  Double(hour) / 24.0 + Double(min) / 1440.0 + Double(second) / 86400.0
         let param:Double = Double(Int(a)) + Double(Int(b)) + Double(B) + Double(day)

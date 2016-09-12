@@ -231,7 +231,14 @@ class LunarCalendarUtils {
         return mYear
     }
     
-    
+    func getMonthInfo(month: Int) -> MonthInfo {
+        assert(mMonthInfo.count == CalendarConstant.MONTHES_FOR_YEAR)
+        
+        if month < 1 || month > CalendarConstant.MONTHES_FOR_YEAR {
+            return mMonthInfo[0]
+        }
+        return mMonthInfo[month - 1]
+    }
     
     
     

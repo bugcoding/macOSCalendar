@@ -175,10 +175,24 @@ class CalendarViewController: NSWindowController {
         print("\(year) 年 \(mCurMonth) 月  农历 \(CalendarConstant.HEAVENLY_STEMS_NAME[stems]) \(CalendarConstant.EARTHY_BRANCHES_NAME[branches]) \(CalendarConstant.CHINESE_ZODIC_NAME[branches])")
     }
     
+    func showDateCells() {
+        if mCalendar.isCalendarReady() {
+            let mi = mCalendar.getMonthInfo(month: mCurMonth)
+            
+            for i in 1 ... mi.mInfo.days {
+                let dayInfo = mi.getDayInfo(day: i)
+                
+            }
+        }
+    }
+    
+    
     func setCurrenMonth(month: Int) {
         if month >= 1 && month <= CalendarConstant.MONTHES_FOR_YEAR {
             mCurMonth = month
             showLuarCalendar()
+            showDateCells()
+            
         }
     }
     
