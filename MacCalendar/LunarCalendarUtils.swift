@@ -9,15 +9,15 @@
 import Foundation
 
 class LunarCalendarUtils {
-    // 单例
-    class var sharedInstance : LunarCalendarUtils{
-        
-        struct Static{
-            static let ins:LunarCalendarUtils = LunarCalendarUtils()
-        }
-        return Static.ins
-    }
-    fileprivate init(){
+//    // 单例
+//    class var sharedInstance : LunarCalendarUtils{
+//        
+//        struct Static{
+//            static let ins:LunarCalendarUtils = LunarCalendarUtils()
+//        }
+//        return Static.ins
+//    }
+    init(){
         
     }
     
@@ -227,6 +227,9 @@ class LunarCalendarUtils {
         return mInit
     }
     
+    func getCurrentYear() -> Int {
+        return mYear
+    }
     
     
     

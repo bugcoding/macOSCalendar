@@ -27,6 +27,10 @@ class CalendarViewController: NSWindowController {
     @IBOutlet weak var dayLabel: NSTextField!
 
     
+    // 日历类实例
+    var mCalendar: LunarCalendarUtils = LunarCalendarUtils()
+    var mCurMonth: Int = 0
+    
     // 每个显示日期的单元格
     var cellBtns = [CalendarCellView]()
     var lastRowNum:Int = 0
@@ -161,6 +165,23 @@ class CalendarViewController: NSWindowController {
         print("Press Button is \(sender.identifier)")
     }
     
+    
+    func showLuarCalendar() {
+        var stems: Int = 0, branches: Int = 0, sbMonth:Int = 0, sbDay:Int = 0
+        let year = mCalendar.getCurrentYear()
+        mCalendar.getSpringBeginDay(month: &sbMonth, day: &sbDay)
+        CalendarUtils.sharedInstance.calculateStemsBranches(year: (mCurMonth >= sbMonth) ? year : year - 1, stems: &stems, branches: &branches)
+        
+        print("\(year) 年 \(mCurMonth) 月  农历 \(CalendarConstant.HEAVENLY_STEMS_NAME[stems]) \(CalendarConstant.EARTHY_BRANCHES_NAME[branches]) \(CalendarConstant.CHINESE_ZODIC_NAME[branches])")
+    }
+    
+    func setCurrenMonth(month: Int) {
+        if month >= 1 && month <= CalendarConstant.MONTHES_FOR_YEAR {
+            mCurMonth = month
+            showLuarCalendar()
+        }
+    }
+    
     override func windowDidLoad() {
         super.windowDidLoad()
         
@@ -185,8 +206,14 @@ class CalendarViewController: NSWindowController {
         
         
         // 加载完窗口显示默认
-        self.showDefaultDate()
+        // self.showDefaultDate()
+        let date = CalendarUtils.sharedInstance.getDateStringOfToday()
+        let dateTupple = CalendarUtils.sharedInstance.getYMDTuppleBy(date)
         
+        if mCalendar.setGeriYear(year: dateTupple.year) {
+            setCurrenMonth(month: dateTupple.month)
+            
+        }
     }
     
 }

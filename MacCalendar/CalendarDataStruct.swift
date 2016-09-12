@@ -62,14 +62,7 @@ class DayInfo {
     }
     
     // 当日的数据
-    var mInfo:DAY_INFO {
-        get{
-            return self.mInfo
-        }
-        set{
-            self.mInfo = newValue
-        }
-    }
+    var mInfo:DAY_INFO
 }
 
 class MonthInfo {
@@ -98,14 +91,7 @@ class MonthInfo {
     }
     
     
-    var mInfo:MONTH_INFO {
-        get{
-            return self.mInfo
-        }
-        set{
-            self.mInfo = newValue
-        }
-    }
+    var mInfo:MONTH_INFO
 }
 
 class ChnMonthInfo {
@@ -127,14 +113,7 @@ class ChnMonthInfo {
     }
     
     
-    var mInfo:CHN_MONTH_INFO {
-        get{
-            return self.mInfo
-        }
-        set{
-            self.mInfo = newValue
-        }
-    }
+    var mInfo:CHN_MONTH_INFO
 }
 
 

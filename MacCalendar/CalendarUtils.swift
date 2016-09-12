@@ -455,7 +455,7 @@ open class CalendarUtils{
     func calcPeriodicTerm(coff:[PlanetData.VSOP87_COEFFICIENT], count:Int, dt:Double) -> Double {
         var val = 0.0
     
-        for i in 0 ... count {
+        for i in 0 ..< count {
             val += (coff[i].A * cos((coff[i].B + coff[i].C * dt)))
         }
         return val
