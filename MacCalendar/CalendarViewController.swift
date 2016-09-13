@@ -182,6 +182,11 @@ class CalendarViewController: NSWindowController {
             for i in 1 ... mi.mInfo.days {
                 let dayInfo = mi.getDayInfo(day: i)
                 
+                let chnMonthInfo = mCalendar.getChnMonthInfo(month: dayInfo.mmonth)
+                
+                if chnMonthInfo.isLeapMonth() {
+                    
+                }
             }
         }
     }
