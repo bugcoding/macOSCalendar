@@ -45,16 +45,12 @@ class CalendarViewController: NSWindowController {
     // MARK: Button handler
     @IBAction func lastMonthHandler(_ sender: NSButton) {
         let utils = CalendarUtils.sharedInstance
-    
-        let newYearMonth = utils.getMonthDateStringBy(year: Int(yearText.stringValue)!, month: Int(monthText.stringValue)!, step: -1)
-        //showMonthPanel(year: newYearMonth.year, month: newYearMonth.month)
+
     }
     
     @IBAction func nextMonthHandler(_ sender: NSButton) {
         let utils = CalendarUtils.sharedInstance
-        
-        let newYearMonth = utils.getMonthDateStringBy(year: Int(yearText.stringValue)!, month: Int(monthText.stringValue)!, step: 1)
-        //showMonthPanel(year: newYearMonth.year, month: newYearMonth.month)
+
     }
 
     @IBAction func nextYearHandler(_ sender: NSButton) {
