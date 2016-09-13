@@ -82,8 +82,8 @@ class CalendarViewController: NSWindowController {
     
     func showMonthPanel() {
         
-        var year = mCurYear
-        var month = mCurMonth
+        let year = mCurYear
+        let month = mCurMonth
         
         let utils = CalendarUtils.sharedInstance
         
@@ -129,9 +129,36 @@ class CalendarViewController: NSWindowController {
                 }
                 // 处理前后二个月的显示日期 (灰置部分)
                 if index < weekDayOf1stDay {
-                    btn.setString(topText: "\(lastMonthDays - weekDayOf1stDay + index + 1)", topColor: .black, bottomText: "初一", bottomColor: NSColor(colorLiteralRed: 0, green: 0, blue: 0, alpha: 1))
+                    
+                    let day = lastMonthDays - weekDayOf1stDay + index + 1
+                    // 当前的农历日期
+                    let mi = mCalendar.getMonthInfo(month: mCurMonth - 1)
+                    let dayInfo = mi.getDayInfo(day: day)
+                    let chnMonthInfo = mCalendar.getChnMonthInfo(month: dayInfo.mmonth)
+                    
+                    var lunarDayName = CalendarConstant.nameOfChnMonth[chnMonthInfo.mInfo.mname - 1] + "月"
+                    if chnMonthInfo.isLeapMonth() {
+                        lunarDayName = "闰" + lunarDayName
+                    }
+                    
+                    let dayName = CalendarConstant.nameOfChnDay[dayInfo.mdayNo]
+
+                    
+                    btn.setString(topText: "\(day)", topColor: .black, bottomText: dayName, bottomColor: NSColor(colorLiteralRed: 0, green: 0, blue: 0, alpha: 1))
                 }else {
-                    btn.setString(topText: "\(index - monthDays - weekDayOf1stDay + 1)", topColor: .black, bottomText: "初一", bottomColor: NSColor(colorLiteralRed: 0, green: 0, blue: 0, alpha: 1))
+                    let day = index - monthDays - weekDayOf1stDay + 1
+                    // 当前的农历日期
+                    let mi = mCalendar.getMonthInfo(month: mCurMonth + 1)
+                    let dayInfo = mi.getDayInfo(day: day)
+                    let chnMonthInfo = mCalendar.getChnMonthInfo(month: dayInfo.mmonth)
+                    
+                    var lunarDayName = CalendarConstant.nameOfChnMonth[chnMonthInfo.mInfo.mname - 1] + "月"
+                    if chnMonthInfo.isLeapMonth() {
+                        lunarDayName = "闰" + lunarDayName
+                    }
+                    
+                    let dayName = CalendarConstant.nameOfChnDay[dayInfo.mdayNo]
+                    btn.setString(topText: "\(day)", topColor: .black, bottomText: dayName, bottomColor: NSColor(colorLiteralRed: 0, green: 0, blue: 0, alpha: 1))
                 }
                 
             } else {
@@ -210,7 +237,19 @@ class CalendarViewController: NSWindowController {
         let lunarStr = "农历 \(CalendarConstant.HEAVENLY_STEMS_NAME[stems])\(CalendarConstant.EARTHY_BRANCHES_NAME[branches])【\(CalendarConstant.CHINESE_ZODIC_NAME[branches])年】"
         lunarYearLabel.stringValue = lunarStr
         
+        // 当前的农历日期
+        let mi = mCalendar.getMonthInfo(month: mCurMonth)
+        let dayInfo = mi.getDayInfo(day: mCurDay)
+        let chnMonthInfo = mCalendar.getChnMonthInfo(month: dayInfo.mmonth)
         
+        var lunarDayName = CalendarConstant.nameOfChnMonth[chnMonthInfo.mInfo.mname - 1] + "月"
+        if chnMonthInfo.isLeapMonth() {
+                lunarDayName = "闰" + lunarDayName
+        }
+
+        let dayName = CalendarConstant.nameOfChnDay[dayInfo.mdayNo]
+
+        lunarDateLabel.stringValue = lunarDayName + dayName
     }
     
 
