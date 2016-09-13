@@ -26,11 +26,14 @@ class CalendarViewController: NSWindowController {
     @IBOutlet weak var dateDetailLabel: NSTextField!
     @IBOutlet weak var dayLabel: NSTextField!
 
+    @IBOutlet weak var lunarDateLabel: NSTextField!
+    @IBOutlet weak var lunarYearLabel: NSTextField!
     
     // 日历类实例
     var mCalendar: LunarCalendarUtils = LunarCalendarUtils()
     var mCurMonth: Int = 0
-    
+    var mCurDay: Int = 0
+    var mCurYear: Int = 0
     // 每个显示日期的单元格
     var cellBtns = [CalendarCellView]()
     var lastRowNum:Int = 0
@@ -44,14 +47,14 @@ class CalendarViewController: NSWindowController {
         let utils = CalendarUtils.sharedInstance
     
         let newYearMonth = utils.getMonthDateStringBy(year: Int(yearText.stringValue)!, month: Int(monthText.stringValue)!, step: -1)
-        showMonthPanel(year: newYearMonth.year, month: newYearMonth.month)
+        //showMonthPanel(year: newYearMonth.year, month: newYearMonth.month)
     }
     
     @IBAction func nextMonthHandler(_ sender: NSButton) {
         let utils = CalendarUtils.sharedInstance
         
         let newYearMonth = utils.getMonthDateStringBy(year: Int(yearText.stringValue)!, month: Int(monthText.stringValue)!, step: 1)
-        showMonthPanel(year: newYearMonth.year, month: newYearMonth.month)
+        //showMonthPanel(year: newYearMonth.year, month: newYearMonth.month)
     }
 
     @IBAction func nextYearHandler(_ sender: NSButton) {
@@ -60,20 +63,38 @@ class CalendarViewController: NSWindowController {
     @IBAction func lastYearHandler(_ sender: NSButton) {
     }
     
-    // 打开界面是默认显示今天
-    func showDefaultDate() {
-        let utils = CalendarUtils.sharedInstance
-        showDaysInFormsBy(utils.getDateStringOfToday())
+    
+    func showDateCells() {
+        if mCalendar.isCalendarReady() {
+            let mi = mCalendar.getMonthInfo(month: mCurMonth)
+            
+            for i in 1 ... mi.mInfo.days {
+                let dayInfo = mi.getDayInfo(day: i)
+                
+                let chnMonthInfo = mCalendar.getChnMonthInfo(month: dayInfo.mmonth)
+                
+                if chnMonthInfo.isLeapMonth() {
+                    
+                }
+            }
+        }
     }
     
-    func showMonthPanel(year: Int, month: Int) {
+    func showMonthPanel() {
+        
+        var year = mCurYear
+        var month = mCurMonth
+        
         let utils = CalendarUtils.sharedInstance
+        
+        let mi = mCalendar.getMonthInfo(month: mCurMonth)
+        
         // 根据日期字符串获取当前月共有多少天
-        let monthDays = utils.getDaysBy(year: year, month: month)
+        let monthDays = mi.mInfo.days
         
         // 显示上方二个区域的年份与月份信息
         yearText.stringValue = String(year)
-        monthText.stringValue = String(month)
+        monthText.stringValue = String(mCurMonth)
         // 上个月有多少天
         var lastMonthDays = 0
         if month == 1 {
@@ -84,8 +105,10 @@ class CalendarViewController: NSWindowController {
         
         
         // 本月第一天与最后一天是周几
-        let weekDayOf1stDay = utils.getWeekBy(year: year, month: month, andFirstDay: 1)
-        let weekDayOfLastDay = utils.getWeekBy(year: year, month: month, andFirstDay: monthDays)
+        let weekDayOf1stDay = mi.mInfo.weekOf1stDay
+        let dayInfo = mi.getDayInfo(day: monthDays - 1)
+        let weekDayOfLastDay = dayInfo.week
+
         
         print("dateString = \(year)-\(month) weekOf1stDay = \(weekDayOf1stDay) weekOfLastDay = \(weekDayOfLastDay) monthDays = \(monthDays) ")
         
@@ -121,12 +144,27 @@ class CalendarViewController: NSWindowController {
                 
                 let day = index - weekDayOf1stDay + 1
                 //btn.title = "\(index - weekDayOf1stDay + 1)"
-                btn.setString(topText: "\(day)", topColor: .black, bottomText: "初一", bottomColor: NSColor(colorLiteralRed: 0, green: 0, blue: 0, alpha: 1))
+                
+                let dayInfo = mi.getDayInfo(day: day)
+                var lunarDayName = ""
+                if dayInfo.mdayNo == 0 {
+                    let chnMonthInfo = mCalendar.getChnMonthInfo(month: dayInfo.mmonth)
+                    if chnMonthInfo.isLeapMonth() {
+                        lunarDayName += "闰"
+                    }
+                    
+                    lunarDayName += CalendarConstant.nameOfChnMonth[chnMonthInfo.mInfo.mname - 1]
+                    lunarDayName += (chnMonthInfo.mInfo.mdays == CalendarConstant.CHINESE_L_MONTH_DAYS) ? "月大" : "月小"
+                } else {
+                    lunarDayName += CalendarConstant.nameOfChnDay[dayInfo.mdayNo]
+                }
+                
+                btn.setString(topText: "\(day)", topColor: .black, bottomText: lunarDayName, bottomColor: NSColor(colorLiteralRed: 0, green: 0, blue: 0, alpha: 1))
                 
                 
                 // 处理周六日的日期颜色
                 if index % 7 == 6 || index % 7 == 0 {
-                    btn.setString(topText: "\(day)", topColor: .red, bottomText: "初一", bottomColor: .red)
+                    btn.setString(topText: "\(day)", topColor: .red, bottomText: lunarDayName, bottomColor: .red)
                 }
             }
             
@@ -134,19 +172,15 @@ class CalendarViewController: NSWindowController {
 
     }
     
-    // 显示日历面板
-    func showDaysInFormsBy(_ dateString: String){
+    // 显示日历面板右侧详情
+    func showRightDetailInfo(){
         // 获取每月第一天是周几
-        let utils = CalendarUtils.sharedInstance
-
-        let dateTupple = utils.getYMDTuppleBy(dateString)
         
-        dayLabel.stringValue = String(dateTupple.day)
+        let curWeekDay = CalendarUtils.sharedInstance.getWeekDayBy(mCurYear, month: mCurMonth, day: mCurDay)
+        dateDetailLabel.stringValue = String(mCurYear) + "年" + String(mCurMonth) + "月" + String(mCurDay) + "日 星期" + CalendarConstant.WEEK_NAME_OF_CHINESE[curWeekDay]
+        dayLabel.stringValue = String(mCurDay)
         
-        let curWeekDay = utils.getWeekBy(year: dateTupple.year, month: dateTupple.month, andFirstDay: dateTupple.day)
-        dateDetailLabel.stringValue = String(dateTupple.year) + "年" + String(dateTupple.month) + "月" + String(dateTupple.day) + "日 星期" + CalendarConstant.WEEK_NAME_OF_CHINESE[curWeekDay]
-        
-        showMonthPanel(year: dateTupple.year, month: dateTupple.month)
+        showLunar()
     }
     
     
@@ -166,38 +200,27 @@ class CalendarViewController: NSWindowController {
     }
     
     
-    func showLuarCalendar() {
+    func showLunar() {
         var stems: Int = 0, branches: Int = 0, sbMonth:Int = 0, sbDay:Int = 0
         let year = mCalendar.getCurrentYear()
         mCalendar.getSpringBeginDay(month: &sbMonth, day: &sbDay)
         CalendarUtils.sharedInstance.calculateStemsBranches(year: (mCurMonth >= sbMonth) ? year : year - 1, stems: &stems, branches: &branches)
         
-        print("\(year) 年 \(mCurMonth) 月  农历 \(CalendarConstant.HEAVENLY_STEMS_NAME[stems]) \(CalendarConstant.EARTHY_BRANCHES_NAME[branches]) \(CalendarConstant.CHINESE_ZODIC_NAME[branches])")
+        // 当前的农历年份
+        let lunarStr = "农历 \(CalendarConstant.HEAVENLY_STEMS_NAME[stems])\(CalendarConstant.EARTHY_BRANCHES_NAME[branches])【\(CalendarConstant.CHINESE_ZODIC_NAME[branches])年】"
+        lunarYearLabel.stringValue = lunarStr
+        
+        
     }
     
-    func showDateCells() {
-        if mCalendar.isCalendarReady() {
-            let mi = mCalendar.getMonthInfo(month: mCurMonth)
-            
-            for i in 1 ... mi.mInfo.days {
-                let dayInfo = mi.getDayInfo(day: i)
-                
-                let chnMonthInfo = mCalendar.getChnMonthInfo(month: dayInfo.mmonth)
-                
-                if chnMonthInfo.isLeapMonth() {
-                    
-                }
-            }
-        }
-    }
+
     
     
     func setCurrenMonth(month: Int) {
         if month >= 1 && month <= CalendarConstant.MONTHES_FOR_YEAR {
             mCurMonth = month
-            showLuarCalendar()
-            showDateCells()
-            
+            //showDateCells()
+            showMonthPanel()
         }
     }
     
@@ -228,11 +251,14 @@ class CalendarViewController: NSWindowController {
         // self.showDefaultDate()
         let date = CalendarUtils.sharedInstance.getDateStringOfToday()
         let dateTupple = CalendarUtils.sharedInstance.getYMDTuppleBy(date)
+        mCurDay = dateTupple.day
+        mCurYear = dateTupple.year
         
         if mCalendar.setGeriYear(year: dateTupple.year) {
             setCurrenMonth(month: dateTupple.month)
-            
+            showRightDetailInfo()
         }
+        
     }
     
 }
