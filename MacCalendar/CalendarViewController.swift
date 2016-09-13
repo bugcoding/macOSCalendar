@@ -146,15 +146,22 @@ class CalendarViewController: NSWindowController {
                     // 当前的农历日期
                     let mi = mCalendar.getMonthInfo(month: mCurMonth + 1)
                     let dayInfo = mi.getDayInfo(day: day)
-                    let chnMonthInfo = mCalendar.getChnMonthInfo(month: dayInfo.mmonth)
                     
-                    var lunarDayName = CalendarConstant.nameOfChnMonth[chnMonthInfo.mInfo.mname - 1] + "月"
-                    if chnMonthInfo.isLeapMonth() {
-                        lunarDayName = "闰" + lunarDayName
+                    var lunarDayName = ""
+                    if dayInfo.mdayNo == 0 {
+                        let chnMonthInfo = mCalendar.getChnMonthInfo(month: dayInfo.mmonth)
+                        if chnMonthInfo.isLeapMonth() {
+                            lunarDayName += "闰"
+                        }
+                        
+                        lunarDayName += CalendarConstant.nameOfChnMonth[chnMonthInfo.mInfo.mname - 1]
+                        lunarDayName += (chnMonthInfo.mInfo.mdays == CalendarConstant.CHINESE_L_MONTH_DAYS) ? "月大" : "月小"
+                    } else {
+                        lunarDayName += CalendarConstant.nameOfChnDay[dayInfo.mdayNo]
                     }
+
                     
-                    let dayName = CalendarConstant.nameOfChnDay[dayInfo.mdayNo]
-                    btn.setString(topText: "\(day)", topColor: .black, bottomText: dayName, bottomColor: NSColor(colorLiteralRed: 0, green: 0, blue: 0, alpha: 1))
+                    btn.setString(topText: "\(day)", topColor: .black, bottomText: lunarDayName, bottomColor: NSColor(colorLiteralRed: 0, green: 0, blue: 0, alpha: 1))
                 }
                 
             } else {
