@@ -54,9 +54,13 @@ class CalendarViewController: NSWindowController {
     }
 
     @IBAction func nextYearHandler(_ sender: NSButton) {
+        let nextYear = mCurYear + 1
+        setDate(year: nextYear, month: mCurMonth)
     }
     
     @IBAction func lastYearHandler(_ sender: NSButton) {
+        let lastYear = mCurYear - 1
+        setDate(year: lastYear, month: mCurMonth)
     }
     
     
