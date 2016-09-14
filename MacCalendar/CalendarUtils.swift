@@ -895,14 +895,14 @@ open class CalendarUtils{
         } else {
             
             var i = 0
-            for flag in 0 ..< CalendarUtils.deltaTbl.count {
-                i = flag
-                if y < Double(CalendarUtils.deltaTbl[flag + 1].year) {
+            for i in 0 ..< CalendarUtils.deltaTbl.count {
+                //i = flag
+                if y < Double(CalendarUtils.deltaTbl[i + 1].year) {
                     break
                 }
             }
             
-            let t1 = Double(y - Double(CalendarUtils.deltaTbl[i].year)) / Double(CalendarUtils.deltaTbl[i + 1].year - CalendarUtils.deltaTbl[i + 1].year) * 10.0
+            let t1 = Double(y - Double(CalendarUtils.deltaTbl[i].year)) / Double(CalendarUtils.deltaTbl[i + 1].year - CalendarUtils.deltaTbl[i].year) * 10.0
             let t2 = t1 * t1
             let t3 = t2 * t1
             
