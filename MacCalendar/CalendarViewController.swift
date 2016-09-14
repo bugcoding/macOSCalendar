@@ -250,6 +250,15 @@ class CalendarViewController: NSWindowController {
         }
     }
     
+    func setDate(year: Int, month: Int) {
+        mCurYear = year
+        
+        if mCalendar.setGeriYear(year: year) {
+            setCurrenMonth(month: month)
+            showRightDetailInfo()
+        }
+    }
+    
     override func windowDidLoad() {
         super.windowDidLoad()
         
@@ -278,13 +287,8 @@ class CalendarViewController: NSWindowController {
         let date = CalendarUtils.sharedInstance.getDateStringOfToday()
         let dateTupple = CalendarUtils.sharedInstance.getYMDTuppleBy(date)
         mCurDay = dateTupple.day
-        mCurYear = dateTupple.year
-        
-        if mCalendar.setGeriYear(year: dateTupple.year) {
-            setCurrenMonth(month: dateTupple.month)
-            showRightDetailInfo()
-        }
-        
+
+        setDate(year: dateTupple.year, month: dateTupple.month)
     }
     
 }
