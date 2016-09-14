@@ -60,22 +60,6 @@ class CalendarViewController: NSWindowController {
     }
     
     
-    func showDateCells() {
-        if mCalendar.isCalendarReady() {
-            let mi = mCalendar.getMonthInfo(month: mCurMonth)
-            
-            for i in 1 ... mi.mInfo.days {
-                let dayInfo = mi.getDayInfo(day: i)
-                
-                let chnMonthInfo = mCalendar.getChnMonthInfo(month: dayInfo.mmonth)
-                
-                if chnMonthInfo.isLeapMonth() {
-                    
-                }
-            }
-        }
-    }
-    
     func showMonthPanel() {
         
         let year = mCurYear
