@@ -107,7 +107,6 @@ class CalendarViewController: NSWindowController {
         // 把空余不的cell行不显示，非本月天置灰
         for (index, btn) in cellBtns.enumerated() {
             
-            print("showDaysInFormsBy index = \(index)")
             btn.isEnabled = true
             btn.isTransparent = false
             
@@ -164,8 +163,6 @@ class CalendarViewController: NSWindowController {
                 if index == monthDays + weekDayOf1stDay - 1 {
                     // 当前cell在第几行
                     lastRowNum = Int((btn.cellID - 1) / 7) + 1
-                    print("currentRowNumber = \(lastRowNum)")
-                    
                 }
                 
                 let day = index - weekDayOf1stDay + 1
