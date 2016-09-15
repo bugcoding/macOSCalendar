@@ -267,7 +267,6 @@ class CalendarViewController: NSWindowController {
         
         if mCalendar.setGeriYear(year: year) {
             setCurrenMonth(month: month)
-            showRightDetailInfo()
         }
     }
     
@@ -300,7 +299,12 @@ class CalendarViewController: NSWindowController {
         let dateTupple = CalendarUtils.sharedInstance.getYMDTuppleBy(date)
         mCurDay = dateTupple.day
 
-        setDate(year: dateTupple.year, month: dateTupple.month)
+        mCurYear = dateTupple.year
+        
+        if mCalendar.setGeriYear(year: mCurYear) {
+            setCurrenMonth(month: dateTupple.month)
+            showRightDetailInfo()
+        }
     }
     
 }
