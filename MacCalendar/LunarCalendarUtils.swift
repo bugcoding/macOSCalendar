@@ -67,6 +67,7 @@ class LunarCalendarUtils {
             
             tdJD += 29.5
         }
+        print("getNewMoonJDS end")
     }
     
     func getAllSolarTermsJD(year: Int, start: Int, solarTerms: inout [Double]) {

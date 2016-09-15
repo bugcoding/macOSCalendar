@@ -44,13 +44,21 @@ class CalendarViewController: NSWindowController {
     
     // MARK: Button handler
     @IBAction func lastMonthHandler(_ sender: NSButton) {
-        let utils = CalendarUtils.sharedInstance
-
+        var lastMonth = mCurMonth - 1
+        if lastMonth < 1 {
+            lastMonth = 12
+            mCurYear -= 1
+        }
+        setDate(year: mCurYear, month: lastMonth)
     }
     
     @IBAction func nextMonthHandler(_ sender: NSButton) {
-        let utils = CalendarUtils.sharedInstance
-
+        var nextMonth = mCurMonth + 1
+        if nextMonth > 12 {
+            nextMonth = 1
+            mCurYear += 1
+        }
+        setDate(year: mCurYear, month: nextMonth)
     }
 
     @IBAction func nextYearHandler(_ sender: NSButton) {

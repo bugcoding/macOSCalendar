@@ -381,7 +381,7 @@ open class CalendarUtils{
         getEarthNutationParameter(dt: dt, D: &D, M: &M, Mp: &Mp, F: &F, Omega: &Omega)
         
         var resulte = 0.0 
-        for (i, _) in CalendarConstant.nutation.enumerated() {
+        for i in 0 ..< CalendarConstant.nutation.count {
             
             var sita = CalendarConstant.nutation[i].D * D + CalendarConstant.nutation[i].M * M + CalendarConstant.nutation[i].Mp * Mp + CalendarConstant.nutation[i].F * F + CalendarConstant.nutation[i].omega * Omega
             sita = degree2Radian(sita)
@@ -680,7 +680,7 @@ open class CalendarUtils{
     
     func getMoonEclipticLongitudeEC(dbJD: Double) -> Double {
     
-        var Lp = 0.0, D = 0.0, M = 0.0, Mp = 0.0, F = 0.0, E = 0.0
+        var Lp:Double = 0.0, D:Double = 0.0, M:Double = 0.0, Mp:Double = 0.0, F:Double = 0.0, E:Double = 0.0
         // 儒略世纪数
         let dt = (dbJD - CalendarConstant.JD2000) / 36525.0
     
@@ -806,7 +806,7 @@ open class CalendarUtils{
             
             stDegreep = (getMoonEclipticLongitudeEC(dbJD: JD0 + 0.000005) - getSunEclipticLongitudeEC(jde: JD0 + 0.000005) - getMoonEclipticLongitudeEC(dbJD: JD0 - 0.000005) + getSunEclipticLongitudeEC(jde: JD0 - 0.000005)) / 0.00001
             JD1 = JD0 - stDegree / stDegreep
-            
+            print(" ==== calculateMoonShuoJD \(tdJD) JD0 = \(JD0) JD1 = \(JD1)====")
         }while((fabs(JD1 - JD0) > 0.00000001))
         
         return JD1
@@ -895,8 +895,8 @@ open class CalendarUtils{
         } else {
             
             var i = 0
-            for i in 0 ..< CalendarUtils.deltaTbl.count {
-                //i = flag
+            for flag in 0 ..< CalendarUtils.deltaTbl.count {
+                i = flag
                 if y < Double(CalendarUtils.deltaTbl[i + 1].year) {
                     break
                 }
