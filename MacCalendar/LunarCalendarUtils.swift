@@ -39,6 +39,7 @@ class LunarCalendarUtils {
         
         mSolarTermsJD = mSolarTermsJD.flatMap{$0 * 0.0}
         mNewMoonJD = mNewMoonJD.flatMap{$0 * 0.0}
+        mInit = false
     }
     
     func calcProcData() {
@@ -109,8 +110,9 @@ class LunarCalendarUtils {
     func calcLeapChnMonth() {
         assert(mChnMonthInfo.count > 0)
         
+        var i = 0
         if Int(mNewMoonJD[13] + 0.5) <= Int(mSolarTermsJD[24] + 0.5) {
-            var i = 0
+            i = 1
             while i < CalendarConstant.NEW_MOON_CALC_COUNT - 1 {
                 if Int(mNewMoonJD[i + 1] + 0.5) <= Int(mSolarTermsJD[2 * i] + 0.5) {
                     break
@@ -120,7 +122,8 @@ class LunarCalendarUtils {
             if i < CalendarConstant.NEW_MOON_CALC_COUNT - 1 {
                 mChnMonthInfo[i].setLeapMonth(leap: true)
                 while i < CalendarConstant.NEW_MOON_CALC_COUNT - 1 {
-                    mChnMonthInfo[i] .reIndexMonthName()
+                    mChnMonthInfo[i].reIndexMonthName()
+                    i += 1
                 }
             }
         }
@@ -205,7 +208,7 @@ class LunarCalendarUtils {
         if !buildAllChnMonthInfo() {
             return false
         }
-        
+        calcLeapChnMonth()
         mInit = buildAllMonthInfo()
         
         return mInit

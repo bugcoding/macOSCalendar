@@ -303,7 +303,7 @@ open class CalendarUtils{
         year -= 4716
         month = month - 1
         if month > 12 {
-            month -= 1
+            month -= 12
         }
         if month <= 2 {
             year += 1
@@ -403,7 +403,7 @@ open class CalendarUtils{
         getEarthNutationParameter(dt:dt, D: &D, M: &M, Mp: &Mp, F: &F, Omega: &Omega)
     
         var resulte = 0.0 
-        for(i, _) in CalendarConstant.nutation.enumerated() {
+        for i in 0 ..< CalendarConstant.nutation.count {
             var sita = CalendarConstant.nutation[i].D * D + CalendarConstant.nutation[i].M * M + CalendarConstant.nutation[i].Mp * Mp + CalendarConstant.nutation[i].F * F + CalendarConstant.nutation[i].omega * Omega
             sita = degree2Radian(sita)
             
@@ -436,7 +436,7 @@ open class CalendarUtils{
      M = 1.6 + 29.5306 * m + 0.4 * sin(1 - 0.45058 * m)
      */
     func calculateSolarTermsByFm(year:Int, st:Int) -> Double {
-        let baseJD = calcJulianDay(1990, month: 1, day: 1, hour: 0, min: 0, second: 0.0) - 1
+        let baseJD = calcJulianDay(1900, month: 1, day: 1, hour: 0, min: 0, second: 0.0) - 1
         let y = year - 1900
         
         let tmp = 15.22 * Double(st) - 1.0 * sin(0.262 * Double(st))
@@ -445,10 +445,10 @@ open class CalendarUtils{
         return baseJD + accDay
     }
     
-    func calculateNewMoonByFm(m:Double) -> Double {
+    func calculateNewMoonByFm(m:Int) -> Double {
         
-        let baseJD = calcJulianDay(1990, month: 1, day: 1, hour: 0, min: 0, second: 0.0) - 1
-        let accDay = 1.6 + 29.5306 * m + 0.4 * sin(1 - 0.45058 * m)
+        let baseJD = calcJulianDay(1900, month: 1, day: 1, hour: 0, min: 0, second: 0.0) - 1
+        let accDay = 1.6 + 29.5306 * Double(m) + 0.4 * sin(1 - 0.45058 * Double(m))
         return baseJD + accDay
     }
     
@@ -782,6 +782,8 @@ open class CalendarUtils{
     func calculateMoonShuoJD(tdJD: Double) -> Double {
         var JD0:Double, JD1:Double, stDegree:Double, stDegreep:Double
     
+        var count = 0
+        
         JD1 = tdJD
         repeat
         {
@@ -807,6 +809,10 @@ open class CalendarUtils{
             stDegreep = (getMoonEclipticLongitudeEC(dbJD: JD0 + 0.000005) - getSunEclipticLongitudeEC(jde: JD0 + 0.000005) - getMoonEclipticLongitudeEC(dbJD: JD0 - 0.000005) + getSunEclipticLongitudeEC(jde: JD0 - 0.000005)) / 0.00001
             JD1 = JD0 - stDegree / stDegreep
             print(" ==== calculateMoonShuoJD \(tdJD) JD0 = \(JD0) JD1 = \(JD1)====")
+            count += 1
+            if count > 100 {
+                break
+            }
         }while((fabs(JD1 - JD0) > 0.00000001))
         
         return JD1
@@ -870,25 +876,26 @@ open class CalendarUtils{
     ]
     
     
-    func deltaExt(y: Double, jsd: Double) -> Double {
+    func deltaExt(y: Double, jsd: Int) -> Double {
         let dy = (y - 1820.0) / 100.0
-        return -20.0 + jsd * dy * dy
+        return -20.0 + Double(jsd) * dy * dy
     }
 
     func tdUtcDeltaT(y: Double) -> Double {
         if y >= 2005 {
-            let y1: Double = 2014
-            let sd = 0.4
-            let jsd: Double = 31
             
-            if y <= y1 {
+            let y1: Int = 2014
+            let sd = 0.4
+            let jsd: Int = 31
+            
+            if y <= Double(y1) {
                 return 64.7 + (y - 2005) * sd
             }
-            var v = deltaExt(y: y1, jsd: jsd)
-            let dv = deltaExt(y: y1, jsd: jsd) - (64.7 + (y1 - 2005) * sd)
+            var v = deltaExt(y: y, jsd: jsd)
+            let dv = deltaExt(y: Double(y1), jsd: jsd) - (64.7 + Double(y1 - 2005) * sd)
             
-            if y < y1 + 100 {
-                v -= dv * (y1 + 100 - y) / 100
+            if y < Double(y1) + 100 {
+                v -= dv * (Double(y1) + 100 - y) / 100
             }
             
             return v

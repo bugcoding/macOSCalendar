@@ -230,7 +230,7 @@ class CalendarViewController: NSWindowController {
         CalendarUtils.sharedInstance.calculateStemsBranches(year: (mCurMonth >= sbMonth) ? year : year - 1, stems: &stems, branches: &branches)
         
         // 当前的农历年份
-        let lunarStr = "农历 \(CalendarConstant.HEAVENLY_STEMS_NAME[stems])\(CalendarConstant.EARTHY_BRANCHES_NAME[branches])【\(CalendarConstant.CHINESE_ZODIC_NAME[branches])年】"
+        let lunarStr = "农历 \(CalendarConstant.HEAVENLY_STEMS_NAME[stems - 1])\(CalendarConstant.EARTHY_BRANCHES_NAME[branches - 1])【\(CalendarConstant.CHINESE_ZODIC_NAME[branches - 1])年】"
         lunarYearLabel.stringValue = lunarStr
         
         // 当前的农历日期
