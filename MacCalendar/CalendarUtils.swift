@@ -757,6 +757,7 @@ open class CalendarUtils{
         var JD0:Double, JD1:Double, stDegree:Double, stDegreep:Double
     
         JD1 = getInitialEstimateSolarTerms(year: year, angle: angle)
+        var count = 0
         repeat
         {
             JD0 = JD1
@@ -768,6 +769,12 @@ open class CalendarUtils{
             stDegree = ((angle == 0) && (stDegree > 345.0)) ? stDegree - 360.0 : stDegree
             stDegreep = (getSunEclipticLongitudeEC(jde: Double(JD0) + 0.000005) - getSunEclipticLongitudeEC(jde: Double(JD0) - 0.000005)) / 0.00001
             JD1 = JD0 - (stDegree - Double(angle)) / stDegreep
+            
+            // overflow defend
+            count += 1
+            if count > 200 {
+                break
+            }
             
         }while((fabs(JD1 - JD0) > 0.0000001))
     
@@ -808,7 +815,8 @@ open class CalendarUtils{
             
             stDegreep = (getMoonEclipticLongitudeEC(dbJD: JD0 + 0.000005) - getSunEclipticLongitudeEC(jde: JD0 + 0.000005) - getMoonEclipticLongitudeEC(dbJD: JD0 - 0.000005) + getSunEclipticLongitudeEC(jde: JD0 - 0.000005)) / 0.00001
             JD1 = JD0 - stDegree / stDegreep
-            print(" ==== calculateMoonShuoJD \(tdJD) JD0 = \(JD0) JD1 = \(JD1)====")
+
+            // overflow defend
             count += 1
             if count > 100 {
                 break
