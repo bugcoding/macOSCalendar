@@ -438,7 +438,7 @@
                                 </buttonCell>
                             </button>
                             <box horizontalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="ncO-gg-CxZ">
-                                <rect key="frame" x="18" y="44" width="4" height="457"/>
+                                <rect key="frame" x="18" y="44" width="5" height="457"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </box>
                             <box verticalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="T89-ut-h6s">
@@ -466,7 +466,8 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                                 <connections>
-                                    <action selector="Test:" target="-2" id="xHw-Yj-Coe"/>
+                                    <action selector="Test:" target="-2" id="Sin-ZY-But"/>
+                                    <outlet property="delegate" destination="-2" id="t9Z-oc-7iy"/>
                                 </connections>
                             </textField>
                             <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0Db-h5-CwX">

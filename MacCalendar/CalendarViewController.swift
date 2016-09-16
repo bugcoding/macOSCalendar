@@ -8,9 +8,11 @@
 
 import Cocoa
 
-class CalendarViewController: NSWindowController {
+class CalendarViewController: NSWindowController, NSTextFieldDelegate {
+    
     
     // MARK: - Outlets define
+
     
     // 年和月上的箭头
     @IBOutlet weak var nextYearBtn: NSButton!
@@ -69,6 +71,16 @@ class CalendarViewController: NSWindowController {
     @IBAction func lastYearHandler(_ sender: NSButton) {
         let lastYear = mCurYear - 1
         setDate(year: lastYear, month: mCurMonth)
+    }
+    
+    // 响应NSTextField的回车事件
+    func control(_ control: NSControl, textView: NSTextView, doCommandBy commandSelector: Selector) -> Bool {
+        if 	commandSelector == #selector(insertNewline(_:)) {
+            print("text = \(textView.string!)")
+            return true
+        }
+        
+        return false
     }
     
     
