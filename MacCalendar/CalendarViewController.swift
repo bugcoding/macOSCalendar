@@ -77,12 +77,32 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
     func control(_ control: NSControl, textView: NSTextView, doCommandBy commandSelector: Selector) -> Bool {
         if 	commandSelector == #selector(insertNewline(_:)) {
             
+            let inputStr = textView.string!
+            
+            let filterStr = inputStr.trimmingCharacters(in: .decimalDigits)
+            if filterStr.characters.count > 0 {
+                // 包含非数字
+                return false
+            }
+            
             // identifier 已定义在xib中
             if control.identifier == "monthField" {
-                print("month = \(textView.string!)")
+                print("month = \(inputStr)")
+                let monthNum = Int(inputStr)!
+                if monthNum < 1 || monthNum > 12 {
+                    return false
+                }
+                setDate(year: mCurYear, month: monthNum)
             } else if control.identifier == "yearField" {
                 print("year = \(textView.string!)")
+                let yearNum = Int(inputStr)!
+                
+                if yearNum < CalendarConstant.GREGORIAN_CALENDAR_OPEN_YEAR || yearNum > 10000 {
+                    return false
+                }
+                setDate(year: yearNum, month: mCurMonth)
             }
+            
             
             return true
         }
