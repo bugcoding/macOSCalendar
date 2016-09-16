@@ -150,7 +150,7 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
             btn.isTransparent = false
             
             if index < weekDayOf1stDay || index >= monthDays + weekDayOf1stDay {
-                let curRowNum = Int((btn.cellID - 1) / 7) + 1
+                let curRowNum = Int((btn.mCellID - 1) / 7) + 1
                 // 最后一行空出来
                 if index >= monthDays + weekDayOf1stDay && curRowNum > lastRowNum {
                     btn.isTransparent = true
@@ -174,7 +174,7 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
                     let dayName = CalendarConstant.nameOfChnDay[dayInfo.mdayNo]
 
                     
-                    btn.setString(topText: "\(day)", topColor: .black, bottomText: dayName, bottomColor: NSColor(colorLiteralRed: 0, green: 0, blue: 0, alpha: 1))
+                    btn.setString(geriDay: day, topColor: .black, bottomText: dayName, bottomColor: NSColor(colorLiteralRed: 0, green: 0, blue: 0, alpha: 1))
                 }else {
                     let day = index - monthDays - weekDayOf1stDay + 1
                     // 当前的农历日期
@@ -195,13 +195,13 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
                     }
 
                     
-                    btn.setString(topText: "\(day)", topColor: .black, bottomText: lunarDayName, bottomColor: NSColor(colorLiteralRed: 0, green: 0, blue: 0, alpha: 1))
+                    btn.setString(geriDay: day, topColor: .black, bottomText: lunarDayName, bottomColor: NSColor(colorLiteralRed: 0, green: 0, blue: 0, alpha: 1))
                 }
                 
             } else {
                 if index == monthDays + weekDayOf1stDay - 1 {
                     // 当前cell在第几行
-                    lastRowNum = Int((btn.cellID - 1) / 7) + 1
+                    lastRowNum = Int((btn.mCellID - 1) / 7) + 1
                 }
                 
                 let day = index - weekDayOf1stDay + 1
@@ -221,12 +221,12 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
                     lunarDayName += CalendarConstant.nameOfChnDay[dayInfo.mdayNo]
                 }
                 
-                btn.setString(topText: "\(day)", topColor: .black, bottomText: lunarDayName, bottomColor: NSColor(colorLiteralRed: 0, green: 0, blue: 0, alpha: 1))
+                btn.setString(geriDay: day, topColor: .black, bottomText: lunarDayName, bottomColor: NSColor(colorLiteralRed: 0, green: 0, blue: 0, alpha: 1))
                 
                 
                 // 处理周六日的日期颜色
                 if index % 7 == 6 || index % 7 == 0 {
-                    btn.setString(topText: "\(day)", topColor: .red, bottomText: lunarDayName, bottomColor: .red)
+                    btn.setString(geriDay: day, topColor: .red, bottomText: lunarDayName, bottomColor: .red)
                 }
             }
             
@@ -259,6 +259,8 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
     
     func dateButtonHandler(_ sender:NSButton){
         print("Press Button is \(sender.identifier)")
+        
+        
     }
     
     
@@ -286,7 +288,6 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
 
         lunarDateLabel.stringValue = lunarDayName + dayName
     }
-    
 
     
     
@@ -318,14 +319,14 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
                     let cellBtn = btn as! CalendarCellView
                     cellBtn.target = self
                     cellBtn.action = #selector(CalendarViewController.dateButtonHandler(_:))
-                    cellBtn.cellID = intValue
+                    cellBtn.mCellID = intValue
                     cellBtns.append(cellBtn)
                 }
             }
         }
         
         for (index, btn) in cellBtns.enumerated() {
-            print("cellbtns index = \(index) btn.action = \(btn.action) btn.intValue = \(btn.cellID)")
+            print("cellbtns index = \(index) btn.action = \(btn.action) btn.intValue = \(btn.mCellID)")
         }
         
         

@@ -10,22 +10,24 @@ import Cocoa
 
 class CalendarCellView : NSButton{
     // 标识具体的cell
-    var cellID: Int = 0
-    var bgColor: NSColor?
+    var mCellID: Int = 0
+    var mBgColor: NSColor?
+    var mCurDay: Int = -1
     
     func setBackGroundColor(bgColor: NSColor) {
-        self.bgColor = bgColor
+        self.mBgColor = bgColor
         self.layer?.backgroundColor = bgColor.cgColor
     }
     
     // 显示具体的农历和公历，设置具体button的标题属性
-    func setString(topText: String, topColor: NSColor, bottomText: String, bottomColor: NSColor) {
+    func setString(geriDay: Int, topColor: NSColor, bottomText: String, bottomColor: NSColor) {
         
+        mCurDay = geriDay
         // 居中样式
         let style = NSMutableParagraphStyle()
         style.alignment = .center
         
-        let topText = topText + "\n"
+        let topText = String(geriDay) + "\n"
 
         let goriDayDict = [NSForegroundColorAttributeName : topColor, NSParagraphStyleAttributeName : style, NSFontAttributeName : NSFont.systemFont(ofSize: 20.0)]
         let lunarDayDict = [NSForegroundColorAttributeName : bottomColor, NSParagraphStyleAttributeName : style, NSFontAttributeName : NSFont.systemFont(ofSize: 10.0)]
