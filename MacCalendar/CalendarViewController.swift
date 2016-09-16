@@ -257,10 +257,11 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
     }
     
     
-    func dateButtonHandler(_ sender:NSButton){
+    func dateButtonHandler(_ sender:CalendarCellView){
         print("Press Button is \(sender.identifier)")
         
-        
+        mCurDay = sender.mCurDay
+        showRightDetailInfo()
     }
     
     
