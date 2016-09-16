@@ -73,6 +73,9 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
         setDate(year: lastYear, month: mCurMonth)
     }
     
+    @IBAction func returnToday(_ sender: NSButton) {
+        showToday()
+    }
     // 响应NSTextField的回车事件
     func control(_ control: NSControl, textView: NSTextView, doCommandBy commandSelector: Selector) -> Bool {
         if 	commandSelector == #selector(insertNewline(_:)) {
@@ -317,6 +320,20 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
         }
     }
     
+    // 显示今天
+    func showToday() {
+        let date = CalendarUtils.sharedInstance.getDateStringOfToday()
+        let dateTupple = CalendarUtils.sharedInstance.getYMDTuppleBy(date)
+        mCurDay = dateTupple.day
+        
+        mCurYear = dateTupple.year
+        
+        if mCalendar.setGeriYear(year: mCurYear) {
+            setCurrenMonth(month: dateTupple.month)
+            showRightDetailInfo()
+        }
+    }
+    
     override func windowDidLoad() {
         super.windowDidLoad()
         
@@ -341,17 +358,7 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
         
         
         // 加载完窗口显示默认
-        // self.showDefaultDate()
-        let date = CalendarUtils.sharedInstance.getDateStringOfToday()
-        let dateTupple = CalendarUtils.sharedInstance.getYMDTuppleBy(date)
-        mCurDay = dateTupple.day
-
-        mCurYear = dateTupple.year
-        
-        if mCalendar.setGeriYear(year: mCurYear) {
-            setCurrenMonth(month: dateTupple.month)
-            showRightDetailInfo()
-        }
+        showToday()
     }
     
 }

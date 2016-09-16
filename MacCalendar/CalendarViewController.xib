@@ -566,6 +566,17 @@
                                     <action selector="nextMonthHandler:" target="-2" id="Cmg-Xk-Fdz"/>
                                 </connections>
                             </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sC6-Qc-sRb">
+                                <rect key="frame" x="490" y="455" width="142" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="bevel" title="回到今天" bezelStyle="regularSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="kb4-gI-Tpg">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system" size="15"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="returnToday:" target="-2" id="wVn-UR-54Q"/>
+                                </connections>
+                            </button>
                         </subviews>
                     </customView>
                 </subviews>
@@ -573,7 +584,7 @@
             <connections>
                 <outlet property="delegate" destination="-2" id="0bl-1N-AYu"/>
             </connections>
-            <point key="canvasLocation" x="-63" y="385.5"/>
+            <point key="canvasLocation" x="-394" y="356.5"/>
         </window>
     </objects>
 </document>
