@@ -76,7 +76,14 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
     // 响应NSTextField的回车事件
     func control(_ control: NSControl, textView: NSTextView, doCommandBy commandSelector: Selector) -> Bool {
         if 	commandSelector == #selector(insertNewline(_:)) {
-            print("text = \(textView.string!)")
+            
+            // identifier 已定义在xib中
+            if control.identifier == "monthField" {
+                print("month = \(textView.string!)")
+            } else if control.identifier == "yearField" {
+                print("year = \(textView.string!)")
+            }
+            
             return true
         }
         
