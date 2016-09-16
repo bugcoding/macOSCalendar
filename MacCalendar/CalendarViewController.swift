@@ -167,7 +167,9 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
                     let chnMonthInfo = mCalendar.getChnMonthInfo(month: dayInfo.mmonth)
                     
                     var lunarDayName = CalendarConstant.nameOfChnMonth[chnMonthInfo.mInfo.mname - 1] + "月"
-                    if chnMonthInfo.isLeapMonth() {
+                    if dayInfo.st != -1 {
+                        lunarDayName = CalendarConstant.nameOfJieQi[dayInfo.st]
+                    } else if chnMonthInfo.isLeapMonth() {
                         lunarDayName = "闰" + lunarDayName
                     }
                     
@@ -182,7 +184,10 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
                     let dayInfo = mi.getDayInfo(day: day)
                     
                     var lunarDayName = ""
-                    if dayInfo.mdayNo == 0 {
+                    
+                    if dayInfo.st != -1 {
+                        lunarDayName = CalendarConstant.nameOfJieQi[dayInfo.st]
+                    } else if dayInfo.mdayNo == 0 {
                         let chnMonthInfo = mCalendar.getChnMonthInfo(month: dayInfo.mmonth)
                         if chnMonthInfo.isLeapMonth() {
                             lunarDayName += "闰"
@@ -209,7 +214,11 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
                 
                 let dayInfo = mi.getDayInfo(day: day)
                 var lunarDayName = ""
-                if dayInfo.mdayNo == 0 {
+                
+                
+                if dayInfo.st != -1 {
+                    lunarDayName = CalendarConstant.nameOfJieQi[dayInfo.st]
+                } else if dayInfo.mdayNo == 0 {
                     let chnMonthInfo = mCalendar.getChnMonthInfo(month: dayInfo.mmonth)
                     if chnMonthInfo.isLeapMonth() {
                         lunarDayName += "闰"
@@ -259,7 +268,7 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
     
     func dateButtonHandler(_ sender:CalendarCellView){
         print("Press Button is \(sender.identifier)")
-        
+        sender.setBackGroundColor(bgColor: .green)
         mCurDay = sender.mCurDay
         showRightDetailInfo()
     }
