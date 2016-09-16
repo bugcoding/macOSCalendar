@@ -11,12 +11,9 @@ import Cocoa
 class CalendarTextField: NSTextField {
     
     override func draw(_ dirtyRect: NSRect) {
-        if window?.firstResponder == currentEditor() && NSApp.isActive {
-            NSGraphicsContext.saveGraphicsState()
-            NSSetFocusRingStyle(.only)
-            NSGraphicsContext.restoreGraphicsState()
-        } else {
-            super.draw(dirtyRect)
-        }
+        super.draw(dirtyRect)
+        // 不显示默认输入时的焦点与蓝色边框
+        NSSetFocusRingStyle(.only)
+        window!.makeFirstResponder(nil)
     }
 }
