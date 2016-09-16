@@ -21,8 +21,8 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
     @IBOutlet weak var lastMonthBtn: NSButton!
     
     // 顶部三个label
-    @IBOutlet weak var yearText: NSTextField!
-    @IBOutlet weak var monthText: NSTextField!
+    @IBOutlet weak var yearText: CalendarTextField!
+    @IBOutlet weak var monthText: CalendarTextField!
     
     // 右侧显示区
     @IBOutlet weak var dateDetailLabel: NSTextField!
@@ -355,7 +355,6 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
         for (index, btn) in cellBtns.enumerated() {
             print("cellbtns index = \(index) btn.action = \(btn.action) btn.intValue = \(btn.mCellID)")
         }
-        
         
         // 加载完窗口显示默认
         showToday()

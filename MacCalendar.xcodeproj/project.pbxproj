@@ -18,6 +18,7 @@
 		7D6278851D39D57B00B9CDD4 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6278831D39D57B00B9CDD4 /* CalendarViewController.swift */; };
 		7D6278861D39D57B00B9CDD4 /* CalendarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D6278841D39D57B00B9CDD4 /* CalendarViewController.xib */; };
 		7D80307A1D819E0D00247C9C /* LunarCalendarUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8030791D819E0D00247C9C /* LunarCalendarUtils.swift */; };
+		7DC9BC621D8C4B6700EFA1BA /* CalendarTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC9BC611D8C4B6700EFA1BA /* CalendarTextField.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		7D6278831D39D57B00B9CDD4 /* CalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		7D6278841D39D57B00B9CDD4 /* CalendarViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CalendarViewController.xib; sourceTree = "<group>"; };
 		7D8030791D819E0D00247C9C /* LunarCalendarUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LunarCalendarUtils.swift; sourceTree = "<group>"; };
+		7DC9BC611D8C4B6700EFA1BA /* CalendarTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarTextField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +88,7 @@
 				7D6278831D39D57B00B9CDD4 /* CalendarViewController.swift */,
 				7D6278841D39D57B00B9CDD4 /* CalendarViewController.xib */,
 				7D17C2F61D64AF880098674A /* CalendarCellView.swift */,
+				7DC9BC611D8C4B6700EFA1BA /* CalendarTextField.swift */,
 			);
 			path = MacCalendar;
 			sourceTree = "<group>";
@@ -169,6 +172,7 @@
 				7D17C2F71D64AF880098674A /* CalendarCellView.swift in Sources */,
 				7D6278771D39D44C00B9CDD4 /* AppDelegate.swift in Sources */,
 				7D17C2FB1D6752B20098674A /* PlanetData.swift in Sources */,
+				7DC9BC621D8C4B6700EFA1BA /* CalendarTextField.swift in Sources */,
 				7D80307A1D819E0D00247C9C /* LunarCalendarUtils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
