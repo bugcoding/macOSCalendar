@@ -152,13 +152,13 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
         for (index, btn) in cellBtns.enumerated() {
             
             btn.isEnabled = true
-            btn.isTransparent = false
+            btn.isHidden = false
             
             if index < weekDayOf1stDay || index >= monthDays + weekDayOf1stDay {
                 let curRowNum = Int((btn.mCellID - 1) / 7) + 1
                 // 最后一行空出来
                 if index >= monthDays + weekDayOf1stDay && curRowNum > lastRowNum {
-                    btn.isTransparent = true
+                    btn.isHidden = true
                 }else{
                     btn.isEnabled = false
                 }
