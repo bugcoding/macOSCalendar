@@ -150,7 +150,7 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
         
         // 把空余不的cell行不显示，非本月天置灰
         for (index, btn) in cellBtns.enumerated() {
-            
+            btn.setBackGroundColor(bgColor: .white)
             btn.isEnabled = true
             btn.isHidden = false
             
@@ -235,7 +235,8 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
                     lunarDayName += CalendarConstant.nameOfChnDay[dayInfo.mdayNo]
                 }
                 
-                if CalendarUtils.sharedInstance.getYMDTuppleBy(CalendarUtils.sharedInstance.getDateStringOfToday()).day == day {
+                let today = utils.getYMDTuppleBy(utils.getDateStringOfToday())
+                if today.day == day && today.month == mCurMonth && today.year == mCurYear {
                     btn.setBackGroundColor(bgColor: NSColor(colorLiteralRed: 0 / 255.0, green: 210 / 255.0, blue: 0 / 255.0, alpha: 0.4))
                     lastPressBtn = btn
                 }
