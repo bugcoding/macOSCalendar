@@ -11,12 +11,11 @@ import Cocoa
 class CalendarCellView : NSButton{
     // 标识具体的cell
     var mCellID: Int = 0
-    var mBgColor: NSColor?
+    var mBgColor: NSColor = NSColor.white
     var mCurDay: Int = -1
     
     func setBackGroundColor(bgColor: NSColor) {
         self.mBgColor = bgColor
-        self.layer?.backgroundColor = bgColor.cgColor
     }
     
     // 显示具体的农历和公历，设置具体button的标题属性
@@ -43,5 +42,9 @@ class CalendarCellView : NSButton{
     
     override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)
+        self.isBordered = false
+        
+        self.wantsLayer = true
+        self.layer!.backgroundColor = self.mBgColor.cgColor
     }
 }

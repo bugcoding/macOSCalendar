@@ -40,6 +40,8 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
     var cellBtns = [CalendarCellView]()
     var lastRowNum:Int = 0
     
+    var lastPressBtn: CalendarCellView?
+    
     override var windowNibName: String?{
         return "CalendarViewController"
     }
@@ -271,7 +273,13 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
     
     func dateButtonHandler(_ sender:CalendarCellView){
         print("Press Button is \(sender.identifier)")
+        
+        if let tmp = lastPressBtn {
+            tmp.setBackGroundColor(bgColor: .white)
+        }
         sender.setBackGroundColor(bgColor: .green)
+        lastPressBtn = sender
+        
         mCurDay = sender.mCurDay
         showRightDetailInfo()
     }
