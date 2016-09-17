@@ -75,14 +75,6 @@
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                             </button>
-                            <button identifier="cell7" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Rhz-8d-Jeh" customClass="CalendarCellView" customModule="MacCalendar" customModuleProvider="target">
-                                <rect key="frame" x="549" y="350" width="85" height="57"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="bevel" title="7" bezelStyle="regularSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="WMw-hZ-4ZI">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                            </button>
                             <button identifier="cell10" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fkN-r9-nyu" customClass="CalendarCellView" customModule="MacCalendar" customModuleProvider="target">
                                 <rect key="frame" x="211" y="293" width="81" height="55"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -573,6 +565,14 @@
                                     <action selector="returnToday:" target="-2" id="wVn-UR-54Q"/>
                                 </connections>
                             </button>
+                            <button identifier="cell7" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Rhz-8d-Jeh" customClass="CalendarCellView" customModule="MacCalendar" customModuleProvider="target">
+                                <rect key="frame" x="551" y="351" width="81" height="55"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="bevel" title="7" bezelStyle="regularSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="WMw-hZ-4ZI">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                            </button>
                         </subviews>
                     </customView>
                 </subviews>
@@ -580,7 +580,7 @@
             <connections>
                 <outlet property="delegate" destination="-2" id="0bl-1N-AYu"/>
             </connections>
-            <point key="canvasLocation" x="-758" y="298"/>
+            <point key="canvasLocation" x="-758" y="297.5"/>
         </window>
     </objects>
 </document>
