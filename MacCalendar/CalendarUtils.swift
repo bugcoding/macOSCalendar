@@ -772,7 +772,7 @@ open class CalendarUtils{
             
             // overflow defend
             count += 1
-            if count > 200 {
+            if count > 500 {
                 break
             }
             
@@ -818,7 +818,7 @@ open class CalendarUtils{
 
             // overflow defend
             count += 1
-            if count > 100 {
+            if count > 500 {
                 break
             }
         }while((fabs(JD1 - JD0) > 0.00000001))
