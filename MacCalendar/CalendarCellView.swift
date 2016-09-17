@@ -14,8 +14,18 @@ class CalendarCellView : NSButton{
     var mBgColor: NSColor = NSColor.white
     var mCurDay: Int = -1
     
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        self.isBordered = false
+        self.wantsLayer = true
+        self.layer!.backgroundColor = self.mBgColor.cgColor
+    }
+    
     func setBackGroundColor(bgColor: NSColor) {
         self.mBgColor = bgColor
+        self.wantsLayer = true
+        self.layer!.backgroundColor = self.mBgColor.cgColor
     }
     
     // 显示具体的农历和公历，设置具体button的标题属性
@@ -42,9 +52,5 @@ class CalendarCellView : NSButton{
     
     override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)
-        self.isBordered = false
-        
-        self.wantsLayer = true
-        self.layer!.backgroundColor = self.mBgColor.cgColor
     }
 }

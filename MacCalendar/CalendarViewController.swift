@@ -235,6 +235,12 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
                     lunarDayName += CalendarConstant.nameOfChnDay[dayInfo.mdayNo]
                 }
                 
+                if CalendarUtils.sharedInstance.getYMDTuppleBy(CalendarUtils.sharedInstance.getDateStringOfToday()).day == day {
+                    btn.setBackGroundColor(bgColor: NSColor(colorLiteralRed: 0 / 255.0, green: 210 / 255.0, blue: 0 / 255.0, alpha: 0.4))
+                    lastPressBtn = btn
+                }
+
+                
                 btn.setString(geriDay: day, topColor: .black, bottomText: lunarDayName, bottomColor: NSColor(colorLiteralRed: 0, green: 0, blue: 0, alpha: 1))
                 
                 
@@ -274,10 +280,11 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
     func dateButtonHandler(_ sender:CalendarCellView){
         print("Press Button is \(sender.identifier)")
         
+        // 245	173	108
         if let tmp = lastPressBtn {
             tmp.setBackGroundColor(bgColor: .white)
         }
-        sender.setBackGroundColor(bgColor: .green)
+        sender.setBackGroundColor(bgColor: NSColor(colorLiteralRed: 0 / 255.0, green: 210 / 255.0, blue: 0 / 255.0, alpha: 0.4))
         lastPressBtn = sender
         
         mCurDay = sender.mCurDay
