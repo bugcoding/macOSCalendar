@@ -199,7 +199,7 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
                         }
                         
                         lunarDayName += CalendarConstant.nameOfChnMonth[chnMonthInfo.mInfo.mname - 1]
-                        lunarDayName += (chnMonthInfo.mInfo.mdays == CalendarConstant.CHINESE_L_MONTH_DAYS) ? "月大" : "月小"
+                        lunarDayName += (chnMonthInfo.mInfo.mdays == CalendarConstant.CHINESE_L_MONTH_DAYS) ? "月 大" : "月 小"
                     } else {
                         lunarDayName += CalendarConstant.nameOfChnDay[dayInfo.mdayNo]
                     }
@@ -230,7 +230,7 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
                     }
                     
                     lunarDayName += CalendarConstant.nameOfChnMonth[chnMonthInfo.mInfo.mname - 1]
-                    lunarDayName += (chnMonthInfo.mInfo.mdays == CalendarConstant.CHINESE_L_MONTH_DAYS) ? "月大" : "月小"
+                    lunarDayName += (chnMonthInfo.mInfo.mdays == CalendarConstant.CHINESE_L_MONTH_DAYS) ? "月 大" : "月 小"
                 } else {
                     lunarDayName += CalendarConstant.nameOfChnDay[dayInfo.mdayNo]
                 }
