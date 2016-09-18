@@ -1,5 +1,5 @@
 # bugcodeCalendar
-bugcodeCalendar(include Chinese lunar calendar) for MacOS written by swift 3.0.
+bugcodeCalendar(include Chinese lunar) for MacOS written by swift 3.0.
 
 ps: rookie of MacOS development, learning and making.
 
