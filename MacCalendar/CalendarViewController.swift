@@ -86,6 +86,7 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
             
             let filterStr = inputStr.trimmingCharacters(in: .decimalDigits)
             if filterStr.characters.count > 0 {
+                // TODO: 提示
                 // 包含非数字
                 return false
             }
@@ -95,19 +96,21 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
                 print("month = \(inputStr)")
                 let monthNum = Int(inputStr)!
                 if monthNum < 1 || monthNum > 12 {
+                    // TODO: 提示
                     return false
                 }
                 setDate(year: mCurYear, month: monthNum)
+                
             } else if control.identifier == "yearField" {
                 print("year = \(textView.string!)")
                 let yearNum = Int(inputStr)!
                 
                 if yearNum < CalendarConstant.GREGORIAN_CALENDAR_OPEN_YEAR || yearNum > 10000 {
+                    // TODO: 提示
                     return false
                 }
                 setDate(year: yearNum, month: mCurMonth)
             }
-            
             
             return true
         }
@@ -281,7 +284,7 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
     func dateButtonHandler(_ sender:CalendarCellView){
         print("Press Button is \(sender.identifier)")
         
-        // 245	173	108
+        // 245	173	108 浅绿色
         if let tmp = lastPressBtn {
             tmp.setBackGroundColor(bgColor: .white)
         }
@@ -323,7 +326,6 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
     func setCurrenMonth(month: Int) {
         if month >= 1 && month <= CalendarConstant.MONTHES_FOR_YEAR {
             mCurMonth = month
-            //showDateCells()
             showMonthPanel()
         }
     }
