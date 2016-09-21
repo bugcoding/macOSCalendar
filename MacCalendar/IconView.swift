@@ -20,7 +20,6 @@ class IconView : NSView
     var isSelected: Bool {
         didSet
         {
-            //redraw if isSelected changes for bg highlight
             if (isSelected != oldValue)
             {
                 self.needsDisplay = true
@@ -44,7 +43,6 @@ class IconView : NSView
         fatalError("init(coder:) has not been implemented")
     }
     
-    
     override func draw(_ dirtyRect: NSRect) {
         self.item.drawStatusBarBackground(in: dirtyRect, withHighlight: self.isSelected)
         
@@ -55,11 +53,11 @@ class IconView : NSView
     }
     
     override func mouseDown(with event: NSEvent) {
-        
         self.isSelected = !self.isSelected;
         self.onMouseDown();
     }
     
     override func mouseUp(with event: NSEvent) {
+        
     }
 }
