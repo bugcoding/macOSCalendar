@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		7D0D956C1D92CFFB00226B52 /* IconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D0D956B1D92CFFB00226B52 /* IconView.swift */; };
-		7D0D95701D92D13700226B52 /* icon.pxm in Resources */ = {isa = PBXBuildFile; fileRef = 7D0D956E1D92D13700226B52 /* icon.pxm */; };
 		7D0D95711D92D13700226B52 /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D0D956F1D92D13700226B52 /* icon@2x.png */; };
 		7D1031851D3B30FF0015BBCC /* CalendarUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D1031841D3B30FF0015BBCC /* CalendarUtils.swift */; };
 		7D17C2F71D64AF880098674A /* CalendarCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D17C2F61D64AF880098674A /* CalendarCellView.swift */; };
@@ -26,7 +25,6 @@
 
 /* Begin PBXFileReference section */
 		7D0D956B1D92CFFB00226B52 /* IconView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IconView.swift; sourceTree = "<group>"; };
-		7D0D956E1D92D13700226B52 /* icon.pxm */ = {isa = PBXFileReference; lastKnownFileType = file; path = icon.pxm; sourceTree = "<group>"; };
 		7D0D956F1D92D13700226B52 /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@2x.png"; sourceTree = "<group>"; };
 		7D1031841D3B30FF0015BBCC /* CalendarUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarUtils.swift; sourceTree = "<group>"; };
 		7D17C2F61D64AF880098674A /* CalendarCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarCellView.swift; sourceTree = "<group>"; };
@@ -58,7 +56,6 @@
 		7D0D956D1D92D13700226B52 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				7D0D956E1D92D13700226B52 /* icon.pxm */,
 				7D0D956F1D92D13700226B52 /* icon@2x.png */,
 			);
 			path = Resources;
@@ -169,7 +166,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7D0D95701D92D13700226B52 /* icon.pxm in Resources */,
 				7D6278791D39D44C00B9CDD4 /* Assets.xcassets in Resources */,
 				7D62787C1D39D44C00B9CDD4 /* MainMenu.xib in Resources */,
 				7D6278861D39D57B00B9CDD4 /* CalendarViewController.xib in Resources */,
