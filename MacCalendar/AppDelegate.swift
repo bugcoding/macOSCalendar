@@ -37,9 +37,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let windowTopLeftPosition = CGPoint(x: (eventOrigin?.x)! + (eventSize?.width)! / 2.0 - (windowSize?.width)! / 2.0, y: (eventOrigin?.y)! - 2)
         window?.setFrameTopLeftPoint(windowTopLeftPosition)
     
-        window?.makeKeyAndOrderFront(nil)
+        window?.makeKeyAndOrderFront(self)
         
-        NSApp.activate(ignoringOtherApps: false)
+        NSApp.activate(ignoringOtherApps: true)
     }
     override init()
     {
@@ -55,15 +55,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     override func awakeFromNib() {
-        let edge = NSRectEdge.minY
-        let icon = self.icon
-        let rect = icon.frame
-        
-        icon.onMouseDown = {
-            if (icon.isSelected)
+        self.icon.onMouseDown = {
+            if (self.icon.isSelected)
             {
                 self.openWindow()
-                //self.popover?.showRelativeToRect(rect, ofView: icon, preferredEdge: edge);
                 return
             }
             self.calViewController?.window?.close()
