@@ -37,7 +37,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let windowTopLeftPosition = CGPoint(x: (eventOrigin?.x)! + (eventSize?.width)! / 2.0 - (windowSize?.width)! / 2.0, y: (eventOrigin?.y)! - 2)
         window?.setFrameTopLeftPoint(windowTopLeftPosition)
     
-        //window?.makeKeyAndOrderFront(self)
+        window?.makeKeyAndOrderFront(self)
         
         NSApp.activate(ignoringOtherApps: true)
     }
