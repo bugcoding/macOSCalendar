@@ -32,7 +32,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <customView identifier="customview" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jSz-os-SLy">
-                        <rect key="frame" x="0.0" y="0.0" width="862" height="395"/>
+                        <rect key="frame" x="0.0" y="0.0" width="656" height="395"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <subviews>
                             <button identifier="cell2" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KzT-eQ-ick" customClass="CalendarCellView" customModule="MacCalendar" customModuleProvider="target">
