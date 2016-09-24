@@ -45,7 +45,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     {
         let bar = NSStatusBar.system()
         
-        let length: CGFloat = -1
+        let length = NSVariableStatusItemLength
         let item = bar.statusItem(withLength: length)
         
         self.icon = IconView(imageName: "icon", item: item)
