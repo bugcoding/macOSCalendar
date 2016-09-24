@@ -50,7 +50,4 @@ class CalendarCellView : NSButton{
         self.attributedTitle = finalAttr
     }
     
-    override func draw(_ dirtyRect: NSRect) {
-        super.draw(dirtyRect)
-    }
 }
