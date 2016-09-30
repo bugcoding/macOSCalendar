@@ -119,12 +119,21 @@ open class CalendarUtils{
         return (Int(y)!, Int(m)!, Int(d)!)
     }
     
-    // 根据传入日期字符串获取下月
-    func getMonthDateStringBy(_ dateString:String, step:Int)->String {
-        let date = getYMDTuppleBy(dateString)
+    // 手动切分日期字符串
+    func manualSplitDate(_ dateString: String) -> (year:Int, month:Int, day:Int) {
+        let strArr = dateString.components(separatedBy: "-")
+        let year = strArr[0]
+        let month = strArr[1]
+        let day = strArr[2]
         
-        var year = date.year
-        var curMonth = date.month
+        return (Int(year)!, Int(month)!, Int(day)!)
+    }
+    
+    // 根据传入日期字符串获取下月
+    func getMonthDateStringBy(year: Int, month: Int, step:Int) -> (year: Int, month: Int) {
+        
+        var year = year
+        var curMonth = month
         curMonth = curMonth + step
         if curMonth > 12 && step > 0 {
             curMonth = 1
@@ -134,9 +143,7 @@ open class CalendarUtils{
             curMonth = 12
             year = year - 1
         }
-        
-        let monthDateString = String(year) + "-" + String(curMonth) + "-" + String(date.day)
-        return monthDateString
+        return (year, curMonth)
     }
     
     // 月份增减的时候保证天数不超出当月的最大天数
@@ -151,8 +158,7 @@ open class CalendarUtils{
     }
     
     // 获取某月某天是周几
-    func getWeekBy(_ dateString:String, andFirstDay:Int) -> Int {
-        let (year, month, _) = getYMDTuppleBy(dateString)
+    func getWeekBy(year: Int, month: Int, andFirstDay:Int) -> Int {
         let weekDay = getWeekDayBy(year, month: month, day: andFirstDay)
         
         return weekDay

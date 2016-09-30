@@ -9,7 +9,6 @@
             <connections>
                 <outlet property="dateDetailLabel" destination="5fB-3p-RFI" id="DW1-EF-tKu"/>
                 <outlet property="dayLabel" destination="dKo-Vl-cMd" id="FTl-Vc-eWi"/>
-                <outlet property="dayText" destination="JcY-ac-Fof" id="OGD-FK-O5q"/>
                 <outlet property="lastMonthBtn" destination="c8x-U4-7mN" id="Vgl-bn-Ngr"/>
                 <outlet property="lastYearArrowBtn" destination="hpY-bL-AnX" id="jhd-gl-KdM"/>
                 <outlet property="lastYearBtn" destination="hpY-bL-AnX" id="Tnm-64-U81"/>
@@ -557,15 +556,6 @@
                                     <action selector="nextMonthHandler:" target="-2" id="Cmg-Xk-Fdz"/>
                                 </connections>
                             </button>
-                            <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JcY-ac-Fof">
-                                <rect key="frame" x="379" y="459" width="100" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" state="on" alignment="center" title="31" drawsBackground="YES" id="sEv-RK-aIU">
-                                    <font key="font" metaFont="system" size="22"/>
-                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
                         </subviews>
                     </customView>
                 </subviews>
