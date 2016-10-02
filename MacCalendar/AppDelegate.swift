@@ -34,6 +34,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let windowFrame = window?.frame
         let windowSize = windowFrame?.size
         
+        // 设置状态栏窗口的位置
         let windowTopLeftPosition = CGPoint(x: (eventOrigin?.x)! + (eventSize?.width)! / 2.0 - (windowSize?.width)! / 2.0, y: (eventOrigin?.y)! - 2)
         window?.setFrameTopLeftPoint(windowTopLeftPosition)
     
