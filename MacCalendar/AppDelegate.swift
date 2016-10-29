@@ -22,7 +22,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     // 窗口失去焦点的时候自动关闭
     func applicationDidResignActive(_ notification: Notification) {
+        // 选中状态取消
         self.icon.isSelected = false
+        // 窗口关闭
         self.calViewController?.window?.close()
     }
     
