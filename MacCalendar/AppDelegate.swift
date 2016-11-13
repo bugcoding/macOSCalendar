@@ -20,7 +20,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         //calController.showWindow(self)
         self.calViewController = calController
     }
-
+    // 窗口失去焦点的时候自动关闭
+    func applicationDidResignActive(_ notification: Notification) {
+        self.icon.isSelected = false
+        self.calViewController?.window?.close()
+    }
+    
     func applicationWillTerminate(_ aNotification: Notification) {
         // Insert code here to tear down your application
     }
