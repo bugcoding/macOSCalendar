@@ -51,11 +51,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     override init()
     {
+        // 加载状态栏
         let bar = NSStatusBar.system()
         
         let length = NSVariableStatusItemLength
         let item = bar.statusItem(withLength: length)
         
+        // 初始化状态栏图标
         self.icon = IconView(imageName: "icon", item: item)
         item.view = self.icon
         
