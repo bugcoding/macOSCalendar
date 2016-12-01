@@ -1,16 +1,14 @@
 # bugcodeCalendar
-bugcodeCalendar(include Chinese lunar) for MacOS written by swift 3.0.
+暂叫*bugcodeCalendar*，macOS平台上的状态栏万年历，工作之余开发，功能不是很齐全，功能特性在慢慢迭代之中。现在版本是v0.2。
 
-ps: rookie of MacOS development, learning and making.
+ps:`mac开发菜鸟一枚，边学边做`
 
-NOW. bugcodeCalendar_v0.2 available, maybe it has bugs that need fix.
-
-new: statusbar support
+第二版v0.2，状态栏支持:
 
 ![](https://github.com/bugcoding/macOSCalendar/blob/master/screenshots/macCalendar_v0.2.png)
 
 
 
-old: last version
+第一版:
 
 ![](https://github.com/bugcoding/macOSCalendar/blob/master/screenshots/bugcodeCalendar_v0.11.png)
