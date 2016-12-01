@@ -388,10 +388,10 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </box>
                             <textField identifier="yearField" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mx9-hU-Kv3" customClass="CalendarTextField" customModule="MacCalendar" customModuleProvider="target">
-                                <rect key="frame" x="20" y="348" width="104" height="28"/>
+                                <rect key="frame" x="20" y="348" width="104" height="26"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="center" title="2014" drawsBackground="YES" id="lcD-JT-ocF">
-                                    <font key="font" metaFont="system" size="19"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" alignment="center" title="2014" drawsBackground="YES" id="lcD-JT-ocF">
+                                    <font key="font" metaFont="system" size="20"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
@@ -400,10 +400,10 @@
                                 </connections>
                             </textField>
                             <textField identifier="monthField" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0Db-h5-CwX" customClass="CalendarTextField" customModule="MacCalendar" customModuleProvider="target">
-                                <rect key="frame" x="131" y="348" width="82" height="28"/>
+                                <rect key="frame" x="131" y="348" width="82" height="26"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="center" title="12" drawsBackground="YES" id="5XV-LN-PmF">
-                                    <font key="font" metaFont="system" size="19"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" alignment="center" title="12" drawsBackground="YES" id="5XV-LN-PmF">
+                                    <font key="font" metaFont="system" size="20"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
@@ -412,7 +412,7 @@
                                 </connections>
                             </textField>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yRC-3t-AAp">
-                                <rect key="frame" x="96" y="348" width="28" height="28"/>
+                                <rect key="frame" x="96" y="348" width="28" height="26"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="bevel" title="➡" bezelStyle="regularSquare" alignment="center" imageScaling="proportionallyDown" inset="2" id="BEf-vV-UxP">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -423,7 +423,7 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="c8x-U4-7mN">
-                                <rect key="frame" x="132" y="348" width="28" height="28"/>
+                                <rect key="frame" x="131" y="348" width="28" height="26"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="bevel" title="⬅︎" bezelStyle="regularSquare" alignment="center" imageScaling="proportionallyDown" inset="2" id="aAU-vx-m1d">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -434,7 +434,7 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hpY-bL-AnX">
-                                <rect key="frame" x="20" y="348" width="28" height="28"/>
+                                <rect key="frame" x="20" y="348" width="28" height="26"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="bevel" title="⬅︎" bezelStyle="regularSquare" alignment="center" imageScaling="proportionallyDown" inset="2" id="ciP-zc-LjB">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -445,7 +445,7 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="u6Y-K3-prM">
-                                <rect key="frame" x="185" y="348" width="28" height="28"/>
+                                <rect key="frame" x="185" y="348" width="28" height="26"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="bevel" title="➡" bezelStyle="regularSquare" alignment="center" imageScaling="proportionallyDown" inset="2" id="r4F-dV-l1K">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -524,7 +524,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </box>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dKo-Vl-cMd">
-                                <rect key="frame" x="406" y="250" width="129" height="78"/>
+                                <rect key="frame" x="406" y="260" width="129" height="78"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="23" drawsBackground="YES" id="K2w-wF-sxd">
                                     <font key="font" metaFont="system" size="60"/>
@@ -542,7 +542,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ac2-MK-LKH">
-                                <rect key="frame" x="419" y="213" width="100" height="17"/>
+                                <rect key="frame" x="419" y="229" width="100" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="正月二十九" id="T0o-9Z-N0P">
                                     <font key="font" metaFont="system" size="15"/>
@@ -551,7 +551,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tsw-N6-4MJ">
-                                <rect key="frame" x="403" y="180" width="135" height="19"/>
+                                <rect key="frame" x="403" y="196" width="135" height="19"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="农历 癸已 【猴年】" id="btS-QT-NkC">
                                     <font key="font" size="15" name=".PingFangSC-Regular"/>
@@ -560,7 +560,7 @@
                                 </textFieldCell>
                             </textField>
                             <box verticalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="Ws0-6I-xzG">
-                                <rect key="frame" x="395" y="167" width="157" height="5"/>
+                                <rect key="frame" x="395" y="183" width="157" height="5"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </box>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sC6-Qc-sRb" customClass="CalendarCellView" customModule="MacCalendar" customModuleProvider="target">
