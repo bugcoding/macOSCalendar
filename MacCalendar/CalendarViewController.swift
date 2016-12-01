@@ -13,6 +13,8 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
     
     // MARK: - Outlets define
 
+    // 设置按钮
+    @IBOutlet weak var settingBtn: NSButton!
     
     // 年和月上的箭头
     @IBOutlet weak var nextYearBtn: NSButton!
@@ -47,6 +49,9 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
     }
     
     // MARK: Button handler
+    @IBAction func settingHandler(_ sender: NSButton) {
+        NSApp.terminate(self)
+    }
     @IBAction func lastMonthHandler(_ sender: NSButton) {
         var lastMonth = mCurMonth - 1
         if lastMonth < 1 {

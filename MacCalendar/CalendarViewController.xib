@@ -17,6 +17,7 @@
                 <outlet property="monthText" destination="0Db-h5-CwX" id="cH4-e1-f6p"/>
                 <outlet property="nextMonthBtn" destination="u6Y-K3-prM" id="ExK-Mh-0vO"/>
                 <outlet property="nextYearBtn" destination="yRC-3t-AAp" id="l5L-76-Jg4"/>
+                <outlet property="settingBtn" destination="wJl-Ir-raC" id="DdV-Kt-Yb8"/>
                 <outlet property="window" destination="F0z-JX-Cv5" id="gIp-Ho-8D9"/>
                 <outlet property="yearText" destination="mx9-hU-Kv3" id="MDO-qU-JR6"/>
             </connections>
@@ -455,6 +456,17 @@
                                     <action selector="nextMonthHandler:" target="-2" id="Cmg-Xk-Fdz"/>
                                 </connections>
                             </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sC6-Qc-sRb" customClass="CalendarCellView" customModule="MacCalendar" customModuleProvider="target">
+                                <rect key="frame" x="263" y="349" width="105" height="25"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="bevel" title="回到今天" bezelStyle="regularSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="kb4-gI-Tpg">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system" size="15"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="returnToday:" target="-2" id="wVn-UR-54Q"/>
+                                </connections>
+                            </button>
                             <button identifier="cell7" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Rhz-8d-Jeh" customClass="CalendarCellView" customModule="MacCalendar" customModuleProvider="target">
                                 <rect key="frame" x="321" y="260" width="49" height="42"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -563,15 +575,15 @@
                                 <rect key="frame" x="395" y="183" width="157" height="5"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </box>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sC6-Qc-sRb" customClass="CalendarCellView" customModule="MacCalendar" customModuleProvider="target">
-                                <rect key="frame" x="263" y="349" width="105" height="25"/>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wJl-Ir-raC">
+                                <rect key="frame" x="541" y="33" width="24" height="24"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="bevel" title="回到今天" bezelStyle="regularSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="kb4-gI-Tpg">
+                                <buttonCell key="cell" type="squareTextured" bezelStyle="texturedSquare" image="setting" imagePosition="overlaps" alignment="center" imageScaling="proportionallyDown" inset="2" id="nDP-j7-rtK">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system" size="15"/>
+                                    <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <action selector="returnToday:" target="-2" id="wVn-UR-54Q"/>
+                                    <action selector="settingHandler:" target="-2" id="PWf-oS-hNT"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -584,4 +596,7 @@
             <point key="canvasLocation" x="-903.5" y="222.5"/>
         </window>
     </objects>
+    <resources>
+        <image name="setting" width="48.441524505615234" height="48.441524505615234"/>
+    </resources>
 </document>

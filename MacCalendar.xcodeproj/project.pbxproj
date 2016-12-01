@@ -20,6 +20,8 @@
 		7D6278851D39D57B00B9CDD4 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6278831D39D57B00B9CDD4 /* CalendarViewController.swift */; };
 		7D6278861D39D57B00B9CDD4 /* CalendarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D6278841D39D57B00B9CDD4 /* CalendarViewController.xib */; };
 		7D80307A1D819E0D00247C9C /* LunarCalendarUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8030791D819E0D00247C9C /* LunarCalendarUtils.swift */; };
+		7D84EA1C1DF05062001E5774 /* calander.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D84EA1B1DF05062001E5774 /* calander.png */; };
+		7D84EA1E1DF05264001E5774 /* setting.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D84EA1D1DF05264001E5774 /* setting.png */; };
 		7DC9BC621D8C4B6700EFA1BA /* CalendarTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC9BC611D8C4B6700EFA1BA /* CalendarTextField.swift */; };
 /* End PBXBuildFile section */
 
@@ -39,6 +41,8 @@
 		7D6278831D39D57B00B9CDD4 /* CalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		7D6278841D39D57B00B9CDD4 /* CalendarViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CalendarViewController.xib; sourceTree = "<group>"; };
 		7D8030791D819E0D00247C9C /* LunarCalendarUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LunarCalendarUtils.swift; sourceTree = "<group>"; };
+		7D84EA1B1DF05062001E5774 /* calander.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = calander.png; sourceTree = "<group>"; };
+		7D84EA1D1DF05264001E5774 /* setting.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = setting.png; sourceTree = "<group>"; };
 		7DC9BC611D8C4B6700EFA1BA /* CalendarTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarTextField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -56,6 +60,8 @@
 		7D0D956D1D92D13700226B52 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				7D84EA1D1DF05264001E5774 /* setting.png */,
+				7D84EA1B1DF05062001E5774 /* calander.png */,
 				7D0D956F1D92D13700226B52 /* icon@2x.png */,
 			);
 			path = Resources;
@@ -167,6 +173,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				7D6278791D39D44C00B9CDD4 /* Assets.xcassets in Resources */,
+				7D84EA1C1DF05062001E5774 /* calander.png in Resources */,
+				7D84EA1E1DF05264001E5774 /* setting.png in Resources */,
 				7D62787C1D39D44C00B9CDD4 /* MainMenu.xib in Resources */,
 				7D6278861D39D57B00B9CDD4 /* CalendarViewController.xib in Resources */,
 				7D0D95711D92D13700226B52 /* icon@2x.png in Resources */,
