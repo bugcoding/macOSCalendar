@@ -576,9 +576,9 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </box>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wJl-Ir-raC">
-                                <rect key="frame" x="541" y="33" width="24" height="24"/>
+                                <rect key="frame" x="544" y="29" width="24" height="24"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="squareTextured" bezelStyle="texturedSquare" image="setting" imagePosition="overlaps" alignment="center" imageScaling="proportionallyDown" inset="2" id="nDP-j7-rtK">
+                                <buttonCell key="cell" type="squareTextured" bezelStyle="texturedSquare" image="close" imagePosition="overlaps" alignment="center" imageScaling="proportionallyDown" inset="2" id="nDP-j7-rtK">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
@@ -597,6 +597,6 @@
         </window>
     </objects>
     <resources>
-        <image name="setting" width="48.441524505615234" height="48.441524505615234"/>
+        <image name="close" width="32" height="32"/>
     </resources>
 </document>
