@@ -79,6 +79,7 @@ class IconView : NSView
         let (year, month, day) = util.getYMDTuppleBy(util.getDateStringOfToday())
         let week = util.getWeekDayBy(year, month: month, day: day)
         
+        // 图标上加入文本
         addTextToImage(image: &image, day: String(day), week: String(CalendarConstant.WEEK_SHORT_CUT[week]))
         
 
