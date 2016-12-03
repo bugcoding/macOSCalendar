@@ -43,6 +43,9 @@ class CalendarConstant{
     // 中国生肖
     static let CHINESE_ZODIC_NAME = ["鼠", "牛", "虎", "兔", "龙", "蛇", "马", "羊", "猴", "鸡", "狗", "猪"]
     
+    // 英文星期缩写
+    static let WEEK_SHORT_CUT = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"]
+    
     // 每年月数
     static let MONTHES_FOR_YEAR = 12
     // 每星期天数
