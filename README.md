@@ -3,7 +3,7 @@
 
 ps:`mac开发菜鸟一枚，边学边做`
 
-第二版v0.2，状态栏支持:
+第二版v0.2，状态栏支持，状态栏同步显示日期:
 
 ![](https://github.com/bugcoding/macOSCalendar/blob/master/screenshots/macCalendar_v0.2.png)
 
