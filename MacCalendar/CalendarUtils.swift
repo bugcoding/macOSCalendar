@@ -189,6 +189,36 @@ open class CalendarUtils{
         return (CalendarConstant.HEAVENLY_STEMS_NAME[monthHeavenly - 1], CalendarConstant.EARTHY_MONTH_NAME[curJieqiMonth - 1])
     }
     
+    // 获取日干支
+    func getLunarDayNameBy(year: Int, month: Int, day: Int) -> (heaven:String, earthy:String) {
+        
+        var year = year
+        var month = month
+        if month == 1 || month == 2 {
+            month += 12
+            year -= 1
+        }
+        
+        let x = Int(year / 100)
+        let y = year % 100
+        
+        // 日 干 计算
+        let res = (5 * (x + y) + Int(x / 4) + Int(y / 4) + (month + 1) * 3 / 5 + day - 3 - x)
+        var dayHeavenly = res % 10
+        if dayHeavenly == 0 {
+            dayHeavenly = 10
+        }
+        // 日 支 计算
+        let i = (month % 2 != 0) ? 0 : 6
+        var dayEarthy = (res + 4 * x + 10 + i) % 12
+        if dayEarthy == 0 {
+            dayEarthy = 12
+        }
+        
+        return (CalendarConstant.HEAVENLY_STEMS_NAME[dayHeavenly - 1], CalendarConstant.EARTHY_BRANCHES_NAME[dayEarthy - 1])
+    }
+    
+    
     // 平，闫年判定
     func getIsLeapBy(_ year:Int) -> Bool {
         return (year % 4 == 0 && year % 100 != 0) || year % 400 == 0
