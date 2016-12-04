@@ -119,6 +119,20 @@ class CalendarConstant{
     static let THE_RAINS           = 22   // 雨水
     static let INSECTS_AWAKEN      = 23   // 惊蛰
     
+    // 农历节日字典表
+    static let lunarHolidaysDict:[String:String] = [
+        "1-1": "春节",
+        "1-15": "元宵节",
+        "2-2": "龙头节",
+        "5-5": "端午节",
+        "7-7": "七夕节",
+        "7-15": "鬼节",
+        "8-15": "中秋节",
+        "9-9": "重阳节",
+        "12-8": "腊八节",
+        "12-23": "小年",
+        "1-0": "除夕"
+    ]
     
     // 公历节日字典表
     static let georiHolidaysDict:[String:String] = [

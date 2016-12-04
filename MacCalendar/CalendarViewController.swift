@@ -32,6 +32,7 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
 
     @IBOutlet weak var lunarDateLabel: NSTextField!
     @IBOutlet weak var lunarYearLabel: NSTextField!
+    @IBOutlet weak var holidayLabel: NSTextField!
     
     // 日历类实例
     private var mCalendar: LunarCalendarUtils = LunarCalendarUtils()
@@ -264,14 +265,16 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
     }
     
     // 显示日历面板右侧详情
-    func showRightDetailInfo(){
+    func showRightDetailInfo() {
         // 获取每月第一天是周几
-        
         let curWeekDay = CalendarUtils.sharedInstance.getWeekDayBy(mCurYear, month: mCurMonth, day: mCurDay)
         dateDetailLabel.stringValue = String(mCurYear) + "年" + String(mCurMonth) + "月" + String(mCurDay) + "日 星期" + CalendarConstant.WEEK_NAME_OF_CHINESE[curWeekDay]
         dayLabel.stringValue = String(mCurDay)
         
+        // 右侧家历详情
         showLunar()
+        // 显示假日信息
+        showHolidayInfo()
     }
     
     
@@ -308,7 +311,7 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
         CalendarUtils.sharedInstance.calculateStemsBranches(year: (mCurMonth >= sbMonth) ? year : year - 1, stems: &stems, branches: &branches)
         
         // 当前的农历年份
-        let lunarStr = "农历 \(CalendarConstant.HEAVENLY_STEMS_NAME[stems - 1])\(CalendarConstant.EARTHY_BRANCHES_NAME[branches - 1])【\(CalendarConstant.CHINESE_ZODIC_NAME[branches - 1])】年"
+        let lunarStr = "\(CalendarConstant.HEAVENLY_STEMS_NAME[stems - 1])\(CalendarConstant.EARTHY_BRANCHES_NAME[branches - 1])【\(CalendarConstant.CHINESE_ZODIC_NAME[branches - 1])】年"
         lunarYearLabel.stringValue = lunarStr
         
         // 当前的农历日期
@@ -318,14 +321,19 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
         
         var lunarDayName = CalendarConstant.nameOfChnMonth[chnMonthInfo.mInfo.mname - 1] + "月"
         if chnMonthInfo.isLeapMonth() {
-                lunarDayName = CalendarConstant.LEAP_YEAR_PREFIX + lunarDayName
+            lunarDayName = CalendarConstant.LEAP_YEAR_PREFIX + lunarDayName
         }
 
         let dayName = CalendarConstant.nameOfChnDay[dayInfo.mdayNo]
 
-        lunarDateLabel.stringValue = lunarDayName + dayName
+        lunarDateLabel.stringValue = "农历 " + lunarDayName + dayName
     }
-
+    
+    // 显示节日信息
+    func showHolidayInfo(){
+        let holidayName = CalendarUtils.sharedInstance.getHolidayNameBy(month: mCurMonth, day: mCurDay)
+        holidayLabel.stringValue = holidayName
+    }
     
     
     func setCurrenMonth(month: Int) {
