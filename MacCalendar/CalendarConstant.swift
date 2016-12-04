@@ -16,6 +16,11 @@ import Foundation
 
 class CalendarConstant{
     
+    // "闰"
+    static let LEAP_YEAR_PREFIX = "闰"
+    // "月 大" "月 小"
+    static let MONTH_NAME_1 = "月 大"
+    static let MONTH_NAME_2 = "月 小"
     //
     static let NEW_MOON_CALC_COUNT = 15
     // 春节开始
@@ -115,9 +120,6 @@ class CalendarConstant{
     static let INSECTS_AWAKEN      = 23   // 惊蛰
     
     
-
-    
-    
     // 农历日显示名称
     static let nameOfChnDay:[String] = [
         "初一","初二","初三","初四","初五","初六","初七","初八","初九","初十",
@@ -125,7 +127,7 @@ class CalendarConstant{
         "廿一","廿二","廿三","廿四","廿五","廿六","廿七","廿八","廿九","三十"
     ]
     // 农历月份名称
-    static let nameOfChnMonth:[String] = ["正","二","三","四","五","六","七","八","九","十","十一","腊"]
+    static let nameOfChnMonth:[String] = ["正","二","三","四","五","六","七","八","九","十","冬","腊"]
     
     // 节气名称
     static let nameOfJieQi:[String] = [
@@ -240,17 +242,4 @@ class CalendarConstant{
     
     //已知1900年小寒时刻为1月6日2:05:00，
     static let base1900SlightColdJD = 2415025.5868055555;
-    
-   
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
 }

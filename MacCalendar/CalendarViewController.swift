@@ -13,6 +13,7 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
     
     // MARK: - Outlets define
 
+    @IBOutlet weak var calendarView: NSView!
     // 设置按钮
     @IBOutlet weak var settingBtn: NSButton!
     
@@ -183,7 +184,7 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
                     if dayInfo.st != -1 {
                         lunarDayName = CalendarConstant.nameOfJieQi[dayInfo.st]
                     } else if chnMonthInfo.isLeapMonth() {
-                        lunarDayName = "闰" + lunarDayName
+                        lunarDayName = CalendarConstant.LEAP_YEAR_PREFIX + lunarDayName
                     }
                     
                     let dayName = CalendarConstant.nameOfChnDay[dayInfo.mdayNo]
@@ -203,11 +204,11 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
                     } else if dayInfo.mdayNo == 0 {
                         let chnMonthInfo = mCalendar.getChnMonthInfo(month: dayInfo.mmonth)
                         if chnMonthInfo.isLeapMonth() {
-                            lunarDayName += "闰"
+                            lunarDayName += CalendarConstant.LEAP_YEAR_PREFIX
                         }
                         
                         lunarDayName += CalendarConstant.nameOfChnMonth[chnMonthInfo.mInfo.mname - 1]
-                        lunarDayName += (chnMonthInfo.mInfo.mdays == CalendarConstant.CHINESE_L_MONTH_DAYS) ? "月 大" : "月 小"
+                        lunarDayName += (chnMonthInfo.mInfo.mdays == CalendarConstant.CHINESE_L_MONTH_DAYS) ? CalendarConstant.MONTH_NAME_1 : CalendarConstant.MONTH_NAME_2
                     } else {
                         lunarDayName += CalendarConstant.nameOfChnDay[dayInfo.mdayNo]
                     }
@@ -234,11 +235,11 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
                 } else if dayInfo.mdayNo == 0 {
                     let chnMonthInfo = mCalendar.getChnMonthInfo(month: dayInfo.mmonth)
                     if chnMonthInfo.isLeapMonth() {
-                        lunarDayName += "闰"
+                        lunarDayName += CalendarConstant.LEAP_YEAR_PREFIX
                     }
                     
                     lunarDayName += CalendarConstant.nameOfChnMonth[chnMonthInfo.mInfo.mname - 1]
-                    lunarDayName += (chnMonthInfo.mInfo.mdays == CalendarConstant.CHINESE_L_MONTH_DAYS) ? "月 大" : "月 小"
+                    lunarDayName += (chnMonthInfo.mInfo.mdays == CalendarConstant.CHINESE_L_MONTH_DAYS) ? CalendarConstant.MONTH_NAME_1 : CalendarConstant.MONTH_NAME_2
                 } else {
                     lunarDayName += CalendarConstant.nameOfChnDay[dayInfo.mdayNo]
                 }
@@ -308,7 +309,7 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
         CalendarUtils.sharedInstance.calculateStemsBranches(year: (mCurMonth >= sbMonth) ? year : year - 1, stems: &stems, branches: &branches)
         
         // 当前的农历年份
-        let lunarStr = "农历 \(CalendarConstant.HEAVENLY_STEMS_NAME[stems - 1])\(CalendarConstant.EARTHY_BRANCHES_NAME[branches - 1])【\(CalendarConstant.CHINESE_ZODIC_NAME[branches - 1])年】"
+        let lunarStr = "农历 \(CalendarConstant.HEAVENLY_STEMS_NAME[stems - 1])\(CalendarConstant.EARTHY_BRANCHES_NAME[branches - 1])【\(CalendarConstant.CHINESE_ZODIC_NAME[branches - 1])】年"
         lunarYearLabel.stringValue = lunarStr
         
         // 当前的农历日期
@@ -318,7 +319,7 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
         
         var lunarDayName = CalendarConstant.nameOfChnMonth[chnMonthInfo.mInfo.mname - 1] + "月"
         if chnMonthInfo.isLeapMonth() {
-                lunarDayName = "闰" + lunarDayName
+                lunarDayName = CalendarConstant.LEAP_YEAR_PREFIX + lunarDayName
         }
 
         let dayName = CalendarConstant.nameOfChnDay[dayInfo.mdayNo]
