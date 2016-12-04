@@ -294,7 +294,7 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
         if let tmp = lastPressBtn {
             tmp.setBackGroundColor(bgColor: .white)
         }
-        sender.setBackGroundColor(bgColor: NSColor(colorLiteralRed: 0 / 255.0, green: 210 / 255.0, blue: 0 / 255.0, alpha: 0.4))
+        sender.setBackGroundColor(bgColor: NSColor(colorLiteralRed: 0 / 255.0, green: 210 / 255.0, blue: 0 / 255.0, alpha: 0.3))
         lastPressBtn = sender
         
         mCurDay = sender.mCurDay
