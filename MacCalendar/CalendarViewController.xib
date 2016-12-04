@@ -34,7 +34,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <customView identifier="customview" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jSz-os-SLy">
-                        <rect key="frame" x="0.0" y="-26" width="656" height="395"/>
+                        <rect key="frame" x="0.0" y="-26" width="571" height="395"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <subviews>
                             <button identifier="cell2" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KzT-eQ-ick" customClass="CalendarCellView" customModule="MacCalendar" customModuleProvider="target">
@@ -563,16 +563,16 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tsw-N6-4MJ">
-                                <rect key="frame" x="403" y="196" width="135" height="19"/>
+                                <rect key="frame" x="403" y="200" width="135" height="19"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="农历 癸已 【猴年】" id="btS-QT-NkC">
-                                    <font key="font" size="15" name=".PingFangSC-Regular"/>
+                                    <font key="font" metaFont="system" size="15"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
                             <box verticalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="Ws0-6I-xzG">
-                                <rect key="frame" x="395" y="183" width="157" height="5"/>
+                                <rect key="frame" x="395" y="186" width="157" height="5"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </box>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wJl-Ir-raC">
