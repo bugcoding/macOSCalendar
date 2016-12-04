@@ -69,6 +69,90 @@ open class CalendarUtils{
         return week
     }
     
+    // 根据当前年月日获取下个节气的序号
+    func getNextJieqiNumBy(calendar: LunarCalendarUtils, month: Int, day: Int) -> Int {
+        var next = 0
+        var count = 0
+        
+        var year = calendar.getCurrentYear()
+        
+        var dayCount = day
+        var monthCount = month
+        
+        // 循环到找到下一个节气为止
+        while true {
+            // 节气一般相差十五天左右，30天为容错，足够找到下一个节气了
+            count += 1
+            if count > 30 {
+                break
+            }
+            
+            // 当前的农历日期
+            let mi = calendar.getMonthInfo(month: monthCount)
+            let dayInfo = mi.getDayInfo(day: dayCount)
+            
+            // 当前日期就是节气
+            if dayInfo.st != -1 {
+                next = dayInfo.st
+                break
+            }
+            // 此月份天数
+            let days = getDaysBy(year: year, month: monthCount)
+            dayCount += 1
+            if dayCount > days {
+                dayCount = 1
+                monthCount += 1
+                if monthCount > 12 {
+                    year += 1
+                    monthCount = 1
+                }
+            }
+        }
+        
+        print("getNextJieqiNum = next = \(next) termName = \(CalendarConstant.nameOfJieQi[next])")
+        return next
+    }
+    
+    // 根据当前日期获取当前所属于的节令月
+    func getLunarJieqiMonthNameBy(calendar: LunarCalendarUtils, month: Int, day: Int) -> Int {
+        var jieqiMonthName = 0
+        
+        let nextJieqi = getNextJieqiNumBy(calendar: calendar, month: month, day: day)
+        
+        switch nextJieqi {
+        case 22 ... 23:
+            jieqiMonthName = 1
+        case 0 ... 1:
+            jieqiMonthName = 2
+        case 2 ... 3:
+            jieqiMonthName = 3
+        case 4 ... 5:
+            jieqiMonthName = 4
+        case 6 ... 7:
+            jieqiMonthName = 5
+        case 8 ... 9:
+            jieqiMonthName = 6
+        case 10 ... 11:
+            jieqiMonthName = 7
+        case 12 ... 13:
+            jieqiMonthName = 8
+        case 14 ... 15:
+            jieqiMonthName = 9
+        case 16 ... 17:
+            jieqiMonthName = 10
+        case 18 ... 19:
+            jieqiMonthName = 11
+        case 20 ... 21:
+            jieqiMonthName = 12
+        default:
+            jieqiMonthName = 0
+        }
+        
+        print("getLunarJieqiMonthNameBy = \(jieqiMonthName)")
+        return jieqiMonthName
+    }
+    
+    
     // 通过2000年有基准获取某一农历年的干支
     func getLunarYearNameBy(_ year:Int) -> (heaven:String, earthy:String, zodiac:String){
         let baseMinus:Int = year - 2000
@@ -84,6 +168,25 @@ open class CalendarUtils{
         }
         
         return (CalendarConstant.HEAVENLY_STEMS_NAME[heavenly - 1], CalendarConstant.EARTHY_BRANCHES_NAME[earth - 1], CalendarConstant.CHINESE_ZODIC_NAME[earth - 1])
+    }
+    
+    // 根据年，月，获取月干支
+    func getLunarMonthNameBy(calendar: LunarCalendarUtils, month: Int, day: Int) -> (heaven: String, earthy: String) {
+        
+        let year = calendar.getCurrentYear()
+        let baseMinus:Int = year - 2000
+        var heavenly = (7 + baseMinus) % 10
+        
+        let curJieqiMonth = CalendarUtils.sharedInstance.getLunarJieqiMonthNameBy(calendar: calendar, month: month, day: day)
+        if heavenly <= 0 {
+            heavenly += 10
+        }
+        var monthHeavenly = ((heavenly * 2) + curJieqiMonth) % 10
+        if monthHeavenly <= 0 {
+            monthHeavenly = 10
+        }
+        
+        return (CalendarConstant.HEAVENLY_STEMS_NAME[monthHeavenly - 1], CalendarConstant.EARTHY_MONTH_NAME[curJieqiMonth - 1])
     }
     
     // 平，闫年判定

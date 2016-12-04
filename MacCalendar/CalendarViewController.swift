@@ -308,11 +308,18 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
         var stems: Int = 0, branches: Int = 0, sbMonth:Int = 0, sbDay:Int = 0
         let year = mCalendar.getCurrentYear()
         mCalendar.getSpringBeginDay(month: &sbMonth, day: &sbDay)
-        CalendarUtils.sharedInstance.calculateStemsBranches(year: (mCurMonth >= sbMonth) ? year : year - 1, stems: &stems, branches: &branches)
+        let util = CalendarUtils.sharedInstance
+        util.calculateStemsBranches(year: (mCurMonth >= sbMonth) ? year : year - 1, stems: &stems, branches: &branches)
+        
+        
+        util.getNextJieqiNumBy(calendar: mCalendar, month: mCurMonth, day: mCurDay)
+        
+        
+        let monthHeavenEarthy = util.getLunarMonthNameBy(calendar: mCalendar, month: mCurMonth, day: mCurDay)
         
         // 当前的农历年份
-        let lunarStr = "\(CalendarConstant.HEAVENLY_STEMS_NAME[stems - 1])\(CalendarConstant.EARTHY_BRANCHES_NAME[branches - 1])【\(CalendarConstant.CHINESE_ZODIC_NAME[branches - 1])】年"
-        lunarYearLabel.stringValue = lunarStr
+        let lunarStr = "【\(CalendarConstant.CHINESE_ZODIC_NAME[branches - 1])】\(CalendarConstant.HEAVENLY_STEMS_NAME[stems - 1])\(CalendarConstant.EARTHY_BRANCHES_NAME[branches - 1])年"
+        lunarYearLabel.stringValue = lunarStr + monthHeavenEarthy.heaven + monthHeavenEarthy.earthy + "月"
         
         // 当前的农历日期
         let mi = mCalendar.getMonthInfo(month: mCurMonth)
