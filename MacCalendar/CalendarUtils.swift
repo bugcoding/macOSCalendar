@@ -36,6 +36,17 @@ open class CalendarUtils{
         var second:Double = 0
     }
     
+    // 获取公历假日名称，如果不是假日返回空字符串
+    func getHolidayNameBy(month: Int, day: Int) -> String {
+        let combineStr = String(month) + "-" + String(day)
+        
+        if let holidayName = CalendarConstant.georiHolidaysDict[combineStr] {
+            print("name  = \(holidayName)")
+            return holidayName
+        } else {
+            return ""
+        }
+    }
     
     // 蔡勒公式算公历某天的星期
     func getWeekDayBy(_ year:Int, month m:Int, day d:Int) -> Int {

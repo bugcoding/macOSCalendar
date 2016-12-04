@@ -12,8 +12,7 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
     
     
     // MARK: - Outlets define
-
-    @IBOutlet weak var calendarView: NSView!
+    
     // 设置按钮
     @IBOutlet weak var settingBtn: NSButton!
     
@@ -35,15 +34,15 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
     @IBOutlet weak var lunarYearLabel: NSTextField!
     
     // 日历类实例
-    var mCalendar: LunarCalendarUtils = LunarCalendarUtils()
-    var mCurMonth: Int = 0
-    var mCurDay: Int = 0
-    var mCurYear: Int = 0
+    private var mCalendar: LunarCalendarUtils = LunarCalendarUtils()
+    private var mCurMonth: Int = 0
+    private var mCurDay: Int = 0
+    private var mCurYear: Int = 0
     // 每个显示日期的单元格
-    var cellBtns = [CalendarCellView]()
-    var lastRowNum:Int = 0
+    private var cellBtns = [CalendarCellView]()
+    private var lastRowNum:Int = 0
     
-    var lastPressBtn: CalendarCellView?
+    private var lastPressBtn: CalendarCellView?
     
     override var windowNibName: String?{
         return "CalendarViewController"
@@ -190,7 +189,7 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
                     let dayName = CalendarConstant.nameOfChnDay[dayInfo.mdayNo]
 
                     
-                    btn.setString(geriDay: day, topColor: .black, bottomText: dayName, bottomColor: NSColor(colorLiteralRed: 0, green: 0, blue: 0, alpha: 1))
+                    btn.setString(geriMonth: mCurMonth, geriDay: day, topColor: .black, bottomText: dayName, bottomColor: NSColor(colorLiteralRed: 0, green: 0, blue: 0, alpha: 1))
                 }else {
                     let day = index - monthDays - weekDayOf1stDay + 1
                     // 当前的农历日期
@@ -214,7 +213,7 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
                     }
 
                     
-                    btn.setString(geriDay: day, topColor: .black, bottomText: lunarDayName, bottomColor: NSColor(colorLiteralRed: 0, green: 0, blue: 0, alpha: 1))
+                    btn.setString(geriMonth: mCurMonth, geriDay: day, topColor: .black, bottomText: lunarDayName, bottomColor: NSColor(colorLiteralRed: 0, green: 0, blue: 0, alpha: 1))
                 }
                 
             } else {
@@ -251,12 +250,12 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
                 }
 
                 
-                btn.setString(geriDay: day, topColor: .black, bottomText: lunarDayName, bottomColor: NSColor(colorLiteralRed: 0, green: 0, blue: 0, alpha: 1))
+                btn.setString(geriMonth: mCurMonth, geriDay: day, topColor: .black, bottomText: lunarDayName, bottomColor: NSColor(colorLiteralRed: 0, green: 0, blue: 0, alpha: 1))
                 
                 
                 // 处理周六日的日期颜色
                 if index % 7 == 6 || index % 7 == 0 {
-                    btn.setString(geriDay: day, topColor: .red, bottomText: lunarDayName, bottomColor: .red)
+                    btn.setString(geriMonth: mCurMonth, geriDay: day, topColor: .red, bottomText: lunarDayName, bottomColor: .red)
                 }
             }
             
@@ -349,7 +348,6 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
         let date = CalendarUtils.sharedInstance.getDateStringOfToday()
         let dateTupple = CalendarUtils.sharedInstance.getYMDTuppleBy(date)
         mCurDay = dateTupple.day
-        
         mCurYear = dateTupple.year
         
         if mCalendar.setGeriYear(year: mCurYear) {

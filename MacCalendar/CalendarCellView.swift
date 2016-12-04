@@ -29,20 +29,26 @@ class CalendarCellView : NSButton{
     }
     
     // 显示具体的农历和公历，设置具体button的标题属性
-    func setString(geriDay: Int, topColor: NSColor, bottomText: String, bottomColor: NSColor) {
+    func setString(geriMonth: Int, geriDay: Int, topColor: NSColor, bottomText: String, bottomColor: NSColor) {
         
         mCurDay = geriDay
+        
         // 居中样式
         let style = NSMutableParagraphStyle()
         style.alignment = .center
         
         let topText = String(geriDay) + "\n"
+        var holidayText = bottomText
+        let holidayName = CalendarUtils.sharedInstance.getHolidayNameBy(month: geriMonth, day: geriDay)
+        if holidayName != "" && holidayName.characters.count <= 4 {
+            holidayText = holidayName
+        }
 
         let goriDayDict = [NSForegroundColorAttributeName : topColor, NSParagraphStyleAttributeName : style, NSFontAttributeName : NSFont.systemFont(ofSize: 18.0)]
         let lunarDayDict = [NSForegroundColorAttributeName : bottomColor, NSParagraphStyleAttributeName : style, NSFontAttributeName : NSFont.systemFont(ofSize: 9.0)]
         
         let goriAttrDay = NSAttributedString(string: (topText as NSString).substring(with: NSMakeRange(0, topText.characters.count)), attributes: goriDayDict)
-        let lunarAttrDay = NSAttributedString(string: (bottomText as NSString).substring(with: NSMakeRange(0, bottomText.characters.count)), attributes: lunarDayDict)
+        let lunarAttrDay = NSAttributedString(string: (holidayText as NSString).substring(with: NSMakeRange(0, holidayText.characters.count)), attributes: lunarDayDict)
 
         let finalAttr = NSMutableAttributedString(attributedString: goriAttrDay)
         finalAttr.append(lunarAttrDay)
