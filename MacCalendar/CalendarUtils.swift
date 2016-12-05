@@ -36,6 +36,17 @@ open class CalendarUtils{
         var second:Double = 0
     }
     
+    // 根据农历月与农历日获取农历节日名称，没有返回空字符串
+    func getLunarFestivalNameBy(month: Int, day: Int) -> String {
+        let combineStr = String(month) + "-" + String(day)
+        if let festivalName = CalendarConstant.lunarHolidaysDict[combineStr] {
+            return festivalName
+        } else {
+            return ""
+        }
+    }
+    
+    
     // 获取公历假日名称，如果不是假日返回空字符串
     func getHolidayNameBy(month: Int, day: Int) -> String {
         let combineStr = String(month) + "-" + String(day)

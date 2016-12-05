@@ -124,6 +124,26 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
         return false
     }
     
+    func getLunarDayName(dayInfo: DAY_INFO) -> String {
+        var lunarDayName = ""
+
+        if dayInfo.st != -1 {
+            lunarDayName = CalendarConstant.nameOfJieQi[dayInfo.st]
+        } else if dayInfo.mdayNo == 0 {
+            let chnMonthInfo = mCalendar.getChnMonthInfo(month: dayInfo.mmonth)
+            if chnMonthInfo.isLeapMonth() {
+                lunarDayName += CalendarConstant.LEAP_YEAR_PREFIX
+            }
+            
+            lunarDayName += CalendarConstant.nameOfChnMonth[chnMonthInfo.mInfo.mname - 1]
+            lunarDayName += (chnMonthInfo.mInfo.mdays == CalendarConstant.CHINESE_L_MONTH_DAYS) ? CalendarConstant.MONTH_NAME_1 : CalendarConstant.MONTH_NAME_2
+        } else {
+            lunarDayName += CalendarConstant.nameOfChnDay[dayInfo.mdayNo]
+        }
+        
+        return lunarDayName
+    }
+    
     
     func showMonthPanel() {
         
@@ -178,43 +198,20 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
                     // 当前的农历日期
                     let mi = mCalendar.getMonthInfo(month: mCurMonth - 1)
                     let dayInfo = mi.getDayInfo(day: day)
-                    let chnMonthInfo = mCalendar.getChnMonthInfo(month: dayInfo.mmonth)
                     
-                    var lunarDayName = CalendarConstant.nameOfChnMonth[chnMonthInfo.mInfo.mname - 1] + "月"
-                    if dayInfo.st != -1 {
-                        lunarDayName = CalendarConstant.nameOfJieQi[dayInfo.st]
-                    } else if chnMonthInfo.isLeapMonth() {
-                        lunarDayName = CalendarConstant.LEAP_YEAR_PREFIX + lunarDayName
-                    }
+                    let dayName = getLunarDayName(dayInfo: dayInfo)
                     
-                    let dayName = CalendarConstant.nameOfChnDay[dayInfo.mdayNo]
-
-                    
-                    btn.setString(geriMonth: mCurMonth, geriDay: day, topColor: .black, bottomText: dayName, bottomColor: NSColor(colorLiteralRed: 0, green: 0, blue: 0, alpha: 1))
-                }else {
+                    btn.setString(geriMonth: mCurMonth - 1, geriDay: day, topColor: .black, dayInfo: dayInfo, bottomText: dayName, bottomColor: NSColor(colorLiteralRed: 0, green: 0, blue: 0, alpha: 1))
+                } else {
                     let day = index - monthDays - weekDayOf1stDay + 1
                     // 当前的农历日期
                     let mi = mCalendar.getMonthInfo(month: mCurMonth + 1)
                     let dayInfo = mi.getDayInfo(day: day)
                     
-                    var lunarDayName = ""
-                    
-                    if dayInfo.st != -1 {
-                        lunarDayName = CalendarConstant.nameOfJieQi[dayInfo.st]
-                    } else if dayInfo.mdayNo == 0 {
-                        let chnMonthInfo = mCalendar.getChnMonthInfo(month: dayInfo.mmonth)
-                        if chnMonthInfo.isLeapMonth() {
-                            lunarDayName += CalendarConstant.LEAP_YEAR_PREFIX
-                        }
-                        
-                        lunarDayName += CalendarConstant.nameOfChnMonth[chnMonthInfo.mInfo.mname - 1]
-                        lunarDayName += (chnMonthInfo.mInfo.mdays == CalendarConstant.CHINESE_L_MONTH_DAYS) ? CalendarConstant.MONTH_NAME_1 : CalendarConstant.MONTH_NAME_2
-                    } else {
-                        lunarDayName += CalendarConstant.nameOfChnDay[dayInfo.mdayNo]
-                    }
+                    let dayName = getLunarDayName(dayInfo: dayInfo)
 
                     
-                    btn.setString(geriMonth: mCurMonth, geriDay: day, topColor: .black, bottomText: lunarDayName, bottomColor: NSColor(colorLiteralRed: 0, green: 0, blue: 0, alpha: 1))
+                    btn.setString(geriMonth: mCurMonth + 1, geriDay: day, topColor: .black, dayInfo: dayInfo, bottomText: dayName, bottomColor: NSColor(colorLiteralRed: 0, green: 0, blue: 0, alpha: 1))
                 }
                 
             } else {
@@ -227,22 +224,8 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
                 //btn.title = "\(index - weekDayOf1stDay + 1)"
                 
                 let dayInfo = mi.getDayInfo(day: day)
-                var lunarDayName = ""
-                
-                
-                if dayInfo.st != -1 {
-                    lunarDayName = CalendarConstant.nameOfJieQi[dayInfo.st]
-                } else if dayInfo.mdayNo == 0 {
-                    let chnMonthInfo = mCalendar.getChnMonthInfo(month: dayInfo.mmonth)
-                    if chnMonthInfo.isLeapMonth() {
-                        lunarDayName += CalendarConstant.LEAP_YEAR_PREFIX
-                    }
-                    
-                    lunarDayName += CalendarConstant.nameOfChnMonth[chnMonthInfo.mInfo.mname - 1]
-                    lunarDayName += (chnMonthInfo.mInfo.mdays == CalendarConstant.CHINESE_L_MONTH_DAYS) ? CalendarConstant.MONTH_NAME_1 : CalendarConstant.MONTH_NAME_2
-                } else {
-                    lunarDayName += CalendarConstant.nameOfChnDay[dayInfo.mdayNo]
-                }
+                let dayName = getLunarDayName(dayInfo: dayInfo)
+
                 
                 let today = utils.getYMDTuppleBy(utils.getDateStringOfToday())
                 if today.day == day && today.month == mCurMonth && today.year == mCurYear {
@@ -251,12 +234,12 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
                 }
 
                 
-                btn.setString(geriMonth: mCurMonth, geriDay: day, topColor: .black, bottomText: lunarDayName, bottomColor: NSColor(colorLiteralRed: 0, green: 0, blue: 0, alpha: 1))
+                btn.setString(geriMonth: mCurMonth, geriDay: day, topColor: .black, dayInfo: dayInfo, bottomText: dayName, bottomColor: NSColor(colorLiteralRed: 0, green: 0, blue: 0, alpha: 1))
                 
                 
                 // 处理周六日的日期颜色
                 if index % 7 == 6 || index % 7 == 0 {
-                    btn.setString(geriMonth: mCurMonth, geriDay: day, topColor: .red, bottomText: lunarDayName, bottomColor: .red)
+                    btn.setString(geriMonth: mCurMonth, geriDay: day, topColor: .red, dayInfo: dayInfo, bottomText: dayName, bottomColor: .red)
                 }
             }
             
