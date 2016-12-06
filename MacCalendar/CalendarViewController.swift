@@ -325,6 +325,20 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
     func showHolidayInfo(){
         let holidayName = CalendarUtils.sharedInstance.getHolidayNameBy(month: mCurMonth, day: mCurDay)
         holidayLabel.stringValue = holidayName
+        
+        //农历节日
+        let mi = mCalendar.getMonthInfo(month: mCurMonth)
+        let dayInfo = mi.getDayInfo(day: mCurDay)
+        let chnMonthInfo = mCalendar.getChnMonthInfo(month: dayInfo.mmonth)
+        
+        let festivalName = CalendarUtils.sharedInstance.getLunarFestivalNameBy(month: chnMonthInfo.mInfo.mname, day: dayInfo.mdayNo + 1)
+        
+        var jieQiName = ""
+        if dayInfo.st != -1 {
+            jieQiName = CalendarConstant.nameOfJieQi[dayInfo.st]
+        }
+        
+        holidayLabel.stringValue = jieQiName + " " + festivalName + " " + holidayName
     }
     
     
