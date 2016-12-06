@@ -29,10 +29,12 @@ class CalendarCellView : NSButton{
     }
     
     // 显示具体的农历和公历，设置具体button的标题属性
-    func setString(geriMonth: Int, geriDay: Int, topColor: NSColor, dayInfo: DAY_INFO, bottomText: String, bottomColor: NSColor) {
+    func setString(geriMonth: Int, geriDay: Int, topColor: NSColor, monthInfo: MonthInfo, chmInfo: ChnMonthInfo, bottomText: String, bottomColor: NSColor) {
         
         mCurDay = geriDay
         
+        let dayInfo = monthInfo.getDayInfo(day: geriDay)
+        Swift.print("setString geriMonth = \(geriMonth) geriDay = \(geriDay) dayInfo = \(dayInfo.mmonth) \(dayInfo.mdayNo)")
         // 居中样式
         let style = NSMutableParagraphStyle()
         style.alignment = .center
@@ -47,7 +49,7 @@ class CalendarCellView : NSButton{
         }
         
         // 如果有农历节日，优先显示农历节日
-        let festivalName = CalendarUtils.sharedInstance.getLunarFestivalNameBy(month: dayInfo.mmonth - 1, day: dayInfo.mdayNo + 1)
+        let festivalName = CalendarUtils.sharedInstance.getLunarFestivalNameBy(month: chmInfo.mInfo.mname, day: dayInfo.mdayNo + 1)
         if festivalName != "" {
             holidayText = festivalName
         }
