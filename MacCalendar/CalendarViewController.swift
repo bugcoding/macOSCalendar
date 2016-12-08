@@ -102,7 +102,7 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
             
             // identifier 已定义在xib中
             if control.identifier == "monthField" {
-                print("month = \(inputStr)")
+                //print("month = \(inputStr)")
                 let monthNum = Int(inputStr)!
                 if monthNum < 1 || monthNum > 12 {
                     // TODO: 提示
@@ -111,7 +111,7 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
                 setDate(year: mCurYear, month: monthNum)
                 
             } else if control.identifier == "yearField" {
-                print("year = \(textView.string!)")
+                //print("year = \(textView.string!)")
                 let yearNum = Int(inputStr)!
                 
                 if yearNum < CalendarConstant.GREGORIAN_CALENDAR_OPEN_YEAR || yearNum > 10000 {
@@ -178,7 +178,7 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
         let weekDayOfLastDay = dayInfo.week
 
         
-        print("dateString = \(year)-\(month) weekOf1stDay = \(weekDayOf1stDay) weekOfLastDay = \(weekDayOfLastDay) monthDays = \(monthDays) ")
+        //print("dateString = \(year)-\(month) weekOf1stDay = \(weekDayOf1stDay) weekOfLastDay = \(weekDayOfLastDay) monthDays = \(monthDays) ")
         
         // 把空余不的cell行不显示，非本月天置灰
         for (index, btn) in cellBtns.enumerated() {
@@ -203,7 +203,7 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
                     var calendar = mCalendar
                     if lastMonth < 1 {
                         lastMonth = 12
-                        //calendar = mPreCalendar
+                        calendar = mPreCalendar
                     }
 
                     let dayName = getMaxPriorityHolidayBy(month: lastMonth, day: day, cal: calendar)
@@ -216,7 +216,7 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
                     var calendar = mCalendar
                     if nextMonth > 12 {
                         nextMonth = 1
-                        //calendar = mNextCalendar
+                        calendar = mNextCalendar
                     }
                     let dayName = getMaxPriorityHolidayBy(month: nextMonth, day: day, cal: calendar)
 
@@ -422,7 +422,7 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
         }
         
         for (index, btn) in cellBtns.enumerated() {
-            print("cellbtns index = \(index) btn.action = \(btn.action) btn.intValue = \(btn.mCellID)")
+            //print("cellbtns index = \(index) btn.action = \(btn.action) btn.intValue = \(btn.mCellID)")
         }
         
         // 加载完窗口显示默认

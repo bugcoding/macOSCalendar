@@ -40,9 +40,9 @@ open class CalendarUtils{
     // 根据农历月与农历日获取农历节日名称，没有返回空字符串
     func getLunarFestivalNameBy(month: Int, day: Int) -> String {
         let combineStr = String(month) + "-" + String(day)
-        print("combineStr = \(combineStr)")
+        ////print("combineStr = \(combineStr)")
         if let festivalName = CalendarConstant.lunarHolidaysDict[combineStr] {
-            print("getLunarFestivalNameBy = \(festivalName)")
+            //print("getLunarFestivalNameBy = \(festivalName)")
             return festivalName
         } else {
             return ""
@@ -55,7 +55,7 @@ open class CalendarUtils{
         let combineStr = String(month) + "-" + String(day)
         
         if let holidayName = CalendarConstant.georiHolidaysDict[combineStr] {
-            print("name  = \(holidayName)")
+            //print("name  = \(holidayName)")
             return holidayName
         } else {
             return ""
@@ -123,7 +123,7 @@ open class CalendarUtils{
             }
         }
         
-        print("getNextJieqiNum = next = \(next) termName = \(CalendarConstant.nameOfJieQi[next])")
+        //print("getNextJieqiNum = next = \(next) termName = \(CalendarConstant.nameOfJieQi[next])")
         return next
     }
     
@@ -162,7 +162,7 @@ open class CalendarUtils{
             jieqiMonthName = 0
         }
         
-        print("getLunarJieqiMonthNameBy = \(jieqiMonthName)")
+        //print("getLunarJieqiMonthNameBy = \(jieqiMonthName)")
         return jieqiMonthName
     }
     
@@ -927,7 +927,7 @@ open class CalendarUtils{
             stDegreep = (getSunEclipticLongitudeEC(jde: Double(JD0) + 0.000005) - getSunEclipticLongitudeEC(jde: Double(JD0) - 0.000005)) / 0.00001
             JD1 = JD0 - (stDegree - Double(angle)) / stDegreep
             
-            print("getInitialEstimateSolarTerms JD1-JD0 = \(JD1 - JD0)")
+            //print("getInitialEstimateSolarTerms JD1-JD0 = \(JD1 - JD0)")
         }while((fabs(JD1 - JD0) > 0.0000001))
     
         return JD1
@@ -966,7 +966,7 @@ open class CalendarUtils{
             stDegreep = (getMoonEclipticLongitudeEC(dbJD: JD0 + 0.000005) - getSunEclipticLongitudeEC(jde: JD0 + 0.000005) - getMoonEclipticLongitudeEC(dbJD: JD0 - 0.000005) + getSunEclipticLongitudeEC(jde: JD0 - 0.000005)) / 0.00001
             JD1 = JD0 - stDegree / stDegreep
             
-            print("calculateMoonShuoJD JD1 - JD0 = \(JD1 - JD0)")
+            //print("calculateMoonShuoJD JD1 - JD0 = \(JD1 - JD0)")
         }while((fabs(JD1 - JD0) > 0.00000001))
         
         return JD1
