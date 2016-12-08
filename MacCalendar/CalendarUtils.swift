@@ -24,6 +24,7 @@ open class CalendarUtils{
     fileprivate init(){
         
     }
+
     
     // 每天的时间结构
     struct WZDayTime{
@@ -35,6 +36,19 @@ open class CalendarUtils{
         var minute:Int = 0
         var second:Double = 0
     }
+    
+    // 根据农历月与农历日获取农历节日名称，没有返回空字符串
+    func getLunarFestivalNameBy(month: Int, day: Int) -> String {
+        let combineStr = String(month) + "-" + String(day)
+        print("combineStr = \(combineStr)")
+        if let festivalName = CalendarConstant.lunarHolidaysDict[combineStr] {
+            print("getLunarFestivalNameBy = \(festivalName)")
+            return festivalName
+        } else {
+            return ""
+        }
+    }
+    
     
     // 获取公历假日名称，如果不是假日返回空字符串
     func getHolidayNameBy(month: Int, day: Int) -> String {
@@ -964,10 +978,10 @@ open class CalendarUtils{
         stems = (7 + sc) % 10
         branches = (5 + sc) % 12
     
-        if stems < 0 {
+        if stems <= 0 {
             stems += 10
         }
-        if branches < 0 {
+        if branches <= 0 {
             branches += 12
         }
     }

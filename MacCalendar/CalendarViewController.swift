@@ -36,6 +36,9 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
     
     // 日历类实例
     private var mCalendar: LunarCalendarUtils = LunarCalendarUtils()
+    private var mPreCalendar: LunarCalendarUtils = LunarCalendarUtils()
+    private var mNextCalendar: LunarCalendarUtils = LunarCalendarUtils()
+
     private var mCurMonth: Int = 0
     private var mCurDay: Int = 0
     private var mCurYear: Int = 0
@@ -124,6 +127,26 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
         return false
     }
     
+    func getLunarDayName(dayInfo: DAY_INFO, cal: LunarCalendarUtils) -> String {
+        var lunarDayName = ""
+
+        if dayInfo.st != -1 {
+            lunarDayName = CalendarConstant.nameOfJieQi[dayInfo.st]
+        } else if dayInfo.mdayNo == 0 {
+            let chnMonthInfo = cal.getChnMonthInfo(month: dayInfo.mmonth)
+            if chnMonthInfo.isLeapMonth() {
+                lunarDayName += CalendarConstant.LEAP_YEAR_PREFIX
+            }
+            
+            lunarDayName += CalendarConstant.nameOfChnMonth[chnMonthInfo.mInfo.mname - 1]
+            lunarDayName += (chnMonthInfo.mInfo.mdays == CalendarConstant.CHINESE_L_MONTH_DAYS) ? CalendarConstant.MONTH_NAME_1 : CalendarConstant.MONTH_NAME_2
+        } else {
+            lunarDayName += CalendarConstant.nameOfChnDay[dayInfo.mdayNo]
+        }
+        
+        return lunarDayName
+    }
+    
     
     func showMonthPanel() {
         
@@ -167,7 +190,8 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
                 let curRowNum = Int((btn.mCellID - 1) / 7) + 1
                 // 最后一行空出来
                 if index >= monthDays + weekDayOf1stDay && curRowNum > lastRowNum {
-                    btn.isHidden = true
+                    btn.isHidden = false
+                    btn.isEnabled = false
                 }else{
                     btn.isEnabled = false
                 }
@@ -175,46 +199,28 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
                 if index < weekDayOf1stDay {
                     
                     let day = lastMonthDays - weekDayOf1stDay + index + 1
-                    // 当前的农历日期
-                    let mi = mCalendar.getMonthInfo(month: mCurMonth - 1)
-                    let dayInfo = mi.getDayInfo(day: day)
-                    let chnMonthInfo = mCalendar.getChnMonthInfo(month: dayInfo.mmonth)
-                    
-                    var lunarDayName = CalendarConstant.nameOfChnMonth[chnMonthInfo.mInfo.mname - 1] + "月"
-                    if dayInfo.st != -1 {
-                        lunarDayName = CalendarConstant.nameOfJieQi[dayInfo.st]
-                    } else if chnMonthInfo.isLeapMonth() {
-                        lunarDayName = CalendarConstant.LEAP_YEAR_PREFIX + lunarDayName
+                    var lastMonth = mCurMonth - 1
+                    var calendar = mCalendar
+                    if lastMonth < 1 {
+                        lastMonth = 12
+                        //calendar = mPreCalendar
                     }
-                    
-                    let dayName = CalendarConstant.nameOfChnDay[dayInfo.mdayNo]
 
+                    let dayName = getMaxPriorityHolidayBy(month: lastMonth, day: day, cal: calendar)
                     
-                    btn.setString(geriMonth: mCurMonth, geriDay: day, topColor: .black, bottomText: dayName, bottomColor: NSColor(colorLiteralRed: 0, green: 0, blue: 0, alpha: 1))
-                }else {
+                    btn.setString(geriDay: day, topColor: .black, bottomText: dayName, bottomColor: NSColor(colorLiteralRed: 0, green: 0, blue: 0, alpha: 1))
+                } else {
                     let day = index - monthDays - weekDayOf1stDay + 1
-                    // 当前的农历日期
-                    let mi = mCalendar.getMonthInfo(month: mCurMonth + 1)
-                    let dayInfo = mi.getDayInfo(day: day)
                     
-                    var lunarDayName = ""
-                    
-                    if dayInfo.st != -1 {
-                        lunarDayName = CalendarConstant.nameOfJieQi[dayInfo.st]
-                    } else if dayInfo.mdayNo == 0 {
-                        let chnMonthInfo = mCalendar.getChnMonthInfo(month: dayInfo.mmonth)
-                        if chnMonthInfo.isLeapMonth() {
-                            lunarDayName += CalendarConstant.LEAP_YEAR_PREFIX
-                        }
-                        
-                        lunarDayName += CalendarConstant.nameOfChnMonth[chnMonthInfo.mInfo.mname - 1]
-                        lunarDayName += (chnMonthInfo.mInfo.mdays == CalendarConstant.CHINESE_L_MONTH_DAYS) ? CalendarConstant.MONTH_NAME_1 : CalendarConstant.MONTH_NAME_2
-                    } else {
-                        lunarDayName += CalendarConstant.nameOfChnDay[dayInfo.mdayNo]
+                    var nextMonth = mCurMonth + 1
+                    var calendar = mCalendar
+                    if nextMonth > 12 {
+                        nextMonth = 1
+                        //calendar = mNextCalendar
                     }
+                    let dayName = getMaxPriorityHolidayBy(month: nextMonth, day: day, cal: calendar)
 
-                    
-                    btn.setString(geriMonth: mCurMonth, geriDay: day, topColor: .black, bottomText: lunarDayName, bottomColor: NSColor(colorLiteralRed: 0, green: 0, blue: 0, alpha: 1))
+                    btn.setString(geriDay: day, topColor: .black, bottomText: dayName, bottomColor: NSColor(colorLiteralRed: 0, green: 0, blue: 0, alpha: 1))
                 }
                 
             } else {
@@ -226,23 +232,8 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
                 let day = index - weekDayOf1stDay + 1
                 //btn.title = "\(index - weekDayOf1stDay + 1)"
                 
-                let dayInfo = mi.getDayInfo(day: day)
-                var lunarDayName = ""
-                
-                
-                if dayInfo.st != -1 {
-                    lunarDayName = CalendarConstant.nameOfJieQi[dayInfo.st]
-                } else if dayInfo.mdayNo == 0 {
-                    let chnMonthInfo = mCalendar.getChnMonthInfo(month: dayInfo.mmonth)
-                    if chnMonthInfo.isLeapMonth() {
-                        lunarDayName += CalendarConstant.LEAP_YEAR_PREFIX
-                    }
-                    
-                    lunarDayName += CalendarConstant.nameOfChnMonth[chnMonthInfo.mInfo.mname - 1]
-                    lunarDayName += (chnMonthInfo.mInfo.mdays == CalendarConstant.CHINESE_L_MONTH_DAYS) ? CalendarConstant.MONTH_NAME_1 : CalendarConstant.MONTH_NAME_2
-                } else {
-                    lunarDayName += CalendarConstant.nameOfChnDay[dayInfo.mdayNo]
-                }
+
+                let dayName = getMaxPriorityHolidayBy(month: mCurMonth, day: day, cal: mCalendar)
                 
                 let today = utils.getYMDTuppleBy(utils.getDateStringOfToday())
                 if today.day == day && today.month == mCurMonth && today.year == mCurYear {
@@ -250,13 +241,11 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
                     lastPressBtn = btn
                 }
 
-                
-                btn.setString(geriMonth: mCurMonth, geriDay: day, topColor: .black, bottomText: lunarDayName, bottomColor: NSColor(colorLiteralRed: 0, green: 0, blue: 0, alpha: 1))
-                
+                btn.setString(geriDay: day, topColor: .black, bottomText: dayName, bottomColor: NSColor(colorLiteralRed: 0, green: 0, blue: 0, alpha: 1))
                 
                 // 处理周六日的日期颜色
                 if index % 7 == 6 || index % 7 == 0 {
-                    btn.setString(geriMonth: mCurMonth, geriDay: day, topColor: .red, bottomText: lunarDayName, bottomColor: .red)
+                    btn.setString(geriDay: day, topColor: .red, bottomText: dayName, bottomColor: .red)
                 }
             }
             
@@ -290,7 +279,6 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
     
     
     func dateButtonHandler(_ sender:CalendarCellView){
-        print("Press Button is \(sender.identifier)")
         
         // 245	173	108 浅绿色
         if let tmp = lastPressBtn {
@@ -339,7 +327,48 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
     func showHolidayInfo(){
         let holidayName = CalendarUtils.sharedInstance.getHolidayNameBy(month: mCurMonth, day: mCurDay)
         holidayLabel.stringValue = holidayName
+        
+        //农历节日
+        let mi = mCalendar.getMonthInfo(month: mCurMonth)
+        let dayInfo = mi.getDayInfo(day: mCurDay)
+        let chnMonthInfo = mCalendar.getChnMonthInfo(month: dayInfo.mmonth)
+        
+        let festivalName = CalendarUtils.sharedInstance.getLunarFestivalNameBy(month: chnMonthInfo.mInfo.mname, day: dayInfo.mdayNo + 1)
+        
+        var jieQiName = ""
+        if dayInfo.st != -1 {
+            jieQiName = CalendarConstant.nameOfJieQi[dayInfo.st]
+        }
+        
+        holidayLabel.stringValue = jieQiName + " " + festivalName + " " + holidayName
     }
+    
+    // 获取当前日期的节日信息并返回优先在cell中显示的节日信息
+    func getMaxPriorityHolidayBy(month: Int, day: Int, cal: LunarCalendarUtils) -> String {
+        var maxPriorityHolidayName = ""
+        // 依次是 农历日期/节气，公历节日，农历节日
+        let mi = cal.getMonthInfo(month: month)
+        let dayInfo = mi.getDayInfo(day: day)
+        let chnMonthInfo = cal.getChnMonthInfo(month: dayInfo.mmonth)
+        
+        // 农历日期/节气
+        maxPriorityHolidayName = getLunarDayName(dayInfo: dayInfo, cal: cal)
+        
+        // 公历节日
+        let holidayName = CalendarUtils.sharedInstance.getHolidayNameBy(month: month, day: day)
+        if holidayName != "" && holidayName.characters.count <= 4 {
+            maxPriorityHolidayName = holidayName
+        }
+        
+        // 农历节日
+        let festivalName = CalendarUtils.sharedInstance.getLunarFestivalNameBy(month: chnMonthInfo.mInfo.mname, day: dayInfo.mdayNo + 1)
+        if festivalName != "" {
+            maxPriorityHolidayName = festivalName
+        }
+        
+        return maxPriorityHolidayName
+    }
+    
     
     
     func setCurrenMonth(month: Int) {
@@ -351,10 +380,12 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
     
     func setDate(year: Int, month: Int) {
         mCurYear = year
-        
+        let _ = mPreCalendar.setGeriYear(year: mCurYear - 1)
+        let _ = mNextCalendar.setGeriYear(year: mCurYear + 1)
         if mCalendar.setGeriYear(year: year) {
             setCurrenMonth(month: month)
         }
+
     }
     
     // 显示今天
@@ -363,11 +394,13 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
         let dateTupple = CalendarUtils.sharedInstance.getYMDTuppleBy(date)
         mCurDay = dateTupple.day
         mCurYear = dateTupple.year
-        
+        let _ = mPreCalendar.setGeriYear(year: mCurYear - 1)
+        let _ = mNextCalendar.setGeriYear(year: mCurYear + 1)
         if mCalendar.setGeriYear(year: mCurYear) {
             setCurrenMonth(month: dateTupple.month)
             showRightDetailInfo()
         }
+
     }
     
     override func windowDidLoad() {
