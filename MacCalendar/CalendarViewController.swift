@@ -207,7 +207,6 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
                     }
 
                     let dayName = getMaxPriorityHolidayBy(month: lastMonth, day: day, cal: calendar)
-                    print("========== dayName = \(dayName) calendar = \(calendar.getCurrentYear())")
                     
                     btn.setString(geriDay: day, topColor: .black, bottomText: dayName, bottomColor: NSColor(colorLiteralRed: 0, green: 0, blue: 0, alpha: 1))
                 } else {
@@ -220,7 +219,6 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
                         //calendar = mNextCalendar
                     }
                     let dayName = getMaxPriorityHolidayBy(month: nextMonth, day: day, cal: calendar)
-                    print("========== dayName = \(dayName) calendar = \(calendar.getCurrentYear())")
 
                     btn.setString(geriDay: day, topColor: .black, bottomText: dayName, bottomColor: NSColor(colorLiteralRed: 0, green: 0, blue: 0, alpha: 1))
                 }
@@ -281,7 +279,6 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
     
     
     func dateButtonHandler(_ sender:CalendarCellView){
-        print("Press Button is \(sender.identifier)")
         
         // 245	173	108 浅绿色
         if let tmp = lastPressBtn {
@@ -383,8 +380,8 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
     
     func setDate(year: Int, month: Int) {
         mCurYear = year
-        //let _ = mPreCalendar.setGeriYear(year: mCurYear - 1)
-        //let _ = mNextCalendar.setGeriYear(year: mCurYear + 1)
+        let _ = mPreCalendar.setGeriYear(year: mCurYear - 1)
+        let _ = mNextCalendar.setGeriYear(year: mCurYear + 1)
         if mCalendar.setGeriYear(year: year) {
             setCurrenMonth(month: month)
         }
@@ -397,8 +394,8 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
         let dateTupple = CalendarUtils.sharedInstance.getYMDTuppleBy(date)
         mCurDay = dateTupple.day
         mCurYear = dateTupple.year
-        //let _ = mPreCalendar.setGeriYear(year: mCurYear - 1)
-        //let _ = mNextCalendar.setGeriYear(year: mCurYear + 1)
+        let _ = mPreCalendar.setGeriYear(year: mCurYear - 1)
+        let _ = mNextCalendar.setGeriYear(year: mCurYear + 1)
         if mCalendar.setGeriYear(year: mCurYear) {
             setCurrenMonth(month: dateTupple.month)
             showRightDetailInfo()
