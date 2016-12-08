@@ -901,7 +901,6 @@ open class CalendarUtils{
         var JD0:Double, JD1:Double, stDegree:Double, stDegreep:Double
     
         JD1 = getInitialEstimateSolarTerms(year: year, angle: angle)
-        var count = 0
         repeat
         {
             JD0 = JD1
@@ -914,12 +913,7 @@ open class CalendarUtils{
             stDegreep = (getSunEclipticLongitudeEC(jde: Double(JD0) + 0.000005) - getSunEclipticLongitudeEC(jde: Double(JD0) - 0.000005)) / 0.00001
             JD1 = JD0 - (stDegree - Double(angle)) / stDegreep
             
-            // overflow defend
-            count += 1
-            if count > 500 {
-                break
-            }
-            
+            print("getInitialEstimateSolarTerms JD1-JD0 = \(JD1 - JD0)")
         }while((fabs(JD1 - JD0) > 0.0000001))
     
         return JD1
@@ -932,8 +926,6 @@ open class CalendarUtils{
      */
     func calculateMoonShuoJD(tdJD: Double) -> Double {
         var JD0:Double, JD1:Double, stDegree:Double, stDegreep:Double
-    
-        var count = 0
         
         JD1 = tdJD
         repeat
@@ -959,12 +951,8 @@ open class CalendarUtils{
             
             stDegreep = (getMoonEclipticLongitudeEC(dbJD: JD0 + 0.000005) - getSunEclipticLongitudeEC(jde: JD0 + 0.000005) - getMoonEclipticLongitudeEC(dbJD: JD0 - 0.000005) + getSunEclipticLongitudeEC(jde: JD0 - 0.000005)) / 0.00001
             JD1 = JD0 - stDegree / stDegreep
-
-            // overflow defend
-            count += 1
-            if count > 500 {
-                break
-            }
+            
+            print("calculateMoonShuoJD JD1 - JD0 = \(JD1 - JD0)")
         }while((fabs(JD1 - JD0) > 0.00000001))
         
         return JD1
@@ -1086,7 +1074,7 @@ open class CalendarUtils{
     // utc转本地时间
     func jdUTCToLocalTime(utcJD: Double) -> Double {
         let tz = NSTimeZone.default
-        let secs = -tz.secondsFromGMT()
+        let secs = tz.secondsFromGMT()
         return utcJD - Double(secs) / 86400.0
     }
     
