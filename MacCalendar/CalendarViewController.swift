@@ -54,7 +54,10 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
     
     // MARK: Button handler
     @IBAction func settingHandler(_ sender: NSButton) {
-        NSApp.terminate(self)
+        //NSApp.terminate(self)
+        let menu = SettingMenu()
+        SettingMenu.popUpContextMenu(menu, with: NSApp.currentEvent!, for: sender)
+
     }
     @IBAction func lastMonthHandler(_ sender: NSButton) {
         var lastMonth = mCurMonth - 1

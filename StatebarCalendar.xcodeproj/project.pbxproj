@@ -24,6 +24,9 @@
 		7D84EA1E1DF05264001E5774 /* setting.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D84EA1D1DF05264001E5774 /* setting.png */; };
 		7D84EA201DF05594001E5774 /* close.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D84EA1F1DF05594001E5774 /* close.png */; };
 		7DC9BC621D8C4B6700EFA1BA /* CalendarTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC9BC611D8C4B6700EFA1BA /* CalendarTextField.swift */; };
+		7DD9F7841DFC54B900C1DEDA /* SettingMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD9F7831DFC54B900C1DEDA /* SettingMenu.swift */; };
+		7DD9F7861DFC5FF700C1DEDA /* AboutWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7DD9F7851DFC5FF700C1DEDA /* AboutWindowController.xib */; };
+		7DD9F7881DFC602300C1DEDA /* AboutWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD9F7871DFC602300C1DEDA /* AboutWindowController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +49,9 @@
 		7D84EA1D1DF05264001E5774 /* setting.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = setting.png; sourceTree = "<group>"; };
 		7D84EA1F1DF05594001E5774 /* close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = close.png; sourceTree = "<group>"; };
 		7DC9BC611D8C4B6700EFA1BA /* CalendarTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarTextField.swift; sourceTree = "<group>"; };
+		7DD9F7831DFC54B900C1DEDA /* SettingMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingMenu.swift; sourceTree = "<group>"; };
+		7DD9F7851DFC5FF700C1DEDA /* AboutWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutWindowController.xib; sourceTree = "<group>"; };
+		7DD9F7871DFC602300C1DEDA /* AboutWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutWindowController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +118,9 @@
 				7D17C2F61D64AF880098674A /* CalendarCellView.swift */,
 				7DC9BC611D8C4B6700EFA1BA /* CalendarTextField.swift */,
 				7D0D956B1D92CFFB00226B52 /* IconView.swift */,
+				7DD9F7831DFC54B900C1DEDA /* SettingMenu.swift */,
+				7DD9F7851DFC5FF700C1DEDA /* AboutWindowController.xib */,
+				7DD9F7871DFC602300C1DEDA /* AboutWindowController.swift */,
 			);
 			path = MacCalendar;
 			sourceTree = "<group>";
@@ -180,6 +189,7 @@
 				7D84EA1E1DF05264001E5774 /* setting.png in Resources */,
 				7D62787C1D39D44C00B9CDD4 /* MainMenu.xib in Resources */,
 				7D84EA201DF05594001E5774 /* close.png in Resources */,
+				7DD9F7861DFC5FF700C1DEDA /* AboutWindowController.xib in Resources */,
 				7D6278861D39D57B00B9CDD4 /* CalendarViewController.xib in Resources */,
 				7D0D95711D92D13700226B52 /* icon@2x.png in Resources */,
 			);
@@ -199,7 +209,9 @@
 				7D17C2F71D64AF880098674A /* CalendarCellView.swift in Sources */,
 				7D0D956C1D92CFFB00226B52 /* IconView.swift in Sources */,
 				7D6278771D39D44C00B9CDD4 /* AppDelegate.swift in Sources */,
+				7DD9F7841DFC54B900C1DEDA /* SettingMenu.swift in Sources */,
 				7D17C2FB1D6752B20098674A /* PlanetData.swift in Sources */,
+				7DD9F7881DFC602300C1DEDA /* AboutWindowController.swift in Sources */,
 				7DC9BC621D8C4B6700EFA1BA /* CalendarTextField.swift in Sources */,
 				7D80307A1D819E0D00247C9C /* LunarCalendarUtils.swift in Sources */,
 			);
