@@ -161,7 +161,7 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
         let monthDays = mi.mInfo.days
         
         // 显示上方二个区域的年份与月份信息
-        yearText.stringValue = String(year)
+        yearText.stringValue = String(mCurYear)
         monthText.stringValue = String(mCurMonth)
         // 上个月有多少天
         var lastMonthDays = 0

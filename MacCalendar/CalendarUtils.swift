@@ -186,8 +186,14 @@ open class CalendarUtils{
     
     // 根据年，月，获取月干支
     func getLunarMonthNameBy(calendar: LunarCalendarUtils, month: Int, day: Int) -> (heaven: String, earthy: String) {
+
+        var stems: Int = 0, branches: Int = 0, sbMonth:Int = 0, sbDay:Int = 0
+        var year = calendar.getCurrentYear()
+        calendar.getSpringBeginDay(month: &sbMonth, day: &sbDay)
+        let util = CalendarUtils.sharedInstance
+        year = (month >= sbMonth) ? year : year - 1
         
-        let year = calendar.getCurrentYear()
+
         let baseMinus:Int = year - 2000
         var heavenly = (7 + baseMinus) % 10
         
@@ -985,10 +991,10 @@ open class CalendarUtils{
         stems = (7 + sc) % 10
         branches = (5 + sc) % 12
     
-        if stems <= 0 {
+        if stems < 0 {
             stems += 10
         }
-        if branches <= 0 {
+        if branches < 0 {
             branches += 12
         }
     }
