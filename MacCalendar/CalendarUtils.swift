@@ -187,10 +187,10 @@ open class CalendarUtils{
     // 根据年，月，获取月干支
     func getLunarMonthNameBy(calendar: LunarCalendarUtils, month: Int, day: Int) -> (heaven: String, earthy: String) {
 
-        var stems: Int = 0, branches: Int = 0, sbMonth:Int = 0, sbDay:Int = 0
+        var sbMonth:Int = 0, sbDay:Int = 0
         var year = calendar.getCurrentYear()
+        // 算出农历年干支，以立春为界
         calendar.getSpringBeginDay(month: &sbMonth, day: &sbDay)
-        let util = CalendarUtils.sharedInstance
         year = (month >= sbMonth) ? year : year - 1
         
 
