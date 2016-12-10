@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:MacCalendar.xcodeproj">
+      location = "self:/Users/bugcode/Documents/git/swiftcalendar/StatebarCalendar.xcodeproj">
    </FileRef>
 </Workspace>

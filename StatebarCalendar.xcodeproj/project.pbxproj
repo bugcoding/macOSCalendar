@@ -34,7 +34,7 @@
 		7D17C2F81D65F9DD0098674A /* CalendarConstant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarConstant.swift; sourceTree = "<group>"; };
 		7D17C2FA1D6752B20098674A /* PlanetData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlanetData.swift; sourceTree = "<group>"; };
 		7D2827031D6C915700CBDE8F /* CalendarDataStruct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarDataStruct.swift; sourceTree = "<group>"; };
-		7D6278731D39D44C00B9CDD4 /* MacCalendar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MacCalendar.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7D6278731D39D44C00B9CDD4 /* StatebarCalendar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StatebarCalendar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D6278761D39D44C00B9CDD4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7D6278781D39D44C00B9CDD4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7D62787B1D39D44C00B9CDD4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
@@ -93,7 +93,7 @@
 		7D6278741D39D44C00B9CDD4 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				7D6278731D39D44C00B9CDD4 /* MacCalendar.app */,
+				7D6278731D39D44C00B9CDD4 /* StatebarCalendar.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -119,9 +119,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		7D6278721D39D44C00B9CDD4 /* MacCalendar */ = {
+		7D6278721D39D44C00B9CDD4 /* StatebarCalendar */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 7D6278801D39D44C00B9CDD4 /* Build configuration list for PBXNativeTarget "MacCalendar" */;
+			buildConfigurationList = 7D6278801D39D44C00B9CDD4 /* Build configuration list for PBXNativeTarget "StatebarCalendar" */;
 			buildPhases = (
 				7D62786F1D39D44C00B9CDD4 /* Sources */,
 				7D6278701D39D44C00B9CDD4 /* Frameworks */,
@@ -131,9 +131,9 @@
 			);
 			dependencies = (
 			);
-			name = MacCalendar;
+			name = StatebarCalendar;
 			productName = MacCalendar;
-			productReference = 7D6278731D39D44C00B9CDD4 /* MacCalendar.app */;
+			productReference = 7D6278731D39D44C00B9CDD4 /* StatebarCalendar.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -152,7 +152,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 7D62786E1D39D44C00B9CDD4 /* Build configuration list for PBXProject "MacCalendar" */;
+			buildConfigurationList = 7D62786E1D39D44C00B9CDD4 /* Build configuration list for PBXProject "StatebarCalendar" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -165,7 +165,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				7D6278721D39D44C00B9CDD4 /* MacCalendar */,
+				7D6278721D39D44C00B9CDD4 /* StatebarCalendar */,
 			);
 		};
 /* End PBXProject section */
@@ -335,7 +335,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		7D62786E1D39D44C00B9CDD4 /* Build configuration list for PBXProject "MacCalendar" */ = {
+		7D62786E1D39D44C00B9CDD4 /* Build configuration list for PBXProject "StatebarCalendar" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7D62787E1D39D44C00B9CDD4 /* Debug */,
@@ -344,7 +344,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		7D6278801D39D44C00B9CDD4 /* Build configuration list for PBXNativeTarget "MacCalendar" */ = {
+		7D6278801D39D44C00B9CDD4 /* Build configuration list for PBXNativeTarget "StatebarCalendar" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7D6278811D39D44C00B9CDD4 /* Debug */,
