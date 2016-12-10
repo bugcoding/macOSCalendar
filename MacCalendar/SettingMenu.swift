@@ -9,7 +9,6 @@
 import Cocoa
 
 class SettingMenu: NSMenu {
-    var aboutWindow:AboutWindowController?
 
     init() {
         super.init(title: "Setting")
@@ -29,8 +28,7 @@ class SettingMenu: NSMenu {
         print("setting menu item")
     }
     func about(_ sender: NSMenuItem) {
-        print("about menu item")
-
+        NSApp.orderFrontStandardAboutPanel(nil)
     }
     func quit(_ sender: NSMenuItem) {
         NSApp.terminate(nil)
