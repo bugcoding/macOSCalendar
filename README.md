@@ -3,6 +3,10 @@
 
 ps:`mac开发菜鸟一枚，边学边做`
 
+第三版v0.3，加入月日干支，及公历与农历节日显示
+
+![](https://github.com/bugcoding/macOSCalendar/blob/master/screenshots/statebarcalendar_v0.3.png)
+
 第二版v0.2，状态栏支持，状态栏同步显示日期:
 
 ![](https://github.com/bugcoding/macOSCalendar/blob/master/screenshots/macCalendar_v0.2.png)
