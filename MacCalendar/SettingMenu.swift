@@ -28,7 +28,14 @@ class SettingMenu: NSMenu {
         print("setting menu item")
     }
     func about(_ sender: NSMenuItem) {
-        NSApp.orderFrontStandardAboutPanel(nil)
+        let style = NSMutableParagraphStyle()
+        style.alignment = .center
+        
+        let abbr = [NSForegroundColorAttributeName : NSColor.black, NSParagraphStyleAttributeName : style, NSFontAttributeName : NSFont.systemFont(ofSize: 9.0)]
+        
+        let goriAttrDay = NSAttributedString(string: "http://bugcode.net", attributes: abbr)
+        
+        NSApp.orderFrontStandardAboutPanel(options: ["Credits":goriAttrDay])
     }
     func quit(_ sender: NSMenuItem) {
         NSApp.terminate(nil)
