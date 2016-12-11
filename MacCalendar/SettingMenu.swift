@@ -31,11 +31,13 @@ class SettingMenu: NSMenu {
         let style = NSMutableParagraphStyle()
         style.alignment = .center
         
-        let abbr = [NSForegroundColorAttributeName : NSColor.black, NSParagraphStyleAttributeName : style, NSFontAttributeName : NSFont.systemFont(ofSize: 9.0)]
+        let url = NSURL(string: "http://bugcode.net")
         
-        let goriAttrDay = NSAttributedString(string: "http://bugcode.net", attributes: abbr)
+        let abbr = [NSForegroundColorAttributeName : NSColor.black, NSParagraphStyleAttributeName : style, NSFontAttributeName : NSFont.systemFont(ofSize: 9.0), NSLinkAttributeName : url]
         
-        NSApp.orderFrontStandardAboutPanel(options: ["Credits":goriAttrDay])
+        let infoAttributedStr = NSAttributedString(string: "http://bugcode.net", attributes: abbr)
+        
+        NSApp.orderFrontStandardAboutPanel(options: ["Credits":infoAttributedStr])
     }
     func quit(_ sender: NSMenuItem) {
         NSApp.terminate(nil)
