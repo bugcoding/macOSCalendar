@@ -11,6 +11,7 @@ import Cocoa
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
 
+    var settingController: SettingWindowController?
     var calViewController:CalendarViewController?
     let icon: IconView
 
@@ -62,6 +63,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         item.view = self.icon
         
         super.init()
+    }
+    
+    // 打开设置贫困面
+    func openSettingWindow() {
+        self.settingController = SettingWindowController()
+        self.settingController?.window?.makeKeyAndOrderFront(nil)
     }
     
     override func awakeFromNib() {
