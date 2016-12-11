@@ -177,9 +177,6 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
         
         // 本月第一天与最后一天是周几
         let weekDayOf1stDay = mi.mInfo.weekOf1stDay
-        let dayInfo = mi.getDayInfo(day: monthDays - 1)
-        let weekDayOfLastDay = dayInfo.week
-
         
         //print("dateString = \(year)-\(month) weekOf1stDay = \(weekDayOf1stDay) weekOfLastDay = \(weekDayOfLastDay) monthDays = \(monthDays) ")
         
@@ -422,10 +419,6 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
                     cellBtns.append(cellBtn)
                 }
             }
-        }
-        
-        for (index, btn) in cellBtns.enumerated() {
-            //print("cellbtns index = \(index) btn.action = \(btn.action) btn.intValue = \(btn.mCellID)")
         }
         
         // 加载完窗口显示默认

@@ -8,7 +8,6 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="CalendarViewController" customModule="StatebarCalendar" customModuleProvider="target">
             <connections>
-                <outlet property="calendarView" destination="jSz-os-SLy" id="nnT-43-mHC"/>
                 <outlet property="dateDetailLabel" destination="5fB-3p-RFI" id="DW1-EF-tKu"/>
                 <outlet property="dayLabel" destination="dKo-Vl-cMd" id="FTl-Vc-eWi"/>
                 <outlet property="holidayLabel" destination="EtK-36-avD" id="Ibm-JG-teJ"/>
@@ -534,7 +533,7 @@
                                 </buttonCell>
                             </button>
                             <box horizontalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="ncO-gg-CxZ">
-                                <rect key="frame" x="9" y="37" width="192" height="346"/>
+                                <rect key="frame" x="9" y="37" width="5" height="346"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </box>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dKo-Vl-cMd">
