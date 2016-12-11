@@ -33,7 +33,7 @@ class SettingMenu: NSMenu {
         
         let url = NSURL(string: "http://bugcode.net")
         
-        let abbr = [NSForegroundColorAttributeName : NSColor.black, NSParagraphStyleAttributeName : style, NSFontAttributeName : NSFont.systemFont(ofSize: 9.0), NSLinkAttributeName : url]
+        let abbr = [NSParagraphStyleAttributeName : style, NSFontAttributeName : NSFont.systemFont(ofSize: 11.0), NSLinkAttributeName : url]
         
         let infoAttributedStr = NSAttributedString(string: "http://bugcode.net", attributes: abbr)
         
