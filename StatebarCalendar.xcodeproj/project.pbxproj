@@ -24,7 +24,7 @@
 		7D84EA1E1DF05264001E5774 /* setting.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D84EA1D1DF05264001E5774 /* setting.png */; };
 		7D84EA201DF05594001E5774 /* close.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D84EA1F1DF05594001E5774 /* close.png */; };
 		7DC9BC621D8C4B6700EFA1BA /* CalendarTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC9BC611D8C4B6700EFA1BA /* CalendarTextField.swift */; };
-		7DD9F7841DFC54B900C1DEDA /* SettingMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD9F7831DFC54B900C1DEDA /* SettingMenu.swift */; };
+		7DD9F7841DFC54B900C1DEDA /* SettingMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD9F7831DFC54B900C1DEDA /* SettingMenu.swift */; settings = {COMPILER_FLAGS = "-w"; }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -320,6 +320,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = bugcode.MacCalendar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				WARNING_CFLAGS = "";
 			};
 			name = Debug;
 		};
@@ -333,6 +334,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = bugcode.MacCalendar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				WARNING_CFLAGS = "";
 			};
 			name = Release;
 		};
