@@ -54,7 +54,10 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
     
     // MARK: Button handler
     @IBAction func settingHandler(_ sender: NSButton) {
-        NSApp.terminate(self)
+        //NSApp.terminate(self)
+        let menu = SettingMenu()
+        SettingMenu.popUpContextMenu(menu, with: NSApp.currentEvent!, for: sender)
+
     }
     @IBAction func lastMonthHandler(_ sender: NSButton) {
         var lastMonth = mCurMonth - 1
@@ -174,9 +177,6 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
         
         // 本月第一天与最后一天是周几
         let weekDayOf1stDay = mi.mInfo.weekOf1stDay
-        let dayInfo = mi.getDayInfo(day: monthDays - 1)
-        let weekDayOfLastDay = dayInfo.week
-
         
         //print("dateString = \(year)-\(month) weekOf1stDay = \(weekDayOf1stDay) weekOfLastDay = \(weekDayOfLastDay) monthDays = \(monthDays) ")
         
@@ -419,10 +419,6 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
                     cellBtns.append(cellBtn)
                 }
             }
-        }
-        
-        for (index, btn) in cellBtns.enumerated() {
-            //print("cellbtns index = \(index) btn.action = \(btn.action) btn.intValue = \(btn.mCellID)")
         }
         
         // 加载完窗口显示默认
