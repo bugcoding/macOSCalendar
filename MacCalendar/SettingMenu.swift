@@ -12,7 +12,7 @@ class SettingMenu: NSMenu {
 
     init() {
         super.init(title: "Setting")
-        let set = self.insertItem(withTitle: "设置", action: #selector(SettingMenu.setting(_:)), keyEquivalent: "", at: 0)
+        let set = self.insertItem(withTitle: "登陆启动", action: #selector(SettingMenu.setting(_:)), keyEquivalent: "", at: 0)
         set.target = self
         let ab = self.insertItem(withTitle: "关于", action: #selector(SettingMenu.about(_:)), keyEquivalent: "", at: 1)
         ab.target = self
@@ -26,6 +26,7 @@ class SettingMenu: NSMenu {
     
     func setting(_ sender: NSMenuItem){
         print("setting menu item")
+        sender.state = NSOnState
     }
     func about(_ sender: NSMenuItem) {
         let style = NSMutableParagraphStyle()
