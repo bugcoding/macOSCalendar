@@ -300,7 +300,15 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
         let year = mCalendar.getCurrentYear()
         mCalendar.getSpringBeginDay(month: &sbMonth, day: &sbDay)
         let util = CalendarUtils.sharedInstance
-        util.calculateStemsBranches(year: (mCurMonth >= sbMonth) ? year : year - 1, stems: &stems, branches: &branches)
+        var y = year
+        if mCurMonth < sbMonth {
+            y = year - 1
+        } else {
+            if mCurDay < sbDay {
+                y = year - 1
+            }
+        }
+        util.calculateStemsBranches(year: y, stems: &stems, branches: &branches)
         
         
         
