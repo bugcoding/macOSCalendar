@@ -11,13 +11,16 @@
                 <outlet property="dateDetailLabel" destination="5fB-3p-RFI" id="DW1-EF-tKu"/>
                 <outlet property="dayLabel" destination="dKo-Vl-cMd" id="FTl-Vc-eWi"/>
                 <outlet property="holidayLabel" destination="EtK-36-avD" id="Ibm-JG-teJ"/>
+                <outlet property="imageView" destination="CWu-47-904" id="ks6-cF-UEn"/>
                 <outlet property="lastMonthBtn" destination="c8x-U4-7mN" id="Vgl-bn-Ngr"/>
                 <outlet property="lastYearBtn" destination="hpY-bL-AnX" id="Tnm-64-U81"/>
                 <outlet property="lunarDateLabel" destination="Ac2-MK-LKH" id="8EV-Y6-8Z4"/>
                 <outlet property="lunarYearLabel" destination="tsw-N6-4MJ" id="OUj-0j-Lfg"/>
                 <outlet property="monthText" destination="0Db-h5-CwX" id="cH4-e1-f6p"/>
                 <outlet property="nextMonthBtn" destination="u6Y-K3-prM" id="ExK-Mh-0vO"/>
+                <outlet property="nextPoemLabel" destination="UAm-wj-SMQ" id="Rcn-eG-1dV"/>
                 <outlet property="nextYearBtn" destination="yRC-3t-AAp" id="l5L-76-Jg4"/>
+                <outlet property="poemLabel" destination="WVh-Vf-NeJ" id="DlL-oJ-oQU"/>
                 <outlet property="settingBtn" destination="wJl-Ir-raC" id="DdV-Kt-Yb8"/>
                 <outlet property="window" destination="F0z-JX-Cv5" id="gIp-Ho-8D9"/>
                 <outlet property="yearText" destination="mx9-hU-Kv3" id="MDO-qU-JR6"/>
@@ -596,6 +599,29 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CWu-47-904">
+                                <rect key="frame" x="392" y="58" width="106" height="90"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="5O1-dT-F11"/>
+                            </imageView>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WVh-Vf-NeJ">
+                                <rect key="frame" x="499" y="71" width="16" height="85"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="美猴腾瑞气" id="5WV-Nt-iaZ">
+                                    <font key="font" size="9" name="STLibianSC-Regular"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UAm-wj-SMQ">
+                                <rect key="frame" x="515" y="50" width="16" height="92"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="余鲤戏春波" id="ZQh-4o-PRQ">
+                                    <font key="font" size="9" name="STLibianSC-Regular"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
                     </customView>
                 </subviews>
@@ -603,7 +629,7 @@
             <connections>
                 <outlet property="delegate" destination="-2" id="0bl-1N-AYu"/>
             </connections>
-            <point key="canvasLocation" x="-903.5" y="222.5"/>
+            <point key="canvasLocation" x="-1088.5" y="215.5"/>
         </window>
     </objects>
     <resources>

@@ -13,6 +13,9 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
     
     // MARK: - Outlets define
     
+    @IBOutlet weak var imageView: NSImageView!
+    @IBOutlet weak var poemLabel: NSTextField!
+    @IBOutlet weak var nextPoemLabel: NSTextField!
     // 设置按钮
     @IBOutlet weak var settingBtn: NSButton!
     
@@ -307,6 +310,10 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
         // 当前的农历年份
         let lunarStr = "【\(CalendarConstant.CHINESE_ZODIC_NAME[branches - 1])】\(CalendarConstant.HEAVENLY_STEMS_NAME[stems - 1])\(CalendarConstant.EARTHY_BRANCHES_NAME[branches - 1])年"
         lunarYearLabel.stringValue = lunarStr + monthHeavenEarthy.heaven + monthHeavenEarthy.earthy + "月" + dayHeavenEarthy.heaven + dayHeavenEarthy.earthy + "日"
+        
+        imageView.image = NSImage(named: CalendarConstant.CHINESE_ZODIC_PNG_NAME[branches - 1])
+        poemLabel.stringValue = CalendarConstant.LAST_POEM[branches - 1]
+        nextPoemLabel.stringValue = CalendarConstant.NEXT_POEM[branches - 1]
         
         // 当前的农历日期
         let mi = mCalendar.getMonthInfo(month: mCurMonth)
