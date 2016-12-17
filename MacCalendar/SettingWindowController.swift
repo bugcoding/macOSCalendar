@@ -12,6 +12,27 @@ class SettingWindowController : NSWindowController {
     
     @IBOutlet weak var startUpCheckBtn: NSButton!
     
+    
+    @IBOutlet weak var holidayColorWell: NSColorWell!
+    @IBOutlet weak var festivalColorWell: NSColorWell!
+    // 假日颜色
+    @IBAction func holidaysWellPick(_ sender: NSColorWell) {
+        let color = sender.color
+        let data = NSKeyedArchiver.archivedData(withRootObject: color)
+        print("holidaysWellPick color = \(color)")
+        UserDefaults.standard.setValue(data, forKey: "holidayColor")
+    }
+    // 节日颜色
+    @IBAction func festivalWellPick(_ sender: NSColorWell) {
+        let color = sender.color
+        print("festivalWellPick color = \(color)")
+        let data = NSKeyedArchiver.archivedData(withRootObject: color)
+
+        UserDefaults.standard.setValue(data, forKey: "festivalColor")
+    }
+
+    
+    
     @IBAction func startUpChecked(_ sender: NSButton) {
         self.toggleLaunchAtStartup()
     }
@@ -95,10 +116,21 @@ class SettingWindowController : NSWindowController {
     override func windowDidLoad() {
         super.windowDidLoad()
         
+        // 设置自启动复选框的状态
         if isInStartUpItems() {
             startUpCheckBtn.state = 1
         } else {
             startUpCheckBtn.state = 0
         }
+        
+        if let data = UserDefaults.standard.value(forKey: "holidayColor") {
+            let color = NSKeyedUnarchiver.unarchiveObject(with: data as! Data) as! NSColor
+            holidayColorWell.color = color
+        }
+        if let data = UserDefaults.standard.value(forKey: "festivalColor") {
+            let color = NSKeyedUnarchiver.unarchiveObject(with: data as! Data) as! NSColor
+            festivalColorWell.color = color
+        }
+        
     }
 }

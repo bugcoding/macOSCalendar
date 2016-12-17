@@ -13,7 +13,6 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
     
     // MARK: - Outlets define
     
-    @IBOutlet weak var backView: NSView!
     @IBOutlet weak var imageView: NSImageView!
     @IBOutlet weak var poemLabel: NSTextField!
     @IBOutlet weak var nextPoemLabel: NSTextField!
@@ -416,14 +415,14 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
             setCurrenMonth(month: dateTupple.month)
             showRightDetailInfo()
         }
-
     }
-    
+
     override func windowDidLoad() {
         super.windowDidLoad()
         
         // 背景透明，使用view设置圆角矩形
         self.window?.backgroundColor = NSColor.clear
+        //self.blur(view: self.backView)
         
         // 将所有cell加入数组管理，并加入回调逻辑
         for i in 0 ... 5 {

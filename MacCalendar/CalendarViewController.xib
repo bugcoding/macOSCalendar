@@ -8,7 +8,6 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="CalendarViewController" customModule="StatebarCalendar" customModuleProvider="target">
             <connections>
-                <outlet property="backView" destination="se5-gp-TjO" id="2J4-GW-m3r"/>
                 <outlet property="dateDetailLabel" destination="5fB-3p-RFI" id="DW1-EF-tKu"/>
                 <outlet property="dayLabel" destination="dKo-Vl-cMd" id="FTl-Vc-eWi"/>
                 <outlet property="holidayLabel" destination="EtK-36-avD" id="Ibm-JG-teJ"/>
