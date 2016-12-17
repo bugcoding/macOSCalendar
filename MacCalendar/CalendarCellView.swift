@@ -11,7 +11,7 @@ import Cocoa
 class CalendarCellView : NSButton{
     // 标识具体的cell
     var mCellID: Int = 0
-    var mBgColor: NSColor = NSColor.white
+    var mBgColor: NSColor = .white
     var mCurDay: Int = -1
     
     required init?(coder: NSCoder) {
@@ -48,5 +48,6 @@ class CalendarCellView : NSButton{
         
         self.attributedTitle = finalAttr
     }
+    
     
 }

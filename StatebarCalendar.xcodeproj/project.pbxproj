@@ -37,6 +37,7 @@
 		7D84EA1C1DF05062001E5774 /* calander.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D84EA1B1DF05062001E5774 /* calander.png */; };
 		7D84EA1E1DF05264001E5774 /* setting.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D84EA1D1DF05264001E5774 /* setting.png */; };
 		7D84EA201DF05594001E5774 /* close.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D84EA1F1DF05594001E5774 /* close.png */; };
+		7DAE72281E05787F005DF935 /* CustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DAE72271E05787F005DF935 /* CustomView.swift */; };
 		7DC9BC621D8C4B6700EFA1BA /* CalendarTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC9BC611D8C4B6700EFA1BA /* CalendarTextField.swift */; };
 		7DD9F7841DFC54B900C1DEDA /* SettingMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD9F7831DFC54B900C1DEDA /* SettingMenu.swift */; settings = {COMPILER_FLAGS = "-w"; }; };
 /* End PBXBuildFile section */
@@ -74,6 +75,7 @@
 		7D84EA1B1DF05062001E5774 /* calander.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = calander.png; sourceTree = "<group>"; };
 		7D84EA1D1DF05264001E5774 /* setting.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = setting.png; sourceTree = "<group>"; };
 		7D84EA1F1DF05594001E5774 /* close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = close.png; sourceTree = "<group>"; };
+		7DAE72271E05787F005DF935 /* CustomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomView.swift; sourceTree = "<group>"; };
 		7DC9BC611D8C4B6700EFA1BA /* CalendarTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarTextField.swift; sourceTree = "<group>"; };
 		7DD9F7831DFC54B900C1DEDA /* SettingMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingMenu.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -157,6 +159,7 @@
 				7DD9F7831DFC54B900C1DEDA /* SettingMenu.swift */,
 				7D7737B01DFD835700CCD1DF /* SettingWindowController.swift */,
 				7D7737B21DFD837700CCD1DF /* SettingWindowController.xib */,
+				7DAE72271E05787F005DF935 /* CustomView.swift */,
 			);
 			path = MacCalendar;
 			sourceTree = "<group>";
@@ -256,6 +259,7 @@
 				7D1031851D3B30FF0015BBCC /* CalendarUtils.swift in Sources */,
 				7D6278851D39D57B00B9CDD4 /* CalendarViewController.swift in Sources */,
 				7D17C2F71D64AF880098674A /* CalendarCellView.swift in Sources */,
+				7DAE72281E05787F005DF935 /* CustomView.swift in Sources */,
 				7D0D956C1D92CFFB00226B52 /* IconView.swift in Sources */,
 				7D6278771D39D44C00B9CDD4 /* AppDelegate.swift in Sources */,
 				7DD9F7841DFC54B900C1DEDA /* SettingMenu.swift in Sources */,

@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11542"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11762"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="CalendarViewController" customModule="StatebarCalendar" customModuleProvider="target">
             <connections>
+                <outlet property="backView" destination="se5-gp-TjO" id="2J4-GW-m3r"/>
                 <outlet property="dateDetailLabel" destination="5fB-3p-RFI" id="DW1-EF-tKu"/>
                 <outlet property="dayLabel" destination="dKo-Vl-cMd" id="FTl-Vc-eWi"/>
                 <outlet property="holidayLabel" destination="EtK-36-avD" id="Ibm-JG-teJ"/>
@@ -28,16 +29,16 @@
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
-        <window identifier="calendar" title="Calendar" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" animationBehavior="default" id="F0z-JX-Cv5">
+        <window identifier="calendar" title="Calendar" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" animationBehavior="default" id="F0z-JX-Cv5">
             <windowStyleMask key="styleMask" closable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="196" y="240" width="571" height="369"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
-            <view key="contentView" identifier="view" id="se5-gp-TjO">
+            <view key="contentView" identifier="view" id="se5-gp-TjO" customClass="CustomView" customModule="StatebarCalendar" customModuleProvider="target">
                 <rect key="frame" x="0.0" y="0.0" width="571" height="369"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <customView identifier="customview" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jSz-os-SLy">
+                    <customView identifier="customview" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jSz-os-SLy" customClass="CustomView" customModule="StatebarCalendar" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="-26" width="571" height="395"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <subviews>
