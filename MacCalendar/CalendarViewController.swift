@@ -304,7 +304,7 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
         if mCurMonth < sbMonth {
             y = year - 1
         } else {
-            if mCurDay < sbDay {
+            if mCurMonth == sbMonth && mCurDay < sbDay {
                 y = year - 1
             }
         }
