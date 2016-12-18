@@ -12,7 +12,11 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
     
     
     // MARK: - Outlets define
+    // 周末二个标签
+    @IBOutlet weak var saturdayLabel: NSTextField!
+    @IBOutlet weak var sundayLabel: NSTextField!
     
+    // 右下角生肖图片
     @IBOutlet weak var imageView: NSImageView!
     @IBOutlet weak var poemLabel: NSTextField!
     @IBOutlet weak var nextPoemLabel: NSTextField!
@@ -183,6 +187,17 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
         
         //print("dateString = \(year)-\(month) weekOf1stDay = \(weekDayOf1stDay) weekOfLastDay = \(weekDayOfLastDay) monthDays = \(monthDays) ")
         
+        // 读取本地存储的颜色
+        var festivalColor = NSColor.black
+        if let data = UserDefaults.standard.value(forKey: SettingWindowController.FESTIVAL_COLOR_TAG) {
+            festivalColor = NSKeyedUnarchiver.unarchiveObject(with: data as! Data) as! NSColor
+        }
+        // 读取本地记录的颜色信息
+        var holidayColor = NSColor.red
+        if let data = UserDefaults.standard.value(forKey: SettingWindowController.HOLIDAY_COLOR_TAG) {
+            holidayColor = NSKeyedUnarchiver.unarchiveObject(with: data as! Data) as! NSColor
+        }
+        
         // 把空余不的cell行不显示，非本月天置灰
         for (index, btn) in cellBtns.enumerated() {
             btn.setBackGroundColor(bgColor: .white)
@@ -190,14 +205,9 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
             btn.isHidden = false
             
             if index < weekDayOf1stDay || index >= monthDays + weekDayOf1stDay {
-                let curRowNum = Int((btn.mCellID - 1) / 7) + 1
-                // 最后一行空出来
-                if index >= monthDays + weekDayOf1stDay && curRowNum > lastRowNum {
-                    btn.isHidden = false
-                    btn.isEnabled = false
-                }else{
-                    btn.isEnabled = false
-                }
+                // 前后二个月置灰，不可点击
+                btn.isEnabled = false
+                
                 // 处理前后二个月的显示日期 (灰置部分)
                 if index < weekDayOf1stDay {
                     
@@ -209,9 +219,13 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
                         calendar = mPreCalendar
                     }
 
-                    let dayName = getMaxPriorityHolidayBy(month: lastMonth, day: day, cal: calendar)
-                    
-                    btn.setString(geriDay: day, topColor: .black, bottomText: dayName, bottomColor: NSColor(colorLiteralRed: 0, green: 0, blue: 0, alpha: 1))
+                    let (dayName, isFestival) = getMaxPriorityHolidayBy(month: lastMonth, day: day, cal: calendar)
+                    var color = NSColor.black
+                    if isFestival {
+                        color = festivalColor
+                    }
+
+                    btn.setString(geriDay: day, topColor: NSColor.black.withAlphaComponent(0.5), bottomText: dayName, bottomColor: color.withAlphaComponent(0.5))
                 } else {
                     let day = index - monthDays - weekDayOf1stDay + 1
                     
@@ -221,9 +235,13 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
                         nextMonth = 1
                         calendar = mNextCalendar
                     }
-                    let dayName = getMaxPriorityHolidayBy(month: nextMonth, day: day, cal: calendar)
-
-                    btn.setString(geriDay: day, topColor: .black, bottomText: dayName, bottomColor: NSColor(colorLiteralRed: 0, green: 0, blue: 0, alpha: 1))
+                    let (dayName, isFestival) = getMaxPriorityHolidayBy(month: nextMonth, day: day, cal: calendar)
+                    var color = NSColor.black
+                    if isFestival {
+                        color = festivalColor
+                    }
+                    
+                    btn.setString(geriDay: day, topColor: NSColor.black.withAlphaComponent(0.5), bottomText: dayName, bottomColor: color.withAlphaComponent(0.5))
                 }
                 
             } else {
@@ -236,19 +254,27 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
                 //btn.title = "\(index - weekDayOf1stDay + 1)"
                 
 
-                let dayName = getMaxPriorityHolidayBy(month: mCurMonth, day: day, cal: mCalendar)
+                let (dayName, isFestival) = getMaxPriorityHolidayBy(month: mCurMonth, day: day, cal: mCalendar)
                 
                 let today = utils.getYMDTuppleBy(utils.getDateStringOfToday())
                 if today.day == day && today.month == mCurMonth && today.year == mCurYear {
                     btn.setBackGroundColor(bgColor: NSColor(colorLiteralRed: 0 / 255.0, green: 210 / 255.0, blue: 0 / 255.0, alpha: 0.4))
                     lastPressBtn = btn
                 }
-
-                btn.setString(geriDay: day, topColor: .black, bottomText: dayName, bottomColor: NSColor(colorLiteralRed: 0, green: 0, blue: 0, alpha: 1))
+                var color = NSColor.black
+                if isFestival {
+                    color = festivalColor
+                }
+                btn.setString(geriDay: day, topColor: .black, bottomText: dayName, bottomColor: color)
                 
                 // 处理周六日的日期颜色
                 if index % 7 == 6 || index % 7 == 0 {
-                    btn.setString(geriDay: day, topColor: .red, bottomText: dayName, bottomColor: .red)
+   
+                    if isFestival {
+                        btn.setString(geriDay: day, topColor: holidayColor, bottomText: dayName, bottomColor: color)
+                    } else {
+                        btn.setString(geriDay: day, topColor: holidayColor, bottomText: dayName, bottomColor: holidayColor)
+                    }
                 }
             }
             
@@ -359,8 +385,9 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
     }
     
     // 获取当前日期的节日信息并返回优先在cell中显示的节日信息
-    func getMaxPriorityHolidayBy(month: Int, day: Int, cal: LunarCalendarUtils) -> String {
+    func getMaxPriorityHolidayBy(month: Int, day: Int, cal: LunarCalendarUtils) -> (String, Bool){
         var maxPriorityHolidayName = ""
+        var isFestvial = false
         // 依次是 农历日期/节气，公历节日，农历节日
         let mi = cal.getMonthInfo(month: month)
         let dayInfo = mi.getDayInfo(day: day)
@@ -368,20 +395,25 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
         
         // 农历日期/节气
         maxPriorityHolidayName = getLunarDayName(dayInfo: dayInfo, cal: cal)
+        if dayInfo.st != -1 {
+            isFestvial = true
+        }
         
         // 公历节日
         let holidayName = CalendarUtils.sharedInstance.getHolidayNameBy(month: month, day: day)
         if holidayName != "" && holidayName.characters.count <= 4 {
             maxPriorityHolidayName = holidayName
+            isFestvial = true
         }
         
         // 农历节日
         let festivalName = CalendarUtils.sharedInstance.getLunarFestivalNameBy(month: chnMonthInfo.mInfo.mname, day: dayInfo.mdayNo + 1)
         if festivalName != "" {
             maxPriorityHolidayName = festivalName
+            isFestvial = true
         }
         
-        return maxPriorityHolidayName
+        return (maxPriorityHolidayName, isFestvial)
     }
     
     
@@ -415,11 +447,25 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
             setCurrenMonth(month: dateTupple.month)
             showRightDetailInfo()
         }
-
     }
     
+    // 设置周六周日字的颜色
+    func setWeekendLabelColor() {
+        // 读取本地记录的颜色信息
+        var color = NSColor.red
+        if let data = UserDefaults.standard.value(forKey: SettingWindowController.HOLIDAY_COLOR_TAG) {
+            color = NSKeyedUnarchiver.unarchiveObject(with: data as! Data) as! NSColor
+        }
+        saturdayLabel.textColor = color
+        sundayLabel.textColor = color
+    }
+
     override func windowDidLoad() {
         super.windowDidLoad()
+        
+        // 背景透明，使用view设置圆角矩形
+        self.window?.backgroundColor = NSColor.clear
+        //self.blur(view: self.backView)
         
         // 将所有cell加入数组管理，并加入回调逻辑
         for i in 0 ... 5 {
@@ -438,6 +484,7 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
         
         // 加载完窗口显示默认
         showToday()
+        setWeekendLabelColor()
     }
     
 }

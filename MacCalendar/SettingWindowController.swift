@@ -8,9 +8,53 @@
 
 import Cocoa
 
-class SettingWindowController : NSWindowController {
+class SettingWindowController : NSWindowController, NSWindowDelegate {
+    
+    static let HOLIDAY_COLOR_TAG = "holidayColor"
+    static let FESTIVAL_COLOR_TAG = "festivalColor"
     
     @IBOutlet weak var startUpCheckBtn: NSButton!
+    
+    @IBOutlet weak var resetColorBtn: NSButton!
+    
+    @IBAction func resetColorSetting(_ sender: NSButton) {
+        UserDefaults.standard.removeObject(forKey: SettingWindowController.HOLIDAY_COLOR_TAG)
+        UserDefaults.standard.removeObject(forKey: SettingWindowController.FESTIVAL_COLOR_TAG)
+        
+        holidayColorWell.color = .red
+        festivalColorWell.color = .black
+        
+        (NSApp.delegate as! AppDelegate).refreshInterface()
+    }
+    
+    
+    @IBOutlet weak var holidayColorWell: NSColorWell!
+    @IBOutlet weak var festivalColorWell: NSColorWell!
+    // 假日颜色
+    @IBAction func holidaysWellPick(_ sender: NSColorWell) {
+        let color = sender.color
+        let data = NSKeyedArchiver.archivedData(withRootObject: color)
+        print("holidaysWellPick color = \(color)")
+        UserDefaults.standard.setValue(data, forKey: SettingWindowController.HOLIDAY_COLOR_TAG)
+        let delegate = NSApp.delegate as! AppDelegate
+        delegate.refreshInterface()
+    }
+    // 节日颜色
+    @IBAction func festivalWellPick(_ sender: NSColorWell) {
+        let color = sender.color
+        print("festivalWellPick color = \(color)")
+        let data = NSKeyedArchiver.archivedData(withRootObject: color)
+
+        UserDefaults.standard.setValue(data, forKey: SettingWindowController.FESTIVAL_COLOR_TAG)
+        let delegate = NSApp.delegate as! AppDelegate
+        delegate.refreshInterface()
+    }
+
+    func windowShouldClose(_ sender: Any) -> Bool {
+        
+        return true
+    }
+    
     
     @IBAction func startUpChecked(_ sender: NSButton) {
         self.toggleLaunchAtStartup()
@@ -95,10 +139,26 @@ class SettingWindowController : NSWindowController {
     override func windowDidLoad() {
         super.windowDidLoad()
         
+        // 设置自启动复选框的状态
         if isInStartUpItems() {
             startUpCheckBtn.state = 1
         } else {
             startUpCheckBtn.state = 0
         }
+        
+        // 读取本地记录的颜色信息
+        if let data = UserDefaults.standard.value(forKey: SettingWindowController.HOLIDAY_COLOR_TAG) {
+            let color = NSKeyedUnarchiver.unarchiveObject(with: data as! Data) as! NSColor
+            holidayColorWell.color = color
+        } else {
+            holidayColorWell.color = .red
+        }
+        if let data = UserDefaults.standard.value(forKey: SettingWindowController.FESTIVAL_COLOR_TAG) {
+            let color = NSKeyedUnarchiver.unarchiveObject(with: data as! Data) as! NSColor
+            festivalColorWell.color = color
+        } else {
+            festivalColorWell.color = .black
+        }
+        
     }
 }

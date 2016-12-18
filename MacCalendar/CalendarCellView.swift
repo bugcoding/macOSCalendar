@@ -11,11 +11,13 @@ import Cocoa
 class CalendarCellView : NSButton{
     // 标识具体的cell
     var mCellID: Int = 0
-    var mBgColor: NSColor = NSColor.white
+    var mBgColor: NSColor = .white
     var mCurDay: Int = -1
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
+        self.cell = CalendarViewCell(coder: coder)
+
         self.isBordered = false
         self.wantsLayer = true
         self.layer!.backgroundColor = self.mBgColor.cgColor
@@ -48,5 +50,6 @@ class CalendarCellView : NSButton{
         
         self.attributedTitle = finalAttr
     }
+    
     
 }
