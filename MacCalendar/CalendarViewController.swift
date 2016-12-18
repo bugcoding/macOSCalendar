@@ -189,12 +189,12 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
         
         // 读取本地存储的颜色
         var festivalColor = NSColor.black
-        if let data = UserDefaults.standard.value(forKey: "festivalColor") {
+        if let data = UserDefaults.standard.value(forKey: SettingWindowController.FESTIVAL_COLOR_TAG) {
             festivalColor = NSKeyedUnarchiver.unarchiveObject(with: data as! Data) as! NSColor
         }
         // 读取本地记录的颜色信息
         var holidayColor = NSColor.red
-        if let data = UserDefaults.standard.value(forKey: "holidayColor") {
+        if let data = UserDefaults.standard.value(forKey: SettingWindowController.HOLIDAY_COLOR_TAG) {
             holidayColor = NSKeyedUnarchiver.unarchiveObject(with: data as! Data) as! NSColor
         }
         
@@ -453,7 +453,7 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
     func setWeekendLabelColor() {
         // 读取本地记录的颜色信息
         var color = NSColor.red
-        if let data = UserDefaults.standard.value(forKey: "holidayColor") {
+        if let data = UserDefaults.standard.value(forKey: SettingWindowController.HOLIDAY_COLOR_TAG) {
             color = NSKeyedUnarchiver.unarchiveObject(with: data as! Data) as! NSColor
         }
         saturdayLabel.textColor = color
