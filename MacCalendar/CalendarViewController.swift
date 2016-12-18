@@ -289,7 +289,7 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
         dateDetailLabel.stringValue = String(mCurYear) + "年" + String(mCurMonth) + "月" + String(mCurDay) + "日 星期" + CalendarConstant.WEEK_NAME_OF_CHINESE[curWeekDay]
         dayLabel.stringValue = String(mCurDay)
         
-        // 右侧家历详情
+        // 右侧农历详情
         showLunar()
         // 显示假日信息
         showHolidayInfo()
