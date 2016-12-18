@@ -27,6 +27,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         self.icon.isSelected = false
         // 窗口关闭
         self.calViewController?.window?.close()
+        // 关闭时重置日期到今天
+        self.calViewController?.showToday()
     }
     
     func applicationWillTerminate(_ aNotification: Notification) {
@@ -65,10 +67,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         super.init()
     }
     
-    // 打开设置贫困面
+    // 打开设置界面
     func openSettingWindow() {
         self.settingController = SettingWindowController()
         self.settingController?.window?.makeKeyAndOrderFront(nil)
+    }
+    
+    // 重新显示面板
+    func refreshInterface() {
+        calViewController?.showMonthPanel()
+        calViewController?.setWeekendLabelColor()
     }
     
     override func awakeFromNib() {

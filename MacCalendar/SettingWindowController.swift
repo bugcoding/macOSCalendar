@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class SettingWindowController : NSWindowController {
+class SettingWindowController : NSWindowController, NSWindowDelegate {
     
     @IBOutlet weak var startUpCheckBtn: NSButton!
     
@@ -21,6 +21,8 @@ class SettingWindowController : NSWindowController {
         let data = NSKeyedArchiver.archivedData(withRootObject: color)
         print("holidaysWellPick color = \(color)")
         UserDefaults.standard.setValue(data, forKey: "holidayColor")
+        let delegate = NSApp.delegate as! AppDelegate
+        delegate.refreshInterface()
     }
     // 节日颜色
     @IBAction func festivalWellPick(_ sender: NSColorWell) {
@@ -29,8 +31,26 @@ class SettingWindowController : NSWindowController {
         let data = NSKeyedArchiver.archivedData(withRootObject: color)
 
         UserDefaults.standard.setValue(data, forKey: "festivalColor")
+        let delegate = NSApp.delegate as! AppDelegate
+        delegate.refreshInterface()
     }
 
+    func windowShouldClose(_ sender: Any) -> Bool {
+        
+        return true
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     @IBAction func startUpChecked(_ sender: NSButton) {
@@ -123,6 +143,7 @@ class SettingWindowController : NSWindowController {
             startUpCheckBtn.state = 0
         }
         
+        // 读取本地记录的颜色信息
         if let data = UserDefaults.standard.value(forKey: "holidayColor") {
             let color = NSKeyedUnarchiver.unarchiveObject(with: data as! Data) as! NSColor
             holidayColorWell.color = color

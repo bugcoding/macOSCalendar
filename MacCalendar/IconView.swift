@@ -75,7 +75,7 @@ class IconView : NSView
         addTextToImage()
         
         // 启用计时器，控制每秒执行一次tickDown方法
-        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(IconView.reDraw), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: 20, target: self, selector: #selector(IconView.reDraw), userInfo: nil, repeats: true)
     }
     
     required init?(coder: NSCoder) {
