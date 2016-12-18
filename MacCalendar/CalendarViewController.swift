@@ -12,9 +12,11 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
     
     
     // MARK: - Outlets define
+    // 周末二个标签
     @IBOutlet weak var saturdayLabel: NSTextField!
     @IBOutlet weak var sundayLabel: NSTextField!
     
+    // 右下角生肖图片
     @IBOutlet weak var imageView: NSImageView!
     @IBOutlet weak var poemLabel: NSTextField!
     @IBOutlet weak var nextPoemLabel: NSTextField!
