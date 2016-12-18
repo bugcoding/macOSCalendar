@@ -22,7 +22,9 @@
                 <outlet property="nextPoemLabel" destination="UAm-wj-SMQ" id="Rcn-eG-1dV"/>
                 <outlet property="nextYearBtn" destination="yRC-3t-AAp" id="l5L-76-Jg4"/>
                 <outlet property="poemLabel" destination="WVh-Vf-NeJ" id="DlL-oJ-oQU"/>
+                <outlet property="saturdayLabel" destination="koa-fb-vvp" id="jog-Nj-C6T"/>
                 <outlet property="settingBtn" destination="wJl-Ir-raC" id="DdV-Kt-Yb8"/>
+                <outlet property="sundayLabel" destination="QXh-VN-Tuu" id="B8X-yA-avD"/>
                 <outlet property="window" destination="F0z-JX-Cv5" id="gIp-Ho-8D9"/>
                 <outlet property="yearText" destination="mx9-hU-Kv3" id="MDO-qU-JR6"/>
             </connections>
@@ -461,12 +463,12 @@
                                     <action selector="nextMonthHandler:" target="-2" id="Cmg-Xk-Fdz"/>
                                 </connections>
                             </button>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sC6-Qc-sRb" customClass="CalendarCellView" customModule="StatebarCalendar" customModuleProvider="target">
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sC6-Qc-sRb" customClass="GeneralButton" customModule="StatebarCalendar" customModuleProvider="target">
                                 <rect key="frame" x="263" y="349" width="105" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="bevel" title="回到今天" bezelStyle="regularSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="kb4-gI-Tpg">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system" size="15"/>
+                                    <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
                                     <action selector="returnToday:" target="-2" id="wVn-UR-54Q"/>

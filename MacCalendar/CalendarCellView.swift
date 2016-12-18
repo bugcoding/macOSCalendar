@@ -16,6 +16,8 @@ class CalendarCellView : NSButton{
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
+        self.cell = CalendarViewCell(coder: coder)
+
         self.isBordered = false
         self.wantsLayer = true
         self.layer!.backgroundColor = self.mBgColor.cgColor

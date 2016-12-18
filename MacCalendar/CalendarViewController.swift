@@ -185,6 +185,17 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
         
         //print("dateString = \(year)-\(month) weekOf1stDay = \(weekDayOf1stDay) weekOfLastDay = \(weekDayOfLastDay) monthDays = \(monthDays) ")
         
+        // 读取本地存储的颜色
+        var festivalColor = NSColor.black
+        if let data = UserDefaults.standard.value(forKey: "festivalColor") {
+            festivalColor = NSKeyedUnarchiver.unarchiveObject(with: data as! Data) as! NSColor
+        }
+        // 读取本地记录的颜色信息
+        var holidayColor = NSColor.red
+        if let data = UserDefaults.standard.value(forKey: "holidayColor") {
+            holidayColor = NSKeyedUnarchiver.unarchiveObject(with: data as! Data) as! NSColor
+        }
+        
         // 把空余不的cell行不显示，非本月天置灰
         for (index, btn) in cellBtns.enumerated() {
             btn.setBackGroundColor(bgColor: .white)
@@ -209,12 +220,10 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
                     let (dayName, isFestival) = getMaxPriorityHolidayBy(month: lastMonth, day: day, cal: calendar)
                     var color = NSColor.black
                     if isFestival {
-                        if let data = UserDefaults.standard.value(forKey: "festivalColor") {
-                            color = NSKeyedUnarchiver.unarchiveObject(with: data as! Data) as! NSColor
-                        }
+                        color = festivalColor
                     }
 
-                    btn.setString(geriDay: day, topColor: .black, bottomText: dayName, bottomColor: color)
+                    btn.setString(geriDay: day, topColor: NSColor.black.withAlphaComponent(0.5), bottomText: dayName, bottomColor: color.withAlphaComponent(0.5))
                 } else {
                     let day = index - monthDays - weekDayOf1stDay + 1
                     
@@ -227,11 +236,10 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
                     let (dayName, isFestival) = getMaxPriorityHolidayBy(month: nextMonth, day: day, cal: calendar)
                     var color = NSColor.black
                     if isFestival {
-                        if let data = UserDefaults.standard.value(forKey: "festivalColor") {
-                            color = NSKeyedUnarchiver.unarchiveObject(with: data as! Data) as! NSColor
-                        }
+                        color = festivalColor
                     }
-                    btn.setString(geriDay: day, topColor: .black, bottomText: dayName, bottomColor: color)
+                    
+                    btn.setString(geriDay: day, topColor: NSColor.black.withAlphaComponent(0.5), bottomText: dayName, bottomColor: color.withAlphaComponent(0.5))
                 }
                 
             } else {
@@ -253,21 +261,18 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
                 }
                 var color = NSColor.black
                 if isFestival {
-                    if let data = UserDefaults.standard.value(forKey: "festivalColor") {
-                        color = NSKeyedUnarchiver.unarchiveObject(with: data as! Data) as! NSColor
-                    }
+                    color = festivalColor
                 }
                 btn.setString(geriDay: day, topColor: .black, bottomText: dayName, bottomColor: color)
                 
                 // 处理周六日的日期颜色
                 if index % 7 == 6 || index % 7 == 0 {
-                    // 读取本地记录的颜色信息
-                    var color = NSColor.red
-                    if let data = UserDefaults.standard.value(forKey: "holidayColor") {
-                        color = NSKeyedUnarchiver.unarchiveObject(with: data as! Data) as! NSColor
+   
+                    if isFestival {
+                        btn.setString(geriDay: day, topColor: holidayColor, bottomText: dayName, bottomColor: color)
+                    } else {
+                        btn.setString(geriDay: day, topColor: holidayColor, bottomText: dayName, bottomColor: holidayColor)
                     }
-
-                    btn.setString(geriDay: day, topColor: color, bottomText: dayName, bottomColor: color)
                 }
             }
             
@@ -388,6 +393,9 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
         
         // 农历日期/节气
         maxPriorityHolidayName = getLunarDayName(dayInfo: dayInfo, cal: cal)
+        if dayInfo.st != -1 {
+            isFestvial = true
+        }
         
         // 公历节日
         let holidayName = CalendarUtils.sharedInstance.getHolidayNameBy(month: month, day: day)
