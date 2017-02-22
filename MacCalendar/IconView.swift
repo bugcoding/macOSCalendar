@@ -90,6 +90,8 @@ class IconView : NSView
             mCurWeek = week
             addTextToImage()
             self.needsDisplay = true
+            // 跨天之后，面板上的时间也要同步更新
+            (NSApp.delegate as! AppDelegate).showToday()
         }
         
     }
