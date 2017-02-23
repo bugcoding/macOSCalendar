@@ -57,7 +57,6 @@ class IconView : NSView
         weekString.draw(in: rect , withAttributes: weekAttrDict)
     }
     
-    
     init(imageName: String, item: NSStatusItem) {
         let thickness = NSStatusBar.system().thickness
 
