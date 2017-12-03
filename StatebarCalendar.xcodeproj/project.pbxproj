@@ -41,6 +41,8 @@
 		7DAE722A1E0670DD005DF935 /* CalendarViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DAE72291E0670DD005DF935 /* CalendarViewCell.swift */; };
 		7DAE722C1E06B97D005DF935 /* GeneralButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DAE722B1E06B97D005DF935 /* GeneralButton.swift */; };
 		7DC9BC621D8C4B6700EFA1BA /* CalendarTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC9BC611D8C4B6700EFA1BA /* CalendarTextField.swift */; };
+		7DCBDD3D1FD4529800CB8599 /* ToolsWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7DCBDD3C1FD4529800CB8599 /* ToolsWindowController.xib */; };
+		7DCBDD3F1FD454CC00CB8599 /* ToolsWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCBDD3E1FD454CC00CB8599 /* ToolsWindowController.swift */; };
 		7DD9F7841DFC54B900C1DEDA /* SettingMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD9F7831DFC54B900C1DEDA /* SettingMenu.swift */; settings = {COMPILER_FLAGS = "-w"; }; };
 /* End PBXBuildFile section */
 
@@ -81,6 +83,8 @@
 		7DAE72291E0670DD005DF935 /* CalendarViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarViewCell.swift; sourceTree = "<group>"; };
 		7DAE722B1E06B97D005DF935 /* GeneralButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneralButton.swift; sourceTree = "<group>"; };
 		7DC9BC611D8C4B6700EFA1BA /* CalendarTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarTextField.swift; sourceTree = "<group>"; };
+		7DCBDD3C1FD4529800CB8599 /* ToolsWindowController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ToolsWindowController.xib; sourceTree = "<group>"; };
+		7DCBDD3E1FD454CC00CB8599 /* ToolsWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolsWindowController.swift; sourceTree = "<group>"; };
 		7DD9F7831DFC54B900C1DEDA /* SettingMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingMenu.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -166,6 +170,8 @@
 				7DAE72271E05787F005DF935 /* CustomView.swift */,
 				7DAE72291E0670DD005DF935 /* CalendarViewCell.swift */,
 				7DAE722B1E06B97D005DF935 /* GeneralButton.swift */,
+				7DCBDD3C1FD4529800CB8599 /* ToolsWindowController.xib */,
+				7DCBDD3E1FD454CC00CB8599 /* ToolsWindowController.swift */,
 			);
 			path = MacCalendar;
 			sourceTree = "<group>";
@@ -241,6 +247,7 @@
 				7D7737CA1DFEEE6B00CCD1DF /* 11.png in Resources */,
 				7D84EA1E1DF05264001E5774 /* setting.png in Resources */,
 				7D7737C81DFEEE6B00CCD1DF /* 9.png in Resources */,
+				7DCBDD3D1FD4529800CB8599 /* ToolsWindowController.xib in Resources */,
 				7D62787C1D39D44C00B9CDD4 /* MainMenu.xib in Resources */,
 				7D84EA201DF05594001E5774 /* close.png in Resources */,
 				7D6278861D39D57B00B9CDD4 /* CalendarViewController.xib in Resources */,
@@ -274,6 +281,7 @@
 				7D17C2FB1D6752B20098674A /* PlanetData.swift in Sources */,
 				7DC9BC621D8C4B6700EFA1BA /* CalendarTextField.swift in Sources */,
 				7D80307A1D819E0D00247C9C /* LunarCalendarUtils.swift in Sources */,
+				7DCBDD3F1FD454CC00CB8599 /* ToolsWindowController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
