@@ -12,12 +12,17 @@ class SettingMenu: NSMenu {
 
     init() {
         super.init(title: "Setting")
+        // 设置项
         let set = self.insertItem(withTitle: "设置", action: #selector(SettingMenu.setting(_:)), keyEquivalent: "", at: 0)
         set.target = self
-        
-        let ab = self.insertItem(withTitle: "关于", action: #selector(SettingMenu.about(_:)), keyEquivalent: "", at: 1)
+        // 工具
+        let tool = self.insertItem(withTitle: "工具", action: #selector(SettingMenu.tools(_:)), keyEquivalent: "", at: 1)
+        tool.target = self
+        // 关于
+        let ab = self.insertItem(withTitle: "关于", action: #selector(SettingMenu.about(_:)), keyEquivalent: "", at: 2)
         ab.target = self
-        let qt = self.insertItem(withTitle: "退出", action: #selector(SettingMenu.quit(_:)), keyEquivalent: "", at: 2)
+        // 退出
+        let qt = self.insertItem(withTitle: "退出", action: #selector(SettingMenu.quit(_:)), keyEquivalent: "", at: 3)
         qt.target = self
     }
     
@@ -29,6 +34,12 @@ class SettingMenu: NSMenu {
         (NSApp.delegate as! AppDelegate).openSettingWindow()
     }
     
+    // 工具
+    func tools(_ sender: NSMenuItem){
+        print("Tool menuItem pressed")
+    }
+    
+    // 关于
     func about(_ sender: NSMenuItem) {
         let style = NSMutableParagraphStyle()
         style.alignment = .center
