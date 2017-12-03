@@ -29,17 +29,17 @@ class SettingMenu: NSMenu {
     required init(coder decoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    // 设置界面
+    // 设置界面回调
     func setting(_ sender: NSMenuItem){
         (NSApp.delegate as! AppDelegate).openSettingWindow()
     }
     
-    // 工具
+    // 工具菜单回调
     func tools(_ sender: NSMenuItem){
         print("Tool menuItem pressed")
     }
     
-    // 关于
+    // 关于页面回调
     func about(_ sender: NSMenuItem) {
         let style = NSMutableParagraphStyle()
         style.alignment = .center
@@ -50,6 +50,7 @@ class SettingMenu: NSMenu {
         
         NSApp.orderFrontStandardAboutPanel(options: ["Credits":infoAttributedStr])
     }
+    // 退出回调
     func quit(_ sender: NSMenuItem) {
         NSApp.terminate(nil)
     }
