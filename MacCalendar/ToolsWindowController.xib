@@ -10,6 +10,7 @@
         <customObject id="-2" userLabel="File's Owner" customClass="ToolsWindowController" customModule="StatebarCalendar" customModuleProvider="target">
             <connections>
                 <outlet property="gori2Lunar" destination="l1U-om-RUK" id="Dgc-Ty-rbH"/>
+                <outlet property="goriDetail" destination="sWv-AV-o7h" id="5Pt-CY-YO4"/>
                 <outlet property="lunar2Gori" destination="rcU-F8-aHq" id="n72-7g-MXI"/>
                 <outlet property="lunar2GoriSelected" destination="rcU-F8-aHq" id="tlE-bC-s38"/>
                 <outlet property="transButton" destination="BXa-G0-cep" id="jR6-Wg-1sw"/>
@@ -111,7 +112,7 @@
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pB2-Wc-MFJ">
                         <rect key="frame" x="47" y="98" width="84" height="31"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="公历" drawsBackground="YES" usesSingleLineMode="YES" id="Ib0-ai-oM5">
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" borderStyle="border" alignment="center" title="公历" drawsBackground="YES" usesSingleLineMode="YES" id="Ib0-ai-oM5">
                             <font key="font" metaFont="system" size="17"/>
                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="windowBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -120,7 +121,7 @@
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sWv-AV-o7h">
                         <rect key="frame" x="130" y="98" width="302" height="31"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="2017年11月30日" drawsBackground="YES" usesSingleLineMode="YES" id="aZM-d6-8qq">
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" borderStyle="border" alignment="center" title="2017年11月30日" drawsBackground="YES" usesSingleLineMode="YES" id="aZM-d6-8qq">
                             <font key="font" metaFont="systemLight" size="13"/>
                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="windowBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -129,7 +130,7 @@
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0O7-Vk-aUg">
                         <rect key="frame" x="47" y="68" width="84" height="31"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="农历" drawsBackground="YES" usesSingleLineMode="YES" id="883-zO-wm4">
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" borderStyle="border" alignment="center" title="农历" drawsBackground="YES" usesSingleLineMode="YES" id="883-zO-wm4">
                             <font key="font" metaFont="system" size="17"/>
                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="windowBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -138,7 +139,7 @@
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Rso-QT-R4P">
                         <rect key="frame" x="130" y="68" width="302" height="31"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="农历鸡年十一月十七 丁酉年已亥月辛丑日" drawsBackground="YES" usesSingleLineMode="YES" id="NlK-tD-kYe">
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" borderStyle="border" alignment="center" title="农历鸡年十一月十七 丁酉年已亥月辛丑日" drawsBackground="YES" usesSingleLineMode="YES" id="NlK-tD-kYe">
                             <font key="font" metaFont="systemLight" size="13"/>
                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="windowBackgroundColor" catalog="System" colorSpace="catalog"/>

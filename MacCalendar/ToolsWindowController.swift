@@ -17,6 +17,7 @@ class ToolsWindowController : NSWindowController, NSWindowDelegate {
     @IBOutlet weak var transButton: NSButton!
     // 当前是哪种模式
     private var mode:Int8 = 0;
+    @IBOutlet weak var goriDetail: NSTextField!
     
     // 农历转公历选中
     @IBAction func lunarOrGoriSelected(_ sender: NSButton) {
@@ -39,6 +40,7 @@ class ToolsWindowController : NSWindowController, NSWindowDelegate {
         super.windowDidLoad()
         gori2Lunar.state = 1
         lunar2Gori.state = 0
+        goriDetail.alignment = .center
     }
     
 }
