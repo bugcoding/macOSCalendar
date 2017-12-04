@@ -13,15 +13,32 @@ class ToolsWindowController : NSWindowController, NSWindowDelegate {
     @IBOutlet weak var gori2Lunar: NSButton!
     // 农历转公历
     @IBOutlet weak var lunar2Gori: NSButton!
-    
+    // 转换按钮
+    @IBOutlet weak var transButton: NSButton!
     // 当前是哪种模式
-    private let mode:Int8 = 0;
+    private var mode:Int8 = 0;
     
     // 农历转公历选中
-    @IBAction func lunar2GoriSelected(_ sender: NSButton) {
-        
+    @IBAction func lunarOrGoriSelected(_ sender: NSButton) {
+        if sender == gori2Lunar && sender.state == 1 {
+            mode = 1
+        } else {
+            mode = 0
+        }
+        print("mode == \(mode)")
     }
-    // 公历转农历选中
-    @IBAction func gori2LunarSelected(_ sender: NSButton) {
+    
+    @IBAction func transformDate(_ sender: NSButton) {
+        print("transform button pressed")
     }
+    override var windowNibName: String? {
+        return "ToolsWindowController"
+    }
+    
+    override func windowDidLoad() {
+        super.windowDidLoad()
+        gori2Lunar.state = 1
+        lunar2Gori.state = 0
+    }
+    
 }

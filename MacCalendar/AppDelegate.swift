@@ -12,6 +12,7 @@ import Cocoa
 class AppDelegate: NSObject, NSApplicationDelegate {
 
     var settingController: SettingWindowController?
+    var toolsController: ToolsWindowController?
     var calViewController:CalendarViewController?
     let icon: IconView
 
@@ -74,6 +75,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func openSettingWindow() {
         self.settingController = SettingWindowController()
         self.settingController?.window?.makeKeyAndOrderFront(nil)
+    }
+    
+    // 打开工具界面
+    func openToolsWindow() {
+        self.toolsController = ToolsWindowController()
+        self.toolsController?.window?.makeKeyAndOrderFront(nil)
     }
     
     // 重新显示面板

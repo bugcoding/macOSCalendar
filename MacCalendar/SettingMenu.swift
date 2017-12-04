@@ -36,7 +36,7 @@ class SettingMenu: NSMenu {
     
     // 工具菜单回调
     func tools(_ sender: NSMenuItem){
-        print("Tool menuItem pressed")
+        (NSApp.delegate as! AppDelegate).openToolsWindow();
     }
     
     // 关于页面回调

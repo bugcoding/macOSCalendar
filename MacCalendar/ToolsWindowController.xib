@@ -4,6 +4,7 @@
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13529"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+        <capability name="system font weights other than Regular or Bold" minToolsVersion="7.0"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="ToolsWindowController" customModule="StatebarCalendar" customModuleProvider="target">
@@ -11,6 +12,7 @@
                 <outlet property="gori2Lunar" destination="l1U-om-RUK" id="Dgc-Ty-rbH"/>
                 <outlet property="lunar2Gori" destination="rcU-F8-aHq" id="n72-7g-MXI"/>
                 <outlet property="lunar2GoriSelected" destination="rcU-F8-aHq" id="tlE-bC-s38"/>
+                <outlet property="transButton" destination="BXa-G0-cep" id="jR6-Wg-1sw"/>
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
@@ -29,27 +31,119 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     </box>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="l1U-om-RUK">
-                        <rect key="frame" x="87" y="223" width="126" height="37"/>
+                        <rect key="frame" x="86" y="222" width="129" height="39"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="radio" title="公历转农历" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="Dpf-Ra-5Mj">
+                        <buttonCell key="cell" type="radio" title="公历转农历" bezelStyle="regularSquare" imagePosition="left" inset="2" id="Dpf-Ra-5Mj">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                            <font key="font" metaFont="system" size="16"/>
+                            <font key="font" metaFont="system"/>
                         </buttonCell>
                         <connections>
-                            <action selector="gori2LunarSelected:" target="-2" id="Wb2-Ye-iSg"/>
+                            <action selector="lunarOrGoriSelected:" target="-2" id="WYL-X0-rtA"/>
                         </connections>
                     </button>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rcU-F8-aHq">
-                        <rect key="frame" x="292" y="223" width="126" height="37"/>
+                        <rect key="frame" x="291" y="222" width="129" height="39"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="radio" title="农历转公历" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="i3X-1j-Dys">
+                        <buttonCell key="cell" type="radio" title="农历转公历" bezelStyle="regularSquare" imagePosition="left" inset="2" id="i3X-1j-Dys">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                            <font key="font" metaFont="system" size="16"/>
+                            <font key="font" metaFont="system"/>
                         </buttonCell>
                         <connections>
-                            <action selector="lunar2GoriSelected:" target="-2" id="ZH3-4X-ZkZ"/>
+                            <action selector="lunarOrGoriSelected:" target="-2" id="pDW-UB-z21"/>
                         </connections>
                     </button>
+                    <popUpButton fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uJx-U0-Nmf">
+                        <rect key="frame" x="144" y="170" width="76" height="35"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <popUpButtonCell key="cell" type="bevel" title="1月" bezelStyle="regularSquare" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" selectedItem="9ky-6X-jh3" id="RSz-n0-XOh">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" size="14" name=".AppleSystemUIFontBlack"/>
+                            <menu key="menu" id="Jvm-xD-Aea">
+                                <items>
+                                    <menuItem title="1月" state="on" id="9ky-6X-jh3"/>
+                                    <menuItem title="Item 2" id="SeG-bH-ldj"/>
+                                    <menuItem title="Item 3" id="CPb-vy-Cil"/>
+                                </items>
+                            </menu>
+                        </popUpButtonCell>
+                    </popUpButton>
+                    <popUpButton fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="453-Sj-lEf">
+                        <rect key="frame" x="64" y="170" width="76" height="35"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <popUpButtonCell key="cell" type="bevel" title="2017" bezelStyle="regularSquare" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" selectedItem="kFN-09-fMj" id="mZN-k5-aYd">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" size="14" name=".AppleSystemUIFontBlack"/>
+                            <menu key="menu" id="1Ul-eC-8CV">
+                                <items>
+                                    <menuItem title="2017" state="on" id="kFN-09-fMj"/>
+                                    <menuItem title="Item 2" id="uZL-9q-d9e"/>
+                                    <menuItem title="Item 3" id="xyA-1C-LcM"/>
+                                </items>
+                            </menu>
+                        </popUpButtonCell>
+                    </popUpButton>
+                    <popUpButton fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qos-hJ-8gu">
+                        <rect key="frame" x="222" y="170" width="76" height="35"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <popUpButtonCell key="cell" type="bevel" title="1日" bezelStyle="regularSquare" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" selectedItem="dit-E0-cLE" id="a8R-Ce-hu4">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" size="14" name=".AppleSystemUIFontBlack"/>
+                            <menu key="menu" id="P4c-OC-Y3q">
+                                <items>
+                                    <menuItem title="1日" state="on" id="dit-E0-cLE"/>
+                                    <menuItem title="Item 2" id="Dhs-6B-oQD"/>
+                                    <menuItem title="Item 3" id="oH9-tg-3eK"/>
+                                </items>
+                            </menu>
+                        </popUpButtonCell>
+                    </popUpButton>
+                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BXa-G0-cep">
+                        <rect key="frame" x="319" y="170" width="101" height="35"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="bevel" title="转换" bezelStyle="regularSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="T84-zM-Un8">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="systemBold" size="16"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="transformDate:" target="-2" id="ZgE-It-K4c"/>
+                        </connections>
+                    </button>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pB2-Wc-MFJ">
+                        <rect key="frame" x="47" y="98" width="84" height="31"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="公历" drawsBackground="YES" usesSingleLineMode="YES" id="Ib0-ai-oM5">
+                            <font key="font" metaFont="system" size="17"/>
+                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="windowBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sWv-AV-o7h">
+                        <rect key="frame" x="130" y="98" width="302" height="31"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="2017年11月30日" drawsBackground="YES" usesSingleLineMode="YES" id="aZM-d6-8qq">
+                            <font key="font" metaFont="systemLight" size="13"/>
+                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="windowBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0O7-Vk-aUg">
+                        <rect key="frame" x="47" y="68" width="84" height="31"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="农历" drawsBackground="YES" usesSingleLineMode="YES" id="883-zO-wm4">
+                            <font key="font" metaFont="system" size="17"/>
+                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="windowBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Rso-QT-R4P">
+                        <rect key="frame" x="130" y="68" width="302" height="31"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="农历鸡年十一月十七 丁酉年已亥月辛丑日" drawsBackground="YES" usesSingleLineMode="YES" id="NlK-tD-kYe">
+                            <font key="font" metaFont="systemLight" size="13"/>
+                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="windowBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
                 </subviews>
             </view>
         </window>
