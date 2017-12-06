@@ -16,7 +16,7 @@ class ToolsWindowController : NSWindowController, NSWindowDelegate {
     // 转换按钮
     @IBOutlet weak var transButton: NSButton!
     // 当前是哪种模式
-    private var mode:Int8 = -1;
+    private var mode:Int8 = 1;
     // 公历详情
     @IBOutlet weak var goriDetail: NSTextField!
     // 农历详情
@@ -44,6 +44,29 @@ class ToolsWindowController : NSWindowController, NSWindowDelegate {
     @IBAction func transformDate(_ sender: NSButton) {
         print("transform button pressed")
     }
+    
+    
+    @IBAction func yearSelectedHandler(_ sender: NSPopUpButton) {
+        let i  = sender.indexOfSelectedItem
+        print("yearSelectedHandler i = \(i)")
+    }
+    
+    @IBAction func monthSelectedHandler(_ sender: NSPopUpButton) {
+        let month = sender.indexOfSelectedItem + 1
+        let year = yearSelect.indexOfSelectedItem + 1900
+        let days = CalendarUtils.sharedInstance.getDaysBy(year: year, month: month)
+        
+        // 年月选定，每个月多少天确定
+        daySelect.removeAllItems()
+        for i in 1 ... days {
+            daySelect.addItem(withTitle: "\(i) 日")
+        }
+        
+    }
+    @IBAction func daySelectedHandler(_ sender: NSPopUpButton) {
+    }
+    
+    
     override var windowNibName: String? {
         return "ToolsWindowController"
     }

@@ -16,6 +16,7 @@
                 <outlet property="lunar2GoriSelected" destination="rcU-F8-aHq" id="tlE-bC-s38"/>
                 <outlet property="lunarDetail" destination="Rso-QT-R4P" id="xdy-X6-J36"/>
                 <outlet property="monthSelect" destination="uJx-U0-Nmf" id="YZN-ZJ-SEb"/>
+                <outlet property="monthSelectedHandler" destination="uJx-U0-Nmf" id="ucv-k4-ZQg"/>
                 <outlet property="transButton" destination="BXa-G0-cep" id="jR6-Wg-1sw"/>
                 <outlet property="yearSelect" destination="453-Sj-lEf" id="4T0-4M-6Kl"/>
             </connections>
@@ -71,6 +72,9 @@
                                 </items>
                             </menu>
                         </popUpButtonCell>
+                        <connections>
+                            <action selector="monthSelectedHandler:" target="-2" id="Bo6-Wf-1cc"/>
+                        </connections>
                     </popUpButton>
                     <popUpButton fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="453-Sj-lEf">
                         <rect key="frame" x="64" y="170" width="76" height="35"/>
@@ -86,6 +90,9 @@
                                 </items>
                             </menu>
                         </popUpButtonCell>
+                        <connections>
+                            <action selector="yearSelectedHandler:" target="-2" id="VNF-i9-bHl"/>
+                        </connections>
                     </popUpButton>
                     <popUpButton fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qos-hJ-8gu">
                         <rect key="frame" x="222" y="170" width="76" height="35"/>
@@ -101,6 +108,9 @@
                                 </items>
                             </menu>
                         </popUpButtonCell>
+                        <connections>
+                            <action selector="daySelectedHandler:" target="-2" id="OgX-qb-YVy"/>
+                        </connections>
                     </popUpButton>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BXa-G0-cep">
                         <rect key="frame" x="319" y="170" width="101" height="35"/>
