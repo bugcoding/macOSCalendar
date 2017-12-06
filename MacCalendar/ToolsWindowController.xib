@@ -9,11 +9,15 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="ToolsWindowController" customModule="StatebarCalendar" customModuleProvider="target">
             <connections>
+                <outlet property="daySelect" destination="qos-hJ-8gu" id="a4S-9h-yMI"/>
                 <outlet property="gori2Lunar" destination="l1U-om-RUK" id="Dgc-Ty-rbH"/>
                 <outlet property="goriDetail" destination="sWv-AV-o7h" id="5Pt-CY-YO4"/>
                 <outlet property="lunar2Gori" destination="rcU-F8-aHq" id="n72-7g-MXI"/>
                 <outlet property="lunar2GoriSelected" destination="rcU-F8-aHq" id="tlE-bC-s38"/>
+                <outlet property="lunarDetail" destination="Rso-QT-R4P" id="xdy-X6-J36"/>
+                <outlet property="monthSelect" destination="uJx-U0-Nmf" id="YZN-ZJ-SEb"/>
                 <outlet property="transButton" destination="BXa-G0-cep" id="jR6-Wg-1sw"/>
+                <outlet property="yearSelect" destination="453-Sj-lEf" id="4T0-4M-6Kl"/>
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
