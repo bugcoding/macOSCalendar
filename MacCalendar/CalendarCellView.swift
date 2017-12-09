@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class CalendarCellView : NSButton{
+class CalendarCellView : NSButton, NSMenuDelegate{
     // 标识具体的cell
     var mCellID: Int = 0
     var mBgColor: NSColor = .white
@@ -21,6 +21,10 @@ class CalendarCellView : NSButton{
         self.isBordered = false
         self.wantsLayer = true
         self.layer!.backgroundColor = self.mBgColor.cgColor
+        
+        // 设置鼠标进出跟踪区域
+        let trackingArea = NSTrackingArea(rect: self.bounds, options: [NSTrackingArea.Options.activeAlways,NSTrackingArea.Options.mouseEnteredAndExited], owner: self, userInfo: nil)
+        self.addTrackingArea(trackingArea)
     }
     
     func setBackGroundColor(bgColor: NSColor) {
@@ -29,11 +33,41 @@ class CalendarCellView : NSButton{
         self.layer!.backgroundColor = self.mBgColor.cgColor
     }
     
+    func addFlagHandler(_ sender:CalendarCellView) {
+        
+    }
+    
+    func changeBorderColor(borderWid: CGFloat, color: NSColor) {
+        self.layer?.borderWidth = borderWid
+        self.layer?.borderColor = color.cgColor
+    }
+    
+    // 创建右键菜单
+    func createRightMouseMenu(_ event: NSEvent) {
+        
+        let popMenu = NSMenu()
+        popMenu.delegate = self
+        let addFlagItem = NSMenuItem(title: "标记当前日期", action: #selector(CalendarCellView.addFlagHandler(_:)), keyEquivalent: "")
+        popMenu.addItem(addFlagItem)
+        NSMenu.popUpContextMenu(popMenu, with: event, for: self)
+    }
+    
+    override func mouseExited(with event: NSEvent) {
+        //Swift.print("mouseExit cellid = \(mCellID)")
+        changeBorderColor(borderWid: 0, color: self.mBgColor)
+    }
+    
+    override func mouseEntered(with event: NSEvent) {
+        //Swift.print("mouseEntered cellid = \(mCellID)")
+        changeBorderColor(borderWid: 0.5, color: NSColor.orange)
+    }
+    
     // 右键点击格子弹出菜单
     override func rightMouseDown(with event: NSEvent) {
-        Swift.print("cellid = \(mCellID)")
-        self.layer?.borderWidth = 2
-        self.layer?.borderColor = NSColor.red.cgColor
+        // 显示右键菜单
+        createRightMouseMenu(event)
+        
+        
     }
     
     // 显示具体的农历和公历，设置具体button的标题属性
