@@ -258,7 +258,7 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
                 
                 let today = utils.getYMDTuppleBy(utils.getDateStringOfToday())
                 if today.day == day && today.month == mCurMonth && today.year == mCurYear {
-                    btn.setBackGroundColor(bgColor: NSColor(colorLiteralRed: 0 / 255.0, green: 210 / 255.0, blue: 0 / 255.0, alpha: 0.4))
+                    btn.setBackGroundColor(bgColor: CalendarConstant.selectedDateColor)
                     lastPressBtn = btn
                 }
                 var color = NSColor.black
@@ -313,7 +313,7 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
         if let tmp = lastPressBtn {
             tmp.setBackGroundColor(bgColor: .white)
         }
-        sender.setBackGroundColor(bgColor: NSColor(colorLiteralRed: 0 / 255.0, green: 210 / 255.0, blue: 0 / 255.0, alpha: 0.3))
+        sender.setBackGroundColor(bgColor: CalendarConstant.selectedDateColor)
         lastPressBtn = sender
         
         mCurDay = sender.mCurDay

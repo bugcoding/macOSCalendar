@@ -33,13 +33,21 @@ class CalendarCellView : NSButton, NSMenuDelegate{
         self.layer!.backgroundColor = self.mBgColor.cgColor
     }
     
+    // 添加日期标记
     func addFlagHandler(_ sender:CalendarCellView) {
         
     }
-    
+    // 移除日期标记
+    func removeFlagHandler(_ sender:CalendarCellView) {
+        
+    }
+    // 修改当前日期边框颜色
     func changeBorderColor(borderWid: CGFloat, color: NSColor) {
-        self.layer?.borderWidth = borderWid
-        self.layer?.borderColor = color.cgColor
+        if self.isEnabled {
+            self.layer?.borderWidth = borderWid
+            self.layer?.borderColor = color.cgColor
+        }
+        
     }
     
     // 创建右键菜单
@@ -49,6 +57,8 @@ class CalendarCellView : NSButton, NSMenuDelegate{
         popMenu.delegate = self
         let addFlagItem = NSMenuItem(title: "标记当前日期", action: #selector(CalendarCellView.addFlagHandler(_:)), keyEquivalent: "")
         popMenu.addItem(addFlagItem)
+        let removeFlagItem = NSMenuItem(title: "移除标记日期", action: #selector(CalendarCellView.removeFlagHandler(_:)), keyEquivalent: "")
+        popMenu.addItem(removeFlagItem)
         NSMenu.popUpContextMenu(popMenu, with: event, for: self)
     }
     
@@ -59,14 +69,13 @@ class CalendarCellView : NSButton, NSMenuDelegate{
     
     override func mouseEntered(with event: NSEvent) {
         //Swift.print("mouseEntered cellid = \(mCellID)")
-        changeBorderColor(borderWid: 0.5, color: NSColor.orange)
+        changeBorderColor(borderWid: 0.7, color: CalendarConstant.selectedDateColor)
     }
     
     // 右键点击格子弹出菜单
     override func rightMouseDown(with event: NSEvent) {
         // 显示右键菜单
         createRightMouseMenu(event)
-        
         
     }
     

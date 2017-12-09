@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+import Cocoa
 /*
  
  计算日历相关的各种常量
@@ -360,4 +360,7 @@ class CalendarConstant{
     
     //已知1900年小寒时刻为1月6日2:05:00，
     static let base1900SlightColdJD = 2415025.5868055555;
+    
+    // 选中日期的浅绿色
+    static let selectedDateColor = NSColor(colorLiteralRed: 0 / 255.0, green: 210 / 255.0, blue: 0 / 255.0, alpha: 0.3)
 }
