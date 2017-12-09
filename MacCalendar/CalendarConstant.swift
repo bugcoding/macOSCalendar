@@ -362,5 +362,5 @@ class CalendarConstant{
     static let base1900SlightColdJD = 2415025.5868055555;
     
     // 选中日期的浅绿色
-    static let selectedDateColor = NSColor(colorLiteralRed: 0 / 255.0, green: 210 / 255.0, blue: 0 / 255.0, alpha: 0.3)
+    static let selectedDateColor = NSColor(red: 0 / 255.0, green: 210 / 255.0, blue: 0 / 255.0, alpha: 0.3)
 }
