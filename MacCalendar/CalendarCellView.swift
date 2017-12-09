@@ -29,6 +29,13 @@ class CalendarCellView : NSButton{
         self.layer!.backgroundColor = self.mBgColor.cgColor
     }
     
+    // 右键点击格子弹出菜单
+    override func rightMouseDown(with event: NSEvent) {
+        Swift.print("cellid = \(mCellID)")
+        self.layer?.borderWidth = 2
+        self.layer?.borderColor = NSColor.red.cgColor
+    }
+    
     // 显示具体的农历和公历，设置具体button的标题属性
     func setString(geriDay: Int, topColor: NSColor, bottomText: String, bottomColor: NSColor) {
         
