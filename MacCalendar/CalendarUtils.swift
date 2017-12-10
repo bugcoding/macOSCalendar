@@ -35,6 +35,12 @@ open class CalendarUtils{
         var hour:Int = 0
         var minute:Int = 0
         var second:Double = 0
+        
+        init(_ y: Int, _ m: Int, _ d: Int) {
+            year = y
+            month = m
+            day = d
+        }
     }
     
     // 根据农历月与农历日获取农历节日名称，没有返回空字符串

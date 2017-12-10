@@ -68,7 +68,7 @@ class LunarCalendarUtils {
             
             tdJD += 29.5
         }
-        print("getNewMoonJDS end")
+        //print("getNewMoonJDS end")
     }
     
     func getAllSolarTermsJD(year: Int, start: Int, solarTerms: inout [Double]) {
@@ -220,7 +220,7 @@ class LunarCalendarUtils {
             return
         }
 
-        var dt: CalendarUtils.WZDayTime = CalendarUtils.WZDayTime()
+        var dt: CalendarUtils.WZDayTime = CalendarUtils.WZDayTime(0, 0, 0)
         CalendarUtils.sharedInstance.getDayTimeFromJulianDay(mSolarTermsJD[CalendarConstant.SPRING_BEGINS_INDEX], dt: &dt)
         
         month = dt.month

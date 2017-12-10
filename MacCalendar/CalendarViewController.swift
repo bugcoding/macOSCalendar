@@ -224,8 +224,8 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
                     if isFestival {
                         color = festivalColor
                     }
-
-                    btn.setString(geriDay: day, topColor: NSColor.black.withAlphaComponent(0.5), bottomText: dayName, bottomColor: color.withAlphaComponent(0.5))
+                    
+                    btn.setString(wzTime: CalendarUtils.WZDayTime(mCurYear, mCurMonth, day), topColor: NSColor.black.withAlphaComponent(0.5), bottomText: dayName, bottomColor: color.withAlphaComponent(0.5))
                 } else {
                     let day = index - monthDays - weekDayOf1stDay + 1
                     
@@ -241,7 +241,7 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
                         color = festivalColor
                     }
                     
-                    btn.setString(geriDay: day, topColor: NSColor.black.withAlphaComponent(0.5), bottomText: dayName, bottomColor: color.withAlphaComponent(0.5))
+                    btn.setString(wzTime: CalendarUtils.WZDayTime(mCurYear, mCurMonth, day), topColor: NSColor.black.withAlphaComponent(0.5), bottomText: dayName, bottomColor: color.withAlphaComponent(0.5))
                 }
                 
             } else {
@@ -265,15 +265,15 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
                 if isFestival {
                     color = festivalColor
                 }
-                btn.setString(geriDay: day, topColor: .black, bottomText: dayName, bottomColor: color)
+                btn.setString(wzTime: CalendarUtils.WZDayTime(mCurYear, mCurMonth, day), topColor: .black, bottomText: dayName, bottomColor: color)
                 
                 // 处理周六日的日期颜色
                 if index % 7 == 6 || index % 7 == 0 {
    
                     if isFestival {
-                        btn.setString(geriDay: day, topColor: holidayColor, bottomText: dayName, bottomColor: color)
+                        btn.setString(wzTime: CalendarUtils.WZDayTime(mCurYear, mCurMonth, day), topColor: holidayColor, bottomText: dayName, bottomColor: color)
                     } else {
-                        btn.setString(geriDay: day, topColor: holidayColor, bottomText: dayName, bottomColor: holidayColor)
+                        btn.setString(wzTime: CalendarUtils.WZDayTime(mCurYear, mCurMonth, day), topColor: holidayColor, bottomText: dayName, bottomColor: holidayColor)
                     }
                 }
             }
@@ -316,7 +316,7 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
         sender.setBackGroundColor(bgColor: CalendarConstant.selectedDateColor)
         lastPressBtn = sender
         
-        mCurDay = sender.mCurDay
+        mCurDay = sender.wzDay.day
         showRightDetailInfo()
     }
     

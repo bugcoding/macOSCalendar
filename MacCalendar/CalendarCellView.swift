@@ -12,7 +12,8 @@ class CalendarCellView : NSButton, NSMenuDelegate{
     // 标识具体的cell
     var mCellID: Int = 0
     var mBgColor: NSColor = .white
-    var mCurDay: Int = -1
+    // 当前是哪月
+    var wzDay: CalendarUtils.WZDayTime = CalendarUtils.WZDayTime(0, 0, 0)
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
@@ -78,14 +79,15 @@ class CalendarCellView : NSButton, NSMenuDelegate{
     }
     
     // 显示具体的农历和公历，设置具体button的标题属性
-    func setString(geriDay: Int, topColor: NSColor, bottomText: String, bottomColor: NSColor) {
+    func setString(wzTime: CalendarUtils.WZDayTime, topColor: NSColor, bottomText: String, bottomColor: NSColor) {
         
-        mCurDay = geriDay
+        wzDay = wzTime
+        //mCurDay = geriDay
         // 居中样式
         let style = NSMutableParagraphStyle()
         style.alignment = .center
         
-        let topText = String(geriDay) + "\n"
+        let topText = String(wzDay.day) + "\n"
 
         let goriDayDict = [NSForegroundColorAttributeName : topColor, NSParagraphStyleAttributeName : style, NSFontAttributeName : NSFont.systemFont(ofSize: 18.0)]
         let lunarDayDict = [NSForegroundColorAttributeName : bottomColor, NSParagraphStyleAttributeName : style, NSFontAttributeName : NSFont.systemFont(ofSize: 9.0)]
