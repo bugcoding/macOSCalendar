@@ -33,19 +33,16 @@ class SettingWindowController : NSWindowController, NSWindowDelegate {
     // 假日颜色
     @IBAction func holidaysWellPick(_ sender: NSColorWell) {
         let color = sender.color
-        let data = NSKeyedArchiver.archivedData(withRootObject: color)
-        print("holidaysWellPick color = \(color)")
-        UserDefaults.standard.setValue(data, forKey: SettingWindowController.HOLIDAY_COLOR_TAG)
+        
+        LocalDataManager.sharedInstance.saveData(data: color, forKey: SettingWindowController.HOLIDAY_COLOR_TAG)
         let delegate = NSApp.delegate as! AppDelegate
         delegate.refreshInterface()
     }
     // 节日颜色
     @IBAction func festivalWellPick(_ sender: NSColorWell) {
         let color = sender.color
-        print("festivalWellPick color = \(color)")
-        let data = NSKeyedArchiver.archivedData(withRootObject: color)
 
-        UserDefaults.standard.setValue(data, forKey: SettingWindowController.FESTIVAL_COLOR_TAG)
+        LocalDataManager.sharedInstance.saveData(data: color, forKey: SettingWindowController.FESTIVAL_COLOR_TAG)
         let delegate = NSApp.delegate as! AppDelegate
         delegate.refreshInterface()
     }

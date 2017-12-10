@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7D06CE4E1FDD779C00462292 /* LocalDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D06CE4D1FDD779C00462292 /* LocalDataManager.swift */; };
 		7D0D956C1D92CFFB00226B52 /* IconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D0D956B1D92CFFB00226B52 /* IconView.swift */; };
 		7D0D95711D92D13700226B52 /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D0D956F1D92D13700226B52 /* icon@2x.png */; };
 		7D1031851D3B30FF0015BBCC /* CalendarUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D1031841D3B30FF0015BBCC /* CalendarUtils.swift */; };
@@ -47,6 +48,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7D06CE4D1FDD779C00462292 /* LocalDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDataManager.swift; sourceTree = "<group>"; };
 		7D0D956B1D92CFFB00226B52 /* IconView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IconView.swift; sourceTree = "<group>"; };
 		7D0D956F1D92D13700226B52 /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@2x.png"; sourceTree = "<group>"; };
 		7D1031841D3B30FF0015BBCC /* CalendarUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarUtils.swift; sourceTree = "<group>"; };
@@ -130,6 +132,7 @@
 				7D17C2FA1D6752B20098674A /* PlanetData.swift */,
 				7D2827031D6C915700CBDE8F /* CalendarDataStruct.swift */,
 				7D8030791D819E0D00247C9C /* LunarCalendarUtils.swift */,
+				7D06CE4D1FDD779C00462292 /* LocalDataManager.swift */,
 			);
 			name = CalendarUtil;
 			sourceTree = "<group>";
@@ -279,6 +282,7 @@
 				7D6278771D39D44C00B9CDD4 /* AppDelegate.swift in Sources */,
 				7DD9F7841DFC54B900C1DEDA /* SettingMenu.swift in Sources */,
 				7D17C2FB1D6752B20098674A /* PlanetData.swift in Sources */,
+				7D06CE4E1FDD779C00462292 /* LocalDataManager.swift in Sources */,
 				7DC9BC621D8C4B6700EFA1BA /* CalendarTextField.swift in Sources */,
 				7D80307A1D819E0D00247C9C /* LunarCalendarUtils.swift in Sources */,
 				7DCBDD3F1FD454CC00CB8599 /* ToolsWindowController.swift in Sources */,
