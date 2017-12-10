@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		7D06CE4E1FDD779C00462292 /* LocalDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D06CE4D1FDD779C00462292 /* LocalDataManager.swift */; };
+		7D06CE501FDD81A800462292 /* ReminderTipWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D06CE4F1FDD81A800462292 /* ReminderTipWindowController.xib */; };
+		7D06CE521FDD829500462292 /* ReminderTipWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D06CE511FDD829500462292 /* ReminderTipWindowController.swift */; };
 		7D0D956C1D92CFFB00226B52 /* IconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D0D956B1D92CFFB00226B52 /* IconView.swift */; };
 		7D0D95711D92D13700226B52 /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D0D956F1D92D13700226B52 /* icon@2x.png */; };
 		7D1031851D3B30FF0015BBCC /* CalendarUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D1031841D3B30FF0015BBCC /* CalendarUtils.swift */; };
@@ -49,6 +51,8 @@
 
 /* Begin PBXFileReference section */
 		7D06CE4D1FDD779C00462292 /* LocalDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDataManager.swift; sourceTree = "<group>"; };
+		7D06CE4F1FDD81A800462292 /* ReminderTipWindowController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReminderTipWindowController.xib; sourceTree = "<group>"; };
+		7D06CE511FDD829500462292 /* ReminderTipWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderTipWindowController.swift; sourceTree = "<group>"; };
 		7D0D956B1D92CFFB00226B52 /* IconView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IconView.swift; sourceTree = "<group>"; };
 		7D0D956F1D92D13700226B52 /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@2x.png"; sourceTree = "<group>"; };
 		7D1031841D3B30FF0015BBCC /* CalendarUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarUtils.swift; sourceTree = "<group>"; };
@@ -175,6 +179,8 @@
 				7DAE722B1E06B97D005DF935 /* GeneralButton.swift */,
 				7DCBDD3C1FD4529800CB8599 /* ToolsWindowController.xib */,
 				7DCBDD3E1FD454CC00CB8599 /* ToolsWindowController.swift */,
+				7D06CE4F1FDD81A800462292 /* ReminderTipWindowController.xib */,
+				7D06CE511FDD829500462292 /* ReminderTipWindowController.swift */,
 			);
 			path = MacCalendar;
 			sourceTree = "<group>";
@@ -249,6 +255,7 @@
 				7D84EA1C1DF05062001E5774 /* calander.png in Resources */,
 				7D7737CA1DFEEE6B00CCD1DF /* 11.png in Resources */,
 				7D84EA1E1DF05264001E5774 /* setting.png in Resources */,
+				7D06CE501FDD81A800462292 /* ReminderTipWindowController.xib in Resources */,
 				7D7737C81DFEEE6B00CCD1DF /* 9.png in Resources */,
 				7DCBDD3D1FD4529800CB8599 /* ToolsWindowController.xib in Resources */,
 				7D62787C1D39D44C00B9CDD4 /* MainMenu.xib in Resources */,
@@ -270,6 +277,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7D7737B11DFD835700CCD1DF /* SettingWindowController.swift in Sources */,
+				7D06CE521FDD829500462292 /* ReminderTipWindowController.swift in Sources */,
 				7D2827041D6C915700CBDE8F /* CalendarDataStruct.swift in Sources */,
 				7D17C2F91D65F9DD0098674A /* CalendarConstant.swift in Sources */,
 				7D1031851D3B30FF0015BBCC /* CalendarUtils.swift in Sources */,

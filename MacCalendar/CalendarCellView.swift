@@ -37,6 +37,9 @@ class CalendarCellView : NSButton, NSMenuDelegate{
     // 添加日期标记
     func addFlagHandler(_ sender:CalendarCellView) {
         Swift.print("cur wzTime = \(wzDay.year)-\(wzDay.month)-\(wzDay.day)")
+        // TODO 提醒信息编辑框
+        let delegate = NSApp.delegate as! AppDelegate
+        delegate.openReminderEditWindow()
     }
     // 移除日期标记
     func removeFlagHandler(_ sender:CalendarCellView) {
@@ -82,7 +85,6 @@ class CalendarCellView : NSButton, NSMenuDelegate{
     func setString(wzTime: CalendarUtils.WZDayTime, topColor: NSColor, bottomText: String, bottomColor: NSColor) {
         
         wzDay = wzTime
-        //mCurDay = geriDay
         // 居中样式
         let style = NSMutableParagraphStyle()
         style.alignment = .center

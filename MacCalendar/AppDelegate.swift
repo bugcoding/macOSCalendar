@@ -14,6 +14,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var settingController: SettingWindowController?
     var toolsController: ToolsWindowController?
     var calViewController:CalendarViewController?
+    var reminderTipController : ReminderTipWindowController?
     let icon: IconView
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
@@ -83,11 +84,19 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         self.toolsController?.window?.makeKeyAndOrderFront(nil)
     }
     
+    // 打开提醒编辑页面
+    func openReminderEditWindow() {
+        self.reminderTipController = ReminderTipWindowController()
+        self.reminderTipController?.window?.makeKeyAndOrderFront(nil)
+    }
+    
     // 重新显示面板
     func refreshInterface() {
         calViewController?.showMonthPanel()
         calViewController?.setWeekendLabelColor()
     }
+    
+
     
     override func awakeFromNib() {
         self.icon.onMouseDown = {
