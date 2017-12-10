@@ -36,11 +36,11 @@ class CalendarCellView : NSButton, NSMenuDelegate{
     
     // 添加日期标记
     func addFlagHandler(_ sender:CalendarCellView) {
-        
+        Swift.print("cur wzTime = \(wzDay.year)-\(wzDay.month)-\(wzDay.day)")
     }
     // 移除日期标记
     func removeFlagHandler(_ sender:CalendarCellView) {
-        
+        Swift.print("cur wzTime = \(wzDay.year)-\(wzDay.month)-\(wzDay.day)")
     }
     // 修改当前日期边框颜色
     func changeBorderColor(borderWid: CGFloat, color: NSColor) {
