@@ -12,6 +12,9 @@ class ReminderTipViewController : NSViewController {
     
     @IBOutlet var mainView: NSView!
 
+    @IBOutlet weak var tipsInfo: NSTextField!
+    @IBOutlet weak var addReminderBtn: NSButton!
+    
     // 加载view
     override func loadView() {
         var tlp : NSArray = NSArray()
