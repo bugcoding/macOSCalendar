@@ -12,8 +12,12 @@ class ReminderTipViewController : NSViewController {
     
     @IBOutlet var mainView: NSView!
 
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    // 加载view
+    override func loadView() {
+        var tlp : NSArray = NSArray()
+        if Bundle.main.loadNibNamed("ReminderTipViewController", owner: self, topLevelObjects: &tlp) {
+            mainView = tlp.first(where: { $0 is NSView }) as? NSView
+        }
     }
+
 }
