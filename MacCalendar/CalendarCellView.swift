@@ -38,8 +38,13 @@ class CalendarCellView : NSButton, NSMenuDelegate{
     func addFlagHandler(_ sender:CalendarCellView) {
         Swift.print("cur wzTime = \(wzDay.year)-\(wzDay.month)-\(wzDay.day)")
         // TODO 提醒信息编辑框
-        let delegate = NSApp.delegate as! AppDelegate
-        delegate.openReminderEditWindow()
+        
+        let popWindow = NSPopover()
+        let viewController = ReminderTipViewController()
+//
+        popWindow.contentSize = viewController.view.fittingSize
+        popWindow.contentViewController = viewController //NSViewController(nibName: "ReminderTipView", bundle: nil)
+        popWindow.show(relativeTo: self.bounds, of: self, preferredEdge: NSRectEdge.minY)
     }
     // 移除日期标记
     func removeFlagHandler(_ sender:CalendarCellView) {
