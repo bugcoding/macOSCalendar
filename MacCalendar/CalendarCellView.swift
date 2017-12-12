@@ -97,9 +97,8 @@ class CalendarCellView : NSButton, NSMenuDelegate{
         //Swift.print("wzDay = \(str)")
         
         if let data = LocalDataManager.sharedInstance.popData(forKey: str) {
-            let info = NSKeyedUnarchiver.unarchiveObject(with: data) as! String
+            // TODO:
             setBackGroundColor(bgColor: NSColor.orange)
-            
         }
         
         // 居中样式
