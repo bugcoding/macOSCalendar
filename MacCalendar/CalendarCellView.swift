@@ -12,6 +12,7 @@ class CalendarCellView : NSButton, NSMenuDelegate{
     // 标识具体的cell
     var mCellID: Int = 0
     var mBgColor: NSColor = .white
+    let mPopoverWindow = NSPopover()
     // 当前是哪月
     var wzDay: CalendarUtils.WZDayTime = CalendarUtils.WZDayTime(0, 0, 0)
     
@@ -34,17 +35,19 @@ class CalendarCellView : NSButton, NSMenuDelegate{
         self.layer!.backgroundColor = self.mBgColor.cgColor
     }
     
+    // 关闭popover
+    func performPopoverClose() {
+        mPopoverWindow.performClose(nil)
+    }
+    
     // 添加日期标记
     func addFlagHandler(_ sender:CalendarCellView) {
         Swift.print("cur wzTime = \(wzDay.year)-\(wzDay.month)-\(wzDay.day)")
-        // TODO 提醒信息编辑框
         
-        let popWindow = NSPopover()
-        let viewController = ReminderTipViewController()
-//
-        popWindow.contentSize = viewController.view.fittingSize
-        popWindow.contentViewController = viewController //NSViewController(nibName: "ReminderTipView", bundle: nil)
-        popWindow.show(relativeTo: self.bounds, of: self, preferredEdge: NSRectEdge.minY)
+        let viewController = ReminderTipViewController(date: wzDay, view: self)
+        mPopoverWindow.contentSize = viewController.view.fittingSize
+        mPopoverWindow.contentViewController = viewController
+        mPopoverWindow.show(relativeTo: self.bounds, of: self, preferredEdge: NSRectEdge.minY)
     }
     // 移除日期标记
     func removeFlagHandler(_ sender:CalendarCellView) {
@@ -90,6 +93,15 @@ class CalendarCellView : NSButton, NSMenuDelegate{
     func setString(wzTime: CalendarUtils.WZDayTime, topColor: NSColor, bottomText: String, bottomColor: NSColor) {
         
         wzDay = wzTime
+        let str = String(describing: wzDay.year) + String(describing: wzDay.month) + String(describing: wzDay.day)
+        //Swift.print("wzDay = \(str)")
+        
+        if let data = LocalDataManager.sharedInstance.popData(forKey: str) {
+            let info = NSKeyedUnarchiver.unarchiveObject(with: data) as! String
+            setBackGroundColor(bgColor: NSColor.orange)
+            
+        }
+        
         // 居中样式
         let style = NSMutableParagraphStyle()
         style.alignment = .center

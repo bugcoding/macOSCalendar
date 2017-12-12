@@ -28,9 +28,10 @@ class LocalDataManager {
     }
     
     // 取出数据
-    func popData(forKey: String) -> Data! {
+    func popData(forKey: String) -> Data? {
         let data = UserDefaults.standard.value(forKey: forKey)
-        return data as! Data
+        return data as? Data
+        
     }
 }
 
