@@ -22,8 +22,8 @@ class ReminderTipViewController : NSViewController {
     @IBAction func competeHandler(_ sender: NSButton) {
         Swift.print("content = \(tipsInfo.stringValue)")
         let dateStr = String(describing: mCurDate!.year) + String(describing: mCurDate!.month) + String(describing: mCurDate!.day)
-        Swift.print("completeHandler dateStr = \(dateStr)")
         LocalDataManager.sharedInstance.saveData(data: tipsInfo.stringValue, forKey: dateStr)
+        // 同步更新tooltips
         mCalView?.toolTip = tipsInfo.stringValue
         mCalView?.performPopoverClose()
     }
@@ -35,6 +35,7 @@ class ReminderTipViewController : NSViewController {
         }
     }
     
+    // 把原有标记显示在编辑框中
     override func viewDidLoad() {
         tipsInfo.stringValue = mContent
     }
