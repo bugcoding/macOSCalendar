@@ -17,6 +17,7 @@ class ReminderTipViewController : NSViewController {
     
     var mCurDate: CalendarUtils.WZDayTime?
     var mCalView: CalendarCellView?
+    var mContent:String = ""
     
     @IBAction func competeHandler(_ sender: NSButton) {
         Swift.print("content = \(tipsInfo.stringValue)")
@@ -33,10 +34,14 @@ class ReminderTipViewController : NSViewController {
         }
     }
     
-    init(date: CalendarUtils.WZDayTime, view: CalendarCellView) {
+    override func viewDidLoad() {
+        tipsInfo.stringValue = mContent
+    }
+    init(date: CalendarUtils.WZDayTime, view: CalendarCellView, content: String) {
         super.init(nibName: "ReminderTipViewController", bundle: nil)!
         mCurDate = date
         mCalView = view
+        mContent = content
     }
     
     required init?(coder: NSCoder) {

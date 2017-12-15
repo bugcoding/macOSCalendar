@@ -40,18 +40,27 @@ class CalendarCellView : NSButton, NSMenuDelegate{
         mPopoverWindow.performClose(nil)
     }
     
-    // 添加日期标记
-    func addFlagHandler(_ sender:CalendarCellView) {
-        Swift.print("cur wzTime = \(wzDay.year)-\(wzDay.month)-\(wzDay.day)")
-        
-        let viewController = ReminderTipViewController(date: wzDay, view: self)
+    // 弹出popover
+    func showPopoverView(content: String) {
+        let viewController = ReminderTipViewController(date: wzDay, view: self, content: content)
         mPopoverWindow.contentSize = viewController.view.fittingSize
         mPopoverWindow.contentViewController = viewController
         mPopoverWindow.show(relativeTo: self.bounds, of: self, preferredEdge: NSRectEdge.minY)
     }
+    
+    // 添加日期标记
+    func addFlagHandler(_ sender:CalendarCellView) {
+        Swift.print("cur wzTime = \(wzDay.year)-\(wzDay.month)-\(wzDay.day)")
+        showPopoverView(content: "")
+    }
     // 移除日期标记
     func removeFlagHandler(_ sender:CalendarCellView) {
         Swift.print("cur wzTime = \(wzDay.year)-\(wzDay.month)-\(wzDay.day)")
+    }
+    // 在当前日期已有标记的情况下，显示编辑日期标志
+    func editFlagHandler(_ sender:CalendarCellView) {
+        Swift.print("editFlagHandler")
+        showPopoverView(content: getCurDateFlag())
     }
     // 修改当前日期边框颜色
     func changeBorderColor(borderWid: CGFloat, color: NSColor) {
@@ -67,7 +76,13 @@ class CalendarCellView : NSButton, NSMenuDelegate{
         
         let popMenu = NSMenu()
         popMenu.delegate = self
-        let addFlagItem = NSMenuItem(title: "标记当前日期", action: #selector(CalendarCellView.addFlagHandler(_:)), keyEquivalent: "")
+        var addFlagItem = NSMenuItem(title: "标记当前日期", action: #selector(CalendarCellView.addFlagHandler(_:)), keyEquivalent: "")
+        let info = getCurDateFlag()
+        if info != "" {
+            // 当前日期有标记
+            addFlagItem = NSMenuItem(title: "编辑日期标记", action: #selector(CalendarCellView.editFlagHandler(_:)), keyEquivalent: "")
+        }
+
         popMenu.addItem(addFlagItem)
         let removeFlagItem = NSMenuItem(title: "移除标记日期", action: #selector(CalendarCellView.removeFlagHandler(_:)), keyEquivalent: "")
         popMenu.addItem(removeFlagItem)
@@ -86,18 +101,28 @@ class CalendarCellView : NSButton, NSMenuDelegate{
     override func rightMouseDown(with event: NSEvent) {
         // 显示右键菜单
         createRightMouseMenu(event)
+    }
+    
+    // 获取当前日期是否有标记
+    func getCurDateFlag() -> String {
+        let str = String(describing: wzDay.year) + String(describing: wzDay.month) + String(describing: wzDay.day)
+        //Swift.print("wzDay = \(str)")
         
+        if let data = LocalDataManager.sharedInstance.popData(forKey: str) {
+            let info = NSKeyedUnarchiver.unarchiveObject(with: data) as! String
+            return info
+        }
+        return ""
     }
     
     // 显示具体的农历和公历，设置具体button的标题属性
     func setString(wzTime: CalendarUtils.WZDayTime, topColor: NSColor, bottomText: String, bottomColor: NSColor) {
         
         wzDay = wzTime
-        let str = String(describing: wzDay.year) + String(describing: wzDay.month) + String(describing: wzDay.day)
-        //Swift.print("wzDay = \(str)")
         
-        if let data = LocalDataManager.sharedInstance.popData(forKey: str) {
-            let info = NSKeyedUnarchiver.unarchiveObject(with: data) as! String
+        // 已标记过的日期，用橙色显示
+        let info = getCurDateFlag()
+        if info != "" {
             setBackGroundColor(bgColor: NSColor.orange)
             self.toolTip = "备注: " + info
         }
