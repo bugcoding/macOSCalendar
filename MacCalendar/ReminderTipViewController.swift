@@ -24,6 +24,7 @@ class ReminderTipViewController : NSViewController {
         let dateStr = String(describing: mCurDate!.year) + String(describing: mCurDate!.month) + String(describing: mCurDate!.day)
         Swift.print("completeHandler dateStr = \(dateStr)")
         LocalDataManager.sharedInstance.saveData(data: tipsInfo.stringValue, forKey: dateStr)
+        mCalView?.toolTip = tipsInfo.stringValue
         mCalView?.performPopoverClose()
     }
     // 加载view
