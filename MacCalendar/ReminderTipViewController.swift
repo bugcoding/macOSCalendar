@@ -38,6 +38,8 @@ class ReminderTipViewController : NSViewController {
     // 把原有标记显示在编辑框中
     override func viewDidLoad() {
         tipsInfo.stringValue = mContent
+        // 完成按钮响应回车
+        addReminderBtn.keyEquivalent = "\r"
     }
     init(date: CalendarUtils.WZDayTime, view: CalendarCellView, content: String) {
         super.init(nibName: "ReminderTipViewController", bundle: nil)!
