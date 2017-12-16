@@ -96,7 +96,7 @@ class CalendarCellView : NSButton, NSMenuDelegate{
     }
     
     override func mouseEntered(with event: NSEvent) {
-        changeBorderColor(borderWid: 0.7, color: CalendarConstant.selectedDateColor)
+        changeBorderColor(borderWid: 0.9, color: CalendarConstant.selectedDateColor)
     }
     
     // 右键点击格子弹出菜单
@@ -125,7 +125,8 @@ class CalendarCellView : NSButton, NSMenuDelegate{
         // 已标记过的日期，用橙色显示
         let info = getCurDateFlag()
         if info != "" {
-            setBackGroundColor(bgColor: NSColor.orange)
+            let color = NSColor(calibratedRed: NSColor.red.redComponent, green: NSColor.red.greenComponent, blue: NSColor.red.blueComponent, alpha: 0.3)
+            setBackGroundColor(bgColor: color)
             self.toolTip = "备注: " + info
         }
         
