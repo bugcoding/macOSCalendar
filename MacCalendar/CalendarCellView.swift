@@ -45,6 +45,8 @@ class CalendarCellView : NSButton, NSMenuDelegate{
         let viewController = ReminderTipViewController(date: wzDay, view: self, content: content)
         mPopoverWindow.contentSize = viewController.view.fittingSize
         mPopoverWindow.contentViewController = viewController
+        // 失去焦点时关闭
+        mPopoverWindow.behavior = .transient
         mPopoverWindow.show(relativeTo: self.bounds, of: self, preferredEdge: NSRectEdge.minY)
     }
     
