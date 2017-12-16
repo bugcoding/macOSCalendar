@@ -15,6 +15,8 @@ class CalendarCellView : NSButton, NSMenuDelegate{
     let mPopoverWindow = NSPopover()
     // 当前是哪月
     var wzDay: CalendarUtils.WZDayTime = CalendarUtils.WZDayTime(0, 0, 0)
+    // 当前是否是带标记日期
+    var mIsFlagDate: Bool = false
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
@@ -30,9 +32,11 @@ class CalendarCellView : NSButton, NSMenuDelegate{
     }
     
     func setBackGroundColor(bgColor: NSColor) {
-        self.mBgColor = bgColor
-        self.wantsLayer = true
-        self.layer!.backgroundColor = self.mBgColor.cgColor
+        if !mIsFlagDate {
+            self.mBgColor = bgColor
+            self.wantsLayer = true
+            self.layer!.backgroundColor = self.mBgColor.cgColor
+        }
     }
     
     // 关闭popover
@@ -128,6 +132,7 @@ class CalendarCellView : NSButton, NSMenuDelegate{
             let color = NSColor(calibratedRed: NSColor.red.redComponent, green: NSColor.red.greenComponent, blue: NSColor.red.blueComponent, alpha: 0.3)
             setBackGroundColor(bgColor: color)
             self.toolTip = "备注: " + info
+            mIsFlagDate = true
         }
         
         // 居中样式
