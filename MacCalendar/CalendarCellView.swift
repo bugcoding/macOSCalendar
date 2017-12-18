@@ -32,11 +32,9 @@ class CalendarCellView : NSButton, NSMenuDelegate{
     }
     
     func setBackGroundColor(bgColor: NSColor) {
-        if !mIsFlagDate {
-            self.mBgColor = bgColor
-            self.wantsLayer = true
-            self.layer!.backgroundColor = self.mBgColor.cgColor
-        }
+        self.mBgColor = bgColor
+        self.wantsLayer = true
+        self.layer!.backgroundColor = self.mBgColor.cgColor
     }
     
     // 关闭popover
@@ -62,6 +60,9 @@ class CalendarCellView : NSButton, NSMenuDelegate{
     // 移除日期标记
     func removeFlagHandler(_ sender:CalendarCellView) {
         Swift.print("cur wzTime = \(wzDay.year)-\(wzDay.month)-\(wzDay.day)")
+        let dateStr = String(describing: wzDay.year) + String(describing: wzDay.month) + String(describing: wzDay.day)
+        LocalDataManager.sharedInstance.removeData(forKey: dateStr)
+        
     }
     // 在当前日期已有标记的情况下，显示编辑日期标志
     func editFlagHandler(_ sender:CalendarCellView) {
@@ -74,7 +75,6 @@ class CalendarCellView : NSButton, NSMenuDelegate{
             self.layer?.borderWidth = borderWid
             self.layer?.borderColor = color.cgColor
         }
-        
     }
     
     // 创建右键菜单
@@ -125,7 +125,7 @@ class CalendarCellView : NSButton, NSMenuDelegate{
     func setString(wzTime: CalendarUtils.WZDayTime, topColor: NSColor, bottomText: String, bottomColor: NSColor) {
         
         wzDay = wzTime
-        
+        mIsFlagDate = false
         // 已标记过的日期，用橙色显示
         let info = getCurDateFlag()
         if info != "" {

@@ -31,7 +31,11 @@ class LocalDataManager {
     func popData(forKey: String) -> Data? {
         let data = UserDefaults.standard.value(forKey: forKey)
         return data as? Data
-        
+    }
+    
+    // 置空某个key对应的值
+    func removeData(forKey: String) {
+        UserDefaults.standard.removeObject(forKey: forKey)
     }
 }
 
