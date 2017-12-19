@@ -9,6 +9,7 @@
 import Cocoa
 
 class SettingWindowController : NSWindowController, NSWindowDelegate {
+    @IBOutlet weak var toolbar: NSToolbar!
     
     static let HOLIDAY_COLOR_TAG = "holidayColor"
     static let FESTIVAL_COLOR_TAG = "festivalColor"
@@ -27,6 +28,8 @@ class SettingWindowController : NSWindowController, NSWindowDelegate {
         (NSApp.delegate as! AppDelegate).refreshInterface()
     }
     
+    @IBAction func settingHandler(_ sender: NSToolbarItem) {
+    }
     
     @IBOutlet weak var holidayColorWell: NSColorWell!
     @IBOutlet weak var festivalColorWell: NSColorWell!
