@@ -16,6 +16,7 @@
 		7D17C2F71D64AF880098674A /* CalendarCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D17C2F61D64AF880098674A /* CalendarCellView.swift */; };
 		7D17C2F91D65F9DD0098674A /* CalendarConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D17C2F81D65F9DD0098674A /* CalendarConstant.swift */; };
 		7D17C2FB1D6752B20098674A /* PlanetData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D17C2FA1D6752B20098674A /* PlanetData.swift */; };
+		7D21EDBB1FE95F2100C34494 /* CornerFlagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D21EDBA1FE95F2100C34494 /* CornerFlagView.swift */; };
 		7D2827041D6C915700CBDE8F /* CalendarDataStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D2827031D6C915700CBDE8F /* CalendarDataStruct.swift */; };
 		7D6278771D39D44C00B9CDD4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6278761D39D44C00B9CDD4 /* AppDelegate.swift */; };
 		7D6278791D39D44C00B9CDD4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7D6278781D39D44C00B9CDD4 /* Assets.xcassets */; };
@@ -59,6 +60,7 @@
 		7D17C2F61D64AF880098674A /* CalendarCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarCellView.swift; sourceTree = "<group>"; };
 		7D17C2F81D65F9DD0098674A /* CalendarConstant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarConstant.swift; sourceTree = "<group>"; };
 		7D17C2FA1D6752B20098674A /* PlanetData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlanetData.swift; sourceTree = "<group>"; };
+		7D21EDBA1FE95F2100C34494 /* CornerFlagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CornerFlagView.swift; sourceTree = "<group>"; };
 		7D2827031D6C915700CBDE8F /* CalendarDataStruct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarDataStruct.swift; sourceTree = "<group>"; };
 		7D6278731D39D44C00B9CDD4 /* StatebarCalendar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StatebarCalendar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D6278761D39D44C00B9CDD4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -181,6 +183,7 @@
 				7DCBDD3E1FD454CC00CB8599 /* ToolsWindowController.swift */,
 				7D06CE4F1FDD81A800462292 /* ReminderTipViewController.xib */,
 				7D06CE511FDD829500462292 /* ReminderTipViewController.swift */,
+				7D21EDBA1FE95F2100C34494 /* CornerFlagView.swift */,
 			);
 			path = MacCalendar;
 			sourceTree = "<group>";
@@ -287,6 +290,7 @@
 				7D17C2F71D64AF880098674A /* CalendarCellView.swift in Sources */,
 				7DAE72281E05787F005DF935 /* CustomView.swift in Sources */,
 				7D0D956C1D92CFFB00226B52 /* IconView.swift in Sources */,
+				7D21EDBB1FE95F2100C34494 /* CornerFlagView.swift in Sources */,
 				7D6278771D39D44C00B9CDD4 /* AppDelegate.swift in Sources */,
 				7DD9F7841DFC54B900C1DEDA /* SettingMenu.swift in Sources */,
 				7D17C2FB1D6752B20098674A /* PlanetData.swift in Sources */,

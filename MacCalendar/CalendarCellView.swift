@@ -29,6 +29,9 @@ class CalendarCellView : NSButton, NSMenuDelegate{
         // 设置鼠标进出跟踪区域
         let trackingArea = NSTrackingArea(rect: self.bounds, options: [NSTrackingArea.Options.activeAlways,NSTrackingArea.Options.mouseEnteredAndExited], owner: self, userInfo: nil)
         self.addTrackingArea(trackingArea)
+        
+        let cfv = CornerFlagView(color: NSColor.red, frame: NSRect(x: 20, y: 0, width: 48, height: 13))
+        //addSubview(cfv)
     }
     
     func setBackGroundColor(bgColor: NSColor) {
