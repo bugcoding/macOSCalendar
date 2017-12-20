@@ -30,8 +30,7 @@ class CalendarCellView : NSButton, NSMenuDelegate{
         let trackingArea = NSTrackingArea(rect: self.bounds, options: [NSTrackingArea.Options.activeAlways,NSTrackingArea.Options.mouseEnteredAndExited], owner: self, userInfo: nil)
         self.addTrackingArea(trackingArea)
         
-        let cfv = CornerFlagView(color: NSColor.red, frame: NSRect(x: 20, y: 0, width: 48, height: 13))
-        //addSubview(cfv)
+
     }
     
     func setBackGroundColor(bgColor: NSColor) {
@@ -132,8 +131,10 @@ class CalendarCellView : NSButton, NSMenuDelegate{
         // 已标记过的日期，用橙色显示
         let info = getCurDateFlag()
         if info != "" {
-            let color = NSColor(calibratedRed: NSColor.red.redComponent, green: NSColor.red.greenComponent, blue: NSColor.red.blueComponent, alpha: 0.3)
-            setBackGroundColor(bgColor: color)
+            let color = NSColor(calibratedRed: NSColor.red.redComponent, green: NSColor.red.greenComponent, blue: NSColor.red.blueComponent, alpha: 0.5)
+            //setBackGroundColor(bgColor: color)
+            let cfv = CornerFlagView(color: color, frame: NSRect(x: 38, y: 0, width: 48, height: 15), extra: "备")
+            addSubview(cfv)
             self.toolTip = "备注: " + info
             mIsFlagDate = true
         }
