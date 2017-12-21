@@ -225,7 +225,7 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
                         color = festivalColor
                     }
                     
-                    btn.setString(wzTime: CalendarUtils.WZDayTime(mCurYear, mCurMonth, day), topColor: NSColor.black.withAlphaComponent(0.5), bottomText: dayName, bottomColor: color.withAlphaComponent(0.5))
+                    btn.setString(wzTime: CalendarUtils.WZDayTime(mCurYear, lastMonth, day), topColor: NSColor.black.withAlphaComponent(0.5), bottomText: dayName, bottomColor: color.withAlphaComponent(0.5))
                 } else {
                     let day = index - monthDays - weekDayOf1stDay + 1
                     
@@ -241,7 +241,7 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
                         color = festivalColor
                     }
                     
-                    btn.setString(wzTime: CalendarUtils.WZDayTime(mCurYear, mCurMonth, day), topColor: NSColor.black.withAlphaComponent(0.5), bottomText: dayName, bottomColor: color.withAlphaComponent(0.5))
+                    btn.setString(wzTime: CalendarUtils.WZDayTime(mCurYear, nextMonth, day), topColor: NSColor.black.withAlphaComponent(0.5), bottomText: dayName, bottomColor: color.withAlphaComponent(0.5))
                 }
                 
             } else {

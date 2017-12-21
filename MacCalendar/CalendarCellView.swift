@@ -127,10 +127,9 @@ class CalendarCellView : NSButton, NSMenuDelegate{
     func setString(wzTime: CalendarUtils.WZDayTime, topColor: NSColor, bottomText: String, bottomColor: NSColor) {
         
         wzDay = wzTime
-        mIsFlagDate = false
         // 已标记过的日期，用橙色显示
         let info = getCurDateFlag()
-        if info != "" {
+        if info != "" && !mIsFlagDate {
             let color = NSColor(calibratedRed: NSColor.red.redComponent, green: NSColor.red.greenComponent, blue: NSColor.red.blueComponent, alpha: 0.5)
             //setBackGroundColor(bgColor: color)
             let cfv = CornerFlagView(color: color, frame: NSRect(x: 38, y: 0, width: 48, height: 15), extra: "备")
