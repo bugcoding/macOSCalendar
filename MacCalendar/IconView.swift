@@ -11,7 +11,7 @@ import Foundation
 import Cocoa
 
 
-class IconView : NSView
+class IconView : NSView, NSUserNotificationCenterDelegate
 {
     private(set) var image: NSImage
     private let item: NSStatusItem
@@ -85,15 +85,47 @@ class IconView : NSView
         let util = CalendarUtils.sharedInstance
         let (year, month, day) = util.getYMDTuppleBy(util.getDateStringOfToday())
         let week = util.getWeekDayBy(year, month: month, day: day)
+        //pushNotification(year: year, month: month, day: day)
+        NSUserNotificationCenter.default.removeAllDeliveredNotifications()
         if mCurWeek != week {
             mCurWeek = week
             addTextToImage()
             self.needsDisplay = true
             // 跨天之后，面板上的时间也要同步更新
             (NSApp.delegate as! AppDelegate).showToday()
+            
         }
         
     }
+    
+    // 日期提醒推送通知
+    func pushNotification(year: Int, month: Int, day: Int) -> Bool {
+        let info = LocalDataManager.sharedInstance.getCurDateFlag(wzDay: CalendarUtils.WZDayTime(year, month, day))
+        let notification = NSUserNotification()
+        notification.title = String(year) + "-" + String(month) + "-" + String(day) +  " 提醒备注"
+        notification.informativeText = info
+        
+        notification.deliveryDate = Date(timeIntervalSinceNow: 10)
+        var dateComponent = DateComponents()
+        dateComponent.second = 60 * 60 * 12
+        notification.deliveryRepeatInterval = dateComponent
+        
+        notification.hasActionButton = true
+        notification.actionButtonTitle = "确定"
+        notification.otherButtonTitle = "忽略"
+        
+        NSUserNotificationCenter.default.delegate = self
+        NSUserNotificationCenter.default.scheduledNotifications = [notification]
+        
+        
+        for i in NSUserNotificationCenter.default.scheduledNotifications {
+            NSUserNotificationCenter.default.removeScheduledNotification(i)
+        }
+        
+        
+        return true
+    }
+
     
     override func draw(_ dirtyRect: NSRect) {
         self.item.drawStatusBarBackground(in: dirtyRect, withHighlight: self.isSelected)

@@ -37,5 +37,16 @@ class LocalDataManager {
     func removeData(forKey: String) {
         UserDefaults.standard.removeObject(forKey: forKey)
     }
+    // 获取当前日期是否有标记
+    func getCurDateFlag(wzDay: CalendarUtils.WZDayTime) -> String {
+        let str = String(describing: wzDay.year) + String(describing: wzDay.month) + String(describing: wzDay.day)
+        //Swift.print("wzDay = \(str)")
+        
+        if let data = LocalDataManager.sharedInstance.popData(forKey: str) {
+            let info = NSKeyedUnarchiver.unarchiveObject(with: data) as! String
+            return info
+        }
+        return ""
+    }
 }
 

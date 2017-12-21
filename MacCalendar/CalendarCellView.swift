@@ -69,7 +69,7 @@ class CalendarCellView : NSButton, NSMenuDelegate{
     // 在当前日期已有标记的情况下，显示编辑日期标志
     func editFlagHandler(_ sender:CalendarCellView) {
         Swift.print("editFlagHandler")
-        showPopoverView(content: getCurDateFlag())
+        showPopoverView(content: LocalDataManager.sharedInstance.getCurDateFlag(wzDay: wzDay))
     }
     // 修改当前日期边框颜色
     func changeBorderColor(borderWid: CGFloat, color: NSColor) {
@@ -85,7 +85,7 @@ class CalendarCellView : NSButton, NSMenuDelegate{
         let popMenu = NSMenu()
         popMenu.delegate = self
         var addFlagItem = NSMenuItem(title: "标记当前日期", action: #selector(CalendarCellView.addFlagHandler(_:)), keyEquivalent: "")
-        let info = getCurDateFlag()
+        let info = LocalDataManager.sharedInstance.getCurDateFlag(wzDay: wzDay)
         if info != "" {
             // 当前日期有标记
             addFlagItem = NSMenuItem(title: "编辑日期标记", action: #selector(CalendarCellView.editFlagHandler(_:)), keyEquivalent: "")
@@ -111,24 +111,13 @@ class CalendarCellView : NSButton, NSMenuDelegate{
         createRightMouseMenu(event)
     }
     
-    // 获取当前日期是否有标记
-    func getCurDateFlag() -> String {
-        let str = String(describing: wzDay.year) + String(describing: wzDay.month) + String(describing: wzDay.day)
-        //Swift.print("wzDay = \(str)")
-        
-        if let data = LocalDataManager.sharedInstance.popData(forKey: str) {
-            let info = NSKeyedUnarchiver.unarchiveObject(with: data) as! String
-            return info
-        }
-        return ""
-    }
     
     // 显示具体的农历和公历，设置具体button的标题属性
     func setString(wzTime: CalendarUtils.WZDayTime, topColor: NSColor, bottomText: String, bottomColor: NSColor) {
         
         wzDay = wzTime
         // 已标记过的日期，用橙色显示
-        let info = getCurDateFlag()
+        let info = LocalDataManager.sharedInstance.getCurDateFlag(wzDay: wzDay)
         if info != "" && !mIsFlagDate {
             let color = NSColor(calibratedRed: NSColor.red.redComponent, green: NSColor.red.greenComponent, blue: NSColor.red.blueComponent, alpha: 0.5)
             //setBackGroundColor(bgColor: color)
