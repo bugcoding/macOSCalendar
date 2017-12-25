@@ -42,6 +42,7 @@ class CalendarCellView : NSButton, NSMenuDelegate{
     // 关闭popover
     func performPopoverClose() {
         mPopoverWindow.performClose(nil)
+        addFlagView()
     }
     
     // 弹出popover
@@ -68,7 +69,6 @@ class CalendarCellView : NSButton, NSMenuDelegate{
     }
     // 在当前日期已有标记的情况下，显示编辑日期标志
     func editFlagHandler(_ sender:CalendarCellView) {
-        Swift.print("editFlagHandler")
         showPopoverView(content: LocalDataManager.sharedInstance.getCurDateFlag(wzDay: wzDay))
     }
     // 修改当前日期边框颜色
@@ -111,6 +111,12 @@ class CalendarCellView : NSButton, NSMenuDelegate{
         createRightMouseMenu(event)
     }
     
+    // 添加标记子窗口
+    func addFlagView() {
+        let color = NSColor(calibratedRed: NSColor.red.redComponent, green: NSColor.red.greenComponent, blue: NSColor.red.blueComponent, alpha: 0.5)
+        let cfv = CornerFlagView(color: color, frame: NSRect(x: 38, y: 0, width: 48, height: 15), extra: "备")
+        addSubview(cfv)
+    }
     
     // 显示具体的农历和公历，设置具体button的标题属性
     func setString(wzTime: CalendarUtils.WZDayTime, topColor: NSColor, bottomText: String, bottomColor: NSColor) {
@@ -119,10 +125,7 @@ class CalendarCellView : NSButton, NSMenuDelegate{
         // 已标记过的日期，用橙色显示
         let info = LocalDataManager.sharedInstance.getCurDateFlag(wzDay: wzDay)
         if info != "" && !mIsFlagDate {
-            let color = NSColor(calibratedRed: NSColor.red.redComponent, green: NSColor.red.greenComponent, blue: NSColor.red.blueComponent, alpha: 0.5)
-            //setBackGroundColor(bgColor: color)
-            let cfv = CornerFlagView(color: color, frame: NSRect(x: 38, y: 0, width: 48, height: 15), extra: "备")
-            addSubview(cfv)
+            addFlagView()
             self.toolTip = "备注: " + info
             mIsFlagDate = true
         }
