@@ -10,9 +10,10 @@ import Cocoa
 
 class CalendarCellView : NSButton, NSMenuDelegate{
     // 标识具体的cell
-    var mCellID: Int = 0
-    var mBgColor: NSColor = .white
+    var mCellID : Int = 0
+    var mBgColor : NSColor = .white
     let mPopoverWindow = NSPopover()
+    var mFlagView : CornerFlagView?
     // 当前是哪月
     var wzDay: CalendarUtils.WZDayTime = CalendarUtils.WZDayTime(0, 0, 0)
     // 当前是否是带标记日期
@@ -114,21 +115,23 @@ class CalendarCellView : NSButton, NSMenuDelegate{
     // 添加标记子窗口
     func addFlagView() {
         let color = NSColor(calibratedRed: NSColor.red.redComponent, green: NSColor.red.greenComponent, blue: NSColor.red.blueComponent, alpha: 0.5)
-        let cfv = CornerFlagView(color: color, frame: NSRect(x: 38, y: 0, width: 48, height: 15), extra: "备")
-        addSubview(cfv)
+        mFlagView = CornerFlagView(color: color, frame: NSRect(x: 38, y: 0, width: 48, height: 15), extra: "备")
+        addSubview(mFlagView!)
     }
     
     // 显示具体的农历和公历，设置具体button的标题属性
     func setString(wzTime: CalendarUtils.WZDayTime, topColor: NSColor, bottomText: String, bottomColor: NSColor) {
         
         wzDay = wzTime
+        
+        mFlagView?.removeFromSuperview()
         // 已标记过的日期，用橙色显示
         let info = LocalDataManager.sharedInstance.getCurDateFlag(wzDay: wzDay)
-        if info != "" && !mIsFlagDate {
+        if info != "" {
             addFlagView()
             self.toolTip = "备注: " + info
-            mIsFlagDate = true
         }
+
         
         // 居中样式
         let style = NSMutableParagraphStyle()
