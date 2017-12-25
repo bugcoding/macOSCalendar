@@ -66,7 +66,7 @@ class CalendarCellView : NSButton, NSMenuDelegate{
         Swift.print("cur wzTime = \(wzDay.year)-\(wzDay.month)-\(wzDay.day)")
         let dateStr = String(describing: wzDay.year) + String(describing: wzDay.month) + String(describing: wzDay.day)
         LocalDataManager.sharedInstance.removeData(forKey: dateStr)
-        
+        mFlagView?.removeFromSuperview()
     }
     // 在当前日期已有标记的情况下，显示编辑日期标志
     func editFlagHandler(_ sender:CalendarCellView) {
