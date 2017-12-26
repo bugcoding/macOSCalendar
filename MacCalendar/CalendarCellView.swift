@@ -99,10 +99,12 @@ class CalendarCellView : NSButton, NSMenuDelegate{
     }
     
     override func mouseExited(with event: NSEvent) {
+        Swift.print("Mouse Exit")
         changeBorderColor(borderWid: 0, color: self.mBgColor)
     }
     
     override func mouseEntered(with event: NSEvent) {
+        Swift.print("Mouse Enter")
         changeBorderColor(borderWid: 0.9, color: CalendarConstant.selectedDateColor)
     }
     
