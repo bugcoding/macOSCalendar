@@ -19,9 +19,7 @@
                 <outlet property="lunarYearLabel" destination="tsw-N6-4MJ" id="OUj-0j-Lfg"/>
                 <outlet property="monthText" destination="0Db-h5-CwX" id="cH4-e1-f6p"/>
                 <outlet property="nextMonthBtn" destination="u6Y-K3-prM" id="ExK-Mh-0vO"/>
-                <outlet property="nextPoemLabel" destination="UAm-wj-SMQ" id="Rcn-eG-1dV"/>
                 <outlet property="nextYearBtn" destination="yRC-3t-AAp" id="l5L-76-Jg4"/>
-                <outlet property="poemLabel" destination="WVh-Vf-NeJ" id="DlL-oJ-oQU"/>
                 <outlet property="saturdayLabel" destination="koa-fb-vvp" id="jog-Nj-C6T"/>
                 <outlet property="settingBtn" destination="wJl-Ir-raC" id="DdV-Kt-Yb8"/>
                 <outlet property="sundayLabel" destination="QXh-VN-Tuu" id="B8X-yA-avD"/>
@@ -557,16 +555,16 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ac2-MK-LKH">
-                                <rect key="frame" x="413" y="231" width="121" height="17"/>
+                                <rect key="frame" x="440" y="230" width="95" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="正月二十九" id="T0o-9Z-N0P">
-                                    <font key="font" metaFont="system"/>
+                                    <font key="font" metaFont="system" size="15"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tsw-N6-4MJ">
-                                <rect key="frame" x="388" y="207" width="172" height="19"/>
+                                <rect key="frame" x="388" y="201" width="172" height="19"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="农历 癸已 【猴年】" id="btS-QT-NkC">
                                     <font key="font" metaFont="system"/>
@@ -586,7 +584,7 @@
                                 </connections>
                             </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EtK-36-avD">
-                                <rect key="frame" x="393" y="182" width="160" height="17"/>
+                                <rect key="frame" x="393" y="177" width="160" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="国际扫盲日 国际新闻工作者日" id="Ijy-a5-YXS">
                                     <font key="font" metaFont="smallSystem"/>
@@ -594,33 +592,15 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CWu-47-904">
-                                <rect key="frame" x="392" y="58" width="106" height="90"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="10" id="5O1-dT-F11"/>
-                            </imageView>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WVh-Vf-NeJ">
-                                <rect key="frame" x="499" y="71" width="16" height="85"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="美猴腾瑞气" id="5WV-Nt-iaZ">
-                                    <font key="font" size="9" name="STLibianSC-Regular"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UAm-wj-SMQ">
-                                <rect key="frame" x="515" y="50" width="16" height="92"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="余鲤戏春波" id="ZQh-4o-PRQ">
-                                    <font key="font" size="9" name="STLibianSC-Regular"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
                             <box verticalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="ORE-Oq-A3Y">
                                 <rect key="frame" x="11" y="380" width="371" height="5"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </box>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CWu-47-904">
+                                <rect key="frame" x="413" y="229" width="31" height="25"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="10" id="5O1-dT-F11"/>
+                            </imageView>
                         </subviews>
                     </customView>
                 </subviews>
