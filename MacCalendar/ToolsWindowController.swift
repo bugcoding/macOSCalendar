@@ -31,7 +31,7 @@ class ToolsWindowController : NSWindowController, NSWindowDelegate {
     
     // 农历转公历选中
     @IBAction func lunarOrGoriSelected(_ sender: NSButton) {
-        if sender == gori2Lunar && sender.state == 1 {
+        if sender == gori2Lunar && sender.state.rawValue == 1 {
             mode = 1
         } else {
             mode = 0
@@ -67,8 +67,8 @@ class ToolsWindowController : NSWindowController, NSWindowDelegate {
     }
     
     
-    override var windowNibName: String? {
-        return "ToolsWindowController"
+    override var windowNibName: NSNib.Name? {
+        return NSNib.Name("ToolsWindowController")
     }
     
     // 初始化公历日期与月份
@@ -109,8 +109,8 @@ class ToolsWindowController : NSWindowController, NSWindowDelegate {
     
     override func windowDidLoad() {
         super.windowDidLoad()
-        gori2Lunar.state = 1
-        lunar2Gori.state = 0
+        gori2Lunar.state = NSControl.StateValue(rawValue: 1)
+        lunar2Gori.state = NSControl.StateValue(rawValue: 0)
         goriDetail.alignment = .center
         addPopUpItem()
     }

@@ -44,23 +44,23 @@ class IconView : NSView, NSUserNotificationCenterDelegate
         let size = self.image.size
 
         // 日期文本
-        let dayAttrDict = [NSForegroundColorAttributeName : NSColor.black, NSParagraphStyleAttributeName : style, NSFontAttributeName : NSFont.systemFont(ofSize: 9.8)]
+        let dayAttrDict = [NSAttributedStringKey.foregroundColor : NSColor.black, NSAttributedStringKey.paragraphStyle : style, NSAttributedStringKey.font : NSFont.systemFont(ofSize: 9.8)]
         let dayString = NSString(string: day)
         var rect = CGRect(x: 2, y: 2, width: size.width, height: size.height - 5.5)
 
         dayString.draw(in: rect, withAttributes: dayAttrDict)
         
         // 星期文字
-        let weekAttrDict = [NSForegroundColorAttributeName : NSColor.white, NSParagraphStyleAttributeName : style, NSFontAttributeName : NSFont.systemFont(ofSize: 3.8)]
-        let weekString = NSString(string: week!)
+        let weekAttrDict = [NSAttributedStringKey.foregroundColor : NSColor.white, NSAttributedStringKey.paragraphStyle : style, NSAttributedStringKey.font : NSFont.systemFont(ofSize: 3.8)]
+        let weekString = NSString(string: week)
         rect = CGRect(x: 2, y: 2.5, width: size.width, height: size.height)
         weekString.draw(in: rect , withAttributes: weekAttrDict)
     }
     
     init(imageName: String, item: NSStatusItem) {
-        let thickness = NSStatusBar.system().thickness
+        let thickness = NSStatusBar.system.thickness
 
-        self.image = NSImage(named: imageName)!
+        self.image = NSImage(named: NSImage.Name(rawValue: imageName))!
         self.item = item
         self.item.highlightMode = true
         self.isSelected = false
@@ -81,7 +81,7 @@ class IconView : NSView, NSUserNotificationCenterDelegate
         fatalError("init(coder:) has not been implemented")
     }
     
-    func reDraw() {
+    @objc func reDraw() {
         let util = CalendarUtils.sharedInstance
         let (year, month, day) = util.getYMDTuppleBy(util.getDateStringOfToday())
         let week = util.getWeekDayBy(year, month: month, day: day)
@@ -132,7 +132,8 @@ class IconView : NSView, NSUserNotificationCenterDelegate
         
         let size = self.image.size
         let rect = CGRect(x: 2, y: 2, width: size.width, height: size.height)
-        self.image.draw(in: rect, from: NSRect.zero, operation: NSCompositeSourceOver, fraction: 1.0)
+        //self.image.draw(in: rect, from: NSRect.zero, operation:, fraction: 1.0)
+        self.image.draw(in: rect, from: NSRect.zero, operation: NSCompositingOperation.destinationOver, fraction: 1.0)
 
         // 图标上加入文本
         addTextToImage()

@@ -29,9 +29,9 @@ class ReminderTipViewController : NSViewController {
     }
     // 加载view
     override func loadView() {
-        var tlp : NSArray = NSArray()
-        if Bundle.main.loadNibNamed("ReminderTipViewController", owner: self, topLevelObjects: &tlp) {
-            mainView = tlp.first(where: { $0 is NSView }) as? NSView
+        var tlp : NSArray? = NSArray()
+        if Bundle.main.loadNibNamed(NSNib.Name(rawValue: "ReminderTipViewController"), owner: self, topLevelObjects: &tlp) {
+            mainView = tlp?.first(where: { $0 is NSView }) as? NSView
         }
     }
     
@@ -49,7 +49,7 @@ class ReminderTipViewController : NSViewController {
         }
     }
     init(date: CalendarUtils.WZDayTime, view: CalendarCellView, content: String) {
-        super.init(nibName: "ReminderTipViewController", bundle: nil)!
+        super.init(nibName: NSNib.Name(rawValue: "ReminderTipViewController"), bundle: nil)
         mCurDate = date
         mCalView = view
         mContent = content

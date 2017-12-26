@@ -22,7 +22,7 @@ class CustomView: NSView {
         let color = NSColor(calibratedWhite: 0.93, alpha: 1.0)
         color.set()
         
-        NSRectFill(dirtyRect)
+        dirtyRect.fill()
     }
     
 }

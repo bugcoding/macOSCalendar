@@ -30,28 +30,28 @@ class SettingMenu: NSMenu {
         fatalError("init(coder:) has not been implemented")
     }
     // 设置界面回调
-    func setting(_ sender: NSMenuItem){
+    @objc func setting(_ sender: NSMenuItem){
         (NSApp.delegate as! AppDelegate).openSettingWindow()
     }
     
     // 工具菜单回调
-    func tools(_ sender: NSMenuItem){
+    @objc func tools(_ sender: NSMenuItem){
         (NSApp.delegate as! AppDelegate).openToolsWindow();
     }
     
     // 关于页面回调
-    func about(_ sender: NSMenuItem) {
+    @objc func about(_ sender: NSMenuItem) {
         let style = NSMutableParagraphStyle()
         style.alignment = .center
         
-        let abbr = [ NSForegroundColorAttributeName: NSColor.black , NSParagraphStyleAttributeName : style, NSFontAttributeName : NSFont.systemFont(ofSize: 11.0)]
+        let abbr = [ NSAttributedStringKey.foregroundColor: NSColor.black , NSAttributedStringKey.paragraphStyle : style, NSAttributedStringKey.font : NSFont.systemFont(ofSize: 11.0)]
         
         let infoAttributedStr = NSAttributedString(string: "report: bugcoding@hotmail.com", attributes: abbr)
         
-        NSApp.orderFrontStandardAboutPanel(options: ["Credits":infoAttributedStr])
+        NSApp.orderFrontStandardAboutPanel(options: [NSApplication.AboutPanelOptionKey(rawValue: "Credits"):infoAttributedStr])
     }
     // 退出回调
-    func quit(_ sender: NSMenuItem) {
+    @objc func quit(_ sender: NSMenuItem) {
         NSApp.terminate(nil)
     }
 }

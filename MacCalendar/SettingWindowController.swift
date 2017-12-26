@@ -50,7 +50,7 @@ class SettingWindowController : NSWindowController, NSWindowDelegate {
         delegate.refreshInterface()
     }
 
-    func windowShouldClose(_ sender: Any) -> Bool {
+    func windowShouldClose(_ sender: NSWindow) -> Bool {
         
         return true
     }
@@ -132,8 +132,8 @@ class SettingWindowController : NSWindowController, NSWindowDelegate {
     
     
     
-    override var windowNibName: String? {
-        return "SettingWindowController"
+    override var windowNibName: NSNib.Name? {
+        return NSNib.Name("SettingWindowController")
     }
     
     override func windowDidLoad() {
@@ -141,9 +141,9 @@ class SettingWindowController : NSWindowController, NSWindowDelegate {
         
         // 设置自启动复选框的状态
         if isInStartUpItems() {
-            startUpCheckBtn.state = 1
+            startUpCheckBtn.state = NSControl.StateValue(rawValue: 1)
         } else {
-            startUpCheckBtn.state = 0
+            startUpCheckBtn.state = NSControl.StateValue(rawValue: 0)
         }
         
         // 读取本地记录的颜色信息

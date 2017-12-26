@@ -55,8 +55,8 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
     
     private var lastPressBtn: CalendarCellView?
     
-    override var windowNibName: String?{
-        return "CalendarViewController"
+    override var windowNibName: NSNib.Name?{
+        return NSNib.Name("CalendarViewController")
     }
     
     // MARK: Button handler
@@ -101,17 +101,17 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
     func control(_ control: NSControl, textView: NSTextView, doCommandBy commandSelector: Selector) -> Bool {
         if 	commandSelector == #selector(insertNewline(_:)) {
             
-            let inputStr = textView.string!
+            let inputStr = textView.string
             
             let filterStr = inputStr.trimmingCharacters(in: .decimalDigits)
-            if filterStr.characters.count > 0 {
+            if filterStr.count > 0 {
                 // TODO: 提示
                 // 包含非数字
                 return false
             }
             
             // identifier 已定义在xib中
-            if control.identifier == "monthField" {
+            if control.identifier!.rawValue == "monthField" {
                 //print("month = \(inputStr)")
                 let monthNum = Int(inputStr)!
                 if monthNum < 1 || monthNum > 12 {
@@ -120,7 +120,7 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
                 }
                 setDate(year: mCurYear, month: monthNum)
                 
-            } else if control.identifier == "yearField" {
+            } else if control.identifier!.rawValue == "yearField" {
                 //print("year = \(textView.string!)")
                 let yearNum = Int(inputStr)!
                 
@@ -299,7 +299,7 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
     // 根据xib中的identifier获取对应的cell
     func getButtonByIdentifier(_ id:String) -> NSView? {
         for subView in (self.window?.contentView?.subviews[0].subviews)! {
-            if subView.identifier == id {
+            if subView.identifier!.rawValue == id {
                 return subView
             }
         }
@@ -307,7 +307,7 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
     }
     
     
-    func dateButtonHandler(_ sender:CalendarCellView){
+    @objc func dateButtonHandler(_ sender:CalendarCellView){
         
         // 245	173	108 浅绿色
         if let tmp = lastPressBtn {
@@ -345,7 +345,7 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
         let lunarStr = "【\(CalendarConstant.CHINESE_ZODIC_NAME[branches - 1])】\(CalendarConstant.HEAVENLY_STEMS_NAME[stems - 1])\(CalendarConstant.EARTHY_BRANCHES_NAME[branches - 1])年"
         lunarYearLabel.stringValue = lunarStr + monthHeavenEarthy.heaven + monthHeavenEarthy.earthy + "月" + dayHeavenEarthy.heaven + dayHeavenEarthy.earthy + "日"
         
-        imageView.image = NSImage(named: CalendarConstant.CHINESE_ZODIC_PNG_NAME[branches - 1])
+        imageView.image = NSImage(named: NSImage.Name(rawValue: CalendarConstant.CHINESE_ZODIC_PNG_NAME[branches - 1]))
         poemLabel.stringValue = CalendarConstant.LAST_POEM[branches - 1]
         nextPoemLabel.stringValue = CalendarConstant.NEXT_POEM[branches - 1]
         
@@ -401,7 +401,7 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
         
         // 公历节日
         let holidayName = CalendarUtils.sharedInstance.getHolidayNameBy(month: month, day: day)
-        if holidayName != "" && holidayName.characters.count <= 4 {
+        if holidayName != "" && holidayName.count <= 4 {
             maxPriorityHolidayName = holidayName
             isFestvial = true
         }

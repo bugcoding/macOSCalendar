@@ -36,9 +36,9 @@ class CornerFlagView : NSView {
         
         let info: NSString = mExtraInfo as NSString
         let md = NSMutableDictionary()
-        md.setObject(NSFont.systemFont(ofSize: 8), forKey: NSFontAttributeName as NSCopying)
-        md.setObject(NSColor.white, forKey: NSForegroundColorAttributeName as NSCopying)
-        info.draw(at: NSPoint(x: 1, y: 5), withAttributes: (md as! [String : Any]))
+        md.setObject(NSFont.systemFont(ofSize: 8), forKey: NSAttributedStringKey.font as NSCopying)
+        md.setObject(NSColor.white, forKey: NSAttributedStringKey.foregroundColor as NSCopying)
+        info.draw(at: NSPoint(x: 1, y: 5), withAttributes: (md as! [NSAttributedStringKey : Any]))
     }
     
     init(color: NSColor, frame: NSRect, extra: String) {

@@ -57,19 +57,19 @@ class CalendarCellView : NSButton, NSMenuDelegate{
     }
     
     // 添加日期标记
-    func addFlagHandler(_ sender:CalendarCellView) {
+    @objc func addFlagHandler(_ sender:CalendarCellView) {
 //        Swift.print("cur wzTime = \(wzDay.year)-\(wzDay.month)-\(wzDay.day)")
         showPopoverView(content: "")
     }
     // 移除日期标记
-    func removeFlagHandler(_ sender:CalendarCellView) {
+    @objc func removeFlagHandler(_ sender:CalendarCellView) {
 //        Swift.print("cur wzTime = \(wzDay.year)-\(wzDay.month)-\(wzDay.day)")
         let dateStr = String(describing: wzDay.year) + String(describing: wzDay.month) + String(describing: wzDay.day)
         LocalDataManager.sharedInstance.removeData(forKey: dateStr)
         mFlagView?.removeFromSuperview()
     }
     // 在当前日期已有标记的情况下，显示编辑日期标志
-    func editFlagHandler(_ sender:CalendarCellView) {
+    @objc func editFlagHandler(_ sender:CalendarCellView) {
         showPopoverView(content: LocalDataManager.sharedInstance.getCurDateFlag(wzDay: wzDay))
     }
     // 修改当前日期边框颜色
@@ -140,8 +140,8 @@ class CalendarCellView : NSButton, NSMenuDelegate{
         
         let topText = String(wzDay.day) + "\n"
 
-        let goriDayDict = [NSForegroundColorAttributeName : topColor, NSParagraphStyleAttributeName : style, NSFontAttributeName : NSFont.systemFont(ofSize: 18.0)]
-        let lunarDayDict = [NSForegroundColorAttributeName : bottomColor, NSParagraphStyleAttributeName : style, NSFontAttributeName : NSFont.systemFont(ofSize: 9.0)]
+        let goriDayDict = [NSAttributedStringKey.foregroundColor : topColor, NSAttributedStringKey.paragraphStyle : style, NSAttributedStringKey.font : NSFont.systemFont(ofSize: 18.0)]
+        let lunarDayDict = [NSAttributedStringKey.foregroundColor : bottomColor, NSAttributedStringKey.paragraphStyle : style, NSAttributedStringKey.font : NSFont.systemFont(ofSize: 9.0)]
         
         let goriAttrDay = NSAttributedString(string: (topText as NSString).substring(with: NSMakeRange(0, topText.count)), attributes: goriDayDict)
         let lunarAttrDay = NSAttributedString(string: (bottomText as NSString).substring(with: NSMakeRange(0, bottomText.count)), attributes: lunarDayDict)
