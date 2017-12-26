@@ -85,16 +85,17 @@ class CalendarCellView : NSButton, NSMenuDelegate{
         
         let popMenu = NSMenu()
         popMenu.delegate = self
-        var addFlagItem = NSMenuItem(title: "标记当前日期", action: #selector(CalendarCellView.addFlagHandler(_:)), keyEquivalent: "")
+        var addFlagItem = NSMenuItem(title: "添加提醒", action: #selector(CalendarCellView.addFlagHandler(_:)), keyEquivalent: "")
+        
         let info = LocalDataManager.sharedInstance.getCurDateFlag(wzDay: wzDay)
         if info != "" {
             // 当前日期有标记
-            addFlagItem = NSMenuItem(title: "编辑日期标记", action: #selector(CalendarCellView.editFlagHandler(_:)), keyEquivalent: "")
+            addFlagItem = NSMenuItem(title: "编辑提醒", action: #selector(CalendarCellView.editFlagHandler(_:)), keyEquivalent: "")
+            let removeFlagItem = NSMenuItem(title: "移除提醒", action: #selector(CalendarCellView.removeFlagHandler(_:)), keyEquivalent: "")
+            popMenu.addItem(removeFlagItem)
         }
-
         popMenu.addItem(addFlagItem)
-        let removeFlagItem = NSMenuItem(title: "移除标记日期", action: #selector(CalendarCellView.removeFlagHandler(_:)), keyEquivalent: "")
-        popMenu.addItem(removeFlagItem)
+
         NSMenu.popUpContextMenu(popMenu, with: event, for: self)
     }
     
