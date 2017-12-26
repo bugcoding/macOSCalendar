@@ -41,6 +41,7 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
     @IBOutlet weak var lunarYearLabel: NSTextField!
     @IBOutlet weak var holidayLabel: NSTextField!
     
+    @IBOutlet weak var pinNote: NSTextField!
     // 日历类实例
     private var mCalendar: LunarCalendarUtils = LunarCalendarUtils()
     private var mPreCalendar: LunarCalendarUtils = LunarCalendarUtils()
@@ -463,6 +464,8 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
     override func windowDidLoad() {
         super.windowDidLoad()
         
+        pinNote.layer?.cornerRadius = 5.5
+        pinNote.layer?.masksToBounds = true
         // 背景透明，使用view设置圆角矩形
         self.window?.backgroundColor = NSColor.clear
         //self.blur(view: self.backView)

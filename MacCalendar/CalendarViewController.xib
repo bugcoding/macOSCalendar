@@ -20,6 +20,7 @@
                 <outlet property="monthText" destination="0Db-h5-CwX" id="cH4-e1-f6p"/>
                 <outlet property="nextMonthBtn" destination="u6Y-K3-prM" id="ExK-Mh-0vO"/>
                 <outlet property="nextYearBtn" destination="yRC-3t-AAp" id="l5L-76-Jg4"/>
+                <outlet property="pinNote" destination="VVx-tx-nvd" id="kF2-n5-fa7"/>
                 <outlet property="saturdayLabel" destination="koa-fb-vvp" id="jog-Nj-C6T"/>
                 <outlet property="settingBtn" destination="wJl-Ir-raC" id="DdV-Kt-Yb8"/>
                 <outlet property="sundayLabel" destination="QXh-VN-Tuu" id="B8X-yA-avD"/>
@@ -38,7 +39,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="571" height="369"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <customView identifier="customview" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jSz-os-SLy" customClass="CustomView" customModule="StatebarCalendar" customModuleProvider="target">
+                    <customView identifier="customview" wantsLayer="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jSz-os-SLy" customClass="CustomView" customModule="StatebarCalendar" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="-26" width="571" height="395"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <subviews>
@@ -389,6 +390,10 @@
                                 <rect key="frame" x="11" y="339" width="371" height="5"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </box>
+                            <box verticalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="HWY-Na-617">
+                                <rect key="frame" x="396" y="173" width="162" height="5"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            </box>
                             <textField identifier="yearField" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mx9-hU-Kv3" customClass="CalendarTextField" customModule="StatebarCalendar" customModuleProvider="target">
                                 <rect key="frame" x="20" y="348" width="104" height="26"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -564,7 +569,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tsw-N6-4MJ">
-                                <rect key="frame" x="388" y="201" width="172" height="19"/>
+                                <rect key="frame" x="388" y="203" width="172" height="19"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="农历 癸已 【猴年】" id="btS-QT-NkC">
                                     <font key="font" metaFont="system"/>
@@ -584,7 +589,7 @@
                                 </connections>
                             </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EtK-36-avD">
-                                <rect key="frame" x="393" y="177" width="160" height="17"/>
+                                <rect key="frame" x="393" y="183" width="160" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="国际扫盲日 国际新闻工作者日" id="Ijy-a5-YXS">
                                     <font key="font" metaFont="smallSystem"/>
@@ -592,15 +597,54 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <box verticalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="ORE-Oq-A3Y">
-                                <rect key="frame" x="11" y="380" width="371" height="5"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                            </box>
                             <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CWu-47-904">
                                 <rect key="frame" x="413" y="229" width="31" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="10" id="5O1-dT-F11"/>
                             </imageView>
+                            <box verticalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="ORE-Oq-A3Y">
+                                <rect key="frame" x="11" y="380" width="371" height="5"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            </box>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" alphaValue="0.90000000000000002" translatesAutoresizingMaskIntoConstraints="NO" id="VVx-tx-nvd">
+                                <rect key="frame" x="399" y="63" width="156" height="47"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <shadow key="shadow" blurRadius="3">
+                                    <color key="color" red="0.43280935729912684" green="0.45875634517766495" blue="0.22095919426774491" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </shadow>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Birthday!" drawsBackground="YES" id="bTF-eV-Djb">
+                                    <font key="font" metaFont="system" size="14"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" red="0.89994224871945327" green="0.99953407049999998" blue="0.72213456458422853" alpha="0.65087221746575341" colorSpace="custom" customColorSpace="sRGB"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UyP-oG-p6T">
+                                <rect key="frame" x="373" y="131" width="95" height="23"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="距离元旦" id="O0l-6G-Qj1">
+                                    <font key="font" size="14" name=".PingFangSC-Medium"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ssj-Yd-I38">
+                                <rect key="frame" x="471" y="134" width="39" height="23"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="5" id="xai-2H-KAI">
+                                    <font key="font" size="20" name="LED"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pHm-eE-EXb">
+                                <rect key="frame" x="506" y="131" width="39" height="23"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="天" id="WP9-BZ-XAd">
+                                    <font key="font" size="14" name=".PingFangSC-Medium"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
                     </customView>
                 </subviews>
