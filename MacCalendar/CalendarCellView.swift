@@ -58,12 +58,12 @@ class CalendarCellView : NSButton, NSMenuDelegate{
     
     // 添加日期标记
     func addFlagHandler(_ sender:CalendarCellView) {
-        Swift.print("cur wzTime = \(wzDay.year)-\(wzDay.month)-\(wzDay.day)")
+//        Swift.print("cur wzTime = \(wzDay.year)-\(wzDay.month)-\(wzDay.day)")
         showPopoverView(content: "")
     }
     // 移除日期标记
     func removeFlagHandler(_ sender:CalendarCellView) {
-        Swift.print("cur wzTime = \(wzDay.year)-\(wzDay.month)-\(wzDay.day)")
+//        Swift.print("cur wzTime = \(wzDay.year)-\(wzDay.month)-\(wzDay.day)")
         let dateStr = String(describing: wzDay.year) + String(describing: wzDay.month) + String(describing: wzDay.day)
         LocalDataManager.sharedInstance.removeData(forKey: dateStr)
         mFlagView?.removeFromSuperview()
@@ -100,12 +100,10 @@ class CalendarCellView : NSButton, NSMenuDelegate{
     }
     
     override func mouseExited(with event: NSEvent) {
-        Swift.print("Mouse Exit")
         changeBorderColor(borderWid: 0, color: self.mBgColor)
     }
     
     override func mouseEntered(with event: NSEvent) {
-        Swift.print("Mouse Enter")
         changeBorderColor(borderWid: 0.9, color: CalendarConstant.selectedDateColor)
     }
     
