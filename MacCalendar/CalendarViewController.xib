@@ -606,20 +606,26 @@
                                 <rect key="frame" x="11" y="380" width="371" height="5"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </box>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" alphaValue="0.90000000000000002" translatesAutoresizingMaskIntoConstraints="NO" id="VVx-tx-nvd">
-                                <rect key="frame" x="399" y="63" width="156" height="47"/>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VVx-tx-nvd">
+                                <rect key="frame" x="402" y="63" width="144" height="47"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <shadow key="shadow" blurRadius="3">
-                                    <color key="color" red="0.43280935729912684" green="0.45875634517766495" blue="0.22095919426774491" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <shadow key="shadow" blurRadius="2">
+                                    <size key="offset" width="1" height="2"/>
+                                    <color key="color" red="0.685587212839599" green="0.72513483502538079" blue="0.35266614502540761" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </shadow>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Birthday!" drawsBackground="YES" id="bTF-eV-Djb">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="left" title="dadsads" drawsBackground="YES" id="bTF-eV-Djb" customClass="PaddingTextField" customModule="StatebarCalendar" customModuleProvider="target">
                                     <font key="font" metaFont="system" size="14"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" red="0.89994224871945327" green="0.99953407049999998" blue="0.72213456458422853" alpha="0.65087221746575341" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="leftPadding">
+                                            <real key="value" value="21"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UyP-oG-p6T">
-                                <rect key="frame" x="373" y="131" width="95" height="23"/>
+                                <rect key="frame" x="395" y="131" width="80" height="23"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="距离元旦" id="O0l-6G-Qj1">
                                     <font key="font" size="14" name=".PingFangSC-Medium"/>
@@ -628,7 +634,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ssj-Yd-I38">
-                                <rect key="frame" x="471" y="134" width="39" height="23"/>
+                                <rect key="frame" x="478" y="134" width="31" height="23"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="5" id="xai-2H-KAI">
                                     <font key="font" size="20" name="LED"/>
@@ -637,7 +643,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pHm-eE-EXb">
-                                <rect key="frame" x="506" y="131" width="39" height="23"/>
+                                <rect key="frame" x="508" y="131" width="29" height="23"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="天" id="WP9-BZ-XAd">
                                     <font key="font" size="14" name=".PingFangSC-Medium"/>

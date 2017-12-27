@@ -283,18 +283,7 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
 
     }
     
-    // 显示日历面板右侧详情
-    func showRightDetailInfo() {
-        // 获取每月第一天是周几
-        let curWeekDay = CalendarUtils.sharedInstance.getWeekDayBy(mCurYear, month: mCurMonth, day: mCurDay)
-        dateDetailLabel.stringValue = String(mCurYear) + "年" + String(mCurMonth) + "月" + String(mCurDay) + "日 星期" + CalendarConstant.WEEK_NAME_OF_CHINESE[curWeekDay]
-        dayLabel.stringValue = String(mCurDay)
-        
-        // 右侧农历详情
-        showLunar()
-        // 显示假日信息
-        showHolidayInfo()
-    }
+
     
     
     // 根据xib中的identifier获取对应的cell
@@ -318,9 +307,40 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
         lastPressBtn = sender
         
         mCurDay = sender.wzDay.day
-        showRightDetailInfo()
+        showRightDetailInfo(wzTime: sender.wzDay)
     }
     
+    // 显示日历面板右侧详情
+    func showRightDetailInfo(wzTime: CalendarUtils.WZDayTime) {
+        // 获取每月第一天是周几
+        let curWeekDay = CalendarUtils.sharedInstance.getWeekDayBy(mCurYear, month: mCurMonth, day: mCurDay)
+        dateDetailLabel.stringValue = String(mCurYear) + "年" + String(mCurMonth) + "月" + String(mCurDay) + "日 星期" + CalendarConstant.WEEK_NAME_OF_CHINESE[curWeekDay]
+        dayLabel.stringValue = String(mCurDay)
+        
+        // 右侧农历详情
+        showLunar()
+        // 显示假日信息
+        showHolidayInfo()
+        // 显示倒数日详情
+        showCountDownDay()
+        // 当前日期如果有备注显示备注信息
+        let info = LocalDataManager.sharedInstance.getCurDateFlag(wzDay: wzTime)
+        showPinNote(info: info)
+    }
+    
+    // 显示倒数日
+    func showCountDownDay() {
+        
+    }
+    
+    // 显示便签
+    func showPinNote(info: String) {
+        pinNote.isHidden = true
+        if info != "" {
+            pinNote.isHidden = false
+            pinNote.stringValue = info
+        }
+    }
     
     func showLunar() {
         var stems: Int = 0, branches: Int = 0, sbMonth:Int = 0, sbDay:Int = 0
@@ -446,7 +466,7 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
         let _ = mNextCalendar.setGeriYear(year: mCurYear + 1)
         if mCalendar.setGeriYear(year: mCurYear) {
             setCurrenMonth(month: dateTupple.month)
-            showRightDetailInfo()
+            showRightDetailInfo(wzTime: CalendarUtils.WZDayTime(mCurYear, mCurMonth, mCurDay))
         }
     }
     
