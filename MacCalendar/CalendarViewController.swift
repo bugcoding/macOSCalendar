@@ -338,7 +338,32 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
         pinNote.isHidden = true
         if info != "" {
             pinNote.isHidden = false
-            pinNote.stringValue = info
+            //pinNote.stringValue = info
+            
+            // 居中样式
+            let style = NSMutableParagraphStyle()
+            
+            //style.alignment = .left
+            style.firstLineHeadIndent = 10
+            style.headIndent = 10
+            style.tailIndent = -10
+//            style.lineSpacing = 10
+            
+            
+            
+            let goriDayDict = [NSAttributedStringKey.foregroundColor : NSColor.black, NSAttributedStringKey.paragraphStyle : style, NSAttributedStringKey.font : NSFont.systemFont(ofSize: 13.0)]
+
+            
+            let goriAttrDay = NSAttributedString(string: (info as NSString).substring(with: NSMakeRange(0, info.count)), attributes: goriDayDict)
+
+            
+            let finalAttr = NSMutableAttributedString(attributedString: goriAttrDay)
+            
+            //pinNote.attributedTitle = finalAttr
+            pinNote.allowsEditingTextAttributes = true
+            pinNote.attributedStringValue = finalAttr
+            
+            
         }
     }
     

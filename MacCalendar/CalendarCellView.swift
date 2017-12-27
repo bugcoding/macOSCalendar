@@ -136,6 +136,7 @@ class CalendarCellView : NSButton, NSMenuDelegate{
         
         // 居中样式
         let style = NSMutableParagraphStyle()
+        
         style.alignment = .center
         
         let topText = String(wzDay.day) + "\n"

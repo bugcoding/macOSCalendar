@@ -613,7 +613,7 @@
                                     <size key="offset" width="1" height="2"/>
                                     <color key="color" red="0.685587212839599" green="0.72513483502538079" blue="0.35266614502540761" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </shadow>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="left" title="dadsads" drawsBackground="YES" id="bTF-eV-Djb" customClass="PaddingTextField" customModule="StatebarCalendar" customModuleProvider="target">
+                                <textFieldCell key="cell" lineBreakMode="charWrapping" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="left" title="dadsadsfdsfdsfsdgfdgdfgdfgdfg" drawsBackground="YES" id="bTF-eV-Djb" customClass="PaddingTextField" customModule="StatebarCalendar" customModuleProvider="target">
                                     <font key="font" metaFont="system" size="14"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" red="0.89994224871945327" green="0.99953407049999998" blue="0.72213456458422853" alpha="0.65087221746575341" colorSpace="custom" customColorSpace="sRGB"/>
