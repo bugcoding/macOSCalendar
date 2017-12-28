@@ -347,7 +347,7 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
             style.firstLineHeadIndent = 10
             style.headIndent = 10
             style.tailIndent = -10
-//            style.lineSpacing = 10
+            style.lineSpacing = 5
             
             
             
