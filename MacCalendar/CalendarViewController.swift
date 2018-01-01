@@ -226,7 +226,7 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
                         color = festivalColor
                     }
                     
-                    btn.setString(wzTime: CalendarUtils.WZDayTime(mCurYear, lastMonth, day), topColor: NSColor.black.withAlphaComponent(0.5), bottomText: dayName, bottomColor: color.withAlphaComponent(0.5))
+                    btn.setString(wzTime: CalendarUtils.WZDayTime(calendar.getCurrentYear(), lastMonth, day), topColor: NSColor.black.withAlphaComponent(0.5), bottomText: dayName, bottomColor: color.withAlphaComponent(0.5))
                 } else {
                     let day = index - monthDays - weekDayOf1stDay + 1
                     
@@ -242,7 +242,7 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
                         color = festivalColor
                     }
                     
-                    btn.setString(wzTime: CalendarUtils.WZDayTime(mCurYear, nextMonth, day), topColor: NSColor.black.withAlphaComponent(0.5), bottomText: dayName, bottomColor: color.withAlphaComponent(0.5))
+                    btn.setString(wzTime: CalendarUtils.WZDayTime(calendar.getCurrentYear(), nextMonth, day), topColor: NSColor.black.withAlphaComponent(0.5), bottomText: dayName, bottomColor: color.withAlphaComponent(0.5))
                 }
                 
             } else {
@@ -338,30 +338,30 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
         pinNote.isHidden = true
         if info != "" {
             pinNote.isHidden = false
-            //pinNote.stringValue = info
+            pinNote.stringValue = info
             
-            // 居中样式
-            let style = NSMutableParagraphStyle()
-            
-            //style.alignment = .left
-            style.firstLineHeadIndent = 10
-            style.headIndent = 10
-            style.tailIndent = -10
-            style.lineSpacing = 5
-            
-            
-            
-            let goriDayDict = [NSAttributedStringKey.foregroundColor : NSColor.black, NSAttributedStringKey.paragraphStyle : style, NSAttributedStringKey.font : NSFont.systemFont(ofSize: 13.0)]
-
-            
-            let goriAttrDay = NSAttributedString(string: (info as NSString).substring(with: NSMakeRange(0, info.count)), attributes: goriDayDict)
-
-            
-            let finalAttr = NSMutableAttributedString(attributedString: goriAttrDay)
-            
-            //pinNote.attributedTitle = finalAttr
-            pinNote.allowsEditingTextAttributes = true
-            pinNote.attributedStringValue = finalAttr
+//            // 居中样式
+//            let style = NSMutableParagraphStyle()
+//
+//            //style.alignment = .left
+//            style.firstLineHeadIndent = 10
+//            style.headIndent = 10
+//            style.tailIndent = -10
+//            style.lineSpacing = 5
+//
+//
+//
+//            let goriDayDict = [NSAttributedStringKey.foregroundColor : NSColor.black, NSAttributedStringKey.paragraphStyle : style, NSAttributedStringKey.font : NSFont.systemFont(ofSize: 13.0)]
+//
+//
+//            let goriAttrDay = NSAttributedString(string: (info as NSString).substring(with: NSMakeRange(0, info.count)), attributes: goriDayDict)
+//
+//
+//            let finalAttr = NSMutableAttributedString(attributedString: goriAttrDay)
+//
+//            //pinNote.attributedTitle = finalAttr
+//            pinNote.allowsEditingTextAttributes = true
+//            pinNote.attributedStringValue = finalAttr
             
             
         }
@@ -508,6 +508,8 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
 
     override func windowDidLoad() {
         super.windowDidLoad()
+        
+        LocalDataManager.sharedInstance.parseHoliday()
         
         pinNote.layer?.cornerRadius = 5.5
         pinNote.layer?.masksToBounds = true

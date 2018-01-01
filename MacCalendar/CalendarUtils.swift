@@ -41,6 +41,9 @@ open class CalendarUtils{
             month = m
             day = d
         }
+        public var description : String {
+            return "\(year)-" + "\(month)-" + "\(day)"
+        }
     }
     
 

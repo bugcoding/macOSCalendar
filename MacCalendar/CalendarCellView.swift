@@ -43,7 +43,7 @@ class CalendarCellView : NSButton, NSMenuDelegate{
     // 关闭popover
     func performPopoverClose() {
         mPopoverWindow.performClose(nil)
-        addFlagView()
+        addFlagView(extraTip: "备", isShift: false, color: NSColor.blue)
     }
     
     // 弹出popover
@@ -114,9 +114,14 @@ class CalendarCellView : NSButton, NSMenuDelegate{
     }
     
     // 添加标记子窗口
-    func addFlagView() {
-        let color = NSColor(calibratedRed: NSColor.red.redComponent, green: NSColor.red.greenComponent, blue: NSColor.red.blueComponent, alpha: 0.5)
-        mFlagView = CornerFlagView(color: color, frame: NSRect(x: 38, y: 0, width: 48, height: 15), extra: "备")
+    func addFlagView(extraTip: String, isShift: Bool, color: NSColor) {
+        let color = NSColor(calibratedRed: color.redComponent, green: color.greenComponent, blue: color.blueComponent, alpha: 0.6)
+        if !isShift {
+            mFlagView = CornerFlagView(color: color, frame: NSRect(x: 38, y: 0, width: 48, height: 15), extra: extraTip)
+        } else {
+            mFlagView = CornerFlagView(color: color, frame: NSRect(x: 0, y: 0, width: 48, height: 15), extra: extraTip)
+        }
+        
         addSubview(mFlagView!)
     }
     
@@ -126,13 +131,22 @@ class CalendarCellView : NSButton, NSMenuDelegate{
         wzDay = wzTime
         
         mFlagView?.removeFromSuperview()
+        
+        var isShift = false;
+
+        if LocalDataManager.sharedInstance.isHoliday(wzTime: wzDay) {
+            addFlagView(extraTip: "假", isShift: isShift, color: NSColor.purple)
+            isShift = true
+        } else if LocalDataManager.sharedInstance.isNeedWork(wzTime: wzDay) {
+            addFlagView(extraTip: "班", isShift: isShift, color: NSColor.red)
+            isShift = true
+        }
         // 已标记过的日期，用橙色显示
         let info = LocalDataManager.sharedInstance.getCurDateFlag(wzDay: wzDay)
         if info != "" {
-            addFlagView()
+            addFlagView(extraTip: "备", isShift: isShift, color: NSColor.blue)
             self.toolTip = "备注: " + info
         }
-
         
         // 居中样式
         let style = NSMutableParagraphStyle()

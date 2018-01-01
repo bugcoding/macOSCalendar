@@ -21,6 +21,9 @@ class LocalDataManager {
         
     }
     
+    var holidayArray = [String]()
+    var workArray = [String]()
+    
     // 存储数据
     func saveData(data: Any, forKey: String) {
         let data = NSKeyedArchiver.archivedData(withRootObject: data)
@@ -48,5 +51,39 @@ class LocalDataManager {
         }
         return ""
     }
+    
+    // 解析假日plist
+    func parseHoliday() {
+        if let path = Bundle.main.path(forResource: "holidaydata", ofType: "plist") {
+            if let holidayDic = NSDictionary(contentsOfFile: path) {
+                for (key, value) in holidayDic {
+                    Swift.print("parse key = \(key), value = \((value as! NSArray).count)")
+                    let dictKey = key as! String
+                    let dictValue = value as! [String]
+                    if (dictKey == "1") {
+                        holidayArray = dictValue
+                    } else if (dictKey == "2") {
+                        workArray = dictValue
+                    }
+                }
+            }
+            
+        }
+    }
+    
+    // 是否是假日
+    func isHoliday(wzTime: CalendarUtils.WZDayTime) -> Bool {
+        let dateString = "\(wzTime.description)"
+        return holidayArray.contains(dateString)
+    }
+    
+    // 是否需要补班
+    func isNeedWork(wzTime: CalendarUtils.WZDayTime) -> Bool {
+        let dateString = "\(wzTime.description)"
+        return workArray.contains(dateString)
+    }
+    
+    
+    
 }
 
