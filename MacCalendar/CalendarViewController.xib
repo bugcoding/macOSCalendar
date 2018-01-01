@@ -634,16 +634,16 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VVx-tx-nvd">
-                                <rect key="frame" x="407" y="66" width="144" height="47"/>
+                                <rect key="frame" x="405" y="66" width="148" height="47"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <shadow key="shadow" blurRadius="2">
+                                <shadow key="shadow" blurRadius="1">
                                     <size key="offset" width="1" height="2"/>
                                     <color key="color" red="0.685587212839599" green="0.72513483502538079" blue="0.35266614502540761" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </shadow>
-                                <textFieldCell key="cell" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="center" title="dadsads" drawsBackground="YES" id="bTF-eV-Djb" customClass="PaddingTextField" customModule="StatebarCalendar" customModuleProvider="target">
+                                <textFieldCell key="cell" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="center" title="dadsads" id="bTF-eV-Djb" customClass="VertivalTextCell" customModule="StatebarCalendar" customModuleProvider="target">
                                     <font key="font" metaFont="system" size="14"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" red="0.89994224871945327" green="0.99953407049999998" blue="0.72213456458422853" alpha="0.65087221746575341" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="backgroundColor" red="0.86905191544822191" green="0.96676713197969544" blue="0.69868572223416092" alpha="0.65876498287671237" colorSpace="custom" customColorSpace="sRGB"/>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="number" keyPath="leftPadding">
                                             <real key="value" value="21"/>
