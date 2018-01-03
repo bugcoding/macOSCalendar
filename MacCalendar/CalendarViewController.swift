@@ -59,6 +59,7 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
     // 下一个节日的名字
     @IBOutlet weak var nextHolidayTip: NSTextField!
     
+    @IBOutlet weak var nextHolidayDays: NSTextField!
     override var windowNibName: NSNib.Name?{
         return NSNib.Name("CalendarViewController")
     }
@@ -312,8 +313,9 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
         mCurDay = sender.wzDay.day
         showRightDetailInfo(wzTime: sender.wzDay)
         
-        let holidayName = CalendarUtils.sharedInstance.getNextHolidayBy(wzTime: sender.wzDay)
+        let (holidayName, days) = CalendarUtils.sharedInstance.getNextHolidayBy(wzTime: sender.wzDay)
         nextHolidayTip.stringValue = "距离\(holidayName)"
+        nextHolidayDays.stringValue = "\(days)"
     }
     
     // 显示日历面板右侧详情

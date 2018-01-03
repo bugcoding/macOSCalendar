@@ -47,20 +47,23 @@ open class CalendarUtils{
     }
     
     // 根据当前日期获取下一个节日
-    func getNextHolidayBy(wzTime: WZDayTime) -> String {
+    func getNextHolidayBy(wzTime: WZDayTime) -> (String, Int) {
         var tmpDay = wzTime.day
         if wzTime.day < 10 {
             tmpDay *= 10
         }
         let res = wzTime.month * 100 + tmpDay
         var holidayName = ""
+        var days = 0
         for key in CalendarConstant.generalHolidaysArray {
             if res < key {
-                holidayName = CalendarConstant.generalHolidaysDict[key]!
+                let (name, month, day) = CalendarConstant.generalHolidaysDict[key]!
+                holidayName = name
+                days = CalendarUtils.sharedInstance.calcDaysBetweenDate(wzTime.year, monthStart: wzTime.month, dayStart: wzTime.day, yearEnd: wzTime.year, monthEnd: month, dayEnd: day)
                 break
             }
         }
-        return holidayName
+        return (holidayName, days)
     }
     
     // 根据农历月与农历日获取农历节日名称，没有返回空字符串
