@@ -140,6 +140,33 @@ class CalendarConstant{
         "1-0": "除夕"
     ]
     
+    // 常用节日
+    // month * 100 + day * 10
+    static let generalHolidaysDict:[Int:String] = [
+        110: "元旦",
+        340: "情人节",
+        380: "妇女节",
+        410: "愚人节",
+        510: "劳动节",
+        610: "儿童节",
+        1000: "教师节",
+        1100: "国庆节",
+        1440: "平安夜",
+        1450: "圣诞节"
+    ]
+    static let generalHolidaysArray:[Int] = [
+        110,
+        340,
+        380,
+        410,
+        510,
+        610,
+        1000,
+        1100,
+        1440,
+        1450
+    ]
+    
     // 公历节日字典表
     static let georiHolidaysDict:[String:String] = [
         "1-1": "元旦",

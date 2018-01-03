@@ -56,6 +56,9 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
     
     private var lastPressBtn: CalendarCellView?
     
+    // 下一个节日的名字
+    @IBOutlet weak var nextHolidayTip: NSTextField!
+    
     override var windowNibName: NSNib.Name?{
         return NSNib.Name("CalendarViewController")
     }
@@ -308,6 +311,9 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
         
         mCurDay = sender.wzDay.day
         showRightDetailInfo(wzTime: sender.wzDay)
+        
+        let holidayName = CalendarUtils.sharedInstance.getNextHolidayBy(wzTime: sender.wzDay)
+        nextHolidayTip.stringValue = "距离\(holidayName)"
     }
     
     // 显示日历面板右侧详情
@@ -339,30 +345,6 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
         if info != "" {
             pinNote.isHidden = false
             pinNote.stringValue = info
-            
-//            // 居中样式
-//            let style = NSMutableParagraphStyle()
-//
-//            //style.alignment = .left
-//            style.firstLineHeadIndent = 10
-//            style.headIndent = 10
-//            style.tailIndent = -10
-//            style.lineSpacing = 5
-//
-//
-//
-//            let goriDayDict = [NSAttributedStringKey.foregroundColor : NSColor.black, NSAttributedStringKey.paragraphStyle : style, NSAttributedStringKey.font : NSFont.systemFont(ofSize: 13.0)]
-//
-//
-//            let goriAttrDay = NSAttributedString(string: (info as NSString).substring(with: NSMakeRange(0, info.count)), attributes: goriDayDict)
-//
-//
-//            let finalAttr = NSMutableAttributedString(attributedString: goriAttrDay)
-//
-//            //pinNote.attributedTitle = finalAttr
-//            pinNote.allowsEditingTextAttributes = true
-//            pinNote.attributedStringValue = finalAttr
-            
             
         }
     }

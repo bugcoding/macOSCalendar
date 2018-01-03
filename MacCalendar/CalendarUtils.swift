@@ -46,8 +46,18 @@ open class CalendarUtils{
         }
     }
     
-
-    
+    // 根据当前日期获取下一个节日
+    func getNextHolidayBy(wzTime: WZDayTime) -> String {
+        let res = wzTime.month * 100 + wzTime.day * 10
+        var holidayName = ""
+        for key in CalendarConstant.generalHolidaysArray {
+            if res < key {
+                holidayName = CalendarConstant.generalHolidaysDict[key]!
+                break
+            }
+        }
+        return holidayName
+    }
     
     // 根据农历月与农历日获取农历节日名称，没有返回空字符串
     func getLunarFestivalNameBy(month: Int, day: Int) -> String {

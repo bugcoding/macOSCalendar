@@ -18,6 +18,7 @@
                 <outlet property="lunarDateLabel" destination="Ac2-MK-LKH" id="8EV-Y6-8Z4"/>
                 <outlet property="lunarYearLabel" destination="tsw-N6-4MJ" id="OUj-0j-Lfg"/>
                 <outlet property="monthText" destination="0Db-h5-CwX" id="cH4-e1-f6p"/>
+                <outlet property="nextHolidayTip" destination="UyP-oG-p6T" id="wk9-g0-MOi"/>
                 <outlet property="nextMonthBtn" destination="u6Y-K3-prM" id="ExK-Mh-0vO"/>
                 <outlet property="nextYearBtn" destination="yRC-3t-AAp" id="l5L-76-Jg4"/>
                 <outlet property="pinNote" destination="VVx-tx-nvd" id="kF2-n5-fa7"/>
