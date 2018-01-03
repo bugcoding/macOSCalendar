@@ -48,7 +48,11 @@ open class CalendarUtils{
     
     // 根据当前日期获取下一个节日
     func getNextHolidayBy(wzTime: WZDayTime) -> String {
-        let res = wzTime.month * 100 + wzTime.day * 10
+        var tmpDay = wzTime.day
+        if wzTime.day < 10 {
+            tmpDay *= 10
+        }
+        let res = wzTime.month * 100 + tmpDay
         var holidayName = ""
         for key in CalendarConstant.generalHolidaysArray {
             if res < key {
