@@ -312,8 +312,10 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
         
         mCurDay = sender.wzDay.day
         showRightDetailInfo(wzTime: sender.wzDay)
-        
-        let (holidayName, days) = CalendarUtils.sharedInstance.getNextHolidayBy(wzTime: sender.wzDay)
+    }
+    
+    func showHolidayCountDown(wzTime: CalendarUtils.WZDayTime){
+        let (holidayName, days) = CalendarUtils.sharedInstance.getNextHolidayBy(wzTime: wzTime)
         nextHolidayTip.stringValue = "距离\(holidayName)"
         nextHolidayDays.stringValue = "\(days)"
     }
@@ -329,16 +331,11 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
         showLunar()
         // 显示假日信息
         showHolidayInfo()
-        // 显示倒数日详情
-        showCountDownDay()
+        // 显示倒日
+        showHolidayCountDown(wzTime: wzTime)
         // 当前日期如果有备注显示备注信息
         let info = LocalDataManager.sharedInstance.getCurDateFlag(wzDay: wzTime)
         showPinNote(info: info)
-    }
-    
-    // 显示倒数日
-    func showCountDownDay() {
-        
     }
     
     // 显示便签
