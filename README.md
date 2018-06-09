@@ -1,7 +1,9 @@
 # 
 macOS上的状态栏万年历，工作之余开发，功能不是很齐全，功能特性在慢慢迭代之中。现在版本是v0.4。
 
-ps:`mac开发菜鸟一枚，边学边做`
+第五版, 加入法定节假日，添加备注，倒数日，显示调整
+
+![](https://github.com/bugcoding/macOSCalendar/blob/master/screenshots/statusbarcalendar_v0.5.png)
 
 第四版v0.4，加入节日与假日颜色设置功能，开机启动功能，右下角加入装饰性生肖图片
 
