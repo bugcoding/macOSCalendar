@@ -363,8 +363,6 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
         }
         util.calculateStemsBranches(year: y, stems: &stems, branches: &branches)
         
-        
-        
         let monthHeavenEarthy = util.getLunarMonthNameBy(calendar: mCalendar, month: mCurMonth, day: mCurDay)
         let dayHeavenEarthy = util.getLunarDayNameBy(year: mCurYear, month: mCurMonth, day: mCurDay)
         

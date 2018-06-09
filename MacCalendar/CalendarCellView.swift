@@ -30,8 +30,6 @@ class CalendarCellView : NSButton, NSMenuDelegate{
         // 设置鼠标进出跟踪区域
         let trackingArea = NSTrackingArea(rect: self.bounds, options: [NSTrackingArea.Options.activeAlways,NSTrackingArea.Options.mouseEnteredAndExited], owner: self, userInfo: nil)
         self.addTrackingArea(trackingArea)
-        
-
     }
     
     func setBackGroundColor(bgColor: NSColor) {
