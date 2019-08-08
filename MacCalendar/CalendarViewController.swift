@@ -362,15 +362,16 @@ class CalendarViewController: NSWindowController, NSTextFieldDelegate {
             }
         }
         util.calculateStemsBranches(year: y, stems: &stems, branches: &branches)
+        branches -= 1
         
         let monthHeavenEarthy = util.getLunarMonthNameBy(calendar: mCalendar, month: mCurMonth, day: mCurDay)
         let dayHeavenEarthy = util.getLunarDayNameBy(year: mCurYear, month: mCurMonth, day: mCurDay)
         
         // 当前的农历年份
-        let lunarStr = "\(CalendarConstant.HEAVENLY_STEMS_NAME[stems - 1])\(CalendarConstant.EARTHY_BRANCHES_NAME[branches - 1])【\(CalendarConstant.CHINESE_ZODIC_NAME[branches - 1])】年"
+        let lunarStr = "\(CalendarConstant.HEAVENLY_STEMS_NAME[stems - 1])\(CalendarConstant.EARTHY_BRANCHES_NAME[branches])【\(CalendarConstant.CHINESE_ZODIC_NAME[branches])】年"
         lunarYearLabel.stringValue = lunarStr + monthHeavenEarthy.heaven + monthHeavenEarthy.earthy + "月" + dayHeavenEarthy.heaven + dayHeavenEarthy.earthy + "日"
         
-        imageView.image = NSImage(named: NSImage.Name(rawValue: CalendarConstant.CHINESE_ZODIC_PNG_NAME[branches - 1]))
+        imageView.image = NSImage(named: NSImage.Name(rawValue: CalendarConstant.CHINESE_ZODIC_PNG_NAME[branches]))
 //        poemLabel.stringValue = CalendarConstant.LAST_POEM[branches - 1]
 //        nextPoemLabel.stringValue = CalendarConstant.NEXT_POEM[branches - 1]
         

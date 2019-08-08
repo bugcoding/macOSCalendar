@@ -1003,13 +1003,13 @@ open class CalendarUtils{
                 break
             }
             
-            //print("calculateMoonShuoJD JD1 - JD0 = \(JD1 - JD0)")
         }while((fabs(JD1 - JD0) > 0.00000001))
         
         return JD1
     }
     
     
+    // 根据年份计算农历干支与生肖
     func calculateStemsBranches(year: Int, stems: inout Int, branches: inout Int) {
         let sc = year - 2000
         stems = (7 + sc) % 10
@@ -1018,17 +1018,14 @@ open class CalendarUtils{
         if stems < 0 {
             stems += 10
         }
-        if branches < 0 {
+        if branches <= 0 {
             branches += 12
         }
     }
     
     
-    
-    
-    
-    private struct TD_UTC_DELTA
-    {
+    // TD - UT1 误差校验结构
+    private struct TD_UTC_DELTA{
         var year: Int
         var d1:Double, d2: Double, d3: Double, d4: Double
         
@@ -1042,7 +1039,7 @@ open class CalendarUtils{
     }
     
     
-    // TD - UT1 计算表
+    // TD - UT1 误差计算表
     private static let deltaTbl:[TD_UTC_DELTA] = [
         TD_UTC_DELTA( -4000, 108371.7,-13036.80,392.000, 0.0000 ),
         TD_UTC_DELTA( -500, 17201.0,  -627.82, 16.170,-0.3413  ),

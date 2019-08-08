@@ -14,8 +14,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var settingController: SettingWindowController?
     var toolsController: ToolsWindowController?
     var calViewController:CalendarViewController?
+    var statusView: StatusBarView?
     //var reminderTipController : ReminderTipWindowController?
-    let icon: IconView
+//    let icon: IconView
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
@@ -26,7 +27,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     // 窗口失去焦点的时候自动关闭
     func applicationDidResignActive(_ notification: Notification) {
         // 选中状态取消
-        self.icon.isSelected = false
+        self.statusView!.isSelected = false
         // 窗口关闭
         self.calViewController?.window?.close()
         // 关闭时重置日期到今天
@@ -66,9 +67,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let item = bar.statusItem(withLength: length)
         
         // 初始化状态栏图标
-        self.icon = IconView(imageName: "icon", item: item)
-        item.view = self.icon
-        
+//        self.icon = IconView(imageName: "icon", item: item)
+        self.statusView = StatusBarView.createFromNib()
+        self.statusView?.initItem(imageName: "icon", item: item)
+        item.view = self.statusView
+
         super.init()
     }
     
@@ -93,8 +96,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     
     override func awakeFromNib() {
-        self.icon.onMouseDown = {
-            if (self.icon.isSelected)
+        self.statusView!.onMouseDown = {
+            if (self.statusView!.isSelected)
             {
                 self.openWindow()
                 return
